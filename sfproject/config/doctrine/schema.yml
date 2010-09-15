@@ -1,0 +1,1454 @@
+LUM_Attachment:
+  connection: doctrine
+  tableName: LUM_Attachment
+  columns:
+    attachmentid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    userid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    commentid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    title:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    name:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    path:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    size:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    mimetype:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    datecreated:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+    datemodified:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+LUM_CatalogItems:
+  connection: doctrine
+  tableName: LUM_CatalogItems
+  columns:
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: true
+      primary: true
+      autoincrement: false
+    imageurl:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    price:
+      type: integer(4)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: true
+      autoincrement: false
+LUM_Category:
+  connection: doctrine
+  tableName: LUM_Category
+  columns:
+    categoryid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    name:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    priority:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    subscribeable:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+LUM_CategoryBlock:
+  connection: doctrine
+  tableName: LUM_CategoryBlock
+  columns:
+    categoryid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    userid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    blocked:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '1'
+      notnull: true
+      autoincrement: false
+LUM_CategoryRoleBlock:
+  connection: doctrine
+  tableName: LUM_CategoryRoleBlock
+  columns:
+    id:
+      type: integer(8)
+      autoincrement: true
+      primary: true
+    categoryid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    roleid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    blocked:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+LUM_Comment:
+  connection: doctrine
+  tableName: LUM_Comment
+  columns:
+    commentid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    authuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    datecreated:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    edituserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    dateedited:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    whisperuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    body:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    formattype:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    deleted:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    datedeleted:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    deleteuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    remoteip:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: false
+      autoincrement: false
+LUM_Discussion:
+  connection: doctrine
+  tableName: LUM_Discussion
+  columns:
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    authuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    whisperuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    firstcommentid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    lastuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    active:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '1'
+      notnull: true
+      autoincrement: false
+    closed:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    sticky:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '9'
+        - '8'
+        - '7'
+        - '6'
+        - '5'
+        - '4'
+        - '3'
+        - '2'
+        - '1'
+        - '0'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    sink:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    name:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    datecreated:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+    datelastactive:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+    countcomments:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '1'
+      notnull: true
+      autoincrement: false
+    categoryid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    whispertolastuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    whisperfromlastuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    datelastwhisper:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    totalwhispercount:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+LUM_DiscussionHasTags:
+  connection: doctrine
+  tableName: LUM_DiscussionHasTags
+  columns:
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    tagid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    created:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+LUM_DiscussionTags:
+  connection: doctrine
+  tableName: LUM_DiscussionTags
+  columns:
+    tagid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    tag:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+LUM_DiscussionUserWhisperFrom:
+  connection: doctrine
+  tableName: LUM_DiscussionUserWhisperFrom
+  columns:
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    whisperfromuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    lastuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    countwhispers:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    datelastactive:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+LUM_DiscussionUserWhisperTo:
+  connection: doctrine
+  tableName: LUM_DiscussionUserWhisperTo
+  columns:
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    whispertouserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    lastuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    countwhispers:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    datelastactive:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+LUM_Event:
+  connection: doctrine
+  tableName: LUM_Event
+  columns:
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    date:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    city:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    country:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+LUM_IpHistory:
+  connection: doctrine
+  tableName: LUM_IpHistory
+  columns:
+    iphistoryid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    remoteip:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    userid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    datelogged:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+LUM_Notify:
+  connection: doctrine
+  tableName: LUM_Notify
+  columns:
+    notifyid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    userid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    method:
+      type: string(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    selectid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+LUM_Poll:
+  connection: doctrine
+  tableName: LUM_Poll
+  columns:
+    pollid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    userid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    name:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    datecreated:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+    datestart:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+    dateend:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+    totalvotes:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    priority:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+LUM_PollBlock:
+  connection: doctrine
+  tableName: LUM_PollBlock
+  columns:
+    id:
+      type: integer(8)
+      autoincrement: true
+      primary: true
+    pollid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    userid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    blocked:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '1'
+      notnull: true
+      autoincrement: false
+    remoteip:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    datecreated:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+LUM_PollData:
+  connection: doctrine
+  tableName: LUM_PollData
+  columns:
+    polldataid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    pollid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    name:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    votes:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+LUM_PollRoleBlock:
+  connection: doctrine
+  tableName: LUM_PollRoleBlock
+  columns:
+    id:
+      type: integer(8)
+      autoincrement: true
+      primary: true
+    pollid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    roleid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    blocked:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '1'
+      notnull: true
+      autoincrement: false
+LUM_Releases:
+  connection: doctrine
+  tableName: LUM_Releases
+  columns:
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    labelname:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    downloadlink:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    ismix:
+      type: string(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+LUM_Role:
+  connection: doctrine
+  tableName: LUM_Role
+  columns:
+    roleid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    name:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    icon:
+      type: string(155)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    description:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    active:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '1'
+      notnull: true
+      autoincrement: false
+    permission_sign_in:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    permission_html_allowed:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '0'
+        - '1'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    permission_receive_application_notification:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    permissions:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    priority:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    unauthenticated:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+LUM_Style:
+  connection: doctrine
+  tableName: LUM_Style
+  columns:
+    styleid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    authuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    name:
+      type: string(50)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    url:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    previewimage:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+LUM_User:
+  connection: doctrine
+  tableName: LUM_User
+  columns:
+    userid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    roleid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    styleid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '1'
+      notnull: true
+      autoincrement: false
+    customstyle:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    firstname:
+      type: string(50)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    lastname:
+      type: string(50)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    name:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    password:
+      type: blob()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    verificationkey:
+      type: string(50)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    emailverificationkey:
+      type: string(50)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    email:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    utilizeemail:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    showname:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '1'
+      notnull: true
+      autoincrement: false
+    icon:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    picture:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    attributes:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    countvisit:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    countdiscussions:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    countcomments:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    datefirstvisit:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+    datelastactive:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+    remoteip:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: ''
+      notnull: true
+      autoincrement: false
+    lastdiscussionpost:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    discussionspamcheck:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    lastcommentpost:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    commentspamcheck:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    userblockscategories:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    defaultformattype:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    discovery:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    preferences:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    sendnewapplicantnotifications:
+      type: enum(1)
+      fixed: false
+      unsigned: false
+      values:
+        - '1'
+        - '0'
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    subscribeown:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    notified:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    ldupdatetime:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    ldlastupdate:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+LUM_UserBookmark:
+  connection: doctrine
+  tableName: LUM_UserBookmark
+  columns:
+    userid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+LUM_UserDiscussionWatch:
+  connection: doctrine
+  tableName: LUM_UserDiscussionWatch
+  columns:
+    userid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    countcomments:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    lastviewed:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+LUM_UserRoleHistory:
+  connection: doctrine
+  tableName: LUM_UserRoleHistory
+  columns:
+    id:
+      type: integer(8)
+      autoincrement: true
+      primary: true
+    userid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    roleid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    date:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+    adminuserid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    notes:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    remoteip:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
