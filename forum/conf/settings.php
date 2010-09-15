@@ -1,12 +1,12 @@
 <?php
 // Application Settings
 $Configuration['SETUP_TEST'] = '1';
-$Configuration['APPLICATION_PATH'] = '/srv/bouteille_data/plesk-vhosts/musiques-incongrues.net/httpdocs/forum/';
-$Configuration['DATABASE_PATH'] = '/srv/bouteille_data/plesk-vhosts/musiques-incongrues.net/httpdocs/forum/conf/database.php';
-$Configuration['LIBRARY_PATH'] = '/srv/bouteille_data/plesk-vhosts/musiques-incongrues.net/httpdocs/forum/library/';
-$Configuration['EXTENSIONS_PATH'] = '/srv/bouteille_data/plesk-vhosts/musiques-incongrues.net/httpdocs/forum/extensions/';
-$Configuration['LANGUAGES_PATH'] = '/srv/bouteille_data/plesk-vhosts/musiques-incongrues.net/httpdocs/forum/languages/';
-$Configuration['THEME_PATH'] = '/srv/bouteille_data/plesk-vhosts/musiques-incongrues.net/httpdocs/forum/themes/vanilla/';
+$Configuration['APPLICATION_PATH'] = dirname(__FILE__).'/../';
+$Configuration['DATABASE_PATH'] = sprintf('%s/conf/database.php', $Configuration['APPLICATION_PATH']);
+$Configuration['LIBRARY_PATH'] = sprintf('%s/library/', $Configuration['APPLICATION_PATH']);
+$Configuration['EXTENSIONS_PATH'] = sprintf('%s/extensions/', $Configuration['APPLICATION_PATH']);
+$Configuration['LANGUAGES_PATH'] = sprintf('%s/languages/', $Configuration['APPLICATION_PATH']);
+$Configuration['THEME_PATH'] = sprintf('%s/themes/vanilla/', $Configuration['APPLICATION_PATH']);
 
 $Configuration['DEFAULT_STYLE'] = '/forum/themes/vanilla/styles/scene/';
 $Configuration['WEB_ROOT'] = '/forum/';
@@ -32,11 +32,11 @@ $Configuration['ACCOUNTPICTURES_ICON_HEIGHT'] = '32';
 $Configuration['ACCOUNTPICTURES_PICTURE_WIDTH'] = '280';
 $Configuration['ACCOUNTPICTURES_PICTURE_HEIGHT'] = '200';
 $Configuration['ACCOUNTPICTURES_SETUP'] = '1';
-$Configuration['ATTACHMENT_UPLOAD_PATH'] = '/srv/bouteille_data/plesk-vhosts/musiques-incongrues.net/httpdocs/forum/uploads/';
+$Configuration['ATTACHMENT_UPLOAD_PATH'] = sprintf('%s/uploads/', $Configuration['APPLICATION_PATH']);
 $Configuration['ATTACHMENT_MAXIMUM_FILESIZE'] = '512000000000';
 $Configuration['ATTACHMENT_DISPLAY_IMAGES'] = '1';
 $Configuration['ATTACHMENT_DISPLAY_IMAGE_THUMBNAILS'] = '1';
-$Configuration['ATTACHMENT_THUMBNAIL_PATH'] = '/srv/bouteille_data/plesk-vhosts/musiques-incongrues.net/httpdocs/forum/uploads/thumbs/';
+$Configuration['ATTACHMENT_THUMBNAIL_PATH'] = sprintf('%s/uploads/thumbs/', $Configuration['APPLICATION_PATH']);
 $Configuration['ATTACHMENT_THUMBNAIL_X'] = '100';
 $Configuration['ATTACHMENT_THUMBNAIL_Y'] = '100';
 $Configuration['ATTACHMENT_DISPLAY_IMAGE_PROCESSING'] = 'Thickbox';
@@ -55,7 +55,7 @@ $Configuration['INVITATION_SYSTEM_ADMIN_NAME_TO_REQUEST'] = 'Admin';
 $Configuration['INVITATION_SYSTEM_PRESENTATION_FORUM'] = 'The forum is very private, so can\'t tell you too much about it, but this Forum rock.';
 $Configuration['INVITATION_SYSTEM_VERSION'] = '0.2.0';
 $Configuration['INVITATION_SYSTEM_REQUEST_ON'] = '1';
-$Configuration['ATTACHMENTS_UPLOAD_PATH'] = '/srv/bouteille_data/plesk-vhosts/musiques-incongrues.net/httpdocs/forum/uploads/%year%/%month%/';
+$Configuration['ATTACHMENTS_UPLOAD_PATH'] =  sprintf('%s/uploads/%year%/%month%/', $Configuration['APPLICATION_PATH']);
 $Configuration['ATTACHMENTS_MAXIMUM_FILESIZE'] = '512000';
 $Configuration['ATTACHMENTS_VERSION'] = '2.0';
 $Configuration['LOG_ALL_IPS'] = '1';
