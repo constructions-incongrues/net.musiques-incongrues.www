@@ -1,0 +1,11 @@
+Une nouvelle inscription a été remplie par {applicant_name} ({applicant_email}),
+qui a fourni les informations suivantes:
+
+================================================================================
+
+{discovery_information}
+
+================================================================================
+
+Acceptez ou refusez cette demande à:
+{application_url}

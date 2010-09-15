@@ -1,0 +1,15 @@
+.HiddenLabel {
+ color:#900;
+ text-decoration:none;
+ cursor:pointer;
+ cursor:hand;
+}
+
+.Hidden {
+ color:#009;
+ font-style:italic;
+ font-size:1%;
+}
+
+.HiddenHide {display:none;}
+.HiddenShown {font-size:100%;}

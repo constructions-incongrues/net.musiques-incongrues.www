@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/22543/components/templating/trunk/lib
+END
+sfTemplateStorage.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/22543/components/templating/trunk/lib/sfTemplateStorage.php
+END
+sfTemplateStorageFile.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/22215/components/templating/trunk/lib/sfTemplateStorageFile.php
+END
+sfTemplateEngine.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/22543/components/templating/trunk/lib/sfTemplateEngine.php
+END
+sfTemplateDebuggerInterface.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/22215/components/templating/trunk/lib/sfTemplateDebuggerInterface.php
+END
+sfTemplateRenderer.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/22215/components/templating/trunk/lib/sfTemplateRenderer.php
+END
+sfTemplateLoader.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/22215/components/templating/trunk/lib/sfTemplateLoader.php
+END
+sfTemplateLoaderChain.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/22543/components/templating/trunk/lib/sfTemplateLoaderChain.php
+END
+sfTemplateLoaderFilesystem.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/22543/components/templating/trunk/lib/sfTemplateLoaderFilesystem.php
+END
+sfTemplateHelperStylesheets.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/22215/components/templating/trunk/lib/sfTemplateHelperStylesheets.php
+END
+sfTemplateRendererPhp.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/22543/components/templating/trunk/lib/sfTemplateRendererPhp.php
+END
+sfTemplateLoaderCompilableInterface.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/22215/components/templating/trunk/lib/sfTemplateLoaderCompilableInterface.php
+END
+sfTemplateHelper.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/22215/components/templating/trunk/lib/sfTemplateHelper.php
+END
+sfTemplateLoaderInterface.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/22543/components/templating/trunk/lib/sfTemplateLoaderInterface.php
+END
+sfTemplateRendererInterface.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/22543/components/templating/trunk/lib/sfTemplateRendererInterface.php
+END
+sfTemplateHelperJavascripts.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/22256/components/templating/trunk/lib/sfTemplateHelperJavascripts.php
+END
+sfTemplateLoaderCache.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/22543/components/templating/trunk/lib/sfTemplateLoaderCache.php
+END
+sfTemplateHelperSet.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/22215/components/templating/trunk/lib/sfTemplateHelperSet.php
+END
+sfTemplateStorageString.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/22215/components/templating/trunk/lib/sfTemplateStorageString.php
+END
+sfTemplateAutoloader.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/22215/components/templating/trunk/lib/sfTemplateAutoloader.php
+END
+sfTemplateHelperInterface.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/22215/components/templating/trunk/lib/sfTemplateHelperInterface.php
+END
+sfTemplateHelperAssets.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/22271/components/templating/trunk/lib/sfTemplateHelperAssets.php
+END

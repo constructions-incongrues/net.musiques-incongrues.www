@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/23155/components/templating/trunk/doc
+END
+00-Introduction.markdown
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/22215/components/templating/trunk/doc/00-Introduction.markdown
+END
+01-Templating-In-Five-Minutes.markdown
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/22215/components/templating/trunk/doc/01-Templating-In-Five-Minutes.markdown
+END
+A-License.markdown
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/22215/components/templating/trunk/doc/A-License.markdown
+END
+02-Templating.markdown
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/23155/components/templating/trunk/doc/02-Templating.markdown
+END
+04-Template-Loaders.markdown
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/22543/components/templating/trunk/doc/04-Template-Loaders.markdown
+END
+05-Template-Renderers.markdown
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/22543/components/templating/trunk/doc/05-Template-Renderers.markdown
+END
+03-Template-Helpers.markdown
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/22242/components/templating/trunk/doc/03-Template-Helpers.markdown
+END

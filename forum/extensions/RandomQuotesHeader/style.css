@@ -1,0 +1,30 @@
+.BannerContainer {
+	background: #fff;
+	text-align: center;
+	font-size: 11px;
+	font-family: 'Trebuchet MS', Verdana, Arial;
+	}
+
+.QuoteBody{
+ color:#0099FF;	
+ }
+
+
+/*
+.Banner {
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	text-align: left;
+	}
+.Banner {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	}
+*/
+
+/*
+.QuoteTitle{
+	font-weight: bold;
+	}
+*/

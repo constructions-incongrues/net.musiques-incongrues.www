@@ -1,0 +1,5 @@
+div.media p img {border:none; padding-left:3px;}
+div.media p {margin:5px 0; padding:5px; color: #000;background-color:#E1FFFF;border: 1px solid #CCCCCC; text-align:center; font-size:small;}
+div.media embed {margin:0; padding:0;}
+div.media p a{color: #000; text-decoration: none;}
+div.media p a:hover {color: #000; text-decoration: underline;}

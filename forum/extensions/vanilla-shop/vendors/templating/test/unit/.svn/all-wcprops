@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/22543/components/templating/trunk/test/unit
+END
+sfTemplateStorageFileTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/22215/components/templating/trunk/test/unit/sfTemplateStorageFileTest.php
+END
+sfTemplateStorageTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/22215/components/templating/trunk/test/unit/sfTemplateStorageTest.php
+END
+sfTemplateEngineTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/22543/components/templating/trunk/test/unit/sfTemplateEngineTest.php
+END
+sfTemplateRendererTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/22543/components/templating/trunk/test/unit/sfTemplateRendererTest.php
+END
+sfTemplateLoaderTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/22215/components/templating/trunk/test/unit/sfTemplateLoaderTest.php
+END
+sfTemplateLoaderChainTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/22215/components/templating/trunk/test/unit/sfTemplateLoaderChainTest.php
+END
+sfTemplateLoaderFilesystemTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/22215/components/templating/trunk/test/unit/sfTemplateLoaderFilesystemTest.php
+END
+sfTemplateHelperStylesheetsTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/22215/components/templating/trunk/test/unit/sfTemplateHelperStylesheetsTest.php
+END
+sfTemplateRendererPhpTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/22543/components/templating/trunk/test/unit/sfTemplateRendererPhpTest.php
+END
+sfTemplateHelperTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/22215/components/templating/trunk/test/unit/sfTemplateHelperTest.php
+END
+sfTemplateHelperJavascriptsTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/22256/components/templating/trunk/test/unit/sfTemplateHelperJavascriptsTest.php
+END
+sfTemplateLoaderCacheTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/22215/components/templating/trunk/test/unit/sfTemplateLoaderCacheTest.php
+END
+sfTemplateHelperSetTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/22215/components/templating/trunk/test/unit/sfTemplateHelperSetTest.php
+END
+sfTemplateStorageStringTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/22215/components/templating/trunk/test/unit/sfTemplateStorageStringTest.php
+END
+sfTemplateAutoloaderTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/22215/components/templating/trunk/test/unit/sfTemplateAutoloaderTest.php
+END
+sfTemplateHelperAssetsTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/22269/components/templating/trunk/test/unit/sfTemplateHelperAssetsTest.php
+END

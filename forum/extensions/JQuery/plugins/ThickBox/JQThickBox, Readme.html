@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb">
+ <head>
+  <title>JQThickBox</title>
+  <style type="text/css">
+body {
+ background: #fff;
+ margin: 0px;
+ padding: 0px;
+ text-align: center;
+}
+body, div, p, blockquote, h1, h2, input {
+ font-family: Trebuchet MS, Arial, Verdana, sans-serif;
+}
+body, div, p, blockquote {
+ font-size: 13px;
+ line-height: 170%;
+}
+a, a:link, a:visited {
+ text-decoration: none;
+ color: #00c;
+}
+a:hover {
+ text-decoration: underline;
+ color: #c00;
+}
+h1 {
+ margin: 0px;
+ padding: 0px;
+}
+h1 span {
+ color: #ACBEDF;
+ display: block;
+ width: 500px;
+ margin-left: auto;
+ margin-right: auto;
+ font-size: 36px;
+ padding: 20px 0px 20px 0px;
+ text-align: left;
+}
+h1 span strong {
+ padding-left: 80px;
+ color: #758ebc;
+}
+.Content {
+ margin-left: auto;
+ margin-right: auto;
+ text-align: left;
+ width: 55em;
+ padding: 20px 0px 40px 0px;
+}
+p, h2, h3 {
+ margin: 0px;
+ padding: 0px;
+}
+p {
+ margin-bottom: 1em;
+}
+code {
+ background: #FEFECC;
+ margin: 10px 0px 10px 0px;
+ padding: 10px;
+ border-left: 4px solid #FCEEAA;
+ font-family: courier new, courier, system, sans-serif;
+ display: block;
+ white-space: pre;
+ white-space: pre-wrap !important;       /* css-3 */
+ white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap !important;      /* Opera 4-6 */
+ white-space: -o-pre-wrap !important;    /* Opera 7 */
+ word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
+}
+fieldset {
+ border: 0px;
+ margin: 0px;
+ padding: 0px;
+}
+fieldset ul {
+ list-style: none;
+ margin: 0px;
+ padding: 8px 8px 2px 8px;
+ background: #efefef;
+}
+fieldset label {
+ float: left;
+ margin: 0px 0px 6px 0px;
+ width:30%;
+}
+fieldset ul li {
+ clear: left;
+}
+fieldset ul li input {
+ margin-bottom: 6px;
+ width: 50%;
+}
+.Button {
+ padding: 10px 0px 20px 0px;
+}
+.Button input {
+ font-size: 14px;
+ font-weight: bold;
+ border: 0px;
+ margin: 0px;
+ padding: 0px;
+ background: none;
+ cursor: pointer;
+ color: #64AE18;
+}
+.Button a {
+ font-size: 14px;
+ font-weight: bold;
+ color: #64AE18;
+}
+#Installation {background-color:#fafafa;padding:0.5em;border:1px solid #ccc;}
+	</style>
+ </head>
+
+ <body>
+  <div class="Content">
+   <div style="font-size:13px;color:#000;padding:10px;border:0;margin:0;background:#fff;">
+    <h1 style="margin:0;font-size:20px;font-weight:bold;">
+     <a href="http://lussumo.com/addons/index.php?PostBackAction=AddOn&AddOnID=240">JQThickBox v12-3.1 </a>
+    </h1>
+    <p>by <a href="http://lussumo.com/community/account/2277/">Luke Scammell aka [-Stash-] </a>
+    </p>
+    <div style="font-size:13px;color:#000;padding:0.7em;border:1px solid #ddd;background:#fafafa;margin-bottom:1em;">
+     <h2 style="margin:0;color:#e00;font-size:20px;font-weight:bold;">Dependencies</h2>
+     <ol style="margin-top:0;margin-bottom:0;">
+      <li style="margin-top:0;margin-bottom:0;">
+       <a href="http://lussumo.com/addons/?PostBackAction=AddOn&AddOnID=231" title="Download the JQuery Vanilla extension">JQuery extension v13-1.2.1 or higher</a> needs to be installed and enabled <strong>first</strong> in order for this to work.</li>
+      <li style="margin-top:0;margin-bottom:0;">
+       <a href="http://getvanilla.com" title="Download version 1.1.2 or higher of Vanilla">Vanilla 1.1.2 or higher.</a>
+      </li>
+     </ol>
+    </div>
+    <img src="http://exhibitq.com/Vanilla/extensions/JQThickBox/Vanilla, extensions, JQThickBox, Screenshot 2007-03-03_02-44.png" alt="JQThickBox screenshot" title="JQThickBox screenshot" width="449" height="297" style="float:right;margin:0 0 10px 10px;" />
+    <p>Now developers can integrate ThickBox (3.1) functionality into their extensions quickly and easily, without having to worry about conflicting with other extensions using older/different versions of ThickBox.</p>
+
+    <p>Now using ThickBox 3.1! <del>I'm using <a href="http://www.stilbuero.de/2006/11/06/a-smoother-thickbox-with-less-code/" title="Klaus Hartl's blog post on ThickBox improvements">Klaus Hartl's ThickBox 2.1 variant</a> (as it is a bit better than the *ahem* vanilla ThickBox 2.1.1) updated to work with JQuery 1.1+ and <a href="http://dean.edwards.name/packer/" title="Dean Edwards' JS packer">packed using Dean Edwards' JS packer</a>.</del></p>
+
+    <h3 style="margin:0;font-size:15px;font-weight:bold;">From the ThickBox homepage</h3>
+    <p style="margin:0 0 1em 0;">ThickBox is a webpage UI dialog widget written in JavaScript on top of the jQuery library. Its function is to show a single image, multiple images, inline content, iframed content, or content served through AJAX in a hybrid modal.</p>
+
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">Known extension bugs</h4>
+    <p style="margin:0 0 1em 0;">! None.</p>
+
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">To do</h4>
+    <p style="margin:0 0 1em 0;">+ Convince more extension authors to support this package! (Thanks Jazzman, MySchizoBuddy and adrian.!).</p>
+
+    <div style="font-size:13px;color:#000;padding:0.7em;border:1px solid #ddd;background:#fafafa;margin-bottom:1em;">
+     <h2 style="margin:0;font-size:20px;font-weight:bold;">EXTENSION INSTALLATION INSTRUCTIONS</h2>
+     <p style="margin:0;">Download and uncompress the extension files, then <strong>upload</strong> them to:</p>
+     <code style="padding:0.2em 1em;margin:0 0 1em 0;display:block;">/path/to/vanilla/extensions/JQThickBox/</code>
+     <p style="margin:0;">The path to this extension's default.php file should look like this:</p>
+     <code style="padding:0.2em 1em;margin:0 0 1em 0;display:block;">/path/to/vanilla/extensions/JQThickBox/default.php</code>
+     <p style="margin:0;">To enable the extension you must be logged in with an account that has Administrator privileges.  You can enable the extension in Vanilla by clicking on: </p>
+     <code style="padding:0.2em 1em;display:block;">Settings > Extensions</code>
+     <p>Then tick the checkbox for <strong>"JQThickBox"</strong></p>
+     <form>
+      <input type="checkbox" checked="checked" style="float:left;">JQThickBox</form>
+     </p>
+    </div>
+
+    <h2>History</h2>
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">v12-3.1 Released 2007-09-22</h4>
+    <p style="margin:0 0 1em 0;">+ ThickBox 3.1 was choking on images supplied by InlineImages, fixed.</p>
+	 
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">v11-3.1 Released 2007-09-21</h4>
+    <p style="margin:0 0 1em 0;">+ added minified, packed, gzipped versions of Thickbox 2.1.1 in the /old/directory for use if people would rather use this instead of 3.1 - you never know.  Simply uncomment a line in default.php and comment another.  It's marked up in the code.<br />
+	+ Should have mentioned this in v10-3.1, but this now requires the Vanilla JQuery extension v13-1.2.1 or higher due to the way it now calls JQuery.</p>
+	 
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">v10-3.1 Released 2007-09-19</h4>
+    <p style="margin:0 0 1em 0;">+ Updated to ThickBox 3.1<br />
+     + Changed the default JS file to the minified version instead of packer.  Please change line 37 if you would rathe use the packed version.  Gzipped versions are also included for use if your host supports them.</p>
+	 
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">1.1.4 Released 2007-06-28</h4>
+    <p style="margin:0 0 1em 0;">! Fixed a bug that could cause the the extensions/settings.php file to be wiped on busier servers due to the settings being written on every single page load. <a href="http://lussumo.com/community/?CommentID=71190">Thanks to little_peet for pointing this out!</a><br />
+     + <a href="http://lussumo.com/community/?CommentID=63207">added support</a> for the CSS/JS packer core patch by Dinoboff.<br />
+     + updated to work with JQuery extension 1.1.4 which has compatibility mode enabled by default.</p>
+
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">1.1.3 Released 2007-03-17</h4>
+    <p style="margin:0 0 1em 0;">! ######## !!!!!!!! REQUIRES VANILLA 1.1.2 ######## !!!!!!!!<br />
+     ! Think I've fixed the loadingAnimation path in thickbox.js once and for all, thanks to Dinoboff and his mad JS skills :)<br />
+     + added the unpacked JS to the src directory.  You do not need to upload this directory, it is simply for people so they can change things (and help me!) if they want.  The packed and unpacked JS should work exactly the same, the packed one's just smaller ;)</p>
+
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">1.1.2 Released 2007-03-03</h4>
+    <p style="margin:0 0 1em 0;">! Fixed to work with SirNot's PreviewPost 2.2.<br />
+     + Packed thickbox.js for even lower overhead.<br />
+     + Changed the #TB_window border as it was a bit... thick?</p>
+
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">1.1.1 Released 2007-01-24</h4>
+    <p style="margin:0 0 1em 0;">+ Updated to natively run on jQuery 1.1.1<br />
+     - Removed the jQuery 1.0 compatibility plugin.</p>
+
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">1.0.3 Released 2007-01-22</h4>
+    <p style="margin:0 0 1em 0;">+ Cleaned up some random code I'd left hanging around.<br />
+     + Loading animation is now preloaded and cached on page load.</p>
+
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">1.0.2 Released 2007-01-20</h4>
+    <p style="margin:0 0 1em 0;">+ Updated to use jQuery 1.1 via the compatibility plugin.<br />
+     ! Fixed the path for the loading animation *again*, so hopefully it will work for everyone now ;)<br />
+     - Returned configuration settings to firing on every page as the other code wasn't updating the version numbers.</p>
+
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">1.0.1 Released 2007-01-12</h4>
+    <p style="margin:0 0 1em 0;">+ Prevented the configuration code executing on every page, thanks Jazzman.<br />
+     + Made use of JQTHICKBOX_PATH, <a href="http://lussumo.com/community/?CommentID=55048" title="(Extension: JQThickBox # 5)">thanks Jazzman.</a>
+     <br />
+     ! Fixed PreviewPost extension error, <a href="http://lussumo.com/community/?CommentID=54998" title="(Extension: JQThickBox # 2)">thanks SkyBoy.</a>
+     <br />
+     ! Fixed the path for loadingAnimation.gif, <a href="http://lussumo.com/community/?CommentID=54998" title="(Extension: JQThickBox # 2)">thanks SkyBoy.</a>
+     <br />
+     ! Fixed the IE CC path, <a href="http://lussumo.com/community/?CommentID=55060" title="(Extension: JQThickBox # 11)">thanks Jazzman.</a>
+    </p>
+
+    <h4 style="margin:0;font-size:13px;font-weight:bold;">1.0.0 Released 2007-01-11</h4>
+    <p style="margin:0 0 1em 0;">+ Original release.  Thank you to <a href="http://www.nabble.com/forum/ViewPost.jtp?post=8081233&framed=y">Johan Sundstr&ouml;m for the "#TB_window *" CSS trick</a> that was preventing me from releasing this.</p>
+   </div>
+  </div>
+ </body>
+</html>

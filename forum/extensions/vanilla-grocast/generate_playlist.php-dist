@@ -1,0 +1,79 @@
+<?php
+set_include_path('.:/usr/share/php');
+require_once 'File/XSPF.php';
+class Bz_File_XSPF extends File_XSPF
+{
+  public function randomize()
+  {
+    shuffle($this->_tracks);
+  }
+}
+class Bz_File_XSPF_Location extends File_XSPF_Location
+{
+  function __toString()
+  {
+    return $this->getURL();
+  }
+}
+
+$con = new MySQLi('localhost', '', '', 'admin_mi_forum');
+
+$res = $con->query('select DiscussionID, CommentID, Body from LUM_Comment order by DateCreated desc');
+$mp3_links = array();
+while ($post = $res->fetch_object())
+{
+  // Gather comments that contain a link to an mp3 file
+  $matches = array();
+  if (preg_match_all('|https?://.*\.mp3|im', $post->Body, $matches))
+  {
+    $mp3_links[$post->DiscussionID] = $matches[0];
+  }
+  if (preg_match_all('|https?://soundcloud.com/.*/download|im', $post->Body, $matches))
+  {
+    $mp3_links[$post->DiscussionID] = $matches[0];
+  }
+}
+
+$res->close();
+$con->close();
+
+// Generate playlist
+
+$playlist = new Bz_File_XSPF();
+$playlist->setTitle('Substantifique Moëlle Incongrue');
+$playlist->setInfo('http://www.musiques-incongrues.net');
+foreach ($mp3_links as $discussion_id => $urls)
+{
+
+  foreach ($urls as $original_url)
+  {
+    // Use CoralCDN (see http://www.coralcdn.org/)
+    // TODO : it does not work most of the time, let's not use it :(
+    $original_host = parse_url($original_url, PHP_URL_HOST);
+    $cdn_url = str_replace($original_host, sprintf('%s.nyud.net', $original_host), $original_url);
+
+    // Better readability for title
+    $title = urldecode(basename($original_url, '.mp3'));
+    $title = str_replace('_', ' ', $title);
+    $title = str_replace('+', ' ', $title);
+    $title = ucwords(strtolower($title));
+
+    // Append track to playlist
+    $track = new File_XSPF_Track();
+    $track->setTitle($title);
+    $track->addLocation(new Bz_File_XSPF_Location($original_url));
+    $track->setInfo(sprintf('http://www.musiques-incongrues.net/forum/discussion/%d/', $discussion_id));
+    $playlist->addTrack($track, false);
+  }
+}
+
+// Write file to disk
+// -- Chronological playlist
+file_put_contents(dirname(__FILE__).'/../../radio.xspf', $playlist->toString());
+$playlist->toM3U(dirname(__FILE__).'/../../radio.m3u');
+
+// -- Random playlist
+$playlist->randomize();
+file_put_contents(dirname(__FILE__).'/../../radio-random.xspf', $playlist->toString());
+$playlist->toM3U(dirname(__FILE__).'/../../radio-random.m3u');
+
