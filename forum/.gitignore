@@ -1,4 +1,5 @@
 conf/database.php
+conf/settings.php
 oeil/extract-vanilla-data.php
 oeil/lib/asaph_config.class.php
 extensions/SidepanelRotator/rotator.php
