@@ -94,10 +94,10 @@ class feedsActions extends sfActions
         require_once 'Zend/Loader.php';
         Zend_Loader::loadClass('Zend_Feed_Writer_Feed');
         $feed = new Zend_Feed_Writer_Feed();
-        $feed->setTitle('Le calendrier des événements incongrus');
+        $feed->setTitle('Ananagenda');
         $feed->setLink('http://www.musiques-incongrues.net/forum/events');
         $feed->setFeedLink('http://www.musiques-incongrues.net/forum/s/feeds/events', 'RSS');
-        $feed->setDescription("L'agenda collaboratif du forum des musiques incongrues");
+        $feed->setDescription("L'agenda collaboratif du forum des Musiques Incongrues");
         $feed->setDateModified(time());
         foreach ($events as $event)
         {
