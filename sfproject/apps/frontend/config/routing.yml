@@ -1,6 +1,15 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+feeds_podcast:
+  url: /feeds/podcast
+  param: {module: feeds, action: podcast }
+
+feeds_events:
+  url: /feeds/events
+  param: {module: feeds, action: events }
+
+
 # default rules
 homepage:
   url:   /

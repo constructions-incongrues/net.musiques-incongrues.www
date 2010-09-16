@@ -642,6 +642,13 @@ LUM_Event:
       primary: false
       notnull: false
       autoincrement: false
+  relations:
+    Discussion:
+      class: LUM_Discussion
+      local: discussionid
+      foreign: discussionid
+      foreignAlias: Events
+
 LUM_IpHistory:
   connection: doctrine
   tableName: LUM_IpHistory
