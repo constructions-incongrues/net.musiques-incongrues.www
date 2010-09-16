@@ -1,3 +1,6 @@
+---
+detect_relations: true
+
 LUM_Attachment:
   connection: doctrine
   tableName: LUM_Attachment
@@ -320,6 +323,12 @@ LUM_Comment:
       default: ''
       notnull: false
       autoincrement: false
+  relations:
+    Discussion:
+      class: LUM_Discussion
+      local: discussionid
+      foreign: discussionid
+      foreignAlias: Comments
 LUM_Discussion:
   connection: doctrine
   tableName: LUM_Discussion
@@ -923,6 +932,12 @@ LUM_Releases:
       primary: false
       notnull: false
       autoincrement: false
+  relations:
+    Discussion:
+      class: LUM_Discussion
+      local: discussionid
+      foreign: discussionid
+      foreignAlias: Releases
 LUM_Role:
   connection: doctrine
   tableName: LUM_Role

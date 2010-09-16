@@ -10,5 +10,5 @@ Author Url: http://github.com/trivoallan
 
 if(!in_array(ForceIncomingString("PostBackAction", ""), array('Symfony')))
 {
-    require dirname(__FILE__).'/../../s/frontend_dev.php';
+//    require dirname(__FILE__).'/../../s/frontend_dev.php';
 }
