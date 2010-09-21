@@ -6,7 +6,7 @@ default:
     content-type: text/html
 
   metas:
-    #title:        symfony project
+    title:        Musiques Incongrues
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en
@@ -14,7 +14,7 @@ default:
 
   stylesheets:    [main.css]
 
-  javascripts:    []
+  javascripts:    [http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js]
 
   has_layout:     true
   layout:         layout

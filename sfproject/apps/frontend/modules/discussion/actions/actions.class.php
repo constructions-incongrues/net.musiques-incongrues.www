@@ -17,5 +17,13 @@ class discussionActions extends sfActions
   */
   public function executeList(sfWebRequest $request)
   {
+      // Fetch latest discussions
+      $discussions = LUM_DiscussionTable::getInstance()->getLatest();
+
+      // Pass data to view
+      $this->discussions = $discussions;
+
+      // Select template
+      return sfView::SUCCESS;
   }
 }

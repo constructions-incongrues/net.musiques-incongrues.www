@@ -3,23 +3,17 @@
 
 feeds_podcast:
   url: /feeds/podcast
-  param: {module: feeds, action: podcast }
+  param: { module: feeds, action: podcast }
 
 feeds_events:
   url: /feeds/events
-  param: {module: feeds, action: events }
+  param: { module: feeds, action: events }
 
+discussion_list:
+  url: /discussions
+  param: { module: discussion, action: list }
 
 # default rules
 homepage:
   url:   /
-  param: { module: test, action: index }
-
-# generic rules
-# please, remove them by adding more specific rules
-default_index:
-  url:   /:module
-  param: { action: index }
-
-default:
-  url:   /:module/:action/*
+  param: { module: discussion, action: list }
