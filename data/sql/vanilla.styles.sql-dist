@@ -1,0 +1,2 @@
+TRUNCATE TABLE LUM_Style;
+INSERT INTO `LUM_Style` VALUES (1,0,'Vanilla','@PATHS.BASEURL@themes/vanilla/styles/default/',''),(2,0,'default','@PATHS.BASEURL@themes/vanilla2/styles/default/','preview.gif'),(3,0,'','@PATHS.BASEURL@themes/scene/styles/','preview.gif'),(4,0,'scene','@PATHS.BASEURL@themes/vanilla/styles/scene/','preview.gif'),(5,0,'default','@PATHS.BASEURL@themes/vanilla/styles/default/','preview.gif'),(6,0,'scene','@PATHS.BASEURL@themes/vanilla/styles/scene/','preview.gif');

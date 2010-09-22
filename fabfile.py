@@ -23,6 +23,7 @@ def prepare():
   print('Preparing sources for deployment')
 
   # Find -dist files and perform strings substitution
+  # TODO : factor dedicated function
   config_flat = _config_flatten(env.config)
   dist_files = _find_files(os.getcwd(), '*-dist')
   print '> Replacing %d tokens in %d files' % (len(config_flat), len(dist_files))
@@ -49,8 +50,18 @@ def deploy():
   prepare()
 
   # TODO : take care of excludes
-  contrib.project.rsync_project(remote_dir=env.config.get('paths', 'install'), exclude=[], delete=True)
+  contrib.project.rsync_project(remote_dir=env.config.get('paths', 'install'), exclude=[], delete=True, local_dir='%s/*' % os.getcwd())
 
+  reload_db()
+
+def reload_db():
+  
+  # Make sure configuration is set
+  require('config', provided_by=[configure])
+
+  run('mysql -u%s -p%s %s < %s' % (env.config.get('database_vanilla', 'user'), env.config.get('database_vanilla', 'password'), env.config.get('database_vanilla', 'name'), '%s/data/sql/vanilla.sql' % env.config.get('paths', 'install')))
+  run('mysql -u%s -p%s %s < %s' % (env.config.get('database_vanilla', 'user'), env.config.get('database_vanilla', 'password'), env.config.get('database_vanilla', 'name'), '%s/data/sql/vanilla.styles.sql' % env.config.get('paths', 'install')))
+  run('mysql -u%s -p%s %s < %s' % (env.config.get('database_asaph', 'user'), env.config.get('database_asaph', 'password'), env.config.get('database_asaph', 'name'), '%s/data/sql/asaph.sql' % env.config.get('paths', 'install')))
 
 # -- HELPERS
 

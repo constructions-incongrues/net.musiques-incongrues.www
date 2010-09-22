@@ -1,9 +1,9 @@
 <?php
 // Database Configuration Settings
-$Configuration['DATABASE_HOST'] = 'localhost';
-$Configuration['DATABASE_NAME'] = 'admin_mi_forum';
-$Configuration['DATABASE_USER'] = '';
-$Configuration['DATABASE_PASSWORD'] = '';
+$Configuration['DATABASE_HOST'] = '@DATABASE_VANILLA.HOST@';
+$Configuration['DATABASE_NAME'] = '@DATABASE_VANILLA.NAME@';
+$Configuration['DATABASE_USER'] = '@DATABASE_VANILLA.USER@';
+$Configuration['DATABASE_PASSWORD'] = '@DATABASE_VANILLA.PASSWORD@';
 // Saved Searches Table Structure
 $DatabaseTables['Notify'] = 'Notify';
 $DatabaseColumns['Notify']['NotifyID'] = 'NotifyID';
