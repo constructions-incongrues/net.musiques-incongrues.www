@@ -8,12 +8,12 @@ $Configuration['EXTENSIONS_PATH'] = sprintf('%s/extensions/', $Configuration['AP
 $Configuration['LANGUAGES_PATH'] = sprintf('%s/languages/', $Configuration['APPLICATION_PATH']);
 $Configuration['THEME_PATH'] = sprintf('%s/themes/vanilla/', $Configuration['APPLICATION_PATH']);
 
-$Configuration['DEFAULT_STYLE'] = '/forum/themes/vanilla/styles/scene/';
-$Configuration['WEB_ROOT'] = '/forum/';
-$Configuration['BASE_URL'] = '/forum/';
-$Configuration['FORWARD_VALIDATED_USER_URL'] = 'http://www.musiques-incongrues.net/forum/';
-$Configuration['COOKIE_DOMAIN'] = 'www.musiques-incongrues.net';
-$Configuration['COOKIE_PATH'] = '/forum';
+$Configuration['DEFAULT_STYLE'] = '@PATHS.BASEURL@/themes/vanilla/styles/scene/';
+$Configuration['WEB_ROOT'] = '@PATHS.WEBROOT@';
+$Configuration['BASE_URL'] = '@PATHS.BASEURL@';
+$Configuration['FORWARD_VALIDATED_USER_URL'] = '@PATHS.BASEURL@';
+$Configuration['COOKIE_DOMAIN'] = '@COOKIE.DOMAIN@';
+$Configuration['COOKIE_PATH'] = '@COOKIE.PATH@';
 
 $Configuration['SUPPORT_EMAIL'] = 'contact@musiques-incongrues.net';
 $Configuration['SUPPORT_NAME'] = 'Musiques Incongrues';

@@ -25,10 +25,10 @@ class Asaph_Config {
 	
 	// Settings for your mysql database
 	public static $db = array(
-		'host' => 'localhost',
-		'database' => 'admin_mi_asaph',
-		'user' => '',
-		'password' => '',
+		'host' => '@DATABASE_ASAPH.HOST@',
+		'database' => '@DATABASE_ASAPH.NAME@',
+		'user' => '@DATABASE_ASAPH.USER@',
+		'password' => '@DATABASE_ASAPH.PASSWORD@',
 		'prefix' => 'asaph_'
 	);
 	
