@@ -9,7 +9,7 @@ $Configuration['LANGUAGES_PATH'] = sprintf('%s/languages/', $Configuration['APPL
 $Configuration['THEME_PATH'] = sprintf('%s/themes/vanilla/', $Configuration['APPLICATION_PATH']);
 
 $Configuration['DEFAULT_STYLE'] = '@PATHS.BASEURL@/themes/vanilla/styles/scene/';
-$Configuration['WEB_ROOT'] = '@PATHS.WEBROOT@';
+$Configuration['WEB_ROOT'] = '@PATHS.BASEURI@';
 $Configuration['BASE_URL'] = '@PATHS.BASEURL@';
 $Configuration['FORWARD_VALIDATED_USER_URL'] = '@PATHS.BASEURL@';
 $Configuration['COOKIE_DOMAIN'] = '@COOKIE.DOMAIN@';
