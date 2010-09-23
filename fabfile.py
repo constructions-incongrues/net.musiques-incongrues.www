@@ -50,12 +50,23 @@ def deploy():
   prepare()
 
   # TODO : take care of excludes
-  contrib.project.rsync_project(remote_dir=env.config.get('paths', 'install'), exclude=[], delete=True, local_dir='%s/*' % os.getcwd())
+  contrib.project.rsync_project(remote_dir=env.config.get('paths', 'install'), exclude=[], delete=True, local_dir='%s/*' % os.getcwd(), extra_opts='--exclude-from=%s/etc/rsync.excludes' % os.getcwd())
 
-  reload_db()
+def symlinks():
+  # Make sure configuration is set
+  require('config', provided_by=[configure])
+
+  # Get base paths
+  install = env.config.get('paths', 'install')
+  webroot = env.config.get('paths', 'webroot')
+
+  # Create symlinks
+  run('ln -sf %s/forum %s/forum' % (install, webroot))
 
 def reload_db():
   
+  # TODO : POTENTIALLY DESTRUCTIVE ACTION. ASK FOR CONFIRMATION
+
   # Make sure configuration is set
   require('config', provided_by=[configure])
 
