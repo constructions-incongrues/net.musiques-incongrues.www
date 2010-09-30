@@ -16,21 +16,21 @@
 <h1><a href="/forum/oeil/"><?php echo htmlspecialchars( Asaph_Config::$title ); ?></a></h1>
 
 <ul>
-<li class="Eyes"><a href="/forum/events/" class="Eyes">Events</a></li>
-<li class="Eyes"><a href="/forum/releases/" class="Eyes">Releases</a></li>
-<li class="Eyes"><a href="http://www.musiques-incongrues.net/forum/oeil/" class="Eyes">Œil</a></li>
-<li><a href="/forum/discussions/" >Discussions</a></li>
-<li class="Pink"><a href="/forum/categories/" class="Pink">Categories</a></li>
-<li class="Pink"><a href="/forum/search/" class="Pink">Search</a></li>
-<li class="dons"><a href="/forum/page/dons" class="dons">Donate</a></li>
+<li class="Eyes"><a href="<?php echo Asaph_Config::$vanillaPath; ?>events/" class="Eyes">Events</a></li>
+<li class="Eyes"><a href="<?php echo Asaph_Config::$vanillaPath; ?>oeil/" class="Eyes">Œil</a></li>
+<li class="Eyes"><a href="<?php echo Asaph_Config::$vanillaPath; ?>releases/" class="Eyes">Releases</a></li>
+<li><a href="<?php echo Asaph_Config::$vanillaPath; ?>discussions/" >Discussions</a></li>
+<li class="Pink"><a href="<?php echo Asaph_Config::$vanillaPath; ?>categories/" class="Pink">Categories</a></li>
+<li class="Pink"><a href="<?php echo Asaph_Config::$vanillaPath; ?>search/" class="Pink">Search</a></li>
+<li class="dons"><a href="<?php echo Asaph_Config::$vanillaPath; ?>page/dons" class="dons">Donate</a></li>
 </ul>
-			
+
 </div>
 
 <!--
 <div id="title">
 	<h1><a href="http://www.musiques-incongrues.net/forum/asaph/"><?php echo htmlspecialchars( Asaph_Config::$title ); ?></a> <span class="forum"><a href="http://www.musiques-incongrues.net/forum">FORUM</a></span></h1>
-	
+
 </div>
 -->
 <?php $classes = array('', 'modulo', 'modulo_bis'); ?>
@@ -46,12 +46,12 @@
 				<a href="<?php echo $p['source']; ?>"><?php echo nl2br($p['title']); ?></a>
 			</p>
 		<?php } ?>
-		
-		
+
+
 		<div class="postInfo">
 		<a href="<?php echo $p['source']; ?>" title="<?php echo $p['title'] ?>"><?php echo substr($p['title'], 0, 24); ?> ...</a>
 		</div>
-		
+
 	</div>
 <?php } ?>
 <div class="clear"></div>
@@ -59,10 +59,10 @@
 <div id="pages">
 
 	<div class="pageInfo">
-	<a href="http://www.musiques-incongrues.net/forum/discussion/1253/une-poussiere-dans-loeil">À propos</a> 
+	<a href="http://www.musiques-incongrues.net/forum/discussion/1253/une-poussiere-dans-loeil">À propos</a>
 	</div>
-	
-	
+
+
 	<div class="pageLinks">
 		<?php echo 9 * $pages['total'] ?> pics &bull;
 		<a href="<?php echo ASAPH_LINK_PREFIX.'page/' ?>">En voir d'autres !</a>
