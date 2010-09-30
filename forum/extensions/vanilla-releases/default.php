@@ -74,6 +74,9 @@ $Menu->addTab($Context->getDefinition('Releases'),
 //$Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2-nodebug-jsmin.js');
 $Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2.js');
 
+// Add link to podcast in website's head
+$Head->AddString(sprintf('<link rel="alternate" type="application/rss+xml" href="%s" title="Le podcast auto-mécanique des Musiques Incongrues" />', $Configuration['BASE_URL'].'s/feeds/podcast'));
+
 // Add event related form controls
 if ($Context->SelfUrl == 'post.php')
 {
@@ -90,7 +93,7 @@ if(in_array(ForceIncomingString("PostBackAction", ""), array('Releases')))
   $Context->PageTitle = $Context->GetDefinition('Releases');
   $Menu->CurrentTab = 'Releases';
   $Body->CssClass = 'Discussions';
-  $page = new ReleasesPage($Context);
+  $page = new ReleasesPage($Context, $Configuration);
   $Page->AddRenderControl($page, $Configuration["CONTROL_POSITION_BODY_ITEM"]);
   $Panel->addString($page->getLabelsPanel(ForceIncomingString('label', null)));
 }
@@ -98,9 +101,10 @@ if(in_array(ForceIncomingString("PostBackAction", ""), array('Releases')))
 class ReleasesPage
 {
 
-  function ReleasesPage($context)
+  function ReleasesPage($context, $configuration)
   {
     $this->Context = $context;
+    $this->Configuration = $configuration;
   }
 
   function getLabelsPanel($current_label = null)
@@ -126,6 +130,7 @@ class ReleasesPage
 '<h2>Mixes</h2>
 <ul class="label-links">
   <li><a href="?only_mixes=1">N\'afficher que les mixes</a></li>
+  <li><a href="'.$this->Configuration['BASE_URL'].'s/feeds/podcast">S\'abonner au podcast</a></li>
 </ul>';
     }
     else
@@ -134,6 +139,7 @@ class ReleasesPage
 '<h2>Mixes</h2>
 <ul class="label-links">
   <li><a href="?only_mixes=0">Afficher toutes les releases</a></li>
+  <li><a href="'.$this->Configuration['BASE_URL'].'s/feeds/podcast">S\'abonner au podcast</a></li>
 </ul>';
     }
 

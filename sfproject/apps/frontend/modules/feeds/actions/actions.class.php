@@ -37,7 +37,7 @@ class feedsActions extends sfActions
         $feed->setTitle('Le podcast auto-mécanique des Musiques Incongrues');
         $feed->setLink('http://www.musiques-incongrues.net/forum/releases/?only_mixes=1');
         $feed->setFeedLink('http://www.musiques-incongrues.net/forum/s/feeds/podcast', 'RSS');
-        $feed->setDescription('Ce podcast est automatiquement généré à partir de la liste des émissions, mixtapes et autres pièces sonores régulièrement ajoutées au forum des Musiques Incongrues par ses utilisateurs.');
+        $feed->setDescription('Ce podcast est automatiquement généré à partir de la liste des émissions, mixtapes et autres pièces sonores régulièrement ajoutées au forum des Musiques Incongrues par ses contributeurs.');
         $feed->setDateModified(time());
         foreach ($mixes as $mix)
         {
@@ -47,9 +47,12 @@ class feedsActions extends sfActions
             $entry->setLink('http://www.musiques-incongrues.net/forum/discussion/'.$mix['Discussion']['discussionid']);
             // TODO : Make a better joined query
             $comment = Doctrine_Core::getTable('LUM_Comment')->findOneByCommentid($mix['Discussion']['firstcommentid'], Doctrine_Core::HYDRATE_ARRAY);
-            // TODO : parse BBCode
-            $entry->setDescription($comment['body']);
-            $entry->setContent($comment['body']);
+
+            // Entry body
+            $body = $this->bbParse($comment['body']);
+            $entry->setDescription($body);
+            $entry->setContent($body);
+
             if ($mix['labelname'])
             {
                 $entry->addAuthor(array('name' => $mix['labelname']));
@@ -72,6 +75,28 @@ class feedsActions extends sfActions
         return sfView::SUCCESS;
     }
 
+    // TODO : factor out !
+    private function bbParse($string)
+    {
+        while (preg_match_all('`\[(.+?)=?(.*?)\](.+?)\[/\1\]`', $string, $matches)) foreach ($matches[0] as $key => $match) {
+            list($tag, $param, $innertext) = array($matches[1][$key], $matches[2][$key], $matches[3][$key]);
+            switch ($tag) {
+                case 'b': $replacement = "<strong>$innertext</strong>"; break;
+                case 'i': $replacement = "<em>$innertext</em>"; break;
+                case 'size': $replacement = "<span style=\"font-size: $param;\">$innertext</span>"; break;
+                case 'color': $replacement = "<span style=\"color: $param;\">$innertext</span>"; break;
+                case 'center': $replacement = "<div class=\"centered\">$innertext</div>"; break;
+                case 'quote': $replacement = "<blockquote>$innertext</blockquote>" . $param? "<cite>$param</cite>" : ''; break;
+                case 'url': $replacement = '<a href="' . ($param? $param : $innertext) . "\">$innertext</a>"; break;
+                case 'img':
+                    $replacement = '<img src="'.$innertext.'" />';
+                    break;
+            }
+            $string = str_replace($match, $replacement, $string);
+        }
+        return $string;
+    }
+
     /**
      * Generates RSS feeds of latest events.
      *
@@ -82,11 +107,11 @@ class feedsActions extends sfActions
         // Fetch latest events
         // TODO : refactor in model
         $q = Doctrine_Query::create()
-            ->select('d.name, d.firstcommentid, e.date')
-            ->from('LUM_Event e')
-            ->innerJoin('e.Discussion d')
-            ->orderBy('d.DateCreated desc')
-            ->limit(50);
+        ->select('d.name, d.firstcommentid, e.date')
+        ->from('LUM_Event e')
+        ->innerJoin('e.Discussion d')
+        ->orderBy('d.DateCreated desc')
+        ->limit(50);
         $events = $q->execute(null, Doctrine_Core::HYDRATE_ARRAY);
         $q->free();
 
