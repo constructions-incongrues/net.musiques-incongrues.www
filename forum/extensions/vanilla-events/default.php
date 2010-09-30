@@ -19,7 +19,7 @@ error_reporting(E_ALL);
 
 if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Context->SelfUrl == 'comments.php' || $Context->SelfUrl == 'extension.php' || $Context->SelfUrl == 'categories.php' || $Context->SelfUrl == 'search.php'))
 {
-  return;  
+  return;
 }
 
 /*
@@ -30,7 +30,6 @@ if (!($uid == 1 || $uid == 2 || $uid == 47))
   return;
 }
 */
-
 $uid = $Context->Session->UserID;
 if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments.php", "index.php", "search.php", "extension.php")))
 {
@@ -41,9 +40,9 @@ if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments
      $events_strings = array();
      foreach ($today_events as $event)
      {
-       $events_string[] = sprintf($event_tpl, 
-         GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $event['DiscussionID'], '', '#Item_1', CleanupString($event['Name'].'/')), 
-	 $event['Name'], 
+       $events_string[] = sprintf($event_tpl,
+         GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $event['DiscussionID'], '', '#Item_1', CleanupString($event['Name'].'/')),
+	 $event['Name'],
 	 $event['City']
 );
      }
@@ -97,7 +96,7 @@ CREATE TABLE `%sEvent` (
 \$DatabaseColumns['Event']['City'] = 'City';
 \$DatabaseColumns['Event']['Country'] = 'Country';
 ";
-  
+
       AppendToConfigurationFile($Configuration['APPLICATION_PATH'].'conf/database.php', $Structure);
       AddConfigurationSetting($Context, 'VANILLAEVENTS', '1');
     }
@@ -133,6 +132,10 @@ if(in_array(ForceIncomingString("PostBackAction", ""), array('Events')))
   $Panel->addString($page_events->getPanelString());
 
   $Page->AddRenderControl($page_events, $Configuration["CONTROL_POSITION_BODY_ITEM"]);
+
+  // Add link to podcast in website's head
+  $Head->AddString(sprintf('<link rel="alternate" type="application/rss+xml" href="%s" title="Le calendrier des événements à venir" />', $Configuration['BASE_URL'].'s/feeds/events'));
+
 }
 
 class EventsPeer
@@ -158,20 +161,20 @@ class EventsPeer
     $sql->addWhere('d', 'Active', '', '1', '=');
     $sql->EndWhereGroup();
     $sql->AddOrderBy('Date', 'e', 'asc');
-    
+
     // Execute query
     $db = $context->Database;
     $rs = $db->Execute($sql->GetSelect(), __CLASS__, __FUNCTION__, 'Failed to fetch events from database.');
 
     // Gather and return events
     if ($db->RowCount($rs) > 0)
-    {      
+    {
       while($db_event = $db->GetRow($rs))
       {
         $events[] = $db_event;
       }
     }
-    
+
     return $events;
   }
 
@@ -186,14 +189,14 @@ class EventsPeer
     $sql->addWhere('d', 'Active', '', '1', '=');
     $sql->addWhere('e', 'Date', '', date('Y-m-d'), '>=');
     $sql->AddOrderBy('City', 'e', 'asc');
-    
+
     // Execute query
     $db = $context->Database;
     $rs = $db->Execute($sql->GetSelect(), __CLASS__, __FUNCTION__, 'Failed to fetch events from database.');
 
     // Gather and return events
     if ($db->RowCount($rs) > 0)
-    {      
+    {
       while($db_city = $db->GetRow($rs))
       {
         $cities[] = ucfirst(strtolower($db_city['City']));
@@ -207,12 +210,12 @@ class EventsPeer
 
 class EventsPage
 {
-  
+
   function EventsPage($context)
   {
     $this->Context = $context;
   }
-  
+
   function getPanelString()
   {
     $cities = EventsPeer::getCities($this->Context);
@@ -243,20 +246,17 @@ class EventsPage
   <li><a href="%s">Cette semaine</a></li>
   <li><a href="%s">Ce mois-ci</a></li>
 </ul>
-<!--
 <h2>Mais encore ?</h2>
 <ul class="label-links">
-  <li><a href="">Télécharger les flyers</a></li>
-  <li><a href="">RSS</a></li>
-  <li><a href="">ICAL</a></li>
+  <li><a href="%s">RSS</a></li>
 </ul>
--->
 EOF;
     $tpl = sprintf(
-      $tpl, 
-      implode("\n", $cities_str), 
+      $tpl,
+      implode("\n", $cities_str),
       GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start='.date('Y-m-d').'&end='.$next_week),
-      GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start='.date('Y-m-d').'&end='.$next_month)
+      GetUrl($ths->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start='.date('Y-m-d').'&end='.$next_month),
+      $this->Context->Configuration['BASE_URL'].'s/feeds/events'
     );
     return $tpl;
   }
@@ -308,11 +308,11 @@ EOF;
       $first_iteration = false;
       $i++;
     }
-    
+
     // Create pager
     $past_url = GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start=' . $previous_date . '&city='.$city);
     $future_url = GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start=' . $end_date . '&city='.$city);
-    
+
     $pager = sprintf('
 <div class="PageInfo">
   <p>du %s au %s</p>&nbsp;
@@ -323,7 +323,7 @@ EOF;
     <li><a href="%s">></a></li>
   </ol>
 </div>', strftime('%d %B %G', $start_date_tst), strftime('%d %B %G', $end_date_tst), $past_url, $past_url, $future_url, $future_url);
-   
+
     $propose_link = sprintf('<a href="%s">Proposer un évènement</a>', 'http://www.musiques-incongrues.net/forum/post/?is_event=true&CategoryID=5');
 
     if ($city)
@@ -337,15 +337,15 @@ EOF;
       $top .= sprintf('<span id="ferran"><h1>%s</h1></span>', $propose_link);
     }
 
-    $variet = array('Michel Sardou', 
-                    'Michel Polnareff', 
-                    'Claude François', 
-                    'Didier Barbelivien', 
-                    'C Jérome', 
-                    'Alpha Blondy', 
-                    'Sacha Distel', 
-                    'Plastic Bertrand', 
-                    'Chantal Goya', 
+    $variet = array('Michel Sardou',
+                    'Michel Polnareff',
+                    'Claude François',
+                    'Didier Barbelivien',
+                    'C Jérome',
+                    'Alpha Blondy',
+                    'Sacha Distel',
+                    'Plastic Bertrand',
+                    'Chantal Goya',
                     'Nana Mouskouri',
                     'Dr. Alban',
                     'Benny B',
@@ -411,11 +411,11 @@ EOF;
                        'dépenser son SMIC',
                        'tout oublier');
 
-    $rivers = array('Paris'     => 'tomber dans la Seine', 
-                    'Lyon'      => 'traverser une traboule', 
-                    'Londres'   => 'tomber dans la Tamise', 
-                    'Bruxelles' => 'tomber dans la fontaine du Parc Royal', 
-                    'Barcelone' => 'tomber dans la Méditerranée', 
+    $rivers = array('Paris'     => 'tomber dans la Seine',
+                    'Lyon'      => 'traverser une traboule',
+                    'Londres'   => 'tomber dans la Tamise',
+                    'Bruxelles' => 'tomber dans la fontaine du Parc Royal',
+                    'Barcelone' => 'tomber dans la Méditerranée',
                     'Bordeaux'  => 'aller au Quick',
                     'Marseille' => 'dormir sur la Canebière',
                     'Nantes'    => 'rencontrer Puyo Puyo',
@@ -435,7 +435,7 @@ EOF;
     shuffle($selected_sentences);
     $top .= sprintf('<p class="legend">%s ...</p>', ucfirst(implode(', ', $selected_sentences)));
     $body = '%s%s<div id="ContentBody"><ol id="Discussions">%s</ol></div>';
-    
+
     echo sprintf($body, $top, $pager, $discussions);
   }
 }
@@ -466,7 +466,7 @@ function VanillaEvents_MetadataControls(&$DiscussionForm)
       </fieldset>
       %s
   ';
-  
+
   // Today's date - formatted for display
   $fmt_today = date('d/m/Y');
 
@@ -496,12 +496,12 @@ function VanillaEvents_MetadataControls(&$DiscussionForm)
     $sql->addSelect('City', 'e');
     $sql->addSelect('Country', 'e');
     $sql->addWhere('e', 'DiscussionID', '', $DiscussionForm->Discussion->DiscussionID, '=');
-    
+
     // Execute query
     $db = $DiscussionForm->Context->Database;
     $rs = $db->Execute($sql->GetSelect(), $DiscussionForm, __FUNCTION__, 'Failed to fetch event from database.');
     if ($db->RowCount($rs) > 0)
-    {      
+    {
       $db_event = $db->GetRow($rs);
       $form_date = $db_event['Date'];
       $form_city = $db_event['City'];
@@ -520,7 +520,7 @@ function VanillaEvents_MetadataControls(&$DiscussionForm)
     $form_city = ForceIncomingString('VanillaEvents_city', '');
     $form_country = ForceIncomingString('VanillaEvents_country', '');
   }
-  
+
   // Template population and rendering
   echo sprintf($html,
                $DiscussionForm->Context->getDefinition("C'est un évènement ?"),
@@ -551,7 +551,7 @@ function VanillaEvents_ProcessEvent(&$DiscussionForm)
     $date_parts = explode('/', $human_date);
     $mysql_date_parts = @array($date_parts[2], $date_parts[1], $date_parts[0]);
     $event_date = implode('-', $mysql_date_parts);
-  
+
     // Save event to backend
     VanillaEvents_SaveEvent($DiscussionForm, $event_date, $event_city, $event_country);
   }
@@ -576,7 +576,7 @@ function VanillaEvents_SaveEvent(&$DiscussionForm, $date, $city, $country)
   {
     $DiscussionForm->Context->WarningCollector->add('You must enter a value for the date input.');
   }
-  
+
   // Date must be correctly formatted
   if (preg_match('/\d{4}-\d{2}-\d{2}/', $date))
   {
@@ -587,7 +587,7 @@ function VanillaEvents_SaveEvent(&$DiscussionForm, $date, $city, $country)
     $date_is_valid = false;
     $DiscussionForm->Context->WarningCollector->add('Date must be formatted as DD/MM/YYYY.');
   }
-  
+
   // Save event to backend
   if ($date_is_valid && $city_is_valid && $country_is_valid)
   {

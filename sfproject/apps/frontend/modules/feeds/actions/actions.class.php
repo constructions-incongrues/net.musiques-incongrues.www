@@ -132,9 +132,12 @@ class feedsActions extends sfActions
             $entry->setLink('http://www.musiques-incongrues.net/forum/discussion/'.$event['Discussion']['discussionid']);
             // TODO : Make a better joined query
             $comment = Doctrine_Core::getTable('LUM_Comment')->findOneByCommentid($event['Discussion']['firstcommentid'], Doctrine_Core::HYDRATE_ARRAY);
-            // TODO : parse BBCode
-            $entry->setDescription($comment['body']);
-            $entry->setContent($comment['body']);
+
+            // Entry body
+            $body = $this->bbParse($comment['body']);
+            $entry->setDescription($body);
+            $entry->setContent($body);
+
             $feed->addEntry($entry);
         }
 
