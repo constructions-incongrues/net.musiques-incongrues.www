@@ -255,7 +255,7 @@ EOF;
       $tpl,
       implode("\n", $cities_str),
       GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start='.date('Y-m-d').'&end='.$next_week),
-      GetUrl($ths->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start='.date('Y-m-d').'&end='.$next_month),
+      GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start='.date('Y-m-d').'&end='.$next_month),
       $this->Context->Configuration['BASE_URL'].'s/feeds/events'
     );
     return $tpl;
