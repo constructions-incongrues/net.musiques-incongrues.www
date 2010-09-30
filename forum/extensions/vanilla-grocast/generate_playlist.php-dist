@@ -16,7 +16,7 @@ class Bz_File_XSPF_Location extends File_XSPF_Location
   }
 }
 
-$con = new MySQLi('localhost', '', '', 'admin_mi_forum');
+$con = new MySQLi('@DATABASE_VANILLA.HOST@', '@DATABASE_VANILLA.USER@', '@DATABASE_VANILLA.PASSWORD@', '@DATABASE_VANILLA.NAME@');
 
 $res = $con->query('select DiscussionID, CommentID, Body from LUM_Comment order by DateCreated desc');
 $mp3_links = array();

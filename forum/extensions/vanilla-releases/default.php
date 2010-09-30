@@ -1,6 +1,6 @@
 <?php
 /*
-Extension Name: Vanilla Releases 
+Extension Name: Vanilla Releases
 Extension Url: http://vanilla-releases
 Description: 100% codé avec les pieds !
 Version: 0.1
@@ -19,7 +19,7 @@ error_reporting(E_ALL);
 
 if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Context->SelfUrl == 'comments.php' || $Context->SelfUrl == 'extension.php' || $Context->SelfUrl == 'categories.php' || $Context->SelfUrl == 'search.php'))
 {
-  return;  
+  return;
 }
 
 /*
@@ -53,7 +53,7 @@ CREATE TABLE `%sReleases` (
       $Structure = "// Release Table Structure
 \$DatabaseColumns['Releases']['DiscussionID'] = 'DiscussionID';
 ";
-  
+
       AppendToConfigurationFile($Configuration['APPLICATION_PATH'].'conf/database.php', $Structure);
       AddConfigurationSetting($Context, 'VANILLARELEASES', '1');
     }
@@ -74,6 +74,9 @@ $Menu->addTab($Context->getDefinition('Releases'),
 //$Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2-nodebug-jsmin.js');
 $Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2.js');
 
+// Add link to podcast in website's head
+$Head->AddString(sprintf('<link rel="alternate" type="application/rss+xml" href="%s" title="Le podcast auto-mécanique des Musiques Incongrues" />', $Configuration['BASE_URL'].'s/feeds/podcast'));
+
 // Add event related form controls
 if ($Context->SelfUrl == 'post.php')
 {
@@ -90,19 +93,20 @@ if(in_array(ForceIncomingString("PostBackAction", ""), array('Releases')))
   $Context->PageTitle = $Context->GetDefinition('Releases');
   $Menu->CurrentTab = 'Releases';
   $Body->CssClass = 'Discussions';
-  $page = new ReleasesPage($Context);
+  $page = new ReleasesPage($Context, $Configuration);
   $Page->AddRenderControl($page, $Configuration["CONTROL_POSITION_BODY_ITEM"]);
   $Panel->addString($page->getLabelsPanel(ForceIncomingString('label', null)));
 }
 
 class ReleasesPage
 {
-  
-  function ReleasesPage($context)
+
+  function ReleasesPage($context, $configuration)
   {
     $this->Context = $context;
+    $this->Configuration = $configuration;
   }
-  
+
   function getLabelsPanel($current_label = null)
   {
     $item_tpl = '<li><a href="?label=%s" class="%s">%s</a></li>';
@@ -126,14 +130,16 @@ class ReleasesPage
 '<h2>Mixes</h2>
 <ul class="label-links">
   <li><a href="?only_mixes=1">N\'afficher que les mixes</a></li>
+  <li><a href="'.$this->Configuration['BASE_URL'].'s/feeds/podcast">S\'abonner au podcast</a></li>
 </ul>';
     }
     else
     {
-      $mixes_limitation = 
+      $mixes_limitation =
 '<h2>Mixes</h2>
 <ul class="label-links">
   <li><a href="?only_mixes=0">Afficher toutes les releases</a></li>
+  <li><a href="'.$this->Configuration['BASE_URL'].'s/feeds/podcast">S\'abonner au podcast</a></li>
 </ul>';
     }
 
@@ -154,7 +160,6 @@ class ReleasesPage
     // Execute query
     $db = $this->Context->Database;
     $rs = $db->Execute($sql->GetSelect(), $this, __FUNCTION__, 'Failed to fetch releases from database.');
-var_dump($sql->GetSelect());
 
     // Gather and return events
     if ($db->RowCount($rs) > 0)
@@ -198,7 +203,7 @@ var_dump($sql->GetSelect());
   function getReleases($label = null, $only_mixes = false)
   {
     $releases = array();
-    
+
     // Build selection query
     $sql = $this->Context->ObjectFactory->NewContextObject($this->Context, 'SqlBuilder');
     $sql->SetMainTable('Releases','r');
@@ -217,29 +222,29 @@ var_dump($sql->GetSelect());
       $sql->addWhere('r', 'IsMix', '', 1, '=');
     }
     $sql->AddOrderBy('DateCreated', 'd', 'desc');
-    
+
     // Execute query
     $db = $this->Context->Database;
     $rs = $db->Execute($sql->GetSelect(), $this, __FUNCTION__, 'Failed to fetch releases from database.');
 
     // Gather and return events
     if ($db->RowCount($rs) > 0)
-    {      
+    {
       while($db_release = $db->GetRow($rs))
       {
         $releases[] = $db_release;
       }
     }
-    
+
     return $releases;
   }
-  
+
   function render()
   {
     $discussions = '';
 
     $i = 0;
-    $label_name = ForceIncomingString('label', null); 
+    $label_name = ForceIncomingString('label', null);
     $releases = $this->getReleases($label_name, ForceIncomingString('only_mixes', false));
     foreach ($releases as $release)
     {
@@ -270,7 +275,7 @@ var_dump($sql->GetSelect());
       $discussions .= sprintf('<li class="Discussion Release %s"><ul><li class="DiscussionTopic">%s %s %s %s</li></ul></li>', $alternate, $link, $label_string, $listen_string, $download_string);
       $i++;
     }
-  
+
     // Top
     $title = sprintf('%d releases', count($releases));
     if ($label_name)
@@ -283,10 +288,10 @@ var_dump($sql->GetSelect());
     $top .= sprintf('<p class="legend">%s, ...</p>', get_chanteurs(25));
     $top .= '<hr  />';
     $top .= sprintf('<h2 class="release-count">%s : </h2><h2 id="legend-colors"> <strong>Légende : </strong> <span class="legend-label">Label</span> - <span class="legend-mix">Écouter</span> - <span class="legend-download">Télécharger</span></h2>', $title);
-   
+
     // Body
     $body = '%s<div id="ContentBody" class="releases"><ol id="Discussions">%s</ol></div>';
-    
+
     echo sprintf($body, $top, $discussions);
   }
 }
@@ -364,7 +369,7 @@ function VanillaReleases_MetadataControls(&$DiscussionForm)
     $db = $DiscussionForm->Context->Database;
     $rs = $db->Execute($sql->GetSelect(), $DiscussionForm, __FUNCTION__, 'Failed to fetch release from database.');
     if ($db->RowCount($rs) > 0)
-    {      
+    {
       $db_release = $db->GetRow($rs);
       $form_disable = 'disabled';
       $form_isrelease = 'checked';
@@ -384,7 +389,7 @@ function VanillaReleases_MetadataControls(&$DiscussionForm)
     }
   }
 
-  
+
   // Template population and rendering
   echo sprintf($html,
                $DiscussionForm->Context->getDefinition("C'est une release / un mix ?"),

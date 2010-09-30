@@ -2,9 +2,9 @@ RewriteEngine On
 Options +FollowSymLinks -Multiviews
 
 # Force use of new domain name
-RewriteCond %{HTTP_HOST} !^www.musiques-incongrues.net [NC]
-RewriteCond %{HTTP_HOST} !^$
-RewriteRule ^(.*) http://www.musiques-incongrues.net/forum/$1 [L,R=301]
+#RewriteCond %{HTTP_HOST} !^www.musiques-incongrues.net [NC]
+#RewriteCond %{HTTP_HOST} !^$
+#RewriteRule ^(.*) http://www.musiques-incongrues.net/forum/$1 [L,R=301]
 
 #Discussions
 RewriteRule ^discussions$ index.php [QSA,L]
