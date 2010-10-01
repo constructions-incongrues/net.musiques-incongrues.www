@@ -22,6 +22,9 @@ if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Co
   return;
 }
 
+// Add link to podcast in website's head
+$Head->AddString(sprintf('<link rel="alternate" type="application/rss+xml" href="%s" title="Le calendrier des événements à venir" />', $Configuration['BASE_URL'].'s/feeds/events'));
+
 /*
 // Limit access to thoses uids
 $uid = $Context->Session->UserID;
@@ -132,10 +135,6 @@ if(in_array(ForceIncomingString("PostBackAction", ""), array('Events')))
   $Panel->addString($page_events->getPanelString());
 
   $Page->AddRenderControl($page_events, $Configuration["CONTROL_POSITION_BODY_ITEM"]);
-
-  // Add link to podcast in website's head
-  $Head->AddString(sprintf('<link rel="alternate" type="application/rss+xml" href="%s" title="Le calendrier des événements à venir" />', $Configuration['BASE_URL'].'s/feeds/events'));
-
 }
 
 class EventsPeer
