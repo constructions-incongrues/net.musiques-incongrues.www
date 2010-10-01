@@ -116,7 +116,7 @@ class feedsActions extends sfActions
         ->select('d.name, d.firstcommentid, d.datecreated, d.datelastactive, e.date')
         ->from('LUM_Event e')
         ->innerJoin('e.Discussion d')
-        ->orderBy('d.datelastactive desc')
+        ->orderBy('d.datecreated desc')
         ->limit(50);
         $events = $q->execute(null, Doctrine_Core::HYDRATE_ARRAY);
         $q->free();
