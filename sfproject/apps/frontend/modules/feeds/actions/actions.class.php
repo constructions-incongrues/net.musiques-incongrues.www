@@ -20,13 +20,13 @@ class feedsActions extends sfActions
         // Fetch latest mixes
         // TODO : refactor in model
         $q = Doctrine_Query::create()
-            ->select('d.name, d.firstcommentid, r.labelname, r.downloadlink, c.body')
-            ->from('LUM_Releases r')
-            ->innerJoin('r.Discussion d')
-            ->where('r.ismix = 1')
-            ->andWhere('r.downloadlink is not null')
-            ->orderBy('d.DateCreated desc')
-            ->limit(50);
+        ->select('d.name, d.firstcommentid, d.datecreated, d.datelastactive, r.labelname, r.downloadlink, c.body')
+        ->from('LUM_Releases r')
+        ->innerJoin('r.Discussion d')
+        ->where('r.ismix = 1')
+        ->andWhere('r.downloadlink is not null')
+        ->orderBy('d.DateCreated desc')
+        ->limit(50);
         $mixes = $q->execute(null, Doctrine_Core::HYDRATE_ARRAY);
         $q->free();
 
@@ -44,12 +44,15 @@ class feedsActions extends sfActions
             $entry = $entry = $feed->createEntry();
             $entry->setTitle($mix['Discussion']['name']);
             // TODO : add slug
+            $entry->setDateCreated(new Zend_Date($mix['Discussion']['datecreated'], Zend_Date::ISO_8601));
+            $entry->setDateModified(new Zend_Date($mix['Discussion']['datelastactive'], Zend_Date::ISO_8601));
+
             $entry->setLink('http://www.musiques-incongrues.net/forum/discussion/'.$mix['Discussion']['discussionid']);
             // TODO : Make a better joined query
             $comment = Doctrine_Core::getTable('LUM_Comment')->findOneByCommentid($mix['Discussion']['firstcommentid'], Doctrine_Core::HYDRATE_ARRAY);
 
             // Entry body
-            $body = $this->bbParse($comment['body']);
+            $body = nl2br($this->bbParse($comment['body']));
             $entry->setDescription($body);
             $entry->setContent($body);
 
@@ -92,7 +95,10 @@ class feedsActions extends sfActions
                     $replacement = '<img src="'.$innertext.'" />';
                     break;
             }
-            $string = str_replace($match, $replacement, $string);
+            if (isset($replacement))
+            {
+                $string = str_replace($match, $replacement, $string);
+            }
         }
         return $string;
     }
@@ -107,10 +113,10 @@ class feedsActions extends sfActions
         // Fetch latest events
         // TODO : refactor in model
         $q = Doctrine_Query::create()
-        ->select('d.name, d.firstcommentid, e.date')
+        ->select('d.name, d.firstcommentid, d.datecreated, d.datelastactive, e.date')
         ->from('LUM_Event e')
         ->innerJoin('e.Discussion d')
-        ->orderBy('d.DateCreated desc')
+        ->orderBy('d.datelastactive desc')
         ->limit(50);
         $events = $q->execute(null, Doctrine_Core::HYDRATE_ARRAY);
         $q->free();
@@ -119,7 +125,7 @@ class feedsActions extends sfActions
         require_once 'Zend/Loader.php';
         Zend_Loader::loadClass('Zend_Feed_Writer_Feed');
         $feed = new Zend_Feed_Writer_Feed();
-        $feed->setTitle('Ananagenda');
+        $feed->setTitle("L'(anan)agenda des Musiques Incongrues");
         $feed->setLink('http://www.musiques-incongrues.net/forum/events');
         $feed->setFeedLink('http://www.musiques-incongrues.net/forum/s/feeds/events', 'RSS');
         $feed->setDescription("L'agenda collaboratif du forum des Musiques Incongrues");
@@ -128,13 +134,15 @@ class feedsActions extends sfActions
         {
             $entry = $entry = $feed->createEntry();
             $entry->setTitle($event['Discussion']['name']);
+            $entry->setDateCreated(new Zend_Date($event['Discussion']['datecreated'], Zend_Date::ISO_8601));
+            $entry->setDateModified(new Zend_Date($event['Discussion']['datelastactive'], Zend_Date::ISO_8601));
             // TODO : add slug
             $entry->setLink('http://www.musiques-incongrues.net/forum/discussion/'.$event['Discussion']['discussionid']);
             // TODO : Make a better joined query
             $comment = Doctrine_Core::getTable('LUM_Comment')->findOneByCommentid($event['Discussion']['firstcommentid'], Doctrine_Core::HYDRATE_ARRAY);
 
             // Entry body
-            $body = $this->bbParse($comment['body']);
+            $body = nl2br($this->bbParse($comment['body']));
             $entry->setDescription($body);
             $entry->setContent($body);
 
