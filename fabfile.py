@@ -76,6 +76,12 @@ def reload_db():
   run('mysql -u%s -p%s %s < %s' % (env.config.get('database_vanilla', 'user'), env.config.get('database_vanilla', 'password'), env.config.get('database_vanilla', 'name'), '%s/data/sql/vanilla.styles.sql' % env.config.get('paths', 'install')))
   run('mysql -u%s -p%s %s < %s' % (env.config.get('database_asaph', 'user'), env.config.get('database_asaph', 'password'), env.config.get('database_asaph', 'name'), '%s/data/sql/asaph.sql' % env.config.get('paths', 'install')))
 
+def clear_cache():
+  # Make sure configuration is set
+  require('config', provided_by=[configure])
+
+  run('cd %s/sfproject && ./symfony cc' % env.config.get('paths', 'install'))
+
 # -- HELPERS
 
 def _find_files(directory, pattern):
