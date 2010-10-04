@@ -38,7 +38,7 @@ class feedsActions extends sfActions
         $feed->setLink('http://www.musiques-incongrues.net/forum/releases/?only_mixes=1');
         $feed->setFeedLink('http://www.musiques-incongrues.net/forum/s/feeds/podcast', 'RSS');
         $feed->setDescription('Ce podcast est automatiquement généré à partir de la liste des émissions, mixtapes et autres pièces sonores régulièrement ajoutées au forum des Musiques Incongrues par ses contributeurs.');
-        $feed->setDateModified(time());
+        $feed->setDateModified(new Zend_Date($mixes[0]['Discussion']['datelastactive'], Zend_Date::ISO_8601));
         foreach ($mixes as $mix)
         {
             $entry = $entry = $feed->createEntry();
@@ -129,7 +129,7 @@ class feedsActions extends sfActions
         $feed->setLink('http://www.musiques-incongrues.net/forum/events');
         $feed->setFeedLink('http://www.musiques-incongrues.net/forum/s/feeds/events', 'RSS');
         $feed->setDescription("L'agenda collaboratif du forum des Musiques Incongrues");
-        $feed->setDateModified(time());
+        $feed->setDateModified(new Zend_Date($events[0]['Discussion']['datelastactive'], Zend_Date::ISO_8601));
         foreach ($events as $event)
         {
             $entry = $entry = $feed->createEntry();
