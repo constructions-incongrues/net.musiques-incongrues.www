@@ -4,12 +4,25 @@
 echo '<div id="Panel">';
 
 // Add the start button to the panel
-if ($this->Context->Session->UserID > 0 && $this->Context->Session->User->Permission('PERMISSION_START_DISCUSSION')) {
+if (true || $this->Context->Session->UserID > 0 && $this->Context->Session->User->Permission('PERMISSION_START_DISCUSSION')) {
    $CategoryID = ForceIncomingInt('CategoryID', 0);
-	if ($CategoryID == 0) $CategoryID = '';
-	echo '<h1><a href="'.GetUrl($this->Context->Configuration, 'post.php', 'category/', 'CategoryID', $CategoryID).'">'
-      .$this->Context->GetDefinition('StartANewDiscussion')
-      .'</a></h1>';
+	if ($CategoryID == 0)
+	{
+	    $CategoryID = '';
+	}
+	$tpl_button = '<h1><a href="%s" title="">%s</a></h1>';
+	echo sprintf(
+	    $tpl_button,
+	    GetUrl($this->Context->Configuration, 'post.php', 'category/', 'CategoryID', $CategoryID),
+	    'Commencer une discussion');
+	echo sprintf(
+	    $tpl_button,
+	    GetUrl($this->Context->Configuration, 'post.php').'?is_event=true&CategoryID=5',
+	    'Annoncer un évènement');
+	echo sprintf(
+	    $tpl_button,
+	    GetUrl($this->Context->Configuration, 'post.php').'?is_release=true',
+	    'Proposer une release');
 }
 
 $this->CallDelegate('PostStartButtonRender');
