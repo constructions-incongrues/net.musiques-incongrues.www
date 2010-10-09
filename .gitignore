@@ -3,5 +3,4 @@
 .project
 .settings/
 *.pyc
-forum/extensions/PageMng/CustomPages.php
 data/sql/vanilla.styles.sql

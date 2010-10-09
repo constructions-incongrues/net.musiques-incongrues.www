@@ -82,6 +82,12 @@ def clear_cache():
 
   run('cd %s/sfproject && ./symfony cc' % env.config.get('paths', 'install'))
 
+def gather_remote_variators():
+  # Make sure configuration is set
+  require('config', provided_by=[configure])
+
+  get('%s/forum/extensions/PageMng/CustomPages.php' % env.config.get('paths', 'install'), '%s/forum/extensions/PageMng/CustomPages.php' % os.getcwd())
+
 # -- HELPERS
 
 def _find_files(directory, pattern):
