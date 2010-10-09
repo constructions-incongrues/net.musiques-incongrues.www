@@ -345,10 +345,12 @@ function VanillaReleases_MetadataControls(&$DiscussionForm)
   $fieldset_display = ForceIncomingString('VanillaReleases_isrelease', true) === 'on' ? 'block' : 'none';
   $download_link = '';
   $label_name = '';
+  $fieldset_visibility = 'none';
 
   if (isset($_GET['is_release']) && $_GET['is_release'] == 'true')
   {
     $form_isrelease = 'checked';
+    $fieldset_visibility = 'visible';
   }
 
   // Check if a release is already related to this discussion
@@ -392,7 +394,7 @@ function VanillaReleases_MetadataControls(&$DiscussionForm)
   echo sprintf($html,
                $DiscussionForm->Context->getDefinition("C'est une release / un mix ?"),
                FormatStringForDisplay($form_isrelease), $form_disable,
-  	       $fieldset_display,
+  	       $fieldset_visibility,
 		$download_link,
 		$label_name,
 		$form_ismix,
