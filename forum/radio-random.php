@@ -1,8 +1,9 @@
-<?php system('/usr/bin/php ' . dirname(__FILE__).'/extensions/vanilla-grocast/generate_playlist.php'); ?>
+<html>
 <head>
 <title>Substantifique Mo&euml;lle Incongrue et Inodore</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
+<body>
 <style type="text/css">
 body {background-color:#FFFFFF;text-align:center;font-size:0.8em;}
 
@@ -49,5 +50,5 @@ a:hover {
   flashvars="file=<?php echo urlencode('http://data.musiques-incongrues.net/collections/links/segments/mp3/get?discussion_id=-1707&limit=-1&sort_field=random&format=xspf') ?>&height=320&displayheight=0&usefullscreen=false&backcolor=0xFFFFFF&frontcolor=0xFF0099&lightcolor=0x0099FF&screencolor=0x000000"
 />
 </div>
-
-
+</body>
+</html>
