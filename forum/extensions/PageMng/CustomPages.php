@@ -114,7 +114,8 @@ A noter que les noms des morceaux sont tels qu\'ils sont tagués sur le mp3 : pa
 </p> 
  
 <h2 class="surtout donate-2" id="6">Qu\'est-ce que le whisper ? (peut-on envoyer des messages privés aux membres du forum ?)</h2> 
-<p>Le mode whisper <em> (rectangle rose)</em> 
+<p>Le mode whisper <em> (rectangle rose)</em> <br /> <img src="http://bozoo.pastis-hosting.net/faq-forum/whisper.png" alt="whisper box" />
+
 permet d\'envoyer un message privé à un membre du forum, il faut <strong>impérativement</strong>écrire son nom dans la case whisper 
 sinon le message apparait au vu et au su de tous ! Mais dans ce cas on peut éditer son message, écrire le nom du destinataire, sauvegarder 
 le changement et tout rentre dans l\'ordre. A noter si on connaît juste le début du pseudo du destinataire, le reste s\'affiche tout seul. 
@@ -156,6 +157,7 @@ Petit : [size=7]CE QU\'ON VEUT ECRIRE[/size] Gros [size=15]CE QU\'ON VEUT ECRIRE
  
 <h2 class="surtout donate-2" id="12">Que signifient les petits carrés avec B I U etc ? </h2> 
 <p> 
+<img src="http://bozoo.pastis-hosting.net/faq-forum/bbcode.png" />
 Ecrire en gras - Ecrire en italique - Souligner - Barrer - Aligner à gauche - Centrer - Aligner à droite - Taper du code - Choisir sa couleur de lettres - Changer de typo - 12 & 13 faire une liste - Citer - Ecrire 1er  par exemple avec er en bas - Ecrire 1er par exemple avec er en haut - TRES IMPORTANT sert à changer le nom d\'un lien : une fois qu\'on a cliquer on colle l\'adresse du lien qu\'on veut puis le nom qu\'on veut lui donner - Ecrire une adresse email
 </p> 
  
@@ -186,7 +188,7 @@ Lien pour écouter ou mp3 directs sont du meilleur gout ! Image de pochette, inf
  
 <h2 class="surtout donate-1" id="17">Qu\'est-ce que TVi ?</h2> 
 <p> 
-<strong>TVi</strong> est une chose merveilleuse créée par <strong> <a href="http://www.glafouk.com">GLAFOUK</a></strong>,
+<strong><a href="http://www.tele-incongrue.net/">TVi</a></strong> est une chose merveilleuse créée par <strong> <a href="http://www.glafouk.com">GLAFOUK</a></strong>,
 un des bons génies qui veillent sur ce forum.
 </p> 
  
@@ -205,7 +207,7 @@ Sans <strong><a href="http://www.musiques-incongrues.net/forum/search/">SEARCH</
  
 <h2 class="surtout donate-2" id="20">Peut on faire un don ?</h2> 
 <p> 
-Non, on DOIT faire un don ! Dans DONS justement. Vous faites comme vous voulez bien sûr mais si vous êtes là tous les jours, allez donc lire pourquoi faire un don dans DONS.
+Non, on DOIT faire un don ! Dans <strong><a href="http://www.musiques-incongrues.net/forum/page/dons">DONS</a></strong> justement. Vous faites comme vous voulez bien sûr mais si vous êtes là tous les jours, allez donc lire pourquoi faire un don dans DONS.
 Et c\'est sûrement bientôt Noël, ou l\'anniversaire du serveur !
 </p> 
  
