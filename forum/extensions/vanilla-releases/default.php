@@ -282,9 +282,7 @@ class ReleasesPage
     {
       $title = sprintf('%d releases chez %s', count($releases), filter_var($label_name, FILTER_SANITIZE_STRING));
     }
-    $propose_link = sprintf('<a href="%s">Proposer une release</a>', '/forum/post/?is_release=true');
     $top = '<h2 style="display:inline;" class="surtout">On écoute quoi aujourd\'hui ?</h2>';
-    $top .= sprintf('<span id="ferran"><h1>%s</h1></span>', $propose_link);
     $top .= sprintf('<p class="legend">%s, ...</p>', get_chanteurs(25));
     $top .= '<hr  />';
     $top .= sprintf('<h2 class="release-count">%s : </h2><h2 id="legend-colors"> <strong>Légende : </strong> <span class="legend-label">Label</span> - <span class="legend-mix">Écouter</span> - <span class="legend-download">Télécharger</span></h2>', $title);

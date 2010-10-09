@@ -323,8 +323,6 @@ EOF;
   </ol>
 </div>', strftime('%d %B %G', $start_date_tst), strftime('%d %B %G', $end_date_tst), $past_url, $past_url, $future_url, $future_url);
 
-    $propose_link = sprintf('<a href="%s">Proposer un évènement</a>', 'http://www.musiques-incongrues.net/forum/post/?is_event=true&CategoryID=5');
-
     if ($city)
     {
       $no_city_link = GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start='.$start_date);
@@ -333,7 +331,6 @@ EOF;
     else
     {
       $top = '<h2 style="display:inline;" class="surtout">On fait quoi ce soir ?</h2>';
-      $top .= sprintf('<span id="ferran"><h1>%s</h1></span>', $propose_link);
     }
 
     $variet = array('Michel Sardou',
