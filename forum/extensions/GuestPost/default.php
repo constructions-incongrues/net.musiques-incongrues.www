@@ -21,17 +21,17 @@ $Context->SetDefinition('GuestPostWarning', 'If the following boxes are left bla
 $Context->SetDefinition('GuestPostSpamCheck', 'Please enter the following code:');
 
 if (in_array($Context->SelfUrl, array('comments.php', 'post.php'))) {
-      
+
       $Context->AddToDelegate('CommentGrid',
             'Constructor',
             'CommentGrid_ShowGuestPostForm');
-         
+
       function CommentGrid_ShowGuestPostForm(&$CommentGrid) {
          if ($CommentGrid->ShowForm == 0
             && $CommentGrid->Context->Session->UserID == 0
             && ($CommentGrid->pl->PageCount == 1 || $CommentGrid->pl->PageCount == $CommentGrid->CurrentPage)
             && ((!$CommentGrid->Discussion->Closed && $CommentGrid->Discussion->Active))
-            && $CommentGrid->CommentData ) $CommentGrid->ShowForm = 1;			
+            && $CommentGrid->CommentData ) $CommentGrid->ShowForm = 1;
       }
 
       if ($Context->Session->UserID <= 0) {
@@ -63,7 +63,7 @@ showImage();
          $Context->AddToDelegate('DiscussionForm',
             'PreSaveComment',
             'DiscussionForm_SignInGuest');
-            
+
          function DiscussionForm_SignInGuest(&$DiscussionForm) {
             if ($DiscussionForm->PostBackAction == 'SaveComment') {
 		$GU = GuestUsername;
@@ -81,7 +81,7 @@ showImage();
                if (!$UserManager->ValidateUserCredentials($Username, $Password, 0)) {
                   $DiscussionForm->PostBackAction = 'SaveCommentFailed';
                   $DiscussionForm->Context->Session->UserID = -1;
-                  
+
                   $DiscussionForm->Comment->Clear();
                   $DiscussionForm->Comment->GetPropertiesFromForm();
                   $DiscussionForm->Comment->DiscussionID = $DiscussionForm->DiscussionID;
@@ -97,7 +97,7 @@ showImage();
 	      } else {
                   $DiscussionForm->PostBackAction = 'SaveCommentFailed';
                   $DiscussionForm->Context->Session->UserID = -1;
-                  
+
                   $DiscussionForm->Comment->Clear();
                   $DiscussionForm->Comment->GetPropertiesFromForm();
                   $DiscussionForm->Comment->DiscussionID = $DiscussionForm->DiscussionID;
@@ -110,8 +110,10 @@ showImage();
 
          $Context->AddToDelegate('DiscussionForm','PostSaveComment','DiscussionForm_SignOutGuest');
          function DiscussionForm_SignOutGuest(&$DiscussionForm) {
-            if ($DiscussionForm->PostBackAction == 'SaveComment' && $Password == $GP) {
-               $DiscussionForm->Context->Session->End($DiscussionForm->Context->Authenticator);
+            if (isset($GP) && isset($Password)) {
+               if ($DiscussionForm->PostBackAction == 'SaveComment' && $Password == $GP) {
+                  $DiscussionForm->Context->Session->End($DiscussionForm->Context->Authenticator);
+               }
             }
          }
       }

@@ -1,6 +1,6 @@
 <?php
 /*
-Extension Name: Vanilla À la une 
+Extension Name: Vanilla À la une
 Extension Url: http://vanilla-alaune
 Description: 100% codé avec les pieds !
 Version: 0.1
@@ -19,7 +19,7 @@ error_reporting(E_ALL);
 
 if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Context->SelfUrl == 'comments.php' || $Context->SelfUrl == 'extension.php' || $Context->SelfUrl == 'categories.php' || $Context->SelfUrl == 'search.php'))
 {
-  return;  
+  return;
 }
 
 /*
@@ -32,7 +32,7 @@ if (!($uid == 1 || $uid == 2 || $uid == 47))
 */
 
 $uid = $Context->Session->UserID;
-if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons')
+if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq')
 {
    $sticky_discussions = DiscussionsPeer::getStickyDiscussions($Context);
    if ($sticky_discussions)
@@ -43,9 +43,9 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
      $modulo_class = 'odd';
      foreach ($sticky_discussions as $discussion)
      {
-       $discussions_strings[] = sprintf($discussion_tpl, 
+       $discussions_strings[] = sprintf($discussion_tpl,
          $modulo_class,
-         GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $discussion['DiscussionID'], '', '#Item_1', CleanupString($discussion['Name'].'/')), 
+         GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $discussion['DiscussionID'], '', '#Item_1', CleanupString($discussion['Name'].'/')),
 	 $discussion['Name']);
        $i++;
        if ($i % 2 === 0)
@@ -58,7 +58,7 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
        }
      }
      $notice = sprintf("
-     <!-- dhr:alaune --> 
+     <!-- dhr:alaune -->
      <h2 style='display:inline;' class='surtout'>Et surtout : </h2><br />
      <ul class='square'>
      %s
@@ -73,7 +73,7 @@ class DiscussionsPeer
   public function getStickyDiscussions($context)
   {
     $discussions = array();
-    
+
     // Build selection query
     $sql = $context->ObjectFactory->NewContextObject($context, 'SqlBuilder');
     $sql->SetMainTable('Discussion','d');
