@@ -1,5 +1,53 @@
 /*
  * 
+ * FAQ
+ * 
+ */
+ 
+ ul.faq-listing 
+ {
+ list-style-type:decimal-leading-zero;
+ }
+
+ li.faq-listing 
+ {
+  list-style-type:decimal-leading-zero;
+ }
+
+ #faq
+{
+padding-top:8px;
+font-size:1.2em;
+color:#000;
+font-size:1.3em;
+}
+
+.faq-number-pink 
+{color:#aaa;}
+
+h2 a {color:#9b9297;font-weight:bold;}
+  #faq a
+  {
+	text-decoration:underline;
+  }
+  
+  #faq li a
+  {
+  text-decoration:none;
+  font-weight:none;
+  }
+  
+  #faq li a:hover
+  {
+  text-decoration:none;
+  font-weight:bold;
+  }
+  
+  #faq  a:hover
+  {text-decoration:none;}
+
+/*
+ * 
  * VIP 
  * STAR
  */
@@ -141,7 +189,10 @@ background:#000;width:100px;
 
 .up-pics {text-align:right;}
 .town {border:2px solid #0099FF; width:75px; width:75px;}
-/**********************/
+
+/*
+ * DONS & FAQ
+ * *********************/
 
 
 #pourquoijedonnemesorganes
@@ -154,8 +205,8 @@ font-size:1.3em;
 
 #pourquoijedonnemesorganes a
 {
-font-weight:bold;}
-
+font-weight:bold;
+}
 
 #donate input.donate
 {
@@ -333,7 +384,7 @@ div.PageInfo ol.PageList.debug  {float:right}
 {background-color:#FFF!important;border:1px solid #CCC!important;} 
 
 /*
-* © 2006 Jon Contino
+* Â© 2006 Jon Contino
 * http://www.one26.com/
 *
 * Scene, Version 1.0
@@ -655,13 +706,13 @@ font-weight:bold;
 	}
 	
 .Faq {
-background-color:#f2f2f2; 
+	background-color:#BBB; 
 	color: #000;
 
 	}
 	
 .Faq a {
-background-color:#f2f2f2; 
+	background-color:#BBB; 
 	color:#000;
 	border: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
@@ -670,7 +721,6 @@ background-color:#f2f2f2;
 .Faq a:hover {
 	background-color:yellow;
 	color:000;
-	border: 1px solid #FFF;
 	border-bottom: 1px solid #ccc;
 	}
 
@@ -1952,7 +2002,3 @@ a.sm3_paused {
   background: url(http://www.musiques-incongrues.net/forum/themes/vanilla/styles/scene/play.png) no-repeat  2spx 2px !important ;
 
 }
-
-
-
-
