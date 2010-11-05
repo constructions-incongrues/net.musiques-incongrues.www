@@ -62,7 +62,7 @@ def symlinks():
 
   # Create symlinks
   run('ln -sf %s/forum %s/forum' % (install, webroot))
-  run('ln -sf %s/sfproject/web %s/forum/s' % (install, webroot))
+  run('ln -sf %s/sfproject/web %s/forum/s' % (install, install))
   run('ln -sf %s/web/* %s/' % (install, webroot))
 
 def reload_db():

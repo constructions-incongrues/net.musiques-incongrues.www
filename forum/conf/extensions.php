@@ -28,4 +28,5 @@ include($Configuration['EXTENSIONS_PATH']."comments_permalinks/default.php");
 include($Configuration['EXTENSIONS_PATH']."MembersList/default.php");
 include($Configuration['EXTENSIONS_PATH']."SubCategories/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-symfony/default.php");
+include($Configuration['EXTENSIONS_PATH']."DiscussionFilters/default.php");
 ?>

@@ -32,7 +32,7 @@ if (!($uid == 1 || $uid == 2 || $uid == 47))
 */
 
 $uid = $Context->Session->UserID;
-if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq')
+if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && strtolower(ForceIncomingString('Page', '')) != 'contact')
 {
    $sticky_discussions = DiscussionsPeer::getStickyDiscussions($Context);
    if ($sticky_discussions)

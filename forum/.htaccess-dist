@@ -6,6 +6,9 @@ Options +FollowSymLinks -Multiviews
 #RewriteCond %{HTTP_HOST} !^$
 #RewriteRule ^(.*) http://www.musiques-incongrues.net/forum/$1 [L,R=301]
 
+# symfony
+RewriteRule ^s/(.*) - [L]
+
 #Discussions
 RewriteRule ^discussions$ index.php [QSA,L]
 RewriteRule ^discussions/$ index.php [QSA,L]
