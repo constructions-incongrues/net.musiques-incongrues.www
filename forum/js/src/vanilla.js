@@ -68,7 +68,9 @@ function HideComment(AjaxUrl, Switch, DiscussionID, CommentID, ShowText, HideTex
 
 // Apply or remove a bookmark
 function SetBookmark(AjaxUrl, CurrentSwitchVal, Identifier, BookmarkText, UnbookmarkText, PostBackKey) {
-	var Sender = document.getElementById('SetBookmark');
+	var Sender = document.getElementById('SetBookmarkAnanas');
+	alert(Sender);
+	console.log($('#SetBookmarkAnanas'));
 	if (Sender) {
 		Sender.className = 'Progress';
 		var Switch = Sender.name == '' ? CurrentSwitchVal : Sender.name;

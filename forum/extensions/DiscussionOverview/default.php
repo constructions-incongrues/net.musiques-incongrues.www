@@ -28,10 +28,10 @@ if ($Context->Session->User->Preference('DiscussionOverviewAsTab') && isset($Men
 	$Menu->AddTab($Context->GetDefinition('DiscussionOverview'), 'DiscussionOverview', GetUrl($Configuration, 'extension.php', '', '', '', '',  'PostBackAction=DiscussionOverview'), '', $Configuration['TAB_POSITION_DISCUSSIONOVERVIEW']);
 }
 
-if (($Context->SelfUrl == 'index.php' || $Context->SelfUrl == 'extension.php') && !ForceIncomingString('Feed', '')) { 
+if (($Context->SelfUrl == 'index.php' || $Context->SelfUrl == 'extension.php') && !ForceIncomingString('Feed', '')) {
 
 	class DiscussionOverview extends Control {
-		
+
 		function DiscussionOverview(&$Context) {
 			$this->Name = 'DiscussionOverview';
 			$this->Control($Context);
@@ -46,7 +46,7 @@ if (($Context->SelfUrl == 'index.php' || $Context->SelfUrl == 'extension.php') &
 			if ($this->Context->Session->UserID > 0) {
 				$s->AddJoin('CategoryBlock', 'cb', 'CategoryID', 'c', 'CategoryID', 'left join', ' and cb.'.$this->Context->DatabaseColumns['CategoryBlock']['UserID'].' = '.$this->Context->Session->UserID);
 				// This coalesce seems to be slowing things down
-				// $s->AddWhere('coalesce(cb.Blocked,0)', 1, '<>');			
+				// $s->AddWhere('coalesce(cb.Blocked,0)', 1, '<>');
 				$s->AddWhere('cb', 'Blocked', '', '0', '=', 'and', '', 1, 1);
 				$s->AddWhere('cb', 'Blocked', '', '0', '=', 'or', '', 0, 0);
 				$s->AddWhere('cb', 'Blocked', '', 'null', 'is', 'or', '', 0, 0);
@@ -60,12 +60,12 @@ if (($Context->SelfUrl == 'index.php' || $Context->SelfUrl == 'extension.php') &
 			$s->AddOrderBy('Priority', 'c', 'asc');
 			return $this->Context->Database->Select($s, $this->Name, 'GetCategories', 'An error occurred while retrieving categories.');
 		}
-		
+
 		function Render() {
 			$this->CallDelegate('PreRender');
 
 			$DiscussionOverview = '';
-			
+
 			$Category = $this->Context->ObjectFactory->NewObject($this->Context, 'Category');
 			while ($Row = $this->Context->Database->GetRow($this->CategoryData)) {
 				$Category->Clear();
@@ -114,7 +114,7 @@ if (($Context->SelfUrl == 'index.php' || $Context->SelfUrl == 'extension.php') &
 					$Discussion->Clear();
 					$Discussion->GetPropertiesFromDataSet($Row, $this->Context->Configuration);
 					$Discussion->FormatPropertiesForDisplay();
-					
+
 					// Prefix the discussion name with the whispered-to username if this is a whisper
 					if ($Discussion->WhisperUserID > 0) {
 						$Discussion->Name = @$Discussion->WhisperUsername.': '.$Discussion->Name;
@@ -146,20 +146,20 @@ if (($Context->SelfUrl == 'index.php' || $Context->SelfUrl == 'extension.php') &
 
 
 	// Replace default discussion grid with discussion overview control
-	if (ForceIncomingInt('CategoryID', 0) == 0 && 
-		ForceIncomingInt('page', 0) == 0 && 
-		ForceIncomingString('View', '') == '' && 
+	if (ForceIncomingInt('CategoryID', 0) == 0 &&
+		ForceIncomingInt('page', 0) == 0 &&
+		ForceIncomingString('View', '') == '' &&
 		!$Context->Session->User->Preference('DiscussionOverviewAsTab')) {
-		
+
 		$Head->AddStyleSheet('extensions/DiscussionOverview/style.css');
 		$Context->PageTitle = $Context->Dictionary['DiscussionOverview'];
 		$Context->ObjectFactory->SetReference('DiscussionGrid', 'DiscussionOverview');
 	}
 
-	if ($Context->SelfUrl == 'extension.php' && 
-		$Context->Session->User->Preference('DiscussionOverviewAsTab') && 
+	if ($Context->SelfUrl == 'extension.php' &&
+		$Context->Session->User->Preference('DiscussionOverviewAsTab') &&
 		ForceIncomingString('PostBackAction', '') == 'DiscussionOverview') {
-		
+
 		$Head->AddStyleSheet('extensions/DiscussionOverview/style.css');
 		$Head->BodyId = 'DiscussionsPage';
 		$Menu->CurrentTab = 'DiscussionOverview';

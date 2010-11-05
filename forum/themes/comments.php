@@ -11,6 +11,22 @@ if ($this->Context->WarningCollector->Count() > 0) {
 	$PageDetails = $this->pl->GetPageDetails($this->Context);
 	$PageList = $this->pl->GetNumericList();
 	$SessionPostBackKey = $this->Context->Session->GetCsrfValidationKey();
+	$Configuration = $this->Context->Configuration;
+	$Context = $this->Context;
+	$DiscussionID = ForceIncomingInt('DiscussionID', 0);
+	$DiscussionManager = $this->Context->ObjectFactory->NewContextObject($this->Context, 'DiscussionManager');
+	$CommentGrid = $Context->ObjectFactory->CreateControl($Context, "CommentGrid", $DiscussionManager, $DiscussionID);
+	$bookmarkText = (bool)$CommentGrid->Discussion->Bookmarked ? 'NE PLUS SUIVRE CETTE DISCUSSION' : 'SUIVRE CETTE DISCUSSION';
+	$discussionActions = sprintf('
+			<br />
+    		<span id="bookmark-topic"><a href="#" "id="SetBookmarkAnanas" onclick=\'SetBookmark("%sajax/switch.php", "%s", "%s", "%s", "%s", "%s"); %s return false;\'>%s</a> </span>
+    		<span id="bookmark-faq"><a href="http://www.musiques-incongrues.net/forum/page/faq#26" title="En savoir plus :) ">?</a></span>
+    		<!--
+    		|
+    		<a href=""></a><span id="bookmark-topic"><a href="">PERMALIEN</a> </span>
+    		<span id="bookmark-faq"><a href="" title="En savoir plus :) ">?</a></span>
+    		-->',
+	$Configuration['WEB_ROOT'], $CommentGrid->Discussion->Bookmarked, $CommentGrid->Discussion->DiscussionID, 'SUIVRE CETTE DISCUSSION', 'NE PLUS SUIVRE CETTE DISCUSSION', $SessionPostBackKey, $Context->PassThruVars['SetBookmarkOnClick'], $bookmarkText);
 
 	$CommentList .= '<div class="ContentInfo Top">
 		<h1>';
@@ -20,7 +36,9 @@ if ($this->Context->WarningCollector->Count() > 0) {
 				$CommentList .= $this->Discussion->WhisperUsername.': ';
 			}
 			$CommentList .= $this->Discussion->Name
-		.'</h1>
+		.'
+		'.$discussionActions.'
+		</h1>
 		<a href="#pgbottom">'.$this->Context->GetDefinition('BottomOfPage').'</a>
 		<div class="PageInfo">
 			<p>'.$PageDetails.'</p>
