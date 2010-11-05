@@ -9,6 +9,9 @@ feeds_events:
   url: /feeds/events
   param: {module: feeds, action: events }
 
+ego_list:
+  url: /ego
+  param: { module: ego, action: list }
 
 # default rules
 homepage:
