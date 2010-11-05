@@ -597,8 +597,8 @@ margin-top:20px;
 	text-align:center;
 	margin-top:3px;
 }
-.member-name 
-{float:left;margin-left:60px;margin-top:-35px;background-color:transparent;font-weight:bold;font-size:1.3em;}
+.member-name {float:left;margin-left:60px;margin-top:-35px;background-color:transparent;font-weight:bold;font-size:1.3em;}
+.member-name a {color:#000;text-decoration:none;}
 h1.members {text-align:center;color:#FF0099;}
 h1.members-count {text-align:center;color:#FF0099;}
 span.members-counter {text-align:center;color:#FF0099;font-size:2em;}
