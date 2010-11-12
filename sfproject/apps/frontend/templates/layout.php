@@ -4,7 +4,7 @@
     <?php include_http_metas() ?>
     <?php include_metas() ?>
     <?php include_title() ?>
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="<?php echo $sf_request->getRelativeUrlRoot() ?>/favicon.ico" />
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
   </head>
@@ -23,21 +23,21 @@
     <h1>Musiques Incongrues</h1>
 
     <ul>
-    <li class="Eyes"><a href="http://www.musiques-incongrues.net/forum/events/" class="Eyes">Events</a></li>
-    <li class="Eyes"><a href="http://www.musiques-incongrues.net/forum/oeil/" class="Eyes">Oeil</a></li>
-    <li class="Eyes"><a href="http://www.musiques-incongrues.net/forum/releases/" class="Eyes">Release</a></li>
+    <li class="Eyes"><a href="<?php echo sfConfig::get('app_paths_baseuri') ?>events/" class="Eyes">Agenda</a></li>
+    <li class="Eyes"><a href="<?php echo sfConfig::get('app_paths_baseuri') ?>oeil/" class="Eyes">Oeil</a></li>
+    <li class="Eyes"><a href="<?php echo sfConfig::get('app_paths_baseuri') ?>releases/" class="Eyes">Releases</a></li>
     <li class="Eyes"><a href="http://www.tele-incongrue.net/" class="Eyes">TVi</a></li>
-    <li class="TabOn"><a href="/forum/discussions/" class="Pink">Discussions</a></li>
-    <li class="Pink"><a href="/forum/categories/" class="Pink">Categories</a></li>
-    <li class="Pink"><a href="/forum/search/" class="Pink">Search</a></li>
-    <li class="Pink"><a href="/forum/settings/" class="Pink">Settings</a></li>
-    <li class="dons"><a href="/forum/page/dons" class="dons">Dons</a></li>
+    <li class="TabOn"><a href="<?php echo sfConfig::get('app_paths_baseuri') ?>discussions/" class="Pink">Discussions</a></li>
+    <li class="Pink"><a href="<?php echo sfConfig::get('app_paths_baseuri') ?>categories/" class="Pink">Categories</a></li>
+    <li class="Pink"><a href="<?php echo sfConfig::get('app_paths_baseuri') ?>search/" class="Pink">Search</a></li>
+    <li class="Pink"><a href="<?php echo sfConfig::get('app_paths_baseuri') ?>settings/" class="Pink">Settings</a></li>
+    <li class="dons"><a href="<?php echo sfConfig::get('app_paths_baseuri') ?>page/dons" class="dons">Dons</a></li>
     </ul>
 
     </div>
 <div id="Panel">
 
-<h1><a href="/forum/post/">Lancer une discussion</a></h1>
+<h1><a href="<?php echo sfConfig::get('app_paths_baseuri') ?>post/">Lancer une discussion</a></h1>
 
 
 <h2>Ailleurs</h2>
