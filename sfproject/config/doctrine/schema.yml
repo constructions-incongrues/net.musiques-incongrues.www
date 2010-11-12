@@ -1474,3 +1474,20 @@ LUM_UserRoleHistory:
       primary: false
       notnull: false
       autoincrement: false
+LUM_Sellable:
+  tableName: LUM_Sellable
+  columns:
+    discussionid:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    price: integer(4)
+    is_available: boolean
+  relations:
+    Discussion:
+      class: LUM_Discussion
+      local: discussionid
+      foreign: discussionid
+      foreignAlias: Sellables

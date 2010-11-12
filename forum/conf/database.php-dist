@@ -46,8 +46,7 @@ $DatabaseColumns['Releases']['LabelName'] = 'LabelName';
 $DatabaseColumns['Releases']['DownloadLink'] = 'DownloadLink';
 $DatabaseColumns['Releases']['IsMix'] = 'IsMix';
 // Shop Table Structure
-$DatabaseTables['CatalogItems'] = 'CatalogItems';
-$DatabaseColumns['CatalogItems']['DiscussionID'] = 'DiscussionID';
-$DatabaseColumns['CatalogItems']['ImageUrl'] = 'ImageUrl';
-$DatabaseColumns['CatalogItems']['Price'] = 'Price';
+$DatabaseTables['Sellable'] = 'Sellable';
+$DatabaseColumns['Sellable']['DiscussionID'] = 'DiscussionID';
+$DatabaseColumns['Sellable']['Price'] = 'Price';
 ?>

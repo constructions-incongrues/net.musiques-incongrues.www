@@ -23,10 +23,9 @@ include($Configuration['EXTENSIONS_PATH']."vanilla-alaune/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-visuels/default.php");
 include($Configuration['EXTENSIONS_PATH']."PageMng/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-player/default.php");
-include($Configuration['EXTENSIONS_PATH']."vanilla-shop/default.php");
 include($Configuration['EXTENSIONS_PATH']."comments_permalinks/default.php");
 include($Configuration['EXTENSIONS_PATH']."MembersList/default.php");
 include($Configuration['EXTENSIONS_PATH']."SubCategories/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-symfony/default.php");
 include($Configuration['EXTENSIONS_PATH']."DiscussionFilters/default.php");
-?>
+include($Configuration['EXTENSIONS_PATH']."vanilla-shop/default.php");

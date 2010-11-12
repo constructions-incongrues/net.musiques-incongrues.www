@@ -13,6 +13,11 @@ ego_list:
   url: /ego
   param: { module: ego, action: list }
 
+shop_list:
+  url: /shop
+  param: { module: shop, action: list }
+
+
 # default rules
 homepage:
   url:   /
