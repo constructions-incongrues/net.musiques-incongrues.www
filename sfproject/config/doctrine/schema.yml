@@ -491,6 +491,17 @@ LUM_Discussion:
       default: '0'
       notnull: true
       autoincrement: false
+  relations:
+    FirstComment:
+      class: LUM_Comment
+      local: firstcommentid
+      foreign: commentid
+      foreignType: one
+    Author:
+      class: LUM_User
+      local: authuserid
+      foreign: userid
+      foreignType: one
 LUM_DiscussionHasTags:
   connection: doctrine
   tableName: LUM_DiscussionHasTags

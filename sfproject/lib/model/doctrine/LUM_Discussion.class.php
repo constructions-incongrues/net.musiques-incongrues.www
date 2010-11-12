@@ -19,7 +19,7 @@ class LUM_Discussion extends BaseLUM_Discussion
      */
     public function getUri($prefix = '')
     {
-        return sprintf('%s/%d/%s', $prefix, $this->discussionid, $this->getSlug());
+        return sprintf('%s%d/%s', $prefix, $this->discussionid, $this->getSlug());
     }
 
     /**
@@ -39,5 +39,44 @@ class LUM_Discussion extends BaseLUM_Discussion
         $result = preg_replace("/\s/", "-", $result);
 
         return $result;
+    }
+
+    /**
+     * Returns URL to first image in discussion.
+     *
+     * @return string or null
+     */
+    public function getFirstImageUrl()
+    {
+        // Grab topic first image, if any
+        $query = sprintf('http://data.musiques-incongrues.net/collections/links/segments/images/get?discussion_id=%d&format=json', $this->discussionid);
+        require_once 'HTTP/Request2.php';
+        $request = new HTTP_Request2($query, HTTP_Request2::METHOD_GET);
+        try
+        {
+            $response = $request->send();
+            if (200 == $response->getStatus())
+            {
+                $images = json_decode($response->getBody(), true);
+            }
+        }
+        catch (HTTP_Request2_Exception $e)
+        {
+            echo 'Error: ' . $e->getMessage();
+        }
+
+        $image = null;
+        if ($images['num_found'] > 0)
+        {
+            $image = $images[0]['url'];
+        }
+
+        return $image;
+    }
+
+    public function getCreationDate()
+    {
+        $date_parts = explode(' ', $this->datecreated);
+        return $date_parts[0];
     }
 }

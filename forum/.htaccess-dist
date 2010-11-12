@@ -35,7 +35,7 @@ RewriteRule ^categories/$ categories.php [QSA,L]
 #Account
 RewriteRule ^account/$ account.php [QSA,L]
 RewriteRule ^account/([0-9]+)$ account.php?u=$1 [QSA,L]
-RewriteRule ^account/([0-9]+)/$ account.php?u=$1 [QSA,L]
+RewriteRule ^account/([0-9]+)/.*$ account.php?u=$1 [QSA,L]
 
 #Search
 RewriteRule ^search/$ search.php [QSA,L]
