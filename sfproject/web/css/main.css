@@ -83,11 +83,13 @@ a:hover {
 #Header ul li a {
 	padding:5px;
 	font-size:11px;
+        text-decoration:none;
 	}
 
 #Header ul li.TabOn {
 	background-color:#fff;
 	color: #ff00ff;
+
 	}
 
 #Header ul li.TabOn a {
@@ -95,6 +97,8 @@ a:hover {
 	color:#ff00ff;
 	border: 1px solid #ccc;
 	border-bottom: 1px solid #fff;
+
+
 }
 
 #Header ul li.dons .TabOn {
@@ -545,7 +549,8 @@ div.post {
 #page-ego
 {
 	margin: 0 auto;
-	width: 60%;
+	width: 90%;
+        margin-left:241px;
 }
 
 input#member-search-1
@@ -597,8 +602,8 @@ margin-top:20px;
 	text-align:center;
 	margin-top:3px;
 }
-.member-name 
-{float:left;margin-left:60px;margin-top:-35px;background-color:transparent;font-weight:bold;font-size:1.3em;}
+.member-name {float:left;margin-left:60px;margin-top:-35px;background-color:transparent;font-weight:bold;font-size:1.3em;}
+.member-name a {color:#000;text-decoration:none;}
 h1.members {text-align:center;color:#FF0099;}
 h1.members-count {text-align:center;color:#FF0099;}
 span.members-counter {text-align:center;color:#FF0099;font-size:2em;}
