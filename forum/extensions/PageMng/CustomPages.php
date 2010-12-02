@@ -69,12 +69,14 @@ En cliquant sur le bouton Paypal ci-dessous, en nous envoyant un chèque ou en n
 <li><a href="http://www.sidabitball.com/">Sidabitball</a></li>
 <li><a href="http://www.thibaulthuertas.com/">Super Promotion</a></li>
 <li><a href="http://www.ouiedire.net/">Valkiri</a></li>
-<li><a href="http://egotwister.com/">Yan</a>', 'custom' => 1, 'attribs' => 'class="dons"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6), 'hidden' => ''), 10 => array('tab' => 'Contact', 'page' => 'contact', 'url' => 0, 'html' => '<h2 class="surtout donate-2" id="20">Nous contacter</h2> 
+<li><a href="http://egotwister.com/">Yan</a>
+<li><a href="http://n-roll.blogspot.com/">nroll</a>', 'custom' => 1, 'attribs' => 'class="dons"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6), 'hidden' => ''), 10 => array('tab' => 'Contact', 'page' => 'contact', 'url' => 0, 'html' => '<h2 class="surtout donate-2" id="20">Nous contacter</h2> 
 <div id="faq">
 Soyons bien clairs : le moyen idéal pour nous contacter est de se créer un compte sur le forum et de poster un message.<br  />
 Toutefois, pour les timides, il est possible de nous contacter par d\'autres biais :
 <ul>
 <li> <strong>par email :</strong><a href="mailto:contact@musiques-incongrues.net"> contact@musiques-incongrues.net</a></li>
+<li> <strong>par irc:</strong>http://webchat.freenode.net/?channels=ananas</li>
 <li><strong>en vrai :</strong> en zonant dans une des nombreuses soirées parisiennes annoncées dans l\'agenda du forum.</li>
 
 <center><br /><img src="http://bozoo.pastis-hosting.net/mail.jpg" alt="mail" />

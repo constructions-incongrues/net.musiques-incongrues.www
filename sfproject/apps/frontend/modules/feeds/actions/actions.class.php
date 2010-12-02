@@ -60,7 +60,14 @@ class feedsActions extends sfActions
             {
                 $entry->addAuthor(array('name' => $mix['labelname']));
             }
-            $entry->setEnclosure(array('uri' => $mix['downloadlink'], 'type' => 'audio/mpeg', 'length' => 666));
+            try
+            {
+            	$entry->setEnclosure(array('uri' => $mix['downloadlink'], 'type' => 'audio/mpeg', 'length' => 666));
+            }
+            catch (Zend_Feed_Exception $e)
+            {
+            	// Discard exception
+            }
             $feed->addEntry($entry);
         }
 

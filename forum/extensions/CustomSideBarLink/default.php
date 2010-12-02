@@ -15,6 +15,7 @@ bz_addlink($links, 'Da ! Heard It Records', 'http://www.daheardit-records.net');
 bz_addlink($links, 'Ego Twister', 'http://www.egotwister.com');
 bz_addlink($links, 'Festival Serendip', 'http://www.serendip-arts.org');
 bz_addlink($links, 'Istota Ssaca', 'http://istotassaca.blogspot.com/');
+bz_addlink($links, 'Le Laboratoire', 'http://lelaboratoire.be/');
 bz_addlink($links, 'Mazemod', 'http://www.mazemod.org');
 bz_addlink($links, 'Musique Approximative', 'http://www.musiqueapproximative.net');
 bz_addlink($links, 'Ouïedire', 'http://www.ouiedire.net');
