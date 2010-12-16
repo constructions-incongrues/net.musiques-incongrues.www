@@ -87,6 +87,8 @@ def gather_remote_variators():
   require('config', provided_by=[configure])
 
   get('%s/forum/extensions/PageMng/CustomPages.php' % env.config.get('paths', 'install'), '%s/forum/extensions/PageMng/CustomPages.php' % os.getcwd())
+  get('%s/forum/extensions/Vanillacons/smilies.php' % env.config.get('paths', 'install'), '%s/forum/extensions/Vanillacons/smilies.php' % os.getcwd())
+  get('%s/forum/extensions/Vanillacons/smilies.js' % env.config.get('paths', 'install'), '%s/forum/extensions/PageMng/smilies.js' % os.getcwd())
 
 # -- HELPERS
 
