@@ -22,12 +22,14 @@ if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Co
   return;
 }
 
+/*
 // Limit access to thoses uids
 $uid = $Context->Session->UserID;
 if (!($uid == 1 || $uid == 2 || $uid == 47))
 {
   return;
 }
+*/
 
 $uid = $Context->Session->UserID;
 if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && strtolower(ForceIncomingString('Page', '')) != 'contact')
