@@ -132,7 +132,10 @@ function getFirstImageUrl($discussion_id)
 	    if (200 == $response->getStatus())
 	    {
 	        $discussion_data = json_decode($response->getBody(), true);
-	        $url_image = $discussion_data[0]['url'];
+	        if (isset($discussion_data[0]))
+	        {
+	        	$url_image = $discussion_data[0]['url'];
+	        }
 	    }
 	}
 	catch (HTTP_Request2_Exception $e)
