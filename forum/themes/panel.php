@@ -18,11 +18,16 @@ if (true || $this->Context->Session->UserID > 0 && $this->Context->Session->User
 	echo sprintf(
 	    $tpl_button,
 	    GetUrl($this->Context->Configuration, 'post.php').'?is_event=true&CategoryID=5',
-	    'Annoncer un évènement');
+	    'Annoncer un événement');
 	echo sprintf(
 	    $tpl_button,
 	    GetUrl($this->Context->Configuration, 'post.php').'?is_release=true',
 	    'Proposer une release');
+	echo sprintf(
+	    $tpl_button,
+	    'http://musiquesincongrues.uservoice.com',
+	    'Suggérer une idée');
+	    
 }
 
 $this->CallDelegate('PostStartButtonRender');
