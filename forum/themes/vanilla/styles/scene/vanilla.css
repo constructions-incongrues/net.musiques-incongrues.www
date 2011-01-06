@@ -1,24 +1,25 @@
 /* ET SURTOUT v5 */
 
-#etsurtout-v5 {background-color:#FFF;height:200px;margin:0 auto;}
+#etsurtout-v5 {background-color:#FFF;height:200px;margin:0 auto;overflow:hidden;}
 #etsurtout-v5 H1 {color:#000; font-size:4em;}
+#etsurtout-toggle {background-color: yellow;}
+#etsurtout-toggle:hover {background-color: magenta;}
 .etsurtout-nav {color:#000;font-size:2em;float:left;}
 .post-pink, .post-blue, .post
 {
 width:150px;
 height:150px;
 float:left;
-border:3px solid #0099;
 text-align:center;
-margin-left:20px;
-margin-right:20px;
+margin-left:3px;
+margin-right:3px;
 padding-top:10px;
 margin-top:10px;
 
 }
 .post-pink p, .post-blue p {text-align:justify;margin-left:4px; margin-right:4px;}
-.post-pink {border:3px solid #FF0099;background-color:#FFE0FF;}
-.post-blue {border:3px solid #0099FF; background-color:#E1FFFF;}
+.post-pink {background-color:#FFE0FF;}
+.post-blue {background-color:#E1FFFF;}
 .post-pink H2 {color:#000;text-align:center;background-color:#FFE0FF;border-bottom:5px;}
 .post-blue H2 {color:#000;text-align:center;background-color:#E1FFFF;border-bottom:5px;}
 
