@@ -34,6 +34,7 @@ if (!($uid == 1 || $uid == 2 || $uid == 47))
 $uid = $Context->Session->UserID;
 if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && strtolower(ForceIncomingString('Page', '')) != 'contact')
 {
+   $Head->AddScript('extensions/vanilla-alaune/js/behaviors.js');	
    $sticky_discussions = DiscussionsPeer::getStickyDiscussions($Context);
    if ($sticky_discussions)
    {
@@ -76,8 +77,7 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
      $notice = sprintf("
      <!-- dhr:alaune -->
      <div id='etsurtout-v5'>
-     <h2 style='display:inline;' class='surtout'>Et surtout : </h2><br />
-     
+     <h2 style='display:inline;' class='surtout'>Les discussions essentielles : <a href='#' id='etsurtout-toggle'>Tout voir</a></h2><br />
      %s
      </div>
      ", implode('', $discussions_strings));
@@ -87,7 +87,7 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
 
 class DiscussionsPeer
 {
-  public function getStickyDiscussions($context, $limit = 5, $random = true)
+  public function getStickyDiscussions($context, $limit = null, $random = false)
   {
     $discussions = array();
 
@@ -102,7 +102,14 @@ class DiscussionsPeer
     {
     	$sql_string = sprintf('%s ORDER BY RAND()', $sql_string);
     }
-    $sql_string = sprintf('%s LIMIT %d', $sql_string, $limit);
+    else
+    {
+    	$sql_string = sprintf('%s ORDER BY d.DateLastActive DESC', $sql_string);
+    }
+    if (is_integer($limit))
+    {
+    	$sql_string = sprintf('%s LIMIT %d', $sql_string, $limit);	
+    }
 
     // Execute query
     $db = $context->Database;
