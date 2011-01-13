@@ -1,5 +1,58 @@
-/* ET SURTOUT v5 */
+/* SEARCHBAR */
 
+#search 
+{
+
+float:right;
+font-family:"Trebushet MS",Verdana,Geneva,Arial,Helvetica,sans-serif;
+font-size: 90%;
+margin-left:-230px;
+margin-top:48px;
+background-color:transparent;}
+	 
+#search  label
+{
+color: #AAA;
+font-size: 1.3em;
+}
+
+#search  input.champs
+{
+color: #FF0099;
+background-color:#feffb9;
+border:1px solid #CCC;
+border-style:solid;
+text-align:center;
+width:120px;
+}
+
+#search  input.champs, #footer input.valid {background-color: #EEE;}
+
+#search  input.champs:hover
+{
+color: #FF0099;
+background-color:#fff;
+text-align:center;
+border:1px solid #CCC;
+}
+
+#search  input.champs:focus,#footer input.valid:hover 
+{
+background-image: none ;background-color: #FFF;
+}
+
+#search  input.valid 
+{
+background-color:#FFE0FF;
+border:1px solid #CCC;
+color:#000;
+font-weight:bold;
+text-align:center;
+text-transform:uppercase;
+}
+
+
+/* ET SURTOUT v5 */
 #etsurtout-v5 {background-color:#FFF;height:200px;margin:0 auto;overflow:hidden;}
 #etsurtout-v5 H1 {color:#000; font-size:4em;}
 #etsurtout-toggle {background-color: yellow;}

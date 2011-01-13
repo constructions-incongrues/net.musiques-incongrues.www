@@ -31,6 +31,7 @@ if (!($uid == 1 || $uid == 2 || $uid == 47))
 }
 */
 
+$Head->AddStyleSheet('http://fonts.googleapis.com/css?family=Molengo');
 $uid = $Context->Session->UserID;
 if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && strtolower(ForceIncomingString('Page', '')) != 'contact')
 {

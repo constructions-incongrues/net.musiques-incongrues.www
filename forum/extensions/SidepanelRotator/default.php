@@ -13,6 +13,8 @@ ob_start();
 include(dirname(__FILE__).'/rotator.php');
 $introspection = ob_get_clean();
 
+
+
 if ($Context->SelfUrl == "index.php" ) {
 	$Head->AddStyleSheet('extensions/SidepanelRotator/style.css');
 		$Panel->AddString('<h2>Radio</h2>');
