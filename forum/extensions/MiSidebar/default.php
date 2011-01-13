@@ -58,7 +58,7 @@ $blocks['affiner'] = array('html' => '
 ob_implicit_flush(false);
 ob_end_clean();
 ob_start();
-include(dirname(__FILE__).'/../SidePanelRotator/rotator.php');
+include(dirname(__FILE__).'/../SidepanelRotator/rotator.php');
 $blocks['introspection'] = array('html' => ob_get_clean());
 
 // Statistiques

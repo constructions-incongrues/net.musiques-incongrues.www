@@ -28,5 +28,5 @@ include($Configuration['EXTENSIONS_PATH']."SubCategories/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-symfony/default.php");
 include($Configuration['EXTENSIONS_PATH']."DiscussionFilters/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiSidebar/default.php");
-include($Configuration['EXTENSIONS_PATH']."SidePanelRotator/default.php");
+include($Configuration['EXTENSIONS_PATH']."SidepanelRotator/default.php");
 ?>
