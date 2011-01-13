@@ -4,3 +4,5 @@
 .settings/
 *.pyc
 data/sql/vanilla.styles.sql
+forum/themes/foot.php
+forum/themes/menu.php

@@ -8,7 +8,7 @@ echo '<div id="Session">';
 			. FormatStringForDisplay(AppendUrlParameters(
 				$this->Context->Configuration['SIGNOUT_URL'],
 				'FormPostBackKey=' . $this->Context->Session->GetCsrfValidationKey() ))
-			. '">'.$this->Context->GetDefinition('SignOut').'</a> - <a href="mailto:contact (CHEZ) musiques-incongrues (POINT) net">nous contacter</a>';
+			. '">'.$this->Context->GetDefinition('SignOut').'</a> - <a href="@PATHS.BASEURI@page/contact">nous contacter</a>';
 	} else {
 		echo $this->Context->GetDefinition('NotSignedIn') . ' (<a href="'
 			. FormatStringForDisplay(AppendUrlParameters(
@@ -17,11 +17,24 @@ echo '<div id="Session">';
 			. '">'.$this->Context->GetDefinition('SignIn').'</a>)';
 	}
 	echo '</div>';
+	echo '
+<div id="search">
+	<p>
+		<form id="SearchSimple" method="get" action="@PATHS.BASEURI@search/">
+			<label for="search">Rechercher</label> 
+			<input type="text" name="Keywords" class="champs" />
+			<input type="hidden" name="PostBackAction" value="Search" />
+			<input name="Submit" value="Go !" class="valid" type="submit" />
+		</form>
+	<p>
+</div>
+	';
 	$this->CallDelegate('PreHeadRender');
 	echo '<div id="Header">
 			<a name="pgtop"></a>
 			<h1>
-				'.$this->Context->Configuration['BANNER_TITLE'].'
+				<span class="first">Musiques</span>
+				<span class="last">Incongrues</span>
 			</h1>
 
 			<ul>';
