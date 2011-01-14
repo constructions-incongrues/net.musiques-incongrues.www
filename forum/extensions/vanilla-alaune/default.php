@@ -160,6 +160,36 @@ function getFirstImageUrl($discussion_id)
 	
 	return $url_image;
 }
+
+function getVideosUrls($discussion_id)
+{
+	$urlsVideos = array();
+	$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/youtube/get?discussion_id=%d&sort_field=contributed_at&sort_order=asc&limit=-1&&is_available=1&format=json', $discussion_id);
+
+	require_once 'HTTP/Request2.php';
+	$request = new HTTP_Request2($url, HTTP_Request2::METHOD_GET);
+	try {
+	    $response = $request->send();
+	    if (200 == $response->getStatus())
+	    {
+	        $discussion_data = json_decode($response->getBody(), true);
+	        foreach ($discussion_data as $discussion) {
+		        if (isset($discussion['url']))
+		        {
+		        	$urlsVideos[] = $discussion['url'];
+		        }
+	        }
+	    }
+	}
+	catch (HTTP_Request2_Exception $e)
+	{
+		// We don't give an ananas !
+	}
+
+	return $urlsVideos;
+}
+
+
 /**
  * Truncates +text+ to the length of +length+ and replaces the last three characters with the +truncate_string+
  * if the +text+ is longer than +length+.
@@ -199,3 +229,4 @@ function truncate_text($text, $length = 30, $truncate_string = '...', $truncate_
 
   return $text;
 }
+

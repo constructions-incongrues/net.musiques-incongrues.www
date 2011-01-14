@@ -18,7 +18,8 @@ if(in_array(ForceIncomingString("PostBackAction", ""), array('Shows'))) {
 
 // Modify discussion grid when in a show category
 $idsShows = MiShowsDatabasePeer::$shows_ids;
-if ($Context->SelfUrl == 'index.php' && in_array(ForceIncomingInt('CategoryID', null), $idsShows)) {
+$requestedCategoryId = ForceIncomingInt('CategoryID', null);
+if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsShows)) || ForceIncomingString('PostBackAction', null) == 'Shows') {
 
 	// Show show header
 	$Context->AddToDelegate('DiscussionGrid', 'PreRender', 'MiShow_RenderGridHeader');
@@ -27,42 +28,75 @@ if ($Context->SelfUrl == 'index.php' && in_array(ForceIncomingInt('CategoryID', 
 	if (isset($Panel)) {
 
 		// Fetch latest sticky for show
-		$dbStickies = MiShowsDatabasePeer::getStickies(ForceIncomingInt('CategoryID', null), $Context);
-		$dbSticky = $dbStickies[0];
+		$categoriesForStickies = array($requestedCategoryId);
+		if (ForceIncomingString('PostBackAction', null) == 'Shows') {
+			$categoriesForStickies = $idsShows;
+		}
 		
-		// Grab associated release
-		$dbRelease = MiShowsDatabasePeer::getRelease($dbSticky['DiscussionID'], $Context);
-		
+		$dbStickies = MiShowsDatabasePeer::getStickies($categoriesForStickies, $Context);
+
 		if (count($dbStickies)) {
+			$Panel->AddString('<h2>Dernièrement</h2>');
+		}
+		
+		foreach ($dbStickies as $dbSticky) {
+		
+			// Grab associated release
+			$dbRelease = MiShowsDatabasePeer::getRelease($dbSticky['DiscussionID'], $Context);
+		
 			$tplStickies = <<<EOT
-	<h2>Dernièrement</h2>
 	<a href="%s" title="%s">
-		<img src="%s" width="200px" height="135px" />
+		<img src="%s" width="200px" height="135px" class="emissions-box-cover" style="opacity: 0.5;"/>
 	</a>
-	<p style="text-align: center;"><a href="%s" title="%s">%s</a></p>
+	<p class="emissions-box-name-show"><a href="%s" title="%s">%s</a></p>
 EOT;
 			// Add download link, if appropriate
 			if ($dbRelease['DownloadLink']) {
-				$tplStickies .= '<ul class="label-links"><li><a href="%s" title="Télécharger">Télécharger l\'émission</a></li>';
+				$tplStickies .= '<br /><p class="emissions-box-player"><a href="%s" title="Écouter">Écouter</a></p>';
 			}
 			
 			$Panel->addString(sprintf(
-				$tplStickies, 
+				$tplStickies.'<hr />', 
 				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
 				$dbSticky['Name'], 
 				getFirstImageUrl($dbSticky['DiscussionID']),
 				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
 				$dbSticky['Name'],
-				$dbSticky['Name'],
+				truncate_text($dbSticky['Name'], 25),
 				$dbRelease['DownloadLink']
 			));
-			
 		}
-
-		// Fetch current show
+		
+		// Show video from first sticky in sidebar
+		if (count($dbStickies) && ForceIncomingString('PostBackAction', null) != 'Shows') {
+			$urlsVideos = getVideosUrls($dbStickies[0]['DiscussionID']);
+			if (count($urlsVideos)) {
+				$Panel->AddString('<h2>Images animées</h2>');
+			}
+			foreach ($urlsVideos as $urlVideo) {
+				$matches = array();
+				preg_match('|http://www.youtube.com/watch\?v=(.+)\??.*|', $urlVideo, $matches);
+				$idVideo = $matches[1];
+				if ($idVideo) {
+					$panelVideo = <<<EOT
+		<object width="197" height="135">
+			<param name="movie" value="http://www.youtube.com/v/%s?fs=1&amp;hl=fr_FR&amp;color1=0xcc2550&amp;color2=0xe87a9f"></param>
+			<param name="allowFullScreen" value="true"></param>
+			<param name="allowscriptaccess" value="always"></param>
+			<embed src="http://www.youtube.com/v/%s?fs=1&amp;hl=fr_FR&amp;color1=0xcc2550&amp;color2=0xe87a9f" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="197" height="135"></embed>
+		</object>
+		<br />
+EOT;
+					$Panel->AddString(sprintf($panelVideo, $idVideo, $idVideo));
+				}
+			}
+		}
+		
+		// Inject custom sidebar contents
 		$show = MiShowsDatabasePeer::getShows(array(ForceIncomingInt('CategoryID', null)), $Context);
-		$show = $show[0];
-		$Panel->addString(utf8_encode($show['SidebarHtml']));
+		if (count($show)) {
+			$Panel->addString(utf8_encode($show[0]['SidebarHtml']));
+		}
 	}
 }
 
@@ -209,7 +243,7 @@ class MiShowsDatabasePeer
 		return $db->GetRow($rs);
 	}
 
-	public static function getStickies($categoryId, Context $context)
+	public static function getStickies(array $categoryIds, Context $context)
 	{
 		// Build selection query
 		$sql = $context->ObjectFactory->NewContextObject($context, 'SqlBuilder');
@@ -217,8 +251,12 @@ class MiShowsDatabasePeer
 		$sql->addSelect('Name', 'd');
 		$sql->addSelect('DiscussionID', 'd');
 		$sql->AddOrderBy('DateLastActive', 'd', 'DESC');
-		$sql->AddWhere('d', 'CategoryID', '', $categoryId, '=');
-		$sql->AddWhere('d', 'Sticky', '',  1, '=', 'AND');
+		$sql->AddWhere('d', 'Sticky', '',  1, '=');
+		$sql->StartWhereGroup('AND');
+		foreach ($categoryIds as $categoryId) {
+			$sql->AddWhere('d', 'CategoryID', '', $categoryId, '=', 'OR');
+		}
+		$sql->EndWhereGroup();
 
 		// Execute query
 		$db = $context->Database;
