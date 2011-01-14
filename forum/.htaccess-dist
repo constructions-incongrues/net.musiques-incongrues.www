@@ -66,9 +66,19 @@ RewriteRule ^events(.*)$ extension.php?PostBackAction=Events$1 [QSA,L]
 #Releases
 RewriteRule ^releases/(.*)$ extension.php?PostBackAction=Releases$1 [QSA,L]
 RewriteRule ^releases(.*)$ extension.php?PostBackAction=Releases$1 [QSA,L]
+
 #Shop
 RewriteRule ^shop/(.*)$ extension.php?PostBackAction=Shop$1 [QSA,L]
 RewriteRule ^shop(.*)$ extension.php?PostBackAction=Shop$1 [QSA,L]
+
+#Labels
+RewriteRule ^labels/(.*)$ extension.php?PostBackAction=Labels$1 [QSA,L]
+RewriteRule ^labels(.*)$ extension.php?PostBackAction=Labels$1 [QSA,L]
+
+#Shows
+RewriteRule ^shows/(.*)$ extension.php?PostBackAction=Shows$1 [QSA,L]
+RewriteRule ^shows(.*)$ extension.php?PostBackAction=Shows$1 [QSA,L]
+
 #Extensions
 RewriteRule ^extension/$ extension.php [QSA,L]
 

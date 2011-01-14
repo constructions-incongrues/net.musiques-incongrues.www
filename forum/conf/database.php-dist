@@ -58,3 +58,11 @@ $DatabaseColumns['Label']['WebsiteUrl'] = 'WebsiteUrl';
 $DatabaseColumns['Label']['ImageUrl'] = 'ImageUrl';
 $DatabaseColumns['Label']['CategoryUri'] = 'CategoryUri';
 $DatabaseColumns['Label']['SidebarHtml'] = 'SidebarHtml';
+
+// Shows Table Structure (@see MiShows extension)
+$DatabaseTables['Show'] = 'Show';
+$DatabaseColumns['Show']['CategoryID'] = 'CategoryID';
+$DatabaseColumns['Show']['WebsiteUrl'] = 'WebsiteUrl';
+$DatabaseColumns['Show']['ImageUrl'] = 'ImageUrl';
+$DatabaseColumns['Show']['CategoryUri'] = 'CategoryUri';
+$DatabaseColumns['Show']['SidebarHtml'] = 'SidebarHtml';

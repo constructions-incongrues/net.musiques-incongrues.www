@@ -49,7 +49,7 @@ if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments
 	 $event['City']
 );
      }
-     if (strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && ! $Context->SelfUrl != 'search.php' && !in_array(ForceIncomingString("PostBackAction", ""), array('Events')))
+     if (strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && ! $Context->SelfUrl != 'search.php' && !in_array(ForceIncomingString("PostBackAction", ""), array('Events', 'Labels', 'Shows')) && !ForceIncomingInt('CategoryID', null))
      {
        $notice = sprintf("
        <h3 style='display:inline;'>Ce soir on sort : </h3>

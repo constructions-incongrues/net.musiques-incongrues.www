@@ -51,8 +51,6 @@ class MiLabelsPage
 		$strLabels = $this->renderLabels($labels);
 		
 		$html = <<<EOT
-<h2 class="surtout">LABELS</h2>
-
 <div id="ContentBody" class="releases">
 	<ol id="Discussions">
 		<li class="Discussion Release">
@@ -133,6 +131,7 @@ class MiLabelsDatabasePeer
 		$sql->addSelect('ImageUrl', 'l');
 		$sql->addSelect('CategoryUri', 'l');
 		$sql->addSelect('SidebarHtml', 'l');
+		$sql->AddOrderBy('Name', 'c', 'ASC');
 		foreach ($ids as $id) {
 			$sql->AddWhere('c', 'CategoryID', '', $id, '=', 'OR');
 		}
