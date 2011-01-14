@@ -33,7 +33,7 @@ if (!($uid == 1 || $uid == 2 || $uid == 47))
 
 $Head->AddStyleSheet('http://fonts.googleapis.com/css?family=Molengo');
 $uid = $Context->Session->UserID;
-if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && strtolower(ForceIncomingString('Page', '')) != 'contact')
+if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && strtolower(ForceIncomingString('Page', '')) != 'contact' && !ForceIncomingInt('CategoryID', null))
 {
    $Head->AddScript('extensions/vanilla-alaune/js/behaviors.js');	
    $sticky_discussions = DiscussionsPeer::getStickyDiscussions($Context);
@@ -65,15 +65,6 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
          $discussion['Name'],
          $discussion['Name'],
 	 	 truncate_text($discussion['Name'], 20));
-       $i++;
-       if ($i % 2 === 0)
-       {
-         $modulo_class = 'pink';
-       }
-       else
-       {
-         $modulo_class = 'blue';
-       }
      }
      $notice = sprintf("
      <!-- dhr:alaune -->

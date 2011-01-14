@@ -50,4 +50,11 @@ $DatabaseTables['CatalogItems'] = 'CatalogItems';
 $DatabaseColumns['CatalogItems']['DiscussionID'] = 'DiscussionID';
 $DatabaseColumns['CatalogItems']['ImageUrl'] = 'ImageUrl';
 $DatabaseColumns['CatalogItems']['Price'] = 'Price';
-?>
+
+// Labels Table Structure (@see MiLabels extension)
+$DatabaseTables['Label'] = 'Label';
+$DatabaseColumns['Label']['CategoryID'] = 'CategoryID';
+$DatabaseColumns['Label']['WebsiteUrl'] = 'WebsiteUrl';
+$DatabaseColumns['Label']['ImageUrl'] = 'ImageUrl';
+$DatabaseColumns['Label']['CategoryUri'] = 'CategoryUri';
+$DatabaseColumns['Label']['SidebarHtml'] = 'SidebarHtml';

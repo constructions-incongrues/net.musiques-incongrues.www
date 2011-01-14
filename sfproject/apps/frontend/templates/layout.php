@@ -11,27 +11,37 @@
   <body>
     <div id="Session">
     <p>
-    Johan : <a href="/forum/account/">gérer son compte</a>
+    <a href="/forum/account/">gérer son compte</a>
      - <a href="/forum/people.php?PostBackAction=SignOutNow&amp;FormPostBackKey=cdbac4275e6f54b5bf58bd73381999ee">se déconnecter</a>
-     - <a href="mailto:contact%20%28CHEZ%29%20musiques-incongrues%20%28POINT%29%20net">nous contacter</a>
+     - <a href="/forum/page/contact">nous contacter</a>
      </p>
 
     </div> <!-- #session -->
+
+	<div id="search"> 
+		<p> 
+			<form id="SearchSimple" method="get" action="/forum/search/"> 
+				<label for="search">Rechercher</label> 
+				<input type="text" name="Keywords" class="champs" /> 
+				<input type="hidden" name="PostBackAction" value="Search" /> 
+				<input name="Submit" value="Go !" class="valid" type="submit" /> 
+			</form> 
+		</p> 
+	</div> 
 
     <div id="Header">
 
     <h1>Musiques Incongrues</h1>
 
     <ul>
-    <li class="Eyes"><a href="http://www.musiques-incongrues.net/forum/events/" class="Eyes">Events</a></li>
-    <li class="Eyes"><a href="http://www.musiques-incongrues.net/forum/oeil/" class="Eyes">Oeil</a></li>
-    <li class="Eyes"><a href="http://www.musiques-incongrues.net/forum/releases/" class="Eyes">Release</a></li>
-    <li class="Eyes"><a href="http://www.tele-incongrue.net/" class="Eyes">TVi</a></li>
-    <li class="TabOn"><a href="/forum/discussions/" class="Pink">Discussions</a></li>
-    <li class="Pink"><a href="/forum/categories/" class="Pink">Categories</a></li>
-    <li class="Pink"><a href="/forum/search/" class="Pink">Search</a></li>
-    <li class="Pink"><a href="/forum/settings/" class="Pink">Settings</a></li>
-    <li class="dons"><a href="/forum/page/dons" class="dons">Dons</a></li>
+	    <li class="Eyes"><a href="http://www.musiques-incongrues.net/forum/events/" class="Eyes">Agenda</a></li>
+	    <li class="Eyes"><a href="http://www.musiques-incongrues.net/forum/oeil/" class="Eyes">Œil</a></li>
+	    <li class="Eyes"><a href="http://www.musiques-incongrues.net/forum/releases/" class="Eyes">Releases</a></li>
+	    <li class="Eyes"><a href="http://www.tele-incongrue.net/" class="Eyes">TVi</a></li>
+	    <li class="TabOn"><a href="/forum/discussions/" class="Pink">Discussions</a></li>
+	    <li class="Pink"><a href="/forum/categories/" class="Pink">Categories</a></li>
+	    <li class="dons"><a href="/forum/page/dons" class="dons">Dons</a></li>
+	    <li class="Faq"><a href="http://www.musiques-incongrues.net/forum/page/faq" class="Faq">Faq</a></li>
     </ul>
 
     </div>

@@ -65,31 +65,32 @@ $blocks['introspection'] = array('html' => ob_get_clean());
 // TODO : this is still provided by the "Statistics" extension
 
 // Setup controller <=> blocks mappings
-$mappings = array('default' => array('affiner', 'radio', 'introspection', 'ailleurs'));
+$mappings = array(
+	'default'     => array('radio', 'introspection', 'ailleurs'),
+	'discussions' => array('affiner', 'radio', 'introspection', 'ailleurs'),
+	'label'       => array(),
+);
+
+// Compute controller name
+$controllerName = 'default';
+
+// 3 = DHR, 9 = Egotwister
+if (ForceIncomingInt('CategoryID', null) == 3 || ForceIncomingInt('CategoryID', null) == 9) {
+	$controllerName = 'label';
+} else if ($Context->SelfUrl == 'index.php') {
+	$controllerName = 'discussions';
+}
 
 // Select appropriate mapping
-$mapping = $mappings['default'];
-if (isset($mappings[$Context->SelfUrl])) {
-	$mapping = $mappings[$Context->SelfUrl];
+if (isset($mappings[$controllerName])) {
+	$mapping = $mappings[$controllerName];
 }
 
 // Inject blocks into Panel
 foreach ($mapping as $block) {
 	if (isset($blocks[$block])) {
-		$Panel->addString($blocks[$block]['html']);		
+		if (isset($Panel)) {
+			$Panel->addString($blocks[$block]['html']);
+		}		
 	}
 }
-
-//if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Context->SelfUrl == 'comments.php' || $Context->SelfUrl == 'extension.php' || $Context->SelfUrl == 'categories.php' || $Context->SelfUrl == 'search.php'))
-//{
-//  return;
-//}
-//
-//
-//// Limit access to thoses uids
-//$uid = $Context->Session->UserID;
-//if (!($uid == 1 || $uid == 2 || $uid == 47))
-//{
-//  return;
-//}
-
