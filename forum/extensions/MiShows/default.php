@@ -121,7 +121,7 @@ EOT;
 class MiShowsDatabasePeer
 {
 	public static $shows_ids = array(2, 10, 12, 20, 21);
-	public static $parent_id = 16;
+	public static $parent_id = 18;
 	
 	public static function getShows(array $ids, Context $context)
 	{
