@@ -65,6 +65,15 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
          $discussion['Name'],
          $discussion['Name'],
 	 	 truncate_text($discussion['Name'], 20));
+       $i++;
+       if ($i % 2 === 0)
+       {
+         $modulo_class = 'pink';
+       }
+       else
+       {
+         $modulo_class = 'blue';
+       }
      }
      $notice = sprintf("
      <!-- dhr:alaune -->
