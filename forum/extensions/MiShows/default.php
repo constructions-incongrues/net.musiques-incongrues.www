@@ -1,40 +1,40 @@
 <?php
 /*
- Extension Name: MiLabels
+ Extension Name: MiShows
  Extension Url: https://github.com/contructions-incongrues
- Description: Displays list of labels forums associated with the project.
+ Description: Displays list of shows forums associated with the project.
  Version: 0.1
  Author: Tristan Rivoallan <tristan@rivoallan.net>
  Author Url: http://github.com/trivoallan
  */
 
-// Configure "Labels" page rendering
-if(in_array(ForceIncomingString("PostBackAction", ""), array('Labels'))) {
-	$Context->PageTitle = 'Labels - Musiques Incongrues';
-	$Menu->CurrentTab = 'Labels';
+// Configure "Shows" page rendering
+if(in_array(ForceIncomingString("PostBackAction", ""), array('Shows'))) {
+	$Context->PageTitle = 'Shows - Musiques Incongrues';
+	$Menu->CurrentTab = 'Shows';
 	$Body->CssClass = 'Discussions';
-	$Page->AddRenderControl(new MiLabelsPage($Context, $Head), $Configuration["CONTROL_POSITION_BODY_ITEM"]);
+	$Page->AddRenderControl(new MiShowsPage($Context, $Head), $Configuration["CONTROL_POSITION_BODY_ITEM"]);
 }
 
-// Modify discussion grid when in a label category
-$idsLabels = array(MiLabelsDatabasePeer::LABEL_DHR, MiLabelsDatabasePeer::LABEL_EGOTWISTER);
-if ($Context->SelfUrl == 'index.php' && in_array(ForceIncomingInt('CategoryID', null), $idsLabels)) {
-	// Show label header
-	$Context->AddToDelegate('DiscussionGrid', 'PreRender', 'MiLabel_RenderGridHeader');
+// Modify discussion grid when in a show category
+$idsShows = MiShowsDatabasePeer::$shows_ids;
+if ($Context->SelfUrl == 'index.php' && in_array(ForceIncomingInt('CategoryID', null), $idsShows)) {
+	// Show show header
+	$Context->AddToDelegate('DiscussionGrid', 'PreRender', 'MiShow_RenderGridHeader');
 	
 	// Update sidebar
 	if (isset($Panel)) {
-		// Fetch current label
-		$label = MiLabelsDatabasePeer::getLabels(array(ForceIncomingInt('CategoryID', null)), $Context);
-		$label = $label[0];
-		$Panel->addString(utf8_encode($label['SidebarHtml']));
+		// Fetch current show
+		$show = MiShowsDatabasePeer::getShows(array(ForceIncomingInt('CategoryID', null)), $Context);
+		$show = $show[0];
+		$Panel->addString(utf8_encode($show['SidebarHtml']));
 	}
 }
 
 // Add extension stylesheet
-$Head->AddStyleSheet('extensions/MiLabels/css/style.css');
+$Head->AddStyleSheet('extensions/MiShows/css/style.css');
 
-class MiLabelsPage
+class MiShowsPage
 {
 	private $context;
 
@@ -46,17 +46,17 @@ class MiLabelsPage
 
 	public function render()
 	{
-		// Fetch labels
-		$labels = MiLabelsDatabasePeer::getLabels(array(MiLabelsDatabasePeer::LABEL_DHR, MiLabelsDatabasePeer::LABEL_EGOTWISTER), $this->context);
-		$strLabels = $this->renderLabels($labels);
+		// Fetch shows
+		$shows = MiShowsDatabasePeer::getShows(MiShowsDatabasePeer::$shows_ids, $this->context);
+		$strShows = $this->renderShows($shows);
 		
 		// Fetch parent category
-		$parentCategory = MiLabelsDatabasePeer::getCategories(array(MiLabelsDatabasePeer::$parent_id), $this->context);
-			
+		$parentCategory = MiShowsDatabasePeer::getCategories(array(MiShowsDatabasePeer::$parent_id), $this->context);
+		
 		$html = <<<EOT
 <div id="ContentBody" class="releases">
-	<h2 class="top-title-category-label" id="5">Labels</h2> 
-	<p class="top-title-category-label-legend">%s</p>
+	<h2 class="top-title-category-label" id="5">Émissions</h2> 
+	<p  class="top-title-category-label-legend">%s</p>
 	<ol id="Discussions">
 		<li class="Discussion Release">
 			%s
@@ -65,17 +65,17 @@ class MiLabelsPage
 </div>		
 EOT;
 
-		echo sprintf($html, $parentCategory[0]['Description'], $strLabels);
+		echo sprintf($html, $parentCategory[0]['Description'], $strShows);
 	}
 
 	/**
-	 * @param array $labels
+	 * @param array $shows
 	 * 
 	 * TODO : use CategoryUri to generate pretty urls. Must also amend .htaccess
 	 */
-	private function renderLabels(array $labels)
+	private function renderShows(array $shows)
 	{
-		$tplLabel = <<<EOT
+		$tplShow = <<<EOT
 			<dl class="subCategory">
 				<span class="subcategory-pictures">
 					<img width="150px;" height="90px;" src="%s" />
@@ -98,66 +98,65 @@ EOT;
 EOT;
 
 		// Render
-		$strLabels = array();
-		foreach ($labels as $label) {
-			$strLabels[] = sprintf(
-				$tplLabel, 
-				$label['ImageUrl'],
+		$strShows = array();
+		foreach ($shows as $show) {
+			$strShows[] = sprintf(
+				$tplShow, 
+				$show['ImageUrl'],
 				$this->context->Configuration['WEB_ROOT'],
-				$label['CategoryID'],
-				$label['Name'],
+				$show['CategoryID'],
+				$show['Name'],
 				$this->context->Configuration['WEB_ROOT'], 
-				$label['CategoryID'], 
-				$label['Description'], 
-				$label['WebsiteUrl'],
-				$label['WebsiteUrl']
+				$show['CategoryID'], 
+				$show['Description'], 
+				$show['WebsiteUrl'],
+				$show['WebsiteUrl']
 			);
 		}
 
-		return implode("\n", $strLabels);
+		return implode("\n", $strShows);
 	}
 }
 
-class MiLabelsDatabasePeer
+class MiShowsDatabasePeer
 {
-	const LABEL_DHR = 3;
-	const LABEL_EGOTWISTER = 9;
+	public static $shows_ids = array(2, 10, 12, 20, 21);
 	public static $parent_id = 16;
 	
-	public static function getLabels(array $ids, Context $context)
+	public static function getShows(array $ids, Context $context)
 	{
 		// Build selection query
 		$sql = $context->ObjectFactory->NewContextObject($context, 'SqlBuilder');
-		$sql->SetMainTable('Label','l');
-		$sql->AddJoin('Category', 'c', 'CategoryID', 'l', 'CategoryID', 'INNER JOIN');
-		$sql->addSelect('CategoryID', 'l');
+		$sql->SetMainTable('Show','s');
+		$sql->AddJoin('Category', 'c', 'CategoryID', 's', 'CategoryID', 'INNER JOIN');
+		$sql->addSelect('CategoryID', 's');
 		$sql->addSelect('Name', 'c');
 		$sql->addSelect('Description', 'c');
-		$sql->addSelect('WebsiteUrl', 'l');
-		$sql->addSelect('ImageUrl', 'l');
-		$sql->addSelect('CategoryUri', 'l');
-		$sql->addSelect('SidebarHtml', 'l');
+		$sql->addSelect('WebsiteUrl', 's');
+		$sql->addSelect('ImageUrl', 's');
+		$sql->addSelect('CategoryUri', 's');
+		$sql->addSelect('SidebarHtml', 's');
 		$sql->AddOrderBy('Name', 'c', 'ASC');
 		foreach ($ids as $id) {
-			$sql->AddWhere('c', 'CategoryID', '', $id, '=', 'OR');
+			$sql->AddWhere('s', 'CategoryID', '', $id, '=', 'OR');
 		}
 		
 		// Execute query
 		$db = $context->Database;
-		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch labels from database.');
+		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch shows from database.');
 
 		// Gather and return events
-		$labels = array();
+		$shows = array();
 		if ($db->RowCount($rs) > 0)
 		{
-			while($db_label = $db->GetRow($rs))
+			while($db_show = $db->GetRow($rs))
 			{
-				$db_label['Name'] = substr($db_label['Name'], 2);
-				$labels[] = $db_label;
+				$db_show['Name'] = substr($db_show['Name'], 2);
+				$shows[] = $db_show;
 			}
 		}
 
-		return $labels;
+		return $shows;
 	}
 	
 	public static function getCategories(array $ids, Context $context)
@@ -172,7 +171,7 @@ class MiLabelsDatabasePeer
 		foreach ($ids as $id) {
 			$sql->AddWhere('c', 'CategoryID', '', $id, '=', 'OR');
 		}
-
+		
 		// Execute query
 		$db = $context->Database;
 		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch categories from database.');
@@ -189,17 +188,19 @@ class MiLabelsDatabasePeer
 
 		return $categories;
 	}
-	
 }
 
-function MiLabel_RenderGridHeader(DiscussionGrid $grid)
+function MiShow_RenderGridHeader(DiscussionGrid $grid)
 {
-	// Fetch current label
-	$label = MiLabelsDatabasePeer::getLabels(array(ForceIncomingInt('CategoryID', null)), $grid->Context);
-	$label = $label[0];
+	// Fetch current show
+	$show = MiShowsDatabasePeer::getShows(array(ForceIncomingInt('CategoryID', null)), $grid->Context);
+	$show = $show[0];
 	
 	// Render template
-	$tplLabel = <<<EOT
+	/**
+	 *
+	 */
+	$tplShow = <<<EOT
 <ol id="Discussions"> 
 	<li class="Discussion Release"> 
 		<dl class="subCategory"> 
@@ -223,13 +224,13 @@ function MiLabel_RenderGridHeader(DiscussionGrid $grid)
 EOT;
 
 	echo sprintf(
-		$tplLabel, 
-		$label['ImageUrl'],
+		$tplShow, 
+		$show['ImageUrl'],
 		$grid->Context->Configuration['WEB_ROOT'],
-		$label['CategoryID'],
-		$label['Name'],
-		$label['Description'], 
-		$label['WebsiteUrl'],
-		$label['WebsiteUrl']
+		$show['CategoryID'],
+		$show['Name'],
+		$show['Description'], 
+		$show['WebsiteUrl'],
+		$show['WebsiteUrl']
 	);
 }

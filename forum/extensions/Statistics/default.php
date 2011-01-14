@@ -1,4 +1,4 @@
-<?php
+ <?php
 /*
 Extension Name: Forum Statistics
 Extension Url: http://lussumo.com/addons/index.php?PostBackAction=AddOn&AddOnID=53
@@ -299,8 +299,10 @@ if ($Context->SelfUrl == "index.php") {
       $Statistics->SaveStatistics();
     }
     $Head->AddStyleSheet("extensions/Statistics/style.css");
-    $Statistics->MakePanel();
-    $Panel->AddString($Statistics->StatisticDisplay, 100);
+    if (!ForceIncomingInt('CategoryID', null)) {
+    	$Statistics->MakePanel();
+    	$Panel->AddString($Statistics->StatisticDisplay, 100);
+    }
   }
 } else if($Context->SelfUrl == "settings.php") {
   $Head->AddStyleSheet("extensions/Statistics/style.css");
