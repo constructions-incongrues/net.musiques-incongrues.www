@@ -39,7 +39,7 @@ if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments
    $today_events = EventsPeer::getEvents($Context, date('Y-m-d'), date('Y-m-d'));
    if ($today_events)
    {
-     $event_tpl = '<a href="%s">%s (%s)</a>';
+     $event_tpl = '<li><a href="%s">%s (%s)</a></li>';
      $events_strings = array();
      foreach ($today_events as $event)
      {
@@ -52,10 +52,14 @@ if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments
      if (strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && ! $Context->SelfUrl != 'search.php' && !in_array(ForceIncomingString("PostBackAction", ""), array('Events', 'Labels', 'Shows')) && !ForceIncomingInt('CategoryID', null))
      {
        $notice = sprintf("
-       <h3 style='display:inline;'>Ce soir on sort : </h3>
-       %s
-       - <small><a href='/forum/events/'>Voir tous les évènements à venir</a></small>
-       ", implode(', ', $events_string));
+       <!-- dhr:alaune -->
+       	<div>
+       	<h2 style='display:inline;' class='surtout'>Ce soir on sort : <a href='/forum/events/' style='background-color: yellow;'>Voir les évènements à venir</a></h2><br />
+       	<ul>
+     	%s
+     	</ul>
+     	</div>
+       ", implode("\n", $events_string));
        $NoticeCollector->AddNotice($notice);
      }
    }
