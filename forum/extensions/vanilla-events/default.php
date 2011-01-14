@@ -14,9 +14,6 @@ Author Url: http://blogmarks.net/user/mbertier/marks
  * TODO : cleanup events rendering code
  */
 
-error_reporting(E_ALL & ~E_NOTICE);
-error_reporting(E_ALL);
-
 if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Context->SelfUrl == 'comments.php' || $Context->SelfUrl == 'extension.php' || $Context->SelfUrl == 'categories.php' || $Context->SelfUrl == 'search.php'))
 {
   return;
@@ -39,23 +36,27 @@ if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments
    $today_events = EventsPeer::getEvents($Context, date('Y-m-d'), date('Y-m-d'));
    if ($today_events)
    {
-     $event_tpl = '<a href="%s">%s (%s)</a>';
+     $event_tpl = '<li>[%s] <a href="%s">%s</a></li>';
      $events_strings = array();
      foreach ($today_events as $event)
      {
        $events_string[] = sprintf($event_tpl,
-         GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $event['DiscussionID'], '', '#Item_1', CleanupString($event['Name'].'/')),
-	 $event['Name'],
-	 $event['City']
-);
+       		ucfirst($event['City']),
+        	GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $event['DiscussionID'], '', '#Item_1', CleanupString($event['Name'].'/')),
+	 		$event['Name']
+		);
      }
      if (strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && ! $Context->SelfUrl != 'search.php' && !in_array(ForceIncomingString("PostBackAction", ""), array('Events', 'Labels', 'Shows')) && !ForceIncomingInt('CategoryID', null))
      {
        $notice = sprintf("
-       <h3 style='display:inline;'>Ce soir on sort : </h3>
-       %s
-       - <small><a href='/forum/events/'>Voir tous les évènements à venir</a></small>
-       ", implode(', ', $events_string));
+       <!-- dhr:alaune -->
+       	<div>
+       	<h2 style='display:inline;' class='surtout'>Ce soir on sort : <a href='%sevents/' style='background-color: yellow;'>Voir les évènements à venir</a></h2><br />
+       	<ul style='list-style-type: none;'>
+     	%s
+     	</ul>
+     	</div>
+       ", $Context->Configuration['WEB_ROOT'], implode("\n", $events_string));
        $NoticeCollector->AddNotice($notice);
      }
    }
@@ -160,6 +161,7 @@ class EventsPeer
     $sql->addWhere('d', 'Active', '', '1', '=');
     $sql->EndWhereGroup();
     $sql->AddOrderBy('Date', 'e', 'asc');
+    $sql->AddOrderBy('City', 'e', 'asc');
 
     // Execute query
     $db = $context->Database;

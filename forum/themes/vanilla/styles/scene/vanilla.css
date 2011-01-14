@@ -1,3 +1,45 @@
+/* BOX - DERNIEREMENT SUR LES PAGES EMISSIONS */
+
+#Panel .emissions-box-name-show {
+width:200px!important;
+background-color:#DDD; font-weight:bold;text-align:center;text-transform:uppercase;border:1px solid #CCC;font-size:1.2em!important;}
+.emissions-box-show {width:10px!important;}
+.emissions-box-cover {border:1px solid #000;}
+/* DESIGN DU PLAYER SUR LA PAGE EMISSIONS */
+
+#Panel .emissions-box-player
+{
+background-color: #0099FF !important;
+margin-top:-5px;
+height:23px!important;
+width:200px!important;
+border:1px solid #BBB;
+}	
+#Panel .sm3_link
+	{
+  background-color:yellow;
+  margin-left:35px; 
+   -moz-border-radius:0px;
+  -webkit-border-radius:0px;
+  border-radius:0px;
+  color:#000;
+  border-bottom:1px solid #CCC !important;
+  font-weight:bold;
+  font-size:1.5em;  display:inline-block;
+  padding-right:5px;
+  background-color: #0099FF !important;
+  text-transform:uppercase;
+}
+
+#Panel .emissions-box-cover
+{
+	opacity: 0.5;
+}
+
+#Panel .emissions-box-cover:hover
+{
+	opacity: 1!important;
+}
 /* SEARCHBAR */
 
 #search 
