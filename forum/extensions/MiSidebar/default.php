@@ -69,7 +69,7 @@ $mappings = array(
 	'default'     => array('radio', 'introspection', 'ailleurs'),
 	'discussions' => array('affiner', 'radio', 'introspection', 'ailleurs'),
 	'label'       => array(),
-	'shows'       => array(),
+	'show'       => array(),
 );
 
 // Compute controller name
@@ -79,7 +79,7 @@ $categoryID = ForceIncomingInt('CategoryID', null);
 if (in_array($categoryID, array(MiLabelsDatabasePeer::LABEL_DHR, MiLabelsDatabasePeer::LABEL_EGOTWISTER))) {
 	$controllerName = 'label';
 } else if (in_array($categoryID, MiShowsDatabasePeer::$shows_ids)) {
-	$controllerName = 'shows';
+	$controllerName = 'show';
 } else if ($Context->SelfUrl == 'index.php') {
 	$controllerName = 'discussions';
 }
