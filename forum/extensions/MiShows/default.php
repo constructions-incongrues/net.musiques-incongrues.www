@@ -19,11 +19,46 @@ if(in_array(ForceIncomingString("PostBackAction", ""), array('Shows'))) {
 // Modify discussion grid when in a show category
 $idsShows = MiShowsDatabasePeer::$shows_ids;
 if ($Context->SelfUrl == 'index.php' && in_array(ForceIncomingInt('CategoryID', null), $idsShows)) {
+
 	// Show show header
 	$Context->AddToDelegate('DiscussionGrid', 'PreRender', 'MiShow_RenderGridHeader');
 	
 	// Update sidebar
 	if (isset($Panel)) {
+
+		// Fetch latest sticky for show
+		$dbStickies = MiShowsDatabasePeer::getStickies(ForceIncomingInt('CategoryID', null), $Context);
+		$dbSticky = $dbStickies[0];
+		
+		// Grab associated release
+		$dbRelease = MiShowsDatabasePeer::getRelease($dbSticky['DiscussionID'], $Context);
+		
+		if (count($dbStickies)) {
+			$tplStickies = <<<EOT
+	<h2>Dernièrement</h2>
+	<a href="%s" title="%s">
+		<img src="%s" width="200px" height="135px" />
+	</a>
+	<p style="text-align: center;"><a href="%s" title="%s">%s</a></p>
+EOT;
+			// Add download link, if appropriate
+			if ($dbRelease['DownloadLink']) {
+				$tplStickies .= '<ul class="label-links"><li><a href="%s" title="Télécharger">Télécharger l\'émission</a></li>';
+			}
+			
+			$Panel->addString(sprintf(
+				$tplStickies, 
+				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
+				$dbSticky['Name'], 
+				getFirstImageUrl($dbSticky['DiscussionID']),
+				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
+				$dbSticky['Name'],
+				$dbSticky['Name'],
+				$dbRelease['DownloadLink']
+			));
+			
+		}
+
 		// Fetch current show
 		$show = MiShowsDatabasePeer::getShows(array(ForceIncomingInt('CategoryID', null)), $Context);
 		$show = $show[0];
@@ -121,7 +156,7 @@ EOT;
 class MiShowsDatabasePeer
 {
 	public static $shows_ids = array(2, 10, 12, 20, 21);
-	public static $parent_id = 16;
+	public static $parent_id = 18;
 	
 	public static function getShows(array $ids, Context $context)
 	{
@@ -145,7 +180,7 @@ class MiShowsDatabasePeer
 		$db = $context->Database;
 		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch shows from database.');
 
-		// Gather and return events
+		// Gather and return shows
 		$shows = array();
 		if ($db->RowCount($rs) > 0)
 		{
@@ -157,6 +192,49 @@ class MiShowsDatabasePeer
 		}
 
 		return $shows;
+	}
+	
+	public static function getRelease($discussionId, Context $context)
+	{
+		// Build selection query
+		$sql = $context->ObjectFactory->NewContextObject($context, 'SqlBuilder');
+		$sql->SetMainTable('Releases','r');
+		$sql->addSelect('DownloadLink', 'r');
+		$sql->AddWhere('r', 'DiscussionID', '', $discussionId, '=');
+		
+		// Execute query
+		$db = $context->Database;
+		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch release from database.');
+
+		return $db->GetRow($rs);
+	}
+
+	public static function getStickies($categoryId, Context $context)
+	{
+		// Build selection query
+		$sql = $context->ObjectFactory->NewContextObject($context, 'SqlBuilder');
+		$sql->SetMainTable('Discussion','d');
+		$sql->addSelect('Name', 'd');
+		$sql->addSelect('DiscussionID', 'd');
+		$sql->AddOrderBy('DateLastActive', 'd', 'DESC');
+		$sql->AddWhere('d', 'CategoryID', '', $categoryId, '=');
+		$sql->AddWhere('d', 'Sticky', '',  1, '=', 'AND');
+
+		// Execute query
+		$db = $context->Database;
+		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch stickies from database.');
+
+		// Gather and return stickies
+		$stickies = array();
+		if ($db->RowCount($rs) > 0)
+		{
+			while($db_sticky = $db->GetRow($rs))
+			{
+				$stickies[] = $db_sticky;
+			}
+		}
+
+		return $stickies;
 	}
 	
 	public static function getCategories(array $ids, Context $context)
@@ -188,6 +266,7 @@ class MiShowsDatabasePeer
 
 		return $categories;
 	}
+	
 }
 
 function MiShow_RenderGridHeader(DiscussionGrid $grid)

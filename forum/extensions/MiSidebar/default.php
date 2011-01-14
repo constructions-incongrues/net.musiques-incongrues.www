@@ -70,6 +70,8 @@ $mappings = array(
 	'discussions' => array('affiner', 'radio', 'introspection', 'ailleurs'),
 	'label'       => array(),
 	'show'       => array(),
+	'labels'       => array(),
+	'shows'       => array(),
 );
 
 // Compute controller name
@@ -80,6 +82,10 @@ if (in_array($categoryID, array(MiLabelsDatabasePeer::LABEL_DHR, MiLabelsDatabas
 	$controllerName = 'label';
 } else if (in_array($categoryID, MiShowsDatabasePeer::$shows_ids)) {
 	$controllerName = 'show';
+} else if (ForceIncomingString('PostBackAction', '') == 'Labels') {
+	$controllerName = 'labels';
+} else if (ForceIncomingString('PostBackAction', '') == 'Shows') {
+	$controllerName = 'shows';
 } else if ($Context->SelfUrl == 'index.php') {
 	$controllerName = 'discussions';
 }

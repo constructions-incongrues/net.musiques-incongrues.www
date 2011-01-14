@@ -24,6 +24,40 @@ if ($Context->SelfUrl == 'index.php' && in_array(ForceIncomingInt('CategoryID', 
 	
 	// Update sidebar
 	if (isset($Panel)) {
+
+		// Fetch latest sticky for show
+		$dbStickies = MiLabelsDatabasePeer::getStickies(ForceIncomingInt('CategoryID', null), $Context);
+		$dbSticky = $dbStickies[0];
+		
+		// Grab associated release
+		$dbRelease = MiLabelsDatabasePeer::getRelease($dbSticky['DiscussionID'], $Context);
+		
+		if (count($dbStickies)) {
+			$tplStickies = <<<EOT
+	<h2>Dernièrement</h2>
+	<a href="%s" title="%s">
+		<img src="%s" width="200px" height="135px" />
+	</a>
+	<p style="text-align: center;"><a href="%s" title="%s">%s</a></p>
+EOT;
+			// Add download link, if appropriate
+			if ($dbRelease['DownloadLink']) {
+				$tplStickies .= '<ul class="label-links"><li><a href="%s" title="Télécharger">Télécharger la release</a></li>';
+			}
+			
+			$Panel->addString(sprintf(
+				$tplStickies, 
+				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
+				$dbSticky['Name'], 
+				getFirstImageUrl($dbSticky['DiscussionID']),
+				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
+				$dbSticky['Name'],
+				$dbSticky['Name'],
+				$dbRelease['DownloadLink']
+			));
+			
+		}
+		
 		// Fetch current label
 		$label = MiLabelsDatabasePeer::getLabels(array(ForceIncomingInt('CategoryID', null)), $Context);
 		$label = $label[0];
@@ -188,8 +222,50 @@ class MiLabelsDatabasePeer
 		}
 
 		return $categories;
-	}
+	}	
 	
+	public static function getRelease($discussionId, Context $context)
+	{
+		// Build selection query
+		$sql = $context->ObjectFactory->NewContextObject($context, 'SqlBuilder');
+		$sql->SetMainTable('Releases','r');
+		$sql->addSelect('DownloadLink', 'r');
+		$sql->AddWhere('r', 'DiscussionID', '', $discussionId, '=');
+		
+		// Execute query
+		$db = $context->Database;
+		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch release from database.');
+
+		return $db->GetRow($rs);
+	}
+
+	public static function getStickies($categoryId, Context $context)
+	{
+		// Build selection query
+		$sql = $context->ObjectFactory->NewContextObject($context, 'SqlBuilder');
+		$sql->SetMainTable('Discussion','d');
+		$sql->addSelect('Name', 'd');
+		$sql->addSelect('DiscussionID', 'd');
+		$sql->AddOrderBy('DateLastActive', 'd', 'DESC');
+		$sql->AddWhere('d', 'CategoryID', '', $categoryId, '=');
+		$sql->AddWhere('d', 'Sticky', '',  1, '=', 'AND');
+
+		// Execute query
+		$db = $context->Database;
+		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch stickies from database.');
+
+		// Gather and return stickies
+		$stickies = array();
+		if ($db->RowCount($rs) > 0)
+		{
+			while($db_sticky = $db->GetRow($rs))
+			{
+				$stickies[] = $db_sticky;
+			}
+		}
+
+		return $stickies;
+	}
 }
 
 function MiLabel_RenderGridHeader(DiscussionGrid $grid)
