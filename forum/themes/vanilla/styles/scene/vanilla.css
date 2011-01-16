@@ -1,34 +1,84 @@
-/* BOX - DERNIEREMENT SUR LES PAGES EMISSIONS */
+/* BOX - DERNIEREMENT SUR LES PAGES EMISSIONS/LABEL */
 
-#Panel .emissions-box-name-show {
+/* design de l'artwork */
+
+#Panel .emissions-box-artwork img, #Panel .label-box-artwork img
+{
+border: 1px solid #000!important;
+height:135px!important;
+width:198px!important;
+}
+/* design de la liste des liens informatif (acheter, etc)*/
+
+#Panel .emissions-links li, #Panel .label-box-links li
+{
 width:200px!important;
-background-color:#DDD; font-weight:bold;text-align:center;text-transform:uppercase;border:1px solid #CCC;font-size:1.2em!important;}
-.emissions-box-show {width:10px!important;}
-.emissions-box-cover {border:1px solid #000;}
-/* DESIGN DU PLAYER SUR LA PAGE EMISSIONS */
+background-color:#DDD!important;
+margin-top:3px!important;
+margin-bottom:3px!important;
+padding-left:3px!important;
+font-weight:bold;
+}
 
+/* design nom du topic */
+
+#Panel .emissions-box-name-show, #Panel .label-box-name-show
+{
+width:196px!important;
+background-color:#DDD;
+font-weight:bold;
+text-align:center;
+text-transform:uppercase;
+font-size:1.2em!important;
+margin-bottom:5px!important;
+padding:2px!important;
+}
+
+/* design du lien pour télécharger une sortie */
+
+#Panel .label-donwload-release
+{
+width:200px!important;
+background-color:yellow;
+font-weight:bold;
+text-align:center;
+text-transform:uppercase;
+font-size:1.2em!important;
+margin-top:3px!important;
+}
+
+/*  */
+
+#Panel .emissions-global-box
+{
+
+}
+/* design player */
 #Panel .emissions-box-player
 {
 background-color: #0099FF !important;
-margin-top:-5px;
-height:23px!important;
+margin-top:2px!important;
+height:18px!important;
 width:200px!important;
 border:1px solid #BBB;
+padding:0px;
+margin:0px;
+text-align:center;
+margin-bottom:20px!important;
 }	
 #Panel .sm3_link
 	{
-  background-color:yellow;
-  margin-left:35px; 
    -moz-border-radius:0px;
   -webkit-border-radius:0px;
   border-radius:0px;
   color:#000;
-  border-bottom:1px solid #CCC !important;
+  border:0px solid #CCC !important;
   font-weight:bold;
-  font-size:1.5em;  display:inline-block;
-  padding-right:5px;
+  font-size:1.2em;  
   background-color: #0099FF !important;
   text-transform:uppercase;
+  padding:0px;
+  margin:0px;
 }
 
 #Panel .emissions-box-cover
@@ -40,6 +90,8 @@ border:1px solid #BBB;
 {
 	opacity: 1!important;
 }
+
+
 /* SEARCHBAR */
 
 #search 
@@ -387,7 +439,7 @@ border-left:4px solid #0099FF!important;
 #Discussions span.events-place {margin-left:2px;background-color:#FFE0FF!important;font-size:1em;}
 
 #Discussions dl.Shop dt.shop-legend a {color:#666666}
-#Discussions dl.Shop dt.shop-legend a:hover {color:#000}
+#Discussions dl.Shop dt.shop-legend a:hover {color:#000}/*
 
 
 /* [RELEASES] - LISTE LABEL */ 

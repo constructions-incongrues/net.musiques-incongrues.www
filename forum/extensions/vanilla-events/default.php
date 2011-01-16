@@ -36,11 +36,13 @@ if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments
    $today_events = EventsPeer::getEvents($Context, date('Y-m-d'), date('Y-m-d'));
    if ($today_events)
    {
-     $event_tpl = '<li>[%s] <a href="%s">%s</a></li>';
+     $event_tpl = '<li>[<a href="%s" title="Voir tous les évènements à venir à %s" style="color: #666;">%s</a>] <a href="%s" title="Voir le détail de l\'évènement">%s</a></li>';
      $events_strings = array();
      foreach ($today_events as $event)
      {
        $events_string[] = sprintf($event_tpl,
+       		GetUrl($Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&city=' . $event['City']),
+       		ucfirst($event['City']),
        		ucfirst($event['City']),
         	GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $event['DiscussionID'], '', '#Item_1', CleanupString($event['Name'].'/')),
 	 		$event['Name']
@@ -52,7 +54,7 @@ if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments
        <!-- dhr:alaune -->
        	<div>
        	<h2 style='display:inline;' class='surtout'>Ce soir on sort : <a href='%sevents/' style='background-color: yellow;'>Voir les évènements à venir</a></h2><br />
-       	<ul style='list-style-type: none;'>
+       	<ul style='list-style-type: none; font-size: 1.2em;'>
      	%s
      	</ul>
      	</div>

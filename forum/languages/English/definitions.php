@@ -598,6 +598,6 @@ $Context->Dictionary['ErrPermissionSortCategories'] = 'You do not have the permi
 //Added for Vanilla 1.1.5 on 2008-05-25
 $Context->Dictionary['EditYourDiscussion'] = 'Edit your discussion';
 /* Please do not remove or alter this definition */
-$Context->Dictionary['PanelFooter'] = '<p id="AboutVanilla"><a href="http://getvanilla.com">Vanilla '.APPLICATION_VERSION.'</a> is a product of <a href="http://lussumo.com">Lussumo</a>. More Information: <a href="http://lussumo.com/docs">Documentation</a>, <a href="http://lussumo.com/community">Community Support</a>.</p>';
+$Context->Dictionary['PanelFooter'] = '<p id="AboutVanilla">&nbsp;</p>';
 
 ?>

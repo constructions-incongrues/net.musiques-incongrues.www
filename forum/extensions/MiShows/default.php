@@ -14,6 +14,7 @@ if(in_array(ForceIncomingString("PostBackAction", ""), array('Shows'))) {
 	$Menu->CurrentTab = 'Shows';
 	$Body->CssClass = 'Discussions';
 	$Page->AddRenderControl(new MiShowsPage($Context, $Head), $Configuration["CONTROL_POSITION_BODY_ITEM"]);
+	$Head->Meta['description'] = 'Les toutes dernières production de The Brain, Istota Ssaca, Le Laboratoire, Ouïedire, This Is Radioclash. Mais pas seulement !';
 }
 
 // Modify discussion grid when in a show category
@@ -45,24 +46,29 @@ if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsShow
 			$dbRelease = MiShowsDatabasePeer::getRelease($dbSticky['DiscussionID'], $Context);
 		
 			$tplStickies = <<<EOT
-	<a href="%s" title="%s">
-		<img src="%s" width="200px" height="135px" class="emissions-box-cover" style="opacity: 0.5;"/>
-	</a>
-	<p class="emissions-box-name-show"><a href="%s" title="%s">%s</a></p>
+	<div class="emissions-global-box">
+		
+		<p class="emissions-box-name-show"><a href="%s" title="%s">%s</a></p>
+		
+		<p class="emissions-box-artwork">
+			<a href="%s" title="%s">
+				<img src="%s" class="emissions-box-cover" />
+			</a>
+		</p>
 EOT;
 			// Add download link, if appropriate
 			if ($dbRelease['DownloadLink']) {
-				$tplStickies .= '<br /><p class="emissions-box-player"><a href="%s" title="Écouter">Écouter</a></p>';
+				$tplStickies .= '<p class="emissions-box-player"><a href="%s" title="Écouter l\'émission">Écouter l\'émission</a></p>';
 			}
 			
 			$Panel->addString(sprintf(
-				$tplStickies.'<hr />', 
+				$tplStickies.'</div>', 
+				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
+				$dbSticky['Name'], 
+				truncate_text($dbSticky['Name'], 28),
 				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
 				$dbSticky['Name'], 
 				getFirstImageUrl($dbSticky['DiscussionID']),
-				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
-				$dbSticky['Name'],
-				truncate_text($dbSticky['Name'], 25),
 				$dbRelease['DownloadLink']
 			));
 		}

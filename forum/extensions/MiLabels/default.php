@@ -35,27 +35,32 @@ if ($Context->SelfUrl == 'index.php' && in_array(ForceIncomingInt('CategoryID', 
 		if (count($dbStickies)) {
 			$tplStickies = <<<EOT
 	<h2>Dernièrement</h2>
-	<a href="%s" title="%s">
-		<img src="%s" width="200px" height="135px" />
-	</a>
-	<p style="text-align: center;"><a href="%s" title="%s">%s</a></p>
+	
+	<p class="label-box-name-show">
+		<a href="%s" title="%s">%s</a>
+	</p>
+	
+	<p class="label-box-artwork">
+		<a href="%s" title="%s">
+			<img src="%s" />
+		</a>
+	</p>
 EOT;
 			// Add download link, if appropriate
 			if ($dbRelease['DownloadLink']) {
-				$tplStickies .= '<ul class="label-links"><li><a href="%s" title="Télécharger">Télécharger la release</a></li>';
+				$tplStickies .= '<p class="label-donwload-release"><a href="%s" title="Télécharger">Télécharger la release</a></p>';
 			}
 			
 			$Panel->addString(sprintf(
 				$tplStickies, 
 				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
 				$dbSticky['Name'], 
-				getFirstImageUrl($dbSticky['DiscussionID']),
+				$dbSticky['Name'],
 				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
 				$dbSticky['Name'],
-				$dbSticky['Name'],
+				getFirstImageUrl($dbSticky['DiscussionID']),
 				$dbRelease['DownloadLink']
 			));
-			
 		}
 		
 		// Fetch current label
