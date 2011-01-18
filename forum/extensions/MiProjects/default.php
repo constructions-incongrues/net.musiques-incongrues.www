@@ -34,10 +34,10 @@ if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsProj
 	// Update sidebar
 	if (isset($Panel)) {
 
-		// Fetch latest sticky for show
+		// Fetch latest stickies for show
 		$categoriesForStickies = array($requestedCategoryId);
 		if (in_array($postBackAction, array('Labels', 'Shows'))) {
-			$categoriesForStickies = $idsProjectsCategories;
+			$categoriesForStickies = MiProjectsDatabasePeer::$categoryMappings[strtolower($postBackAction)]['ids'];
 		}
 		
 		$dbStickies = MiProjectsDatabasePeer::getStickies($categoriesForStickies, $Context);
