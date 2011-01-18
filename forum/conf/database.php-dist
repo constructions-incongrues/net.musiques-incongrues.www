@@ -51,18 +51,10 @@ $DatabaseColumns['CatalogItems']['DiscussionID'] = 'DiscussionID';
 $DatabaseColumns['CatalogItems']['ImageUrl'] = 'ImageUrl';
 $DatabaseColumns['CatalogItems']['Price'] = 'Price';
 
-// Labels Table Structure (@see MiLabels extension)
-$DatabaseTables['Label'] = 'Label';
-$DatabaseColumns['Label']['CategoryID'] = 'CategoryID';
-$DatabaseColumns['Label']['WebsiteUrl'] = 'WebsiteUrl';
-$DatabaseColumns['Label']['ImageUrl'] = 'ImageUrl';
-$DatabaseColumns['Label']['CategoryUri'] = 'CategoryUri';
-$DatabaseColumns['Label']['SidebarHtml'] = 'SidebarHtml';
-
-// Shows Table Structure (@see MiShows extension)
-$DatabaseTables['Show'] = 'Show';
-$DatabaseColumns['Show']['CategoryID'] = 'CategoryID';
-$DatabaseColumns['Show']['WebsiteUrl'] = 'WebsiteUrl';
-$DatabaseColumns['Show']['ImageUrl'] = 'ImageUrl';
-$DatabaseColumns['Show']['CategoryUri'] = 'CategoryUri';
-$DatabaseColumns['Show']['SidebarHtml'] = 'SidebarHtml';
+// Project Table Structure (@see MiProjects extension)
+$DatabaseTables['Project'] = 'Project';
+$DatabaseColumns['Project']['CategoryID'] = 'CategoryID';
+$DatabaseColumns['Project']['WebsiteUrl'] = 'WebsiteUrl';
+$DatabaseColumns['Project']['ImageUrl'] = 'ImageUrl';
+$DatabaseColumns['Project']['CategoryUri'] = 'CategoryUri';
+$DatabaseColumns['Project']['SidebarHtml'] = 'SidebarHtml';

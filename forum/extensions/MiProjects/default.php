@@ -1,39 +1,46 @@
 <?php
 /*
- Extension Name: MiShows
+ Extension Name: MiProjects
  Extension Url: https://github.com/contructions-incongrues
- Description: Displays list of shows forums associated with the project.
+ Description: Displays list of projects forums associated with the project.
  Version: 0.1
  Author: Tristan Rivoallan <tristan@rivoallan.net>
  Author Url: http://github.com/trivoallan
  */
 
 // Configure "Shows" page rendering
-if(in_array(ForceIncomingString("PostBackAction", ""), array('Shows'))) {
-	$Context->PageTitle = 'Shows - Musiques Incongrues';
-	$Menu->CurrentTab = 'Shows';
+$postBackAction = ForceIncomingString("PostBackAction", "");
+if(in_array($postBackAction, array('Shows', 'Labels'))) {
+	$Context->PageTitle = sprintf('%s - Musiques Incongrues', $postBackAction);
+	$Menu->CurrentTab = $postBackAction;
 	$Body->CssClass = 'Discussions';
-	$Page->AddRenderControl(new MiShowsPage($Context, $Head), $Configuration["CONTROL_POSITION_BODY_ITEM"]);
+	$Page->AddRenderControl(new MiProjectPage($Context, $Head, strtolower($postBackAction)), $Configuration["CONTROL_POSITION_BODY_ITEM"]);
 }
 
-// Modify discussion grid when in a show category
-$idsShows = MiShowsDatabasePeer::$shows_ids;
-$requestedCategoryId = ForceIncomingInt('CategoryID', null);
-if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsShows)) || ForceIncomingString('PostBackAction', null) == 'Shows') {
+// Modify discussion grid when in a project category
+$idsProjectsCategories = array();
 
-	// Show show header
-	$Context->AddToDelegate('DiscussionGrid', 'PreRender', 'MiShow_RenderGridHeader');
+$idsProjectsCategories = array_merge(
+	MiProjectsDatabasePeer::$categoryMappings['shows']['ids'], 
+	MiProjectsDatabasePeer::$categoryMappings['labels']['ids']
+);
+
+$requestedCategoryId = ForceIncomingInt('CategoryID', null);
+
+if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsProjectsCategories)) || in_array($postBackAction, array('Labels', 'Shows'))) {
+
+	$Context->AddToDelegate('DiscussionGrid', 'PreRender', 'MiProject_RenderGridHeader');
 	
 	// Update sidebar
 	if (isset($Panel)) {
 
 		// Fetch latest sticky for show
 		$categoriesForStickies = array($requestedCategoryId);
-		if (ForceIncomingString('PostBackAction', null) == 'Shows') {
-			$categoriesForStickies = $idsShows;
+		if (in_array($postBackAction, array('Labels', 'Shows'))) {
+			$categoriesForStickies = $idsProjectsCategories;
 		}
 		
-		$dbStickies = MiShowsDatabasePeer::getStickies($categoriesForStickies, $Context);
+		$dbStickies = MiProjectsDatabasePeer::getStickies($categoriesForStickies, $Context);
 
 		if (count($dbStickies)) {
 			$Panel->AddString('<h2>Dernièrement</h2>');
@@ -42,7 +49,7 @@ if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsShow
 		foreach ($dbStickies as $dbSticky) {
 		
 			// Grab associated release
-			$dbRelease = MiShowsDatabasePeer::getRelease($dbSticky['DiscussionID'], $Context);
+			$dbRelease = MiProjectsDatabasePeer::getRelease($dbSticky['DiscussionID'], $Context);
 		
 			$tplStickies = <<<EOT
 	<a href="%s" title="%s">
@@ -52,7 +59,15 @@ if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsShow
 EOT;
 			// Add download link, if appropriate
 			if ($dbRelease['DownloadLink']) {
-				$tplStickies .= '<br /><p class="emissions-box-player"><a href="%s" title="Écouter">Écouter</a></p>';
+				// Get download link extension
+				$urlParts = explode('.', $dbRelease['DownloadLink']);
+				$extension = array_pop($urlParts);
+				if ($extension == 'mp3') {
+					$tplStickies .= '<br /><p class="emissions-box-player"><a href="%s" title="Écouter">Écouter</a></p>';
+				} else {
+					$tplStickies .= '<br /><p class="emissions-box-player"><a href="%s" title="Télécharger">Télécharger</a></p>';
+				}
+				
 			}
 			
 			// Setup autoloading
@@ -75,7 +90,7 @@ EOT;
 		}
 		
 		// Show video from first sticky in sidebar
-		if (count($dbStickies) && ForceIncomingString('PostBackAction', null) != 'Shows') {
+		if (count($dbStickies) && !in_array($postBackAction, array('labels', 'shows'))) {
 			$urlsVideos = getVideosUrls($dbStickies[0]['DiscussionID']);
 			if (count($urlsVideos)) {
 				$Panel->AddString('<h2>Images animées</h2>');
@@ -100,7 +115,7 @@ EOT;
 		}
 		
 		// Inject custom sidebar contents
-		$show = MiShowsDatabasePeer::getShows(array(ForceIncomingInt('CategoryID', null)), $Context);
+		$show = MiProjectsDatabasePeer::getProjects(array(ForceIncomingInt('CategoryID', null)), $Context);
 		if (count($show)) {
 			$Panel->addString(utf8_encode($show[0]['SidebarHtml']));
 		}
@@ -108,30 +123,34 @@ EOT;
 }
 
 // Add extension stylesheet
-$Head->AddStyleSheet('extensions/MiShows/css/style.css');
+$Head->AddStyleSheet('extensions/MiProjects/css/style.css');
 
-class MiShowsPage
+class MiProjectPage
 {
 	private $context;
+	private $type;
 
-	public function __construct(Context $context, Head $head)
+	public function __construct(Context $context, Head $head, $type)
 	{ 
 		// Store context
 		$this->context = $context;
+		
+		// Store type
+		$this->type = $type;
 	}
 
 	public function render()
 	{
-		// Fetch shows
-		$shows = MiShowsDatabasePeer::getShows(MiShowsDatabasePeer::$shows_ids, $this->context);
-		$strShows = $this->renderShows($shows);
+		// Fetch projects
+		$projects = MiProjectsDatabasePeer::getProjects(MiProjectsDatabasePeer::$categoryMappings[$this->type]['ids'], $this->context);
+		$strProjects = $this->renderProjects($projects);
 		
 		// Fetch parent category
-		$parentCategory = MiShowsDatabasePeer::getCategories(array(MiShowsDatabasePeer::$parent_id), $this->context);
+		$parentCategory = MiProjectsDatabasePeer::getCategories(array(MiProjectsDatabasePeer::$categoryMappings[$this->type]['parent']), $this->context);
 		
 		$html = <<<EOT
 <div id="ContentBody" class="releases">
-	<h2 class="top-title-category-label" id="5">Émissions</h2> 
+	<h2 class="top-title-category-label" id="5">%s</h2> 
 	<p  class="top-title-category-label-legend">%s</p>
 	<ol id="Discussions">
 		<li class="Discussion Release">
@@ -141,17 +160,17 @@ class MiShowsPage
 </div>		
 EOT;
 
-		echo sprintf($html, $parentCategory[0]['Description'], $strShows);
+		echo sprintf($html, ucfirst($this->type), $parentCategory[0]['Description'], $strProjects);
 	}
 
 	/**
-	 * @param array $shows
+	 * @param array $projects
 	 * 
 	 * TODO : use CategoryUri to generate pretty urls. Must also amend .htaccess
 	 */
-	private function renderShows(array $shows)
+	private function renderProjects(array $projects)
 	{
-		$tplShow = <<<EOT
+		$tplProject = <<<EOT
 			<dl class="subCategory">
 				<span class="subcategory-pictures">
 					<img width="150px;" height="90px;" src="%s" />
@@ -174,36 +193,42 @@ EOT;
 EOT;
 
 		// Render
-		$strShows = array();
-		foreach ($shows as $show) {
-			$strShows[] = sprintf(
-				$tplShow, 
-				$show['ImageUrl'],
+		$strProjects = array();
+		foreach ($projects as $project) {
+			$strProjects[] = sprintf(
+				$tplProject, 
+				$project['ImageUrl'],
 				$this->context->Configuration['WEB_ROOT'],
-				$show['CategoryID'],
-				$show['Name'],
+				$project['CategoryID'],
+				$project['Name'],
 				$this->context->Configuration['WEB_ROOT'], 
-				$show['CategoryID'], 
-				$show['Description'], 
-				$show['WebsiteUrl'],
-				$show['WebsiteUrl']
+				$project['CategoryID'], 
+				$project['Description'], 
+				$project['WebsiteUrl'],
+				$project['WebsiteUrl']
 			);
 		}
 
-		return implode("\n", $strShows);
+		return implode("\n", $strProjects);
 	}
 }
 
-class MiShowsDatabasePeer
+class MiProjectsDatabasePeer
 {
-	public static $shows_ids = array(2, 10, 12, 20, 21);
-	public static $parent_id = 18;
+	public static $categoryMappings = array(
+		'shows' => array(
+			'ids'    => array(2, 10, 12, 20, 21),
+			'parent' => 18),
+		'labels' => array(
+			'ids'    => array(3, 9),
+			'parent' => 16)
+	);
 	
-	public static function getShows(array $ids, Context $context)
+	public static function getProjects(array $ids, Context $context)
 	{
 		// Build selection query
 		$sql = $context->ObjectFactory->NewContextObject($context, 'SqlBuilder');
-		$sql->SetMainTable('Show','s');
+		$sql->SetMainTable('Project','s');
 		$sql->AddJoin('Category', 'c', 'CategoryID', 's', 'CategoryID', 'INNER JOIN');
 		$sql->addSelect('CategoryID', 's');
 		$sql->addSelect('Name', 'c');
@@ -219,20 +244,20 @@ class MiShowsDatabasePeer
 		
 		// Execute query
 		$db = $context->Database;
-		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch shows from database.');
+		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch projects from database.');
 
-		// Gather and return shows
-		$shows = array();
+		// Gather and return projects
+		$projects = array();
 		if ($db->RowCount($rs) > 0)
 		{
-			while($db_show = $db->GetRow($rs))
+			while($db_project = $db->GetRow($rs))
 			{
-				$db_show['Name'] = substr($db_show['Name'], 2);
-				$shows[] = $db_show;
+				$db_project['Name'] = substr($db_project['Name'], 2);
+				$projects[] = $db_project;
 			}
 		}
 
-		return $shows;
+		return $projects;
 	}
 	
 	public static function getRelease($discussionId, Context $context)
@@ -314,17 +339,14 @@ class MiShowsDatabasePeer
 	
 }
 
-function MiShow_RenderGridHeader(DiscussionGrid $grid)
+function MiProject_RenderGridHeader(DiscussionGrid $grid)
 {
 	// Fetch current show
-	$show = MiShowsDatabasePeer::getShows(array(ForceIncomingInt('CategoryID', null)), $grid->Context);
-	$show = $show[0];
-	
+	$project = MiProjectsDatabasePeer::getProjects(array(ForceIncomingInt('CategoryID', null)), $grid->Context);
+	$project = $project[0];
+
 	// Render template
-	/**
-	 *
-	 */
-	$tplShow = <<<EOT
+	$tplProject = <<<EOT
 <ol id="Discussions"> 
 	<li class="Discussion Release"> 
 		<dl class="subCategory"> 
@@ -348,13 +370,13 @@ function MiShow_RenderGridHeader(DiscussionGrid $grid)
 EOT;
 
 	echo sprintf(
-		$tplShow, 
-		$show['ImageUrl'],
+		$tplProject, 
+		$project['ImageUrl'],
 		$grid->Context->Configuration['WEB_ROOT'],
-		$show['CategoryID'],
-		$show['Name'],
-		$show['Description'], 
-		$show['WebsiteUrl'],
-		$show['WebsiteUrl']
+		$project['CategoryID'],
+		$project['Name'],
+		$project['Description'], 
+		$project['WebsiteUrl'],
+		$project['WebsiteUrl']
 	);
 }
