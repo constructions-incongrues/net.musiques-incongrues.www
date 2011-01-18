@@ -90,7 +90,7 @@ EOT;
 		}
 		
 		// Show video from first sticky in sidebar
-		if (count($dbStickies) && !in_array($postBackAction, array('labels', 'shows'))) {
+		if (count($dbStickies) && !in_array($postBackAction, array('Labels', 'Shows'))) {
 			$urlsVideos = getVideosUrls($dbStickies[0]['DiscussionID']);
 			if (count($urlsVideos)) {
 				$Panel->AddString('<h2>Images animées</h2>');
