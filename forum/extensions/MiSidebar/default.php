@@ -88,9 +88,9 @@ $mappings = array(
 $controllerName = 'default';
 
 $categoryID = ForceIncomingInt('CategoryID', null);
-if (in_array($categoryID, MiProjectsDatabasePeer::$categoryMappings['labels']['ids'])) {
+if (in_array($categoryID, MiProjectsDatabasePeer::getCategoryIdsForType('labels', $Context))) {
 	$controllerName = 'label';
-} else if (in_array($categoryID, MiProjectsDatabasePeer::$categoryMappings['shows']['ids'])) {
+} else if (in_array($categoryID, MiProjectsDatabasePeer::getCategoryIdsForType('shows', $Context))) {
 	$controllerName = 'show';
 } else if (ForceIncomingString('PostBackAction', '') == 'Labels') {
 	$controllerName = 'labels';

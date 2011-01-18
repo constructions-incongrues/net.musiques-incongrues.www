@@ -8,23 +8,22 @@
  Author Url: http://github.com/trivoallan
  */
 
+$idsProjectsCategoriesSorted = array(
+	'shows'  => MiProjectsDatabasePeer::getCategoryIdsForType('shows', $Context),
+	'labels' => MiProjectsDatabasePeer::getCategoryIdsForType('labels', $Context),
+);
+
 // Configure "Shows" page rendering
 $postBackAction = ForceIncomingString("PostBackAction", "");
 if(in_array($postBackAction, array('Shows', 'Labels'))) {
 	$Context->PageTitle = sprintf('%s - Musiques Incongrues', $postBackAction);
 	$Menu->CurrentTab = $postBackAction;
 	$Body->CssClass = 'Discussions';
-	$Page->AddRenderControl(new MiProjectPage($Context, $Head, strtolower($postBackAction)), $Configuration["CONTROL_POSITION_BODY_ITEM"]);
+	$Page->AddRenderControl(new MiProjectPage($Context, $Head, strtolower($postBackAction), $idsProjectsCategoriesSorted), $Configuration["CONTROL_POSITION_BODY_ITEM"]);
 }
 
 // Modify discussion grid when in a project category
-$idsProjectsCategories = array();
-
-$idsProjectsCategories = array_merge(
-	MiProjectsDatabasePeer::$categoryMappings['shows']['ids'], 
-	MiProjectsDatabasePeer::$categoryMappings['labels']['ids']
-);
-
+$idsProjectsCategories = array_merge($idsProjectsCategoriesSorted['labels'], $idsProjectsCategoriesSorted['shows']);
 $requestedCategoryId = ForceIncomingInt('CategoryID', null);
 
 if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsProjectsCategories)) || in_array($postBackAction, array('Labels', 'Shows'))) {
@@ -37,7 +36,7 @@ if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsProj
 		// Fetch latest stickies for show
 		$categoriesForStickies = array($requestedCategoryId);
 		if (in_array($postBackAction, array('Labels', 'Shows'))) {
-			$categoriesForStickies = MiProjectsDatabasePeer::$categoryMappings[strtolower($postBackAction)]['ids'];
+			$categoriesForStickies = $idsProjectsCategoriesSorted[strtolower($postBackAction)];
 		}
 		
 		$dbStickies = MiProjectsDatabasePeer::getStickies($categoriesForStickies, $Context);
@@ -129,24 +128,24 @@ class MiProjectPage
 {
 	private $context;
 	private $type;
+	private $idsProjectsCategoriesSorted;
 
-	public function __construct(Context $context, Head $head, $type)
+	public function __construct(Context $context, Head $head, $type, array $idsProjectsCategoriesSorted)
 	{ 
-		// Store context
 		$this->context = $context;
-		
-		// Store type
 		$this->type = $type;
+		$this->idsProjectsCategoriesSorted = $idsProjectsCategoriesSorted;
 	}
 
 	public function render()
 	{
 		// Fetch projects
-		$projects = MiProjectsDatabasePeer::getProjects(MiProjectsDatabasePeer::$categoryMappings[$this->type]['ids'], $this->context);
+		$projects = MiProjectsDatabasePeer::getProjects($this->idsProjectsCategoriesSorted[$this->type], $this->context);
 		$strProjects = $this->renderProjects($projects);
 		
 		// Fetch parent category
-		$parentCategory = MiProjectsDatabasePeer::getCategories(array(MiProjectsDatabasePeer::$categoryMappings[$this->type]['parent']), $this->context);
+		$parentCategoryID = MiProjectsDatabasePeer::getCategoryParentForProjectType($this->type, $this->context);
+		$parentCategory = MiProjectsDatabasePeer::getCategories(array($parentCategoryID), $this->context);
 		
 		$html = <<<EOT
 <div id="ContentBody" class="releases">
@@ -215,14 +214,56 @@ EOT;
 
 class MiProjectsDatabasePeer
 {
-	public static $categoryMappings = array(
-		'shows' => array(
-			'ids'    => array(2, 10, 12, 20, 21),
-			'parent' => 18),
-		'labels' => array(
-			'ids'    => array(3, 9),
-			'parent' => 16)
-	);
+	public static function getCategoryParentForProjectType($type, $context)
+	{
+		// Build selection query
+		$sql = $context->ObjectFactory->NewContextObject($context, 'SqlBuilder');
+		$sql->SetMainTable('Project','p');
+		$sql->AddSelect('CategoryParentID', 'p');
+		$sql->AddWhere('p', 'ProjectType', '', $type, '=');
+		
+		// Execute query
+		$db = $context->Database;
+		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch from database.');
+
+		// Gather and return projects
+		$results = array();
+		if ($db->RowCount($rs) > 0)
+		{
+			while($db_result = $db->GetRow($rs))
+			{
+				$results[] = $db_result['CategoryID'];
+				break;
+			}
+		}
+
+		return $results[0];
+	}
+	
+	public static function getCategoryIdsForType($type, Context $context)
+	{
+		// Build selection query
+		$sql = $context->ObjectFactory->NewContextObject($context, 'SqlBuilder');
+		$sql->SetMainTable('Project','p');
+		$sql->AddSelect('CategoryID', 'p');
+		$sql->AddWhere('p', 'ProjectType', '', $type, '=');
+		
+		// Execute query
+		$db = $context->Database;
+		$rs = $db->Execute($sql->GetSelect(), $context, __FUNCTION__, 'Failed to fetch from database.');
+
+		// Gather and return projects
+		$results = array();
+		if ($db->RowCount($rs) > 0)
+		{
+			while($db_result = $db->GetRow($rs))
+			{
+				$results[] = $db_result['CategoryID'];
+			}
+		}
+
+		return $results;
+	}
 	
 	public static function getProjects(array $ids, Context $context)
 	{

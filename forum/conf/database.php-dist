@@ -54,6 +54,8 @@ $DatabaseColumns['CatalogItems']['Price'] = 'Price';
 // Project Table Structure (@see MiProjects extension)
 $DatabaseTables['Project'] = 'Project';
 $DatabaseColumns['Project']['CategoryID'] = 'CategoryID';
+$DatabaseColumns['Project']['CategoryParentID'] = 'CategoryParentID';
+$DatabaseColumns['Project']['ProjectType'] = 'ProjectType';
 $DatabaseColumns['Project']['WebsiteUrl'] = 'WebsiteUrl';
 $DatabaseColumns['Project']['ImageUrl'] = 'ImageUrl';
 $DatabaseColumns['Project']['CategoryUri'] = 'CategoryUri';
