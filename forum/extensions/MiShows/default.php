@@ -55,11 +55,18 @@ EOT;
 				$tplStickies .= '<br /><p class="emissions-box-player"><a href="%s" title="Écouter">Écouter</a></p>';
 			}
 			
+			// Setup autoloading
+			require_once 'Zend/Loader/Autoloader.php';
+			Zend_Loader_Autoloader::getInstance();
+			
+			// Instanciate and configure cache handler
+			$cache = Zend_Cache::factory('Function', 'File');
+			
 			$Panel->addString(sprintf(
 				$tplStickies.'<hr />', 
 				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
 				$dbSticky['Name'], 
-				getFirstImageUrl($dbSticky['DiscussionID']),
+				$cache->call('getFirstImageUrl', array($dbSticky['DiscussionID'])),
 				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
 				$dbSticky['Name'],
 				truncate_text($dbSticky['Name'], 25),

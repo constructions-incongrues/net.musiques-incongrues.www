@@ -1,15 +1,5 @@
 <?php
 // Note: This file is included from the library/Vanilla/Vanilla.Control.Foot.php class.
-
-echo '
-<p style="text-align: center;">
-Musiques Incongrues (v@INFO.VERSION@) est développé par <a href="http://www.constructions-incongrues.net" />Constructions Incongrues</a> et est hébergé par <a href="http://www.pastis-hosting.net/">Pastis Hosting</a>.<br />
-Le code source du projet est <a href="https://github.com/contructions-incongrues/musiques-incongrues.net/">diffusé</a> sous licence <a href="http://www.gnu.org/licenses/agpl.html">GNU Affero GPLv3</a>
-</p>
-</div>
-<a id="pgbottom" name="pgbottom">&nbsp;</a>
-</div>';
-
 $AllowDebugInfo = 0;
 if ($this->Context->Session->User) {
    if ($this->Context->Session->User->Permission('PERMISSION_ALLOW_DEBUG_INFO')) $AllowDebugInfo = 1;

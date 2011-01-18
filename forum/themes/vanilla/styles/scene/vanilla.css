@@ -58,7 +58,7 @@ color: #AAA;
 font-size: 1.3em;
 }
 
-#search  input.champs
+input.champs
 {
 color: #FF0099;
 background-color:#feffb9;
@@ -68,9 +68,9 @@ text-align:center;
 width:120px;
 }
 
-#search  input.champs, #footer input.valid {background-color: #EEE;}
+input.champs, #footer input.valid {background-color: #EEE;}
 
-#search  input.champs:hover
+input.champs:hover
 {
 color: #FF0099;
 background-color:#fff;
@@ -78,12 +78,12 @@ text-align:center;
 border:1px solid #CCC;
 }
 
-#search  input.champs:focus,#footer input.valid:hover 
+input.champs:focus,#footer input.valid:hover 
 {
 background-image: none ;background-color: #FFF;
 }
 
-#search  input.valid 
+input.valid 
 {
 background-color:#FFE0FF;
 border:1px solid #CCC;

@@ -45,11 +45,18 @@ EOT;
 				$tplStickies .= '<ul class="label-links"><li><a href="%s" title="Télécharger">Télécharger la release</a></li>';
 			}
 			
+			// Setup autoloading
+			require_once 'Zend/Loader/Autoloader.php';
+			Zend_Loader_Autoloader::getInstance();
+			
+			// Instanciate and configure cache handler
+			$cache = Zend_Cache::factory('Function', 'File');
+			
 			$Panel->addString(sprintf(
 				$tplStickies, 
 				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
 				$dbSticky['Name'], 
-				getFirstImageUrl($dbSticky['DiscussionID']),
+				$cache->call('getFirstImageUrl', array($dbSticky['DiscussionID'])),
 				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
 				$dbSticky['Name'],
 				$dbSticky['Name'],

@@ -43,15 +43,25 @@ $blocks['ailleurs'] = array('html' => '
 ');
 
 // Affiner
-$blocks['affiner'] = array('html' => '
-<h2>Affiner</h2>
-<ul>
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Bookmarks" >Discussions suivies</a></li> 
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=YourDiscussions" >Discussions auquelles vous avez participé</a></li>
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Private" >Discussion privées</a></li>
+$filters = '
+	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Bookmarks">Discussions suivies</a></li> 
+	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=YourDiscussions">Discussions auquelles vous avez participé</a></li>
+	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Private">Discussion privées</a></li>
 	<li><a href="'.$Configuration['WEB_ROOT'].'search/?PostBackAction=Search&amp;Keywords=whisper;&amp;Type=Comments" >Commentaires chuchotés</a></li>
-</ul>
-');
+';
+$betaUids = array(1, 2, 47);
+if (in_array($Context->Session->UserID, $betaUids)) {
+	$filters .= '
+	<li style="color: black;">
+		Discussions initiées par :
+		<form method="get">
+			<input type="hidden" name="View" value="ByUser" />
+			<input type="text" class="champs" name="username" value="'.filter_input(INPUT_GET, 'username', FILTER_SANITIZE_STRING).'" />
+			<input type="submit" class="valid" value="Go" />
+		</form>
+	</li>';
+}
+$blocks['affiner'] = array('html' => '<h2>Affiner</h2><ul class="label-links">'.$filters.'</ul>');
 
 // Introspection
 // TODO : this should come from "Œil" extension
@@ -100,6 +110,6 @@ foreach ($mapping as $block) {
 	if (isset($blocks[$block])) {
 		if (isset($Panel)) {
 			$Panel->addString($blocks[$block]['html']);
-		}		
+		}
 	}
 }
