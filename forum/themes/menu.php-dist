@@ -21,10 +21,10 @@ echo '<div id="Session">';
 <div id="search">
 	<p>
 		<form id="SearchSimple" method="get" action="@PATHS.BASEURI@search/">
-			<label for="search">Rechercher</label> 
+			<label for="search" style="color:white">Rechercher</label> 
 			<input type="text" name="Keywords" class="champs" />
 			<input type="hidden" name="PostBackAction" value="Search" />
-			<input name="Submit" value="Go !" class="valid" type="submit" />
+			<input name="Submit" value="Search" class="valid" type="submit" />
 		</form>
 	</p>
 </div>
