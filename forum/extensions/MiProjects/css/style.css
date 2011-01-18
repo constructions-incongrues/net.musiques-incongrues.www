@@ -4,7 +4,7 @@
 #Discussions dl.subCategory {color:#000;background-color:#FFF;margin-top:20px;margin-bottom:0px;min-height:70px;margin-top:10px;margin-bottom:30px;}
 #Discussions dl.subCategory dd.category-infos{font-weight:bold; font-size:1.5em;background-color:#FFF; padding:1px;padding-top:25px; }
 #Discussions dl.subCategory dd.category-infos{font-weight:bold; font-size:2em;background-color:#FFF; padding:1px;padding-top:0px; margin-bottom:10px;}
-#Discussions dl.subCategory dt.category-legend {font-size:1.2em; background-color:#FFF;margin-bottom:10px; padding:1px;height:30px;width:80%;}
+#Discussions dl.subCategory dt.category-legend {font-size:1.2em; background-color:#FFF;margin-bottom:10px; padding:1px;height:30px;width:85%;}
 #Discussions span.category-pictures {text-align:right;float:left;margin-right:30px;border:3px solid #000 ;width:60px;height:80px;}
 #Discussions dl.subCategory dd.category-blue {color:#000!important; }
 #Discussions span.category-read {margin-left:20px;background-color:yellow;font-size:0.7em!important;padding:2px;}
@@ -29,7 +29,7 @@
 #Discussions span.category-stop {margin-left:20px;background-color:#EEE;font-size:0.7em!important;padding:2px;font-weight:normal;}
 #Discussions span.category-name {width:300px;margin-left:5px!important;}
 #Discussions span.sub-cat {color:#000;background-color:yellow;font-size:0.6em!important;padding:2px;margin-right:5px;margin-top:4px;margin-left:-2px;margin-top:-120px;text-transform:uppercase;margin-top:-15px;margin-left:3px;}
-#Discussions span.category-label-url {color:#000;background-color:#ccc;font-weight:normal;padding:2px;margin-right:5px;margin-top:4px;margin-left:-2px;margin-top:-120px;text-transform:uppercase;margin-top:-15px;margin-left:3px;}
+#Discussions .category-label-url {color:#000;background-color:#ccc;font-weight:normal;padding:2px;margin-right:5px;margin-top:4px;margin-left:-2px;margin-top:-120px;text-transform:uppercase;margin-top:-15px;margin-left:3px;}
 #Discussions span.category-label-read {color:#000;background-color:yellow;font-weight:normal;padding:2px;margin-right:5px;margin-top:4px;margin-left:-2px;margin-top:-120px;text-transform:uppercase;margin-top:-15px;margin-left:3px;font-size:1em;}
 
 #Discussions span.category-numbers {margin-left:20px;background-color:yellow;}

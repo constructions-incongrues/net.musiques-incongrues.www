@@ -64,9 +64,8 @@ EOT;
 				if ($extension == 'mp3') {
 					$tplStickies .= '<br /><p class="emissions-box-player"><a href="%s" title="Écouter">Écouter</a></p>';
 				} else {
-					$tplStickies .= '<br /><p class="emissions-box-player"><a href="%s" title="Télécharger">Télécharger</a></p>';
+					$tplStickies .= '<br /><p class="emissions-box-player"><a href="%s" style="font-size: 1.5em; text-transform: uppercase; font-weight: bold; margin-left: 35px;" title="Télécharger">Télécharger</a></p>';
 				}
-				
 			}
 			
 			// Setup autoloading
@@ -232,7 +231,7 @@ class MiProjectsDatabasePeer
 		{
 			while($db_result = $db->GetRow($rs))
 			{
-				$results[] = $db_result['CategoryID'];
+				$results[] = $db_result['CategoryParentID'];
 				break;
 			}
 		}
