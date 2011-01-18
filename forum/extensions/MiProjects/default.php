@@ -33,6 +33,12 @@ if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsProj
 	// Update sidebar
 	if (isset($Panel)) {
 
+		// Inject custom sidebar contents
+		$show = MiProjectsDatabasePeer::getProjects(array(ForceIncomingInt('CategoryID', null)), $Context);
+		if (count($show)) {
+			$Panel->addString(utf8_encode($show[0]['SidebarHtml']));
+		}
+		
 		// Fetch latest stickies for show
 		$categoriesForStickies = array($requestedCategoryId);
 		if (in_array($postBackAction, array('Labels', 'Shows'))) {
@@ -110,12 +116,6 @@ EOT;
 					$Panel->AddString(sprintf($panelVideo, $idVideo, $idVideo));
 				}
 			}
-		}
-		
-		// Inject custom sidebar contents
-		$show = MiProjectsDatabasePeer::getProjects(array(ForceIncomingInt('CategoryID', null)), $Context);
-		if (count($show)) {
-			$Panel->addString(utf8_encode($show[0]['SidebarHtml']));
 		}
 	}
 }
