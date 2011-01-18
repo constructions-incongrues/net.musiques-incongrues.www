@@ -150,6 +150,7 @@ class MiProjectPage
 <div id="ContentBody" class="releases">
 	<h2 class="top-title-category-label" id="5">%s</h2> 
 	<p  class="top-title-category-label-legend">%s</p>
+	<hr style="height: 3px;" />
 	<ol id="Discussions">
 		<li class="Discussion Release">
 			%s
