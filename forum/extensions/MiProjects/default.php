@@ -198,7 +198,7 @@ EOT;
 				$tplProject, 
 				$project['ImageUrl'],
 				$this->context->Configuration['WEB_ROOT'],
-				$project['CategoryID'],
+				$project['CategoryUri'],
 				$project['Name'],
 				$this->context->Configuration['WEB_ROOT'], 
 				$project['CategoryUri'],
