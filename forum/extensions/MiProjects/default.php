@@ -201,7 +201,7 @@ EOT;
 				$project['CategoryID'],
 				$project['Name'],
 				$this->context->Configuration['WEB_ROOT'], 
-				$project['CategoryID'], 
+				$project['CategoryUri'],
 				$project['Description'], 
 				$project['WebsiteUrl'],
 				$project['WebsiteUrl']
