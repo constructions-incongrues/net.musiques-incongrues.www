@@ -9,6 +9,30 @@ Options +FollowSymLinks -Multiviews
 # symfony
 RewriteRule ^s/(.*) - [L]
 
+# Labels
+RewriteRule ^labels/daheardit-records$ index.php?CategoryID=3 [QSA,L]
+RewriteRule ^labels/daheardit-records/$ index.php?CategoryID=3 [QSA,L]
+RewriteRule ^labels/egotwister$ index.php?CategoryID=9 [QSA,L]
+RewriteRule ^labels/egotwister/$ index.php?CategoryID=9 [QSA,L]
+RewriteRule ^labels/dokidoki$ index.php?CategoryID=24 [QSA,L]
+RewriteRule ^labels/dokidoki/$ index.php?CategoryID=24 [QSA,L]
+RewriteRule ^labels/chipbanger$ index.php?CategoryID=25 [QSA,L]
+RewriteRule ^labels/chipbanger/$ index.php?CategoryID=25 [QSA,L]
+
+# Shows
+RewriteRule ^shows/istotassaca$ index.php?CategoryID=20 [QSA,L]
+RewriteRule ^shows/istotassaca/$ index.php?CategoryID=20 [QSA,L]
+RewriteRule ^shows/lelaboratoire$ index.php?CategoryID=21 [QSA,L]
+RewriteRule ^shows/lelaboratoire/$ index.php?CategoryID=21 [QSA,L]
+RewriteRule ^shows/ouiedire$ index.php?CategoryID=2 [QSA,L]
+RewriteRule ^shows/ouiedire/$ index.php?CategoryID=2 [QSA,L]
+RewriteRule ^shows/radioclash$ index.php?CategoryID=12 [QSA,L]
+RewriteRule ^shows/radioclash/$ index.php?CategoryID=12 [QSA,L]
+RewriteRule ^shows/thebrain$ index.php?CategoryID=10 [QSA,L]
+RewriteRule ^shows/thebrain/$ index.php?CategoryID=10 [QSA,L]
+RewriteRule ^shows/gbbg$ index.php?CategoryID=23 [QSA,L]
+RewriteRule ^shows/gbbg/$ index.php?CategoryID=23 [QSA,L]
+
 #Discussions
 RewriteRule ^discussions$ index.php [QSA,L]
 RewriteRule ^discussions/$ index.php [QSA,L]

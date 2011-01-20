@@ -43,15 +43,22 @@ $blocks['ailleurs'] = array('html' => '
 ');
 
 // Affiner
-$blocks['affiner'] = array('html' => '
-<h2>Affiner</h2>
-<ul>
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Bookmarks" >Discussions suivies</a></li> 
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=YourDiscussions" >Discussions auquelles vous avez participé</a></li>
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Private" >Discussion privées</a></li>
+$filters = '
+	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Bookmarks">Discussions suivies</a></li> 
+	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=YourDiscussions">Discussions auquelles vous avez participé</a></li>
+	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Private">Discussion privées</a></li>
 	<li><a href="'.$Configuration['WEB_ROOT'].'search/?PostBackAction=Search&amp;Keywords=whisper;&amp;Type=Comments" >Commentaires chuchotés</a></li>
-</ul>
-');
+';
+$filters .= '
+<li style="color: black;">
+	Discussions initiées par :
+	<form method="get">
+		<input type="hidden" name="View" value="ByUser" />
+		<input type="text" class="champs" name="username" value="'.filter_input(INPUT_GET, 'username', FILTER_SANITIZE_STRING).'" />
+		<input type="submit" class="valid" value="Go" />
+	</form>
+</li>';
+$blocks['affiner'] = array('html' => '<h2>Affiner</h2><ul class="label-links">'.$filters.'</ul>');
 
 // Introspection
 // TODO : this should come from "Œil" extension
@@ -78,9 +85,9 @@ $mappings = array(
 $controllerName = 'default';
 
 $categoryID = ForceIncomingInt('CategoryID', null);
-if (in_array($categoryID, array(MiLabelsDatabasePeer::LABEL_DHR, MiLabelsDatabasePeer::LABEL_EGOTWISTER))) {
+if (in_array($categoryID, MiProjectsDatabasePeer::getCategoryIdsForType('labels', $Context))) {
 	$controllerName = 'label';
-} else if (in_array($categoryID, MiShowsDatabasePeer::$shows_ids)) {
+} else if (in_array($categoryID, MiProjectsDatabasePeer::getCategoryIdsForType('shows', $Context))) {
 	$controllerName = 'show';
 } else if (ForceIncomingString('PostBackAction', '') == 'Labels') {
 	$controllerName = 'labels';
@@ -100,6 +107,6 @@ foreach ($mapping as $block) {
 	if (isset($blocks[$block])) {
 		if (isset($Panel)) {
 			$Panel->addString($blocks[$block]['html']);
-		}		
+		}
 	}
 }

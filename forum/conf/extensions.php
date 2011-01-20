@@ -27,8 +27,7 @@ include($Configuration['EXTENSIONS_PATH']."MembersList/default.php");
 include($Configuration['EXTENSIONS_PATH']."SubCategories/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-symfony/default.php");
 include($Configuration['EXTENSIONS_PATH']."DiscussionFilters/default.php");
-include($Configuration['EXTENSIONS_PATH']."MiLabels/default.php");
-include($Configuration['EXTENSIONS_PATH']."MiShows/default.php");
+include($Configuration['EXTENSIONS_PATH']."MiProjects/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiSidebar/default.php");
 
 ?>
