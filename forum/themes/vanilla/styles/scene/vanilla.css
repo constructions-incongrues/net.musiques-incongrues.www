@@ -24,7 +24,7 @@ font-weight:bold;
 
 #Panel .emissions-box-name-show, #Panel .label-box-name-show
 {
-width:196px!important;
+width:198px!important;
 background-color:#DDD;
 font-weight:bold;
 text-align:center;
@@ -53,6 +53,44 @@ margin-top:3px!important;
 {
 
 }
+/* design player */
+#Panel .emissions-box-player
+{
+background-color: #0099FF !important;
+height:18px!important;
+width:200px!important;
+border:1px solid #BBB;
+padding:0px;
+margin:0px;
+margin-bottom:20px!important;
+margin-top:-10px;
+}	
+#Panel .sm3_link
+	{
+   -moz-border-radius:0px;
+  -webkit-border-radius:0px;
+  border-radius:0px;
+  color:#000;
+  border:0px solid #CCC !important;
+  font-weight:bold;
+  font-size:1.2em;  
+  background-color: #0099FF !important;
+  text-transform:uppercase;
+  padding:0px;
+  margin:0px;
+}
+
+#Panel .emissions-box-cover
+{
+	opacity: 0.5;
+	border:1px solid #000;
+}
+
+#Panel .emissions-box-cover:hover
+{
+	opacity: 1!important;
+}
+
 /* design player */
 #Panel .emissions-box-player
 {
@@ -444,12 +482,12 @@ border-left:4px solid #0099FF!important;
 
 /* [RELEASES] - LISTE LABEL */ 
 
-#Panel ul.label-links li {
+#Panel ul.label-links li, #Panel ul.mix-links li, #Panel ul.ailleurs-links li  {
 color:#FF00FF;
-background-color:#f2f2f2; 
+background-color:#eee!important; 
+padding:4px!important;
 margin-top:4px;
 list-style-type:none; 
-border-left:4px solid #FF00FF;
 text-transform:uppercase;
 font-weight:bold;
 font-size:12px;
@@ -457,6 +495,10 @@ width:190px;
 padding-left:3px;
 padding:2px;
 }
+
+#search-affiner .champs {background-color:#FFF!important;width:140px!important;}
+#search-affiner .valid  {background-color:#FFF!important;}
+#search-affiner {background-color:#eee!important;}
 
 .nav-left-events-select {background-color:#DDD!important;}
 #Panel ul.label-links li .current {color:#000000;background-color:#E1FFFF !important; display:block;width:190px;}
@@ -468,21 +510,6 @@ background: url(http://www.musiques-incongrues.net/forum/themes/vanilla/styles/s
 #Panel .app-player-faq {text-align:center;color:#000;  padding:5px;  }
 
 /* [DISCUSSIONS] - LISTE LIENS */
-
-#Panel ul.ailleurs-links li, #Panel ul.mix-links li {
-
-color:#FF00FF;
-background-color:#E1FFFF; 
-margin-top:4px;
-padding:2px; 
-padding-left:3px;
-list-style-type:none; 
-border-left:4px solid #FF00FF;
-text-transform:uppercase;
-font-weight:bold;
-font-size:12px;
-width:190px;
-}
 
 #Panel ul.ailleurs-links li:hover, #Panel ul.mix-links li:hover {background-color:yellow;}
 
@@ -979,16 +1006,15 @@ font-weight:bold;
 	font-size:14px;
 	text-transform:uppercase;
 	font-weight:bold;
-	background-color:#ffc4ff !important;
+	background-color:#fb97fa !important;
 	margin-top:1em;
 	margin-bottom:1em;
 	padding-left:5px;
 	letter-spacing: 2px;
 	border:1px solid #CCC;
 	text-align:center;
+	padding: 2px !important;
 }
-
-	}
 
 #Panel ul ul, #Panel ul p, #Panel select {
 	margin:0px 4px;

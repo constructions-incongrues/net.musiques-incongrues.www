@@ -4,17 +4,17 @@
 	}
 
 #Legend li {
-
 color:#000;
-background-color:#f2f2f2; 
+background-color:#eee!important; 
+padding:4px!important;
 margin-top:4px;
-padding:2px; 
-padding-left:3px;
 list-style-type:none; 
-border-left:4px solid #FF00FF;
 text-transform:uppercase;
-font-size:12px;
 font-weight:bold;
+font-size:12px;
+width:190px;
+padding-left:3px;
+padding:2px;
 }
 
 #Legend li strong {font-weight:normal;}
