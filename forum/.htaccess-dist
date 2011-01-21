@@ -9,6 +9,9 @@ Options +FollowSymLinks -Multiviews
 # symfony
 RewriteRule ^s/(.*) - [L]
 
+# Random discussion
+RewriteRule ^discussions/random$ index.php?PostBackAction=RandomDiscussion [QSA,L]
+
 # Labels
 RewriteRule ^labels/daheardit-records$ index.php?CategoryID=3 [QSA,L]
 RewriteRule ^labels/daheardit-records/$ index.php?CategoryID=3 [QSA,L]

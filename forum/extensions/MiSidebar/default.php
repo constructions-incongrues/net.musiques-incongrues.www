@@ -45,8 +45,8 @@ $blocks['ailleurs'] = array('html' => '
 // Affiner
 $filters = '
 	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Bookmarks">Discussions suivies</a></li> 
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=YourDiscussions">Discussions auquelles vous avez participé</a></li>
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Private">Discussion privées</a></li>
+	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=YourDiscussions">Discussions auxquelles vous avez participé</a></li>
+	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Private">Discussions privées</a></li>
 	<li><a href="'.$Configuration['WEB_ROOT'].'search/?PostBackAction=Search&amp;Keywords=whisper;&amp;Type=Comments" >Commentaires chuchotés</a></li>
 ';
 $filters .= '
@@ -59,6 +59,10 @@ $filters .= '
 	</form>
 </li>';
 $blocks['affiner'] = array('html' => '<h2>Affiner</h2><ul class="label-links">'.$filters.'</ul>');
+
+// Une discussion au hasard
+$htmlRandom = '<h1><a style="background-color: #ccc;" href="'.$Configuration['WEB_ROOT'].'discussions/random">Une discussion au hasard !</a></h1>';
+$blocks['randomDiscussion'] = array('html' => $htmlRandom);
 
 // Introspection
 // TODO : this should come from "Œil" extension
@@ -73,8 +77,8 @@ $blocks['introspection'] = array('html' => ob_get_clean());
 
 // Setup controller <=> blocks mappings
 $mappings = array(
-	'default'     => array('radio', 'introspection', 'ailleurs'),
-	'discussions' => array('affiner', 'radio', 'introspection', 'ailleurs'),
+	'default'     => array('randomDiscussion', 'radio', 'introspection', 'ailleurs'),
+	'discussions' => array('randomDiscussion', 'affiner', 'radio', 'introspection', 'ailleurs'),
 	'label'       => array(),
 	'show'       => array(),
 	'labels'       => array(),
