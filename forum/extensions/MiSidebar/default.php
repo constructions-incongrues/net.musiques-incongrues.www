@@ -52,11 +52,13 @@ $filters = '
 $filters .= '
 <li style="color: black;">
 	Discussions initiées par :
-	<form method="get">
-		<input type="hidden" name="View" value="ByUser" />
-		<input type="text" class="champs" name="username" value="'.filter_input(INPUT_GET, 'username', FILTER_SANITIZE_STRING).'" />
-		<input type="submit" class="valid" value="Go" />
-	</form>
+	<div id="search-affiner">
+		<form method="get" action="'.$Configuration['WEB_ROOT'].'discussion">
+			<input type="hidden" name="View" value="ByUser" />
+			<input type="text" class="champs" name="username" value="'.filter_input(INPUT_GET, 'username', FILTER_SANITIZE_STRING).'" />
+			<input type="submit" class="valid" value="Go" />
+		</form>
+	</div>
 </li>';
 $blocks['affiner'] = array('html' => '<h2>Affiner</h2><ul class="label-links">'.$filters.'</ul>');
 

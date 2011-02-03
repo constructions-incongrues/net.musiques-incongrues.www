@@ -33,11 +33,16 @@ echo '<div id="Session">';
 	echo '<div id="Header">
 			<a name="pgtop"></a>
 			<h1>
-				<span class="first">Musiques</span>
-				<span class="last">Incongrues</span>
+				<a href="@PATHS.BASEURI@">
+					<span class="first">Musiques</span>
+					<span class="last">Incongrues</span>
+				</a>
 			</h1>
-
-			<ul>';
+			';
+			if ($this->Context->PageTitle != 'Ici on cause :') {
+				echo sprintf("<h2>&laquo; %s &raquo;</h2>", $this->Context->PageTitle);
+			}
+	echo 	'<ul>';
 				while (list($Key, $Tab) = each($this->Tabs)) {
 					echo '<li'.$this->TabClass($this->CurrentTab, $Tab['Value']).' '.$Tab['Attributes'].'><a href="'.$Tab['Url'].'" '.$Tab['Attributes'].'>'.$Tab['Text'].'</a></li>';
 				}
