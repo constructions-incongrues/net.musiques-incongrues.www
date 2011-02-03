@@ -33,8 +33,10 @@ echo '<div id="Session">';
 	echo '<div id="Header">
 			<a name="pgtop"></a>
 			<h1>
-				<span class="first">Musiques</span>
-				<span class="last">Incongrues</span>
+				<a href="@PATHS.BASEURI@">
+					<span class="first">Musiques</span>
+					<span class="last">Incongrues</span>
+				</a>
 			</h1>
 			';
 			if ($this->Context->PageTitle != 'Ici on cause :') {

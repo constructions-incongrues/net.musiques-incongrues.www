@@ -765,15 +765,17 @@ ul.square li:hover {background-color:yellow;display:block;}
 	padding:0px;
 	}
 
-#Header h1 {
+#Header h1, #Header h1 a {
 	text-align:center;
 	color:#FF00FF;
-	font-size: 4em;
+	font-size: 2em;
 	font-weight: bold;
 	font-family:'Arial',sans-serif;
 	text-transform: uppercase;
 	padding:15px;
 	}
+#Header h1 a, #Header h1 a:active, #Header h1 a:link {color:#FF00FF;}	
+#Header h1 a:hover {color:#FF00FF; background-color:transparent;}
 
 #Header h2 {
 	color: #bbb;
