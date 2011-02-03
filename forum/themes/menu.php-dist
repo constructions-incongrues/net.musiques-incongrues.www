@@ -17,9 +17,11 @@ echo '<div id="Session">';
 			. '">'.$this->Context->GetDefinition('SignIn').'</a>)';
 	}
 	echo '</div>';
+	if ($this->Context->PageTitle != 'Ici on cause :') {
 	echo '
 <div id="search">
 	<p>
+	
 		<form id="SearchSimple" method="get" action="@PATHS.BASEURI@search/">
 			<label for="search" style="color:white">Rechercher</label> 
 			<input type="text" name="Keywords" class="champs" />
@@ -29,6 +31,21 @@ echo '<div id="Session">';
 	</p>
 </div>
 	';
+	} else {
+	echo '
+<div id="search" class="notitle">
+	<p>
+	
+		<form id="SearchSimple" method="get" action="@PATHS.BASEURI@search/">
+			<label for="search" style="color:white">Rechercher</label> 
+			<input type="text" name="Keywords" class="champs" />
+			<input type="hidden" name="PostBackAction" value="Search" />
+			<input name="Submit" value="Search" class="valid" type="submit" />
+		</form>
+	</p>
+</div>
+	';
+	}
 	$this->CallDelegate('PreHeadRender');
 	echo '<div id="Header">
 			<a name="pgtop"></a>
