@@ -774,7 +774,15 @@ ul.square li:hover {background-color:yellow;display:block;}
 	text-transform: uppercase;
 	padding:15px;
 	}
-	
+
+#Header h2 {
+	color: #fb97fa;
+	text-align: center;
+	/*font-family: 'Unkempt', serif;
+	*/font-size: 2em;
+	margin-bottom: 1em;	
+}
+
 #Header ul {
 	text-align:center;
 	font-weight:bold;
