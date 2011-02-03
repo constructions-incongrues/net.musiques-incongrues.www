@@ -132,16 +132,21 @@ margin-bottom:20px!important;
 
 /* SEARCHBAR */
 
-#search 
+#search, #search.notitle 
 {
 
 float:right;
 font-family:"Trebushet MS",Verdana,Geneva,Arial,Helvetica,sans-serif;
 font-size: 90%;
 margin-left:-230px;
-margin-top:79px;
-background-color:transparent;}
-	 
+background-color:transparent;
+}
+#search {
+	margin-top:79px;
+}
+#search.notitle {
+	margin-top:48px;
+}
 #search  label
 {
 color: #AAA;
