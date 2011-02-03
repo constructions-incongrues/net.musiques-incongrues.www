@@ -139,7 +139,7 @@ float:right;
 font-family:"Trebushet MS",Verdana,Geneva,Arial,Helvetica,sans-serif;
 font-size: 90%;
 margin-left:-230px;
-margin-top:48px;
+margin-top:79px;
 background-color:transparent;}
 	 
 #search  label
@@ -776,11 +776,11 @@ ul.square li:hover {background-color:yellow;display:block;}
 	}
 
 #Header h2 {
-	color: #fb97fa;
+	color: #bbb;
+	margin-top: -10px;
+	margin-bottom: 20px;
 	text-align: center;
-	/*font-family: 'Unkempt', serif;
-	*/font-size: 2em;
-	margin-bottom: 1em;	
+	font-size: 1.8em;
 }
 
 #Header ul {
