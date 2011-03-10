@@ -33,7 +33,7 @@ if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Co
 
 $Head->AddStyleSheet('http://fonts.googleapis.com/css?family=Molengo');
 $uid = $Context->Session->UserID;
-if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && strtolower(ForceIncomingString('Page', '')) != 'contact' && !ForceIncomingInt('CategoryID', null))
+if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && strtolower(ForceIncomingString('Page', '')) != 'contact' && strtolower(ForceIncomingString('Page', '')) != 'about' && !ForceIncomingInt('CategoryID', null))
 {
 	// Setup autoloading
 	require_once 'Zend/Loader/Autoloader.php';
