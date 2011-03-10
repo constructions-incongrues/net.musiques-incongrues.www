@@ -48,7 +48,7 @@ if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments
 	 		$event['Name']
 		);
      }
-     if (strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && ! $Context->SelfUrl != 'search.php' && !in_array(ForceIncomingString("PostBackAction", ""), array('Events', 'Labels', 'Shows')) && !ForceIncomingInt('CategoryID', null))
+     if (strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && strtolower(ForceIncomingString('Page', '')) != 'about' && ! $Context->SelfUrl != 'search.php' && !in_array(ForceIncomingString("PostBackAction", ""), array('Events', 'Labels', 'Shows')) && !ForceIncomingInt('CategoryID', null))
      {
        $notice = sprintf("
        <!-- dhr:alaune -->
