@@ -36,7 +36,7 @@ a:hover {
 
 <p>
   <strong class="bg_blue">ÉC0UTER</strong>   <a href="radio.html" >Derniers ajouts</a> &bull;   <a href="radio-random.php">Random</a> <br />
-  <strong class="bg_blue">XSPF</strong> <a href="http://data.musiques-incongrues.net/collections/links/segments/mp3/get?discussion_id=-1707&limit=-1&sort_field=contributed_at&sort_direction=desc&format=xspf" >Derniers ajouts</a> &bull;   <a href="http://data.musiques-incongrues.net/collections/links/segments/mp3/get?discussion_id=-1707&limit=-1&sort_field=random&format=xspf">Random</a> <br />
+  <strong class="bg_blue">XSPF</strong> <a href="http://data.musiques-incongrues.net/collections/links/segments/mp3/get?limit=-1&sort_field=contributed_at&sort_direction=desc&format=xspf" >Derniers ajouts</a> &bull;   <a href="http://data.musiques-incongrues.net/collections/links/segments/mp3/get?limit=-1&sort_field=random&format=xspf">Random</a> <br />
   <strong class="bg_blue">FAQ</strong> <a href="http://www.musiques-incongrues.net/forum/discussion/825/substantifique-moelle-incongrue-et-inodore/" target="_blank">Comment ça marche ?</a>
 </p>
 
@@ -47,7 +47,7 @@ a:hover {
   height="320"
   allowscriptaccess="always"
   allowfullscreen="false"
-  flashvars="file=<?php echo urlencode('http://data.musiques-incongrues.net/collections/links/segments/mp3/get?discussion_id=-1707&limit=-1&sort_field=random&format=xspf') ?>&height=320&displayheight=0&usefullscreen=false&backcolor=0xFFFFFF&frontcolor=0xFF0099&lightcolor=0x0099FF&screencolor=0x000000"
+  flashvars="file=<?php echo urlencode('http://data.musiques-incongrues.net/collections/links/segments/mp3/get?&limit=-1&sort_field=random&format=xspf') ?>&height=320&displayheight=0&usefullscreen=false&backcolor=0xFFFFFF&frontcolor=0xFF0099&lightcolor=0x0099FF&screencolor=0x000000"
 />
 </div>
 </body>
