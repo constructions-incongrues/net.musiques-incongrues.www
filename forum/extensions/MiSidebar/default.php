@@ -79,8 +79,8 @@ $blocks['introspection'] = array('html' => ob_get_clean());
 
 // Setup controller <=> blocks mappings
 $mappings = array(
-	'default'     => array('randomDiscussion', 'radio', 'introspection', 'ailleurs'),
-	'discussions' => array('randomDiscussion', 'affiner', 'radio', 'introspection', 'ailleurs'),
+	'default'     => array('randomDiscussion', 'ailleurs', 'introspection'),
+	'discussions' => array('randomDiscussion', 'ailleurs', 'introspection', 'affiner'),
 	'label'       => array(),
 	'show'       => array(),
 	'labels'       => array(),
