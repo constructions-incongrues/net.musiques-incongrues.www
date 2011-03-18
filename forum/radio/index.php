@@ -130,6 +130,18 @@ if (count($links)) {
 		'other' => array('url' => str_replace('sort='.$parameters['sort'], 'sort='.$other, $_SERVER['REQUEST_URI']))
 	);
 	
+	// Fetch random discussion image
+	if (isset($parameters['discussion_id'])) {
+		$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/images/get?sort_field=random&limit=1&format=json&discussion_id=%d', $parameters['discussion_id']);
+		$curl = curl_init($url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		$response = json_decode(curl_exec($curl), true);
+		$imageUrl = 'http://www.musiques-incongrues.net/forum/uploads/radio-big.gif';
+		if (is_array($response) && $response['num_found'] > 0) {
+			$imageUrl = $response[0]['url'];
+		}
+	}
+	
 	// Build page title
 	$pageTitle = strip_tags(sprintf('%s, %s (%d) - Musiques Incongrues', $playlistDescription, $sortDescription['current']['text'], $linksCount));
 } else {
@@ -187,6 +199,10 @@ window.addEvent('domready', function() {
 		<a href="<?php echo $sortDescription['other']['url'] ?>" title="Changer le mode de tri"><?php echo $sortDescription['current']['text'] ?></a> |
 		<a href="<?php echo $_SERVER['PHP_SELF'] ?>" title="Réinitialiser les filtres">reset</a>
 	</h2>
+	
+	<?php if (isset($imageUrl)): ?>
+	<!-- <img src="<?php echo $imageUrl ?>" /> -->
+	<?php endif; ?>
 
 	<p id="loader">Chargement du lecteur en cours. C'est le moment de tapoter des doigts sur le bureau.</p>
 	<div id="player">
