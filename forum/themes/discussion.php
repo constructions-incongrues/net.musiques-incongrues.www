@@ -41,7 +41,7 @@ $DiscussionList .= '
 		</li>
 		<li class="DiscussionTopic">
 			<span>'.$this->Context->GetDefinition('DiscussionTopic').'</span><a href="'.$UnreadUrl.'">'.$Discussion->Name.'</a>
-			<a href="'.$this->Context->Configuration['WEB_ROOT'].'radio/?discussion_id='.$Discussion->DiscussionID.'" title="Écouter le(s) '.$response['num_found'].' morceau(x) contenu(s) dans cette discussions avec la radio du forum" style="background-color:yellow;">♫</a>
+			<a href="'.$this->Context->Configuration['WEB_ROOT'].'radio/?discussion_id='.$Discussion->DiscussionID.'" title="Écouter le(s) '.$response['num_found'].' morceau(x) contenu(s) dans cette discussion avec la radio du forum" style="background-color:yellow;">♫</a>
 		</li>
 	';
 	} else {
