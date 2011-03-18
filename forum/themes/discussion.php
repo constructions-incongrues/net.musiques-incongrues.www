@@ -34,14 +34,14 @@ $this->DelegateParameters['DiscussionList'] = &$DiscussionList;
 $DiscussionList .= '
 <li id="Discussion_'.$Discussion->DiscussionID.'" class="Discussion'.$Discussion->Status.($Discussion->CountComments == 1?' NoReplies':'').($this->Context->Configuration['USE_CATEGORIES'] ? ' Category_'.$Discussion->CategoryID:'').($Alternate ? ' Alternate' : '').'">';
 	$this->CallDelegate('PreDiscussionOptionsRender');
-	if (is_array($response) && $response['num_found'] > 0 && in_array($this->Context->Session->UserID, array(1, 2, 132, 9, 3, 14, 665, 366, 95))) {
+	if (is_array($response) && $response['num_found'] > 0 && in_array($this->Context->Session->UserID, array(1, 2, 21, 132, 9, 3, 14, 665, 366, 95))) {
 	$DiscussionList .= '<ul>
 		<li class="DiscussionType">
 			<span>'.$this->Context->GetDefinition('DiscussionType').'</span>'.DiscussionPrefix($this->Context, $Discussion).'
 		</li>
 		<li class="DiscussionTopic">
 			<span>'.$this->Context->GetDefinition('DiscussionTopic').'</span><a href="'.$UnreadUrl.'">'.$Discussion->Name.'</a>
-			<a href="'.$this->Context->Configuration['WEB_ROOT'].'radio/?discussion_id='.$Discussion->DiscussionID.'" title="Écouter le(s) '.$response['num_found'].' morceau(x) contenu(s) dans cette discussion avec la radio du forum" style="background-color:yellow;">♫</a>
+			<a href="'.$this->Context->Configuration['WEB_ROOT'].'radio/?discussion_id='.$Discussion->DiscussionID.'" title="Écouter le(s) '.$response['num_found'].' morceau(x) contenu(s) dans cette discussion avec la radio du forum" style="background-color:yellow;">♫'.$response['num_found'].'</a>
 		</li>
 	';
 	} else {

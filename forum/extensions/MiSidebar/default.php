@@ -73,7 +73,7 @@ if (is_array($response) && $response['num_found'] > 0) {
 	);
 }
 
-$blocks['topicActions'] = array('html' => '', 'userIds' => array(1, 2, 132, 9, 3, 14, 665, 366, 95));
+$blocks['topicActions'] = array('html' => '', 'userIds' => array(1, 2, 132, 9, 3, 14, 665, 366, 95, 21));
 $htmlLinks = '';
 if (count($linksActions)) {
 	foreach ($linksActions as $link) {
