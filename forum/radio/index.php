@@ -1,4 +1,8 @@
 <?php
+// Get configuration from Vanilla
+$Configuration = array();
+require(dirname(__FILE__).'/../conf/settings.php');
+
 // Helpers
 function CleanupString($InString) {
 	$Code = explode(',', '&lt;,&gt;,&#039;,&amp;,&quot;,À,Á,Â,Ã,Ä,&Auml;,Å,Ā,Ą,Ă,Æ,Ç,Ć,Č,Ĉ,Ċ,Ď,Đ,Ð,È,É,Ê,Ë,Ē,Ę,Ě,Ĕ,Ė,Ĝ,Ğ,Ġ,Ģ,Ĥ,Ħ,Ì,Í,Î,Ï,Ī,Ĩ,Ĭ,Į,İ,Ĳ,Ĵ,Ķ,Ł,Ľ,Ĺ,Ļ,Ŀ,Ñ,Ń,Ň,Ņ,Ŋ,Ò,Ó,Ô,Õ,Ö,&Ouml;,Ø,Ō,Ő,Ŏ,Œ,Ŕ,Ř,Ŗ,Ś,Š,Ş,Ŝ,Ș,Ť,Ţ,Ŧ,Ț,Ù,Ú,Û,Ü,Ū,&Uuml;,Ů,Ű,Ŭ,Ũ,Ų,Ŵ,Ý,Ŷ,Ÿ,Ź,Ž,Ż,Þ,Þ,à,á,â,ã,ä,&auml;,å,ā,ą,ă,æ,ç,ć,č,ĉ,ċ,ď,đ,ð,è,é,ê,ë,ē,ę,ě,ĕ,ė,ƒ,ĝ,ğ,ġ,ģ,ĥ,ħ,ì,í,î,ï,ī,ĩ,ĭ,į,ı,ĳ,ĵ,ķ,ĸ,ł,ľ,ĺ,ļ,ŀ,ñ,ń,ň,ņ,ŉ,ŋ,ò,ó,ô,õ,ö,&ouml;,ø,ō,ő,ŏ,œ,ŕ,ř,ŗ,š,ù,ú,û,ü,ū,&uuml;,ů,ű,ŭ,ũ,ų,ŵ,ý,ÿ,ŷ,ž,ż,ź,þ,ß,ſ,А,Б,В,Г,Д,Е,Ё,Ж,З,И,Й,К,Л,М,Н,О,П,Р,С,Т,У,Ф,Х,Ц,Ч,Ш,Щ,Ъ,Ы,Э,Ю,Я,а,б,в,г,д,е,ё,ж,з,и,й,к,л,м,н,о,п,р,с,т,у,ф,х,ц,ч,ш,щ,ъ,ы,э,ю,я');
@@ -81,7 +85,7 @@ if (count($links)) {
 		
 		// Discussion
 		$link['discussion_name'] = utf8_decode($link['discussion_name']);
-		$link['discussion_url'] = sprintf('http://www.musiques-incongrues.net/forum/discussion/%d/%s#Item1', $link['discussion_id'], CleanupString($link['discussion_name']));
+		$link['discussion_url'] = sprintf('%sdiscussion/%d/%s#Item1', $Configuration['WEB_ROOT'], $link['discussion_id'], CleanupString($link['discussion_name']));
 
 		// URL
 		// Soundcloud accepts surnumerous suffix, and thus makes our lives easier :)
@@ -102,9 +106,9 @@ if (count($links)) {
 		
 		// Contributor
 		$link['contributor_name'] = utf8_decode($link['contributor_name']);
-		$link['contributor_url'] = sprintf('http://www.musiques-incongrues.net/forum/account/%d/', $link['contributor_id']);
+		$link['contributor_url'] = sprintf('%saccount/%d/', $Configuration['WEB_ROOT'], $link['contributor_id']);
 		
-		// Add link to playlist
+		// Add link to playlist 
 		$playlist[] = $link;
 	}
 	
@@ -148,7 +152,7 @@ if (count($links)) {
 		$curl = curl_init($url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		$response = json_decode(curl_exec($curl), true);
-		$imageUrl = 'http://www.musiques-incongrues.net/forum/uploads/radio-big.gif';
+		$imageUrl = sprintf('%suploads/radio-big.gif', $Configuration['WEB_ROOT']);
 		if (is_array($response) && $response['num_found'] > 0) {
 			$imageUrl = $response[0]['url'];
 		}
@@ -160,13 +164,15 @@ if (count($links)) {
 	$pageTitle = 'Radio Substantifique Moëlle - Musiques Incongrues';
 }
 ?>
+<!DOCTYPE html>
 <html>
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		
 		<title><?php echo $pageTitle ?></title>
-
+		<link rel="shortcut icon" type="image/png" href="<?php echo sprintf('%sthemes/vanilla/styles/scene/favicon.png', $Configuration['WEB_ROOT']) ?>" />
+		 
 		<link rel="playlist" type="application/xspf+xml" title="Téléchargez la playlist courante au format XSPF" href="<?php echo $playlistFormats['XSPF'] ?>" />
 		<link rel="raw" type="text/html" title="Voir le résultat de la requête brute sur http://data.musiques-incongrues.net" href="<?php echo $playlistFormats['raw'] ?>" />
 		
