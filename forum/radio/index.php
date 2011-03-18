@@ -82,11 +82,23 @@ if (count($links)) {
 		// Discussion
 		$link['discussion_name'] = utf8_decode($link['discussion_name']);
 		$link['discussion_url'] = sprintf('http://www.musiques-incongrues.net/forum/discussion/%d/%s#Item1', $link['discussion_id'], CleanupString($link['discussion_name']));
+
+		// URL
+		// Soundcloud accepts surnumerous suffix, and thus makes our lives easier :)
+		if ($link['domain_fqdn'] == 'soundcloud.com') {
+			$link['url'] .= '.mp3';
+		}
 		
 		// Title
-		$link['title'] = urldecode(basename($link['url'], '.mp3'));
-		$link['title'] = urldecode($link['title']);
-		$link['title'] = str_replace('_', ' ', $link['title']);
+		// Thanks to soundcloud url formalism, we can guess the track title
+		if ($link['domain_fqdn'] == 'soundcloud.com') {
+			$urlParts = array_reverse(explode('/', $link['url']));
+			$link['title'] = sprintf('%s - %s', str_replace('-', ' ', ucfirst($urlParts[2])), str_replace('-', ' ', ucfirst($urlParts[1])));
+		} else {
+			$link['title'] = urldecode(basename($link['url'], '.mp3'));
+			$link['title'] = urldecode($link['title']);
+			$link['title'] = str_replace('_', ' ', $link['title']);
+		}
 		
 		// Contributor
 		$link['contributor_name'] = utf8_decode($link['contributor_name']);
