@@ -17,15 +17,7 @@ $Head->AddStyleSheet('extensions/SidepanelRotator/style.css');
 
 // List all available blocks
 // Sample structure
-$blocks = array('sample' => array('html' => '', 'css' => array(''), 'js' => array()));
-
-// Radio
-$blocks['radio'] = array('html' => '
-<h2>Écouter la radio</h2>
-<a href="/forum/radio-random.php" onclick="window.open(this.href, \'Substantifique Mo&euml;lle Incongrue et Inodore\', \'height=700, width=340, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;">
-<br />
-<img src="/forum/uploads/radio.png" alt="Écouter la radio" style="color:#666;text-align:center;" border="0px"/></a>
-');
+$blocks = array('sample' => array('html' => '', 'css' => array(''), 'js' => array(), 'userIds' => array()));
 
 // Ailleurs
 $blocks['ailleurs'] = array('html' => '
@@ -81,7 +73,7 @@ if (is_array($response) && $response['num_found'] > 0) {
 	);
 }
 
-$blocks['topicActions'] = array('html' => '');
+$blocks['topicActions'] = array('html' => '', 'userIds' => array(1, 2, 132, 9, 3, 14, 665, 366, 95));
 $htmlLinks = '';
 if (count($linksActions)) {
 	foreach ($linksActions as $link) {
@@ -148,7 +140,14 @@ if (isset($mappings[$controllerName])) {
 foreach ($mapping as $block) {
 	if (isset($blocks[$block])) {
 		if (isset($Panel)) {
-			$Panel->addString($blocks[$block]['html']);
+			// "premium" features			
+			if (isset($blocks[$block]['userIds'])) {
+				if (in_array($Context->Session->UserID, $blocks[$block]['userIds'])) {
+					$Panel->addString($blocks[$block]['html']);	
+				}
+			} else {
+				$Panel->addString($blocks[$block]['html']);
+			}
 		}
 	}
 }
