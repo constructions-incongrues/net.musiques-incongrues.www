@@ -8,20 +8,16 @@
  Author Url: http://github.com/trivoallan
  */
 
+// Helpers
+// Current discussionID
+$discussionID = filter_var($_GET['DiscussionID'], FILTER_VALIDATE_INT);
+
 // TODO : move code to this extension
 $Head->AddStyleSheet('extensions/SidepanelRotator/style.css');
 
 // List all available blocks
 // Sample structure
-$blocks = array('sample' => array('html' => '', 'css' => array(''), 'js' => array()));
-
-// Radio
-$blocks['radio'] = array('html' => '
-<h2>Écouter la radio</h2>
-<a href="/forum/radio-random.php" onclick="window.open(this.href, \'Substantifique Mo&euml;lle Incongrue et Inodore\', \'height=700, width=340, top=100, left=100, toolbar=no, menubar=no, location=no, resizable=yes, scrollbars=no, status=no\'); return false;">
-<br />
-<img src="/forum/uploads/radio.png" alt="Écouter la radio" style="color:#666;text-align:center;" border="0px"/></a>
-');
+$blocks = array('sample' => array('html' => '', 'css' => array(''), 'js' => array(), 'userIds' => array()));
 
 // Ailleurs
 $blocks['ailleurs'] = array('html' => '
@@ -62,6 +58,35 @@ $filters .= '
 </li>';
 $blocks['affiner'] = array('html' => '<h2>Affiner</h2><ul class="label-links">'.$filters.'</ul>');
 
+// Topic actions
+// Find out if topic hosts links to mp3s
+$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/mp3/get?format=json&limit=0&discussion_id=%d', $discussionID);
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$response = json_decode(curl_exec($curl), true);
+$linksActions = array();
+if (is_array($response) && $response['num_found'] > 0) {
+	$linksActions[] = array(
+		'href'  => sprintf('%sradio/?discussion_id=%d', $Configuration['WEB_ROOT'], $discussionID),
+		'title' => 'Écouter tous les morceaux postés dans ce topic',
+		'text'  => 'Écouter ce topic ♫'
+	);
+}
+
+$blocks['topicActions'] = array('html' => '', 'userIds' => array(1, 2, 132, 9, 3, 14, 665, 366, 95, 21, 90));
+$htmlLinks = '';
+if (count($linksActions)) {
+	foreach ($linksActions as $link) {
+		$htmlLinks .= sprintf('<li><a href="%s" title="%s">%s</a></li>', $link['href'], $link['title'], $link['text']);
+	}
+	$blocks['topicActions']['html'] = sprintf('
+<h2>Facettes</h2>
+<ul class="ailleurs-links">
+	%s
+</ul>
+', $htmlLinks);
+}
+
 // Une discussion au hasard
 $htmlRandom = '<h1><a style="background-color: #ccc;" href="'.$Configuration['WEB_ROOT'].'discussions/random">Une discussion au hasard !</a></h1>';
 $blocks['randomDiscussion'] = array('html' => $htmlRandom);
@@ -81,9 +106,10 @@ $blocks['introspection'] = array('html' => ob_get_clean());
 $mappings = array(
 	'default'     => array('randomDiscussion', 'ailleurs', 'introspection'),
 	'discussions' => array('randomDiscussion', 'ailleurs', 'introspection', 'affiner'),
+	'comments'    => array('randomDiscussion', 'topicActions', 'instrospection'),
 	'label'       => array(),
-	'show'       => array(),
-	'labels'       => array(),
+	'show'        => array(),
+	'labels'      => array(),
 	'shows'       => array(),
 );
 
@@ -101,6 +127,8 @@ if (in_array($categoryID, MiProjectsDatabasePeer::getCategoryIdsForType('labels'
 	$controllerName = 'shows';
 } else if ($Context->SelfUrl == 'index.php') {
 	$controllerName = 'discussions';
+} else if ($Context->SelfUrl == 'comments.php') {
+	$controllerName = 'comments';
 }
 
 // Select appropriate mapping
@@ -112,7 +140,14 @@ if (isset($mappings[$controllerName])) {
 foreach ($mapping as $block) {
 	if (isset($blocks[$block])) {
 		if (isset($Panel)) {
-			$Panel->addString($blocks[$block]['html']);
+			// "premium" features			
+			if (isset($blocks[$block]['userIds'])) {
+				if (in_array($Context->Session->UserID, $blocks[$block]['userIds'])) {
+					$Panel->addString($blocks[$block]['html']);	
+				}
+			} else {
+				$Panel->addString($blocks[$block]['html']);
+			}
 		}
 	}
 }
