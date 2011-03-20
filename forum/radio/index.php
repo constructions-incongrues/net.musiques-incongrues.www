@@ -154,15 +154,13 @@ if (count($links)) {
 			$imageUrl = $response[0]['url'];
 		}
 	}
-} else {
-	$pageTitle = 'Radio Substantifique Moëlle - Musiques Incongrues';
 }
 ?>
 <!DOCTYPE html>
 <html>
 
 	<head>
-		<title><?php echo $pageTitle ?></title>
+		<title>Radio Substantifique Moëlle - Musiques Incongrues</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		
 		<link rel="shortcut icon" type="image/png" href="<?php echo $Configuration['WEB_ROOT'] ?>themes/vanilla/styles/scene/favicon.png" />
