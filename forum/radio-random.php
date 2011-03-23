@@ -47,7 +47,7 @@ a:hover {
   height="320"
   allowscriptaccess="always"
   allowfullscreen="false"
-  flashvars="file=<?php echo urlencode('http://data.musiques-incongrues.net/collections/links/segments/mp3/get?&limit=-1&sort_field=random&format=xspf') ?>&height=320&displayheight=0&usefullscreen=false&backcolor=0xFFFFFF&frontcolor=0xFF0099&lightcolor=0x0099FF&screencolor=0x000000"
+  flashvars="file=<?php echo urlencode('http://data.musiques-incongrues.net/collections/links/segments/mp3/get?limit=-1&sort_field=random&format=xspf') ?>&height=320&displayheight=0&usefullscreen=false&backcolor=0xFFFFFF&frontcolor=0xFF0099&lightcolor=0x0099FF&screencolor=0x000000"
 />
 </div>
 </body>
