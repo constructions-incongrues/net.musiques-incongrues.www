@@ -34,7 +34,7 @@ $sortsAvailable = array(
 );
 
 foreach ($sortsAvailable as $sortName => $sortDescription) {
-	$sortsAvailable[$sortName]['url'] = str_replace('sort='.$parameters['sort'], 'sort='.$sortName, $_SERVER['REQUEST_URI']);
+	$sortsAvailable[$sortName]['url'] = '?'.http_build_query(array_merge($parameters, array('sort' => $sortName)));
 }
 
 // Current sorting mode
@@ -192,6 +192,7 @@ window.addEvent('domready', function() {
                 $$('.flower_soundplayer_next').each(function(el){el.setStyle('display','none');});
                 $$('.flower_soundplayer_play').each(function(el){el.setStyle('display','none');});
                 $$('.flower_soundplayer_prev').each(function(el){el.setStyle('display','none');});
+                $$('.flower_soundplayer_time').each(function(el){el.setStyle('display','none');});
             });
 
             $$('p.tracks-date').each(function(el) {
