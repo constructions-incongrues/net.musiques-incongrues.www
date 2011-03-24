@@ -18,7 +18,7 @@ $cache = Zend_Cache::factory('Function', 'File');
 // TODO : also define sanity checks and mandatory values
 $parameters = array(
 	'start'          => 0,
-	'limit'          => 250,
+	'limit'          => 100,
 	'sort'           => 'newest',
 	'sort_field'     => 'contributed_at',
 	'sort_direction' => 'desc',
@@ -124,7 +124,7 @@ if (count($links)) {
 			$response = $cache->call('callService', array($playlistDescription['filterFieldName'], $playlistDescription['filterFieldValue']));
 			$link['playlists'][$playlistType]['num_found'] = $response['num_found'];
 			if (isset($response[0])) {
-				$link['playlists'][$playlistType]['title'] = sprintf('Preview : %s', guessTitle($response[0]));
+				$link['playlists'][$playlistType]['title'] = sprintf('Aperçu : %s', guessTitle($response[0]));
 			} else {
 				$link['playlists'][$playlistType]['title'] = '';
 			}
@@ -180,66 +180,37 @@ if (count($links)) {
 <!DOCTYPE html>
 <html>
 
-<head>
-<title>Radio Substantifique Moëlle - Musiques Incongrues</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<head>
+		<title>Radio Substantifique Moëlle - Musiques Incongrues</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<link rel="shortcut icon" type="image/png"
-	href="<?php echo $Configuration['WEB_ROOT'] ?>themes/vanilla/styles/scene/favicon.png" />
-<link rel="playlist" type="application/xspf+xml"
-	title="<?php echo $formatsAvailable['xspf']['title'] ?>"
-	href="<?php echo $formatsAvailable['xspf']['url'] ?>" />
-<link rel="raw" type="text/html"
-	title="<?php echo $formatsAvailable['xspf']['title'] ?>"
-	href="<?php echo $formatsAvailable['raw']['url'] ?>" />
-<link rel="stylesheet"
-	href="<?php echo $Configuration['WEB_ROOT'] ?>radio/css/style.radio.css"
-	type="text/css" media="screen" />
-<link rel='stylesheet'
-	href='http://fonts.googleapis.com/css?family=Vibur' type='text/css'>
-<link rel='stylesheet'
-	href='http://fonts.googleapis.com/css?family=Just+Another+Hand'
-	type='text/css'>
-<link rel='stylesheet'
-	href='http://fonts.googleapis.com/css?family=Copse' type='text/css'>
+		<!-- Favicon -->
+		<link rel="shortcut icon" type="image/png" href="<?php echo $Configuration['WEB_ROOT'] ?>themes/vanilla/styles/scene/favicon.png" />
+		
+		<!-- Alternate links -->
+		<link rel="alternate" type="application/xspf+xml" title="<?php echo $formatsAvailable['xspf']['title'] ?>" href="<?php echo $formatsAvailable['xspf']['url'] ?>" />
+		<link rel="alternate" type="text/html" title="<?php echo $formatsAvailable['xspf']['title'] ?>" href="<?php echo $formatsAvailable['raw']['url'] ?>" />
+		
+		<!-- Stylesheets -->
+		<link rel="stylesheet" href="<?php echo $Configuration['WEB_ROOT'] ?>radio/css/mi-gabarit.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="<?php echo $Configuration['WEB_ROOT'] ?>radio/css/mi-radio.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="<?php echo $Configuration['WEB_ROOT'] ?>radio/css/mi-logo1.css" type="text/css" media="screen" />
+		
+		<!-- Web fonts -->
+		<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Vibur' type='text/css' />
+		<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Just+Another+Hand' type='text/css' />
+		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Copse' type='text/css' />
 
-<script
-	src="http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js"
-	type="text/javascript"></script>
-<script src="js/Flower_v1.0/compressed/flower_core.js"
-	type="text/javascript"></script>
-<script src="js/Flower_v1.0/compressed/flower_init.js"
-	type="text/javascript"></script>
-<script
-	src="js/Flower_v1.0/uncompressed/soundplayer/flower_soundplayer.js"
-	type="text/javascript"></script>
-<script src="js/pretty.js" type="text/javascript"></script>
-<script type="text/javascript">
-window.addEvent('domready', function() {
-            var player = new FlowerSoundPlayer({
-            	swfLocation:'assets/scripts/SoundPlayer.swf',
-            	controlImages:{previous:'assets/images/previous.png',next:'assets/images/next.png',play:'assets/images/play.png',pause:'assets/images/pause.png'},
-            	seekbarSpcStyle: {'position':'relative','background-color':'#000','height':'3px','width':'100%','margin-top':'4px','overflow':'hidden'},
-            	seekbarStyle: {'position':'absolute','background-color':'#c00','height':'3px','width':'0%','cursor':'pointer','z-index':'10'},
-            	positionStyle: {'position':'absolute','left':'0%','width':'3px','height':'3px','background-color':'#fc0','z-index':'15'},
-            });
-
-            player.addEvent('ready', function() {
-                this.createPagePlayer('player');
-                $$('#loader').each(function(el){el.setStyle('display','none');});
-                $$('.flower_soundplayer_title').grab($$('.flower_soundplayer_controls'));
-                $$('.flower_soundplayer_title').grab($$('.flower_soundplayer_time'));
-            });
-
-            $$('.tracks-date').each(function(el) {
-				var date = prettyDate(el.title);
-				if (date != undefined) {
-                	el.innerHTML = date;
-				}
-            });
-});
-		</script>
-</head>
+		<!-- Vendor JS -->
+		<script	src="http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js" type="text/javascript"></script>
+		<script src="js/Flower_v1.0/compressed/flower_core.js" type="text/javascript"></script>
+		<script src="js/Flower_v1.0/compressed/flower_init.js" type="text/javascript"></script>
+		<script src="js/Flower_v1.0/uncompressed/soundplayer/flower_soundplayer.js"	type="text/javascript"></script>
+		<script src="js/pretty.js" type="text/javascript"></script>
+		
+		<!-- Custom JS -->
+		<script src="js/behaviors.js" type="text/javascript"></script>
+	</head>
 
 <body>
 
@@ -286,8 +257,17 @@ window.addEvent('domready', function() {
 </ul>
 </div>
 
-<h2 class="radio-counter"><?php echo $linksCount ?> MP3</h2>
-<h2 class="label"><?php echo strtoupper($playlistType) ?></h2>
+<h2 class="radio-counter">
+<?php if (count($links) < $linksCount): ?>
+	<?php echo $parameters['start'] + 1 ?> - <?php echo $parameters['start'] + $parameters['limit'] ?> /
+<?php endif; ?>
+	<?php echo $linksCount ?> MP3
+</h2>
+
+<h2 class="label">
+	<a href="<?php echo $pagination['urlPrevious'] ?>">&larr;</a> | 
+	<a href="<?php echo $pagination['urlNext'] ?>">&rarr;</a>
+</h2>
 
 <div id="Panel">
 <h2>ÉCOUTER</h2>
@@ -335,17 +315,6 @@ window.addEvent('domready', function() {
 tapoter des doigts sur le bureau.</p>
 <div id="player"></div>
 <p id="placeholder">&nbsp;</p><br />
-
-<?php if (count($links) < $linksCount): ?>
-<!-- 
-<p>
-Naviguer dans la playlist : <a
-	href="<?php echo $pagination['urlPrevious'] ?>">&larr;</a> | <a
-	href="<?php echo $pagination['urlNext'] ?>">&rarr;</a> | <?php echo $parameters['start'] + 1 ?>
-- <?php echo $parameters['start'] + $parameters['limit'] ?> / <?php echo $linksCount ?> morceaux
-</p>
--->
-<?php endif; ?>
 
 <?php foreach ($playlist as $link): ?>
 <div class="flower_soundplaylist">

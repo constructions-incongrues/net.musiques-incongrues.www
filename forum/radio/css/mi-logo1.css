@@ -1,0 +1,28 @@
+/* DESIGN LOGO MUSIQUES INCONGRUES
+   STYLE 1
+*/
+
+.logo 
+{
+margin:0 auto;
+text-align:center;
+margin-top:40px!important;
+margin-bottom:40px!important;
+}
+
+
+h1 {
+text-align:left;
+font-size:4em;
+color:#FF00FF;
+font-family: 'Just Another Hand', arial, serif;
+font-weight:bold;
+letter-spacing:2px;
+text-transform:uppercase;
+}
+
+h1.logo a, h1.logo a:active, h1.logo a:link
+{
+color:#FF00FF;
+text-decoration:none;
+}
