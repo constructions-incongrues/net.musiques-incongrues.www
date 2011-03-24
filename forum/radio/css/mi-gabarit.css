@@ -51,22 +51,24 @@ padding-left:10px;
 {
 text-transform:lowercase;
 color:#BBB!important;
+
 }
 
 #navbar-1.session-nav
 {
-color:#DDD;
+color:#BBB;
 }
 
 #navbar-2
 {
 margin-bottom:-5px;
+margin-top:-5px;
 text-transform:lowercase;
 color:#0099FF;
 }
 #navbar-1 a, #navbar-1 a:active, #navbar-1 a:link
 {
-	color: #BBB;
+	color: #000;
 	font-family: 'Copse', arial, serif;
 	font-size:0.8em;
 	text-decoration:none;
@@ -74,7 +76,7 @@ color:#0099FF;
 
 #navbar-1 .session-nav a
 {
-	color: #DDD;
+	color: #000;
 	font-family: 'Copse', arial, serif;
 	margin-top:30px;
 	font-size:0.8em;
@@ -101,7 +103,7 @@ color:#000!important;
 {
 float:right;
 font-size: 90%;
-margin-top:-20px;
+margin-top:-25px;
 color:#bbb;
 }
 

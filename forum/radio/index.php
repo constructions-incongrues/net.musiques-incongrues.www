@@ -120,6 +120,8 @@ if (count($links)) {
 			'host'       => array('filterFieldName' => 'domain_fqdn', 'filterFieldValue' => $link['domain_fqdn'], 'num_found' => 0)
 		);
 
+		// For selecting a random playlist
+		$playlistsInteresting = array();
 		foreach ($link['playlists'] as $playlistType => $playlistDescription)  {
 			$response = $cache->call('callService', array($playlistDescription['filterFieldName'], $playlistDescription['filterFieldValue']));
 			$link['playlists'][$playlistType]['num_found'] = $response['num_found'];
@@ -134,6 +136,9 @@ if (count($links)) {
 		$playlist[] = $link;
 	}
 
+	// Random playlist
+	$playlistRandom = array('url' => '?'.http_build_query(array('limit' => $parameters['limit'], 'sort' => 'random')));
+	
 	// Pagination
 	$pagination = array(
 		'urlNext'     => sprintf('?start=%d&limit=%d', filter_var($parameters['start'], FILTER_SANITIZE_NUMBER_INT) + $parameters['limit'], $parameters['limit']),
@@ -165,15 +170,15 @@ if (count($links)) {
 	// TODO : refactoring smell
 	$playlistType = 'globale';
 	if (isset($parameters['discussion_id'])) {
-		$playlistType = truncate_text($playlist[0]['discussion_name'], 20);
+		$playlistType = sprintf('la discussion %s', $playlist[0]['discussion_name']);
 	}
 	if (isset($parameters['contributor_name'])) {
-		$playlistType = truncate_text($playlist[0]['contributor_name'], 20);
+		$playlistType = sprintf("l'utilisateur %s", $playlist[0]['contributor_name']);
 	}
 	if (isset($parameters['show'])) {
-		$playlistType = truncate_text($showsAvailable[$parameters['show']]['title'], 20);
+		$playlistType = sprintf("l'émission %s", $showsAvailable[$parameters['show']]['title']);
 	} else if (isset($parameters['domain_fqdn'])) {
-		$playlistType = truncate_text($parameters['domain_fqdn'], 20);
+		$playlistType = sprintf("de l'hébergeur %s", $parameters['domain_fqdn']);
 	}
 
 	?>
@@ -218,9 +223,11 @@ if (count($links)) {
 			<a href="<?php echo $Configuration['WEB_ROOT'] ?>">Musiques Incongrues</a>
 		</h1><!-- /h1.logo -->
 
+		<h2 class="sub"><span class="sub-logo">vous êtes à l'écoute de la playlist de <?php echo $playlistType ?></span></h2>
+
 		<div id="search">
 			<form id="SearchSimple" method="get" action="<?php echo $Configuration['WEB_ROOT'] ?>search/">
-				<label for="search" style="color: white">Rechercher &bull</label>
+				<label for="search" style="color: white">Rechercher &bull;</label>
 				<br />
 				<input type="text" name="Keywords" class="champs" />
 				<input type="hidden" name="PostBackAction" value="Search" />
@@ -244,7 +251,7 @@ if (count($links)) {
 				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>shows/">Émissions</a></li>
 				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>labels/">Labels</a></li>
 				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>oeil/">Œil</a></li>
-				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>radio/">Radio</a></li>
+				<li class="navbar-link-actived"><a href="<?php echo $Configuration['WEB_ROOT'] ?>radio/">Radio</a></li>
 				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>releases/">Releases</a></li>
 		</ul><!-- /ul#navbar-2 -->
 	</div><!-- /div#Header -->
@@ -299,8 +306,10 @@ if (count($links)) {
 			</p>
 			
 			<p class="listing-topic-radio">
-				<a href="">DÉCOUVRIR</a><br />
-				<span class="discover-radio"><a href="#TODO">Une playlist au hasard !</a></span>
+				<a href="<?php echo $playlistRandom['url'] ?>">DÉCOUVRIR</a><br />
+				<span class="discover-radio">
+					<a href="<?php echo $playlistRandom['url'] ?>">Une playlist au hasard !</a>
+				</span>
 			</p>
 		</div><!-- div#radio-banner -->
 		
@@ -325,10 +334,10 @@ if (count($links)) {
 			<p class="tracks-who">
 				Posté par <a href="<?php echo $link['contributor_url'] ?>" title="Voir le profil de l'auteur sur Musiques Incongrues"> <?php echo $link['contributor_name']?></a>
 				<a href="<?php echo $link['query_contributor'] ?>" class="playlist-ico"	title="Écouter la playlist de l'utilisateur. <?php echo $link['playlists']['user']['title'] ?>">♫<?php echo $link['playlists']['user']['num_found'] ?></a>
-				dans la discussion <a href="<?php echo $link['discussion_url'] ?>" title="Lire la discussion"> <?php echo $link['discussion_name']?></a>
-				<a href="<?php echo $link['query_discussion'] ?>" title="Écouter la playlist de la discussion. <?php echo $link['playlists']['discussion']['title'] ?>"	class="playlist-ico">♫<?php echo $link['playlists']['discussion']['num_found'] ?></a>
+				dans la discussion <a href="<?php echo $link['discussion_url'] ?>" title="Lire la discussion <?php echo $link['discussion_name'] ?>"> <?php echo truncate_text($link['discussion_name'], 30) ?></a>
+				<a href="<?php echo $link['query_discussion'] ?>" title="Écouter la playlist de la discussion <?php echo $link['discussion_name'] ?>. <?php echo $link['playlists']['discussion']['title'] ?>"	class="playlist-ico">♫<?php echo $link['playlists']['discussion']['num_found'] ?></a>
 				&bull; Hébergé par <a href="<?php echo $link['domain_fqdn'] ?>"><?php echo $link['domain_fqdn'] ?></a>
-				<a href="<?php echo $link['query_domain'] ?>" class="playlist-ico" title="Écouter la playlist de l'hébergeur. <?php echo $link['playlists']['host']['title'] ?>">♫<?php echo $link['playlists']['host']['num_found'] ?></a>
+				<a href="<?php echo $link['query_domain'] ?>" class="playlist-ico" title="Écouter la playlist de l'hébergeur. <?php echo truncate_text($link['playlists']['host']['title'], 10) ?>">♫<?php echo $link['playlists']['host']['num_found'] ?></a>
 			</p>
 		</div><!-- /div.flower_soundplaylist -->
 	<?php endforeach; ?>
