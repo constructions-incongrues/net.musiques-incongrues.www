@@ -212,50 +212,42 @@ if (count($links)) {
 		<script src="js/behaviors.js" type="text/javascript"></script>
 	</head>
 
-<body>
+	<body>
 
-<h1 class="logo"><a href="<?php echo $Configuration['WEB_ROOT'] ?>"> <span
-	class="first">Musiques</span> <span class="last">Incongrues</span> </a>
-</h1>
+		<h1 class="logo">
+			<a href="<?php echo $Configuration['WEB_ROOT'] ?>">Musiques Incongrues</a>
+		</h1><!-- /h1.logo -->
 
-<div id="search">
-<form id="SearchSimple" method="get"
-	action="<?php echo $Configuration['WEB_ROOT'] ?>search/"><label
-	for="search" style="color: white">Rechercher</label> <input type="text"
-	name="Keywords" class="champs"> <input type="hidden"
-	name="PostBackAction" value="Search"> <input name="Submit"
-	value="Search" class="valid" type="submit"></form>
-</div>
+		<div id="search">
+			<form id="SearchSimple" method="get" action="<?php echo $Configuration['WEB_ROOT'] ?>search/">
+				<label for="search" style="color: white">Rechercher &bull</label>
+				<br />
+				<input type="text" name="Keywords" class="champs" />
+				<input type="hidden" name="PostBackAction" value="Search" />
+				<input name="Submit" value="ok" class="valid" type="submit" />
+			</form>
+		</div><!-- /div#search -->
 
-<div id="Header">
+		<div id="Header">
+			<ul id="navbar-1">
+				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>page/about">À propos</a></li>
+				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>page/contact">Contact</a></li>
+				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>page/dons">Dons</a></li>
+				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>page/faq">Faq</a></li>
+				<li class="session-nav"><a href="<?php echo $Configuration['WEB_ROOT'] ?>account">Gérer son compte</a></li>
+				<li class="session-nav"><a href="<?php echo $Configuration['WEB_ROOT'] ?>people.php?PostBackAction=SignOutNow">Se déconnecter</a></li>
+			</ul><!-- /ul#navbar-1 -->
 
-<ul id="navbar-1">
-	<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>discussions/"
-		class="Pink">Discussions</a></li>
-	<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>page/dons"
-		class="dons">Dons</a></li>
-	<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>page/faq"
-		class="Faq">Faq</a></li>
-	<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>page/about"
-		class="Faq">À propos</a></li>
-</ul>
-
-<ul id="navbar-2">
-	<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>events/"
-		class="Eyes">Agenda</a></li>
-	<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>releases/"
-		class="Eyes">Releases</a></li>
-	<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>labels"
-		class="Eyes">Labels</a></li>
-	<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>shows"
-		class="Eyes">Émissions</a></li>
-	<li><a href="http://www.tele-incongrue.net/" class="Eyes">TVi</a></li>
-	<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>radio/"
-		class="Eyes">Radio</a></li>
-	<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>oeil/"
-		class="Eyes">Œil</a></li>
-</ul>
-</div>
+			<ul id="navbar-2">
+				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>events/">Agenda</a></li>
+				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>discussions/">Discussions</a></li>
+				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>shows/">Émissions</a></li>
+				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>labels/">Labels</a></li>
+				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>oeil/">Œil</a></li>
+				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>radio/">Radio</a></li>
+				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>releases/">Releases</a></li>
+		</ul><!-- /ul#navbar-2 -->
+	</div><!-- /div#Header -->
 
 <h2 class="radio-counter">
 <?php if (count($links) < $linksCount): ?>
