@@ -94,7 +94,7 @@ display:block;
 
 .radio-counter:before, .flower_soundplayer_title:before
 {
-  content: url(ico-radio/playlist-title.png);
+  content: url(../img/ico-radio/playlist-title.png);
   display: block;
   margin-top:-6px;
   float:left;
