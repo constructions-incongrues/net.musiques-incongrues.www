@@ -249,94 +249,90 @@ if (count($links)) {
 		</ul><!-- /ul#navbar-2 -->
 	</div><!-- /div#Header -->
 
-<h2 class="radio-counter">
-<?php if (count($links) < $linksCount): ?>
-	<?php echo $parameters['start'] + 1 ?> - <?php echo $parameters['start'] + $parameters['limit'] ?> /
-<?php endif; ?>
-	<?php echo $linksCount ?> MP3
-</h2>
 
-<h2 class="label">
-	<a href="<?php echo $pagination['urlPrevious'] ?>">&larr;</a> | 
-	<a href="<?php echo $pagination['urlNext'] ?>">&rarr;</a>
-</h2>
+	<div id="Panel">
+		<h2>ÉCOUTER</h2>
+		<ul>
+		<?php foreach ($sortsAvailable as $sortName => $sortDescription): ?>
+			<?php if ($parameters['sort'] == $sortName): ?>
+			<li class="panel-link-actived">
+			<?php else: ?>
+			<li>
+			<?php endif; ?>
+				<a href="<?php echo $sortDescription['url'] ?>"><?php echo $sortDescription['text']?></a>
+			</li>
+			<?php endforeach; ?>
+		</ul>
 
-<div id="Panel">
-<h2>ÉCOUTER</h2>
-<ul>
-<?php foreach ($sortsAvailable as $sortName => $sortDescription): ?>
-	<?php if ($parameters['sort'] == $sortName): ?>
-	<li class="panel-link-actived">
-	<?php else: ?>
-	<li>
-	<?php endif; ?>
-		<a href="<?php echo $sortDescription['url'] ?>"><?php echo $sortDescription['text']?></a>
-	</li>
-	<?php endforeach; ?>
-</ul>
+		<h2>ÉMISSIONS</h2>
+		<ul>
+		<?php foreach ($showsAvailable as $showName => $showDescription): ?>
+			<?php if ($parameters['show'] == $showName): ?>
+			<li class="panel-link-actived">
+			<?php else: ?>
+			<li>
+			<?php endif; ?>
+				<a href="<?php echo $showDescription['url'] ?>" title="Écouter la playlist de l'émission"><?php echo $showDescription['title'] ?></a>
+				<span class="panel-link-counter">♫<?php echo $showDescription['num_found'] ?></span>
+			</li>
+			<?php endforeach; ?>
+		</ul>
 
-<h2>ÉMISSIONS</h2>
-<ul>
-<?php foreach ($showsAvailable as $showName => $showDescription): ?>
-	<?php if ($parameters['show'] == $showName): ?>
-	<li class="panel-link-actived">
-	<?php else: ?>
-	<li>
-	<?php endif; ?>
-	<a
-		href="<?php echo $showDescription['url'] ?>"
-		title="Écouter la playlist de l'émission"><?php echo $showDescription['title'] ?></a>
-	<span class="panel-link-counter">♫<?php echo $showDescription['num_found'] ?></span></li>
-	<?php endforeach; ?>
-</ul>
-
-<h2>AUTRES FORMATS</h2>
-<ul>
-<?php foreach ($formatsAvailable as $formatName => $formatDescription): ?>
-	<li><a href="<?php echo $formatDescription['url'] ?>"
-		title="<?php echo $formatDescription['title'] ?>"><?php echo $formatName ?></a></li>
+		<h2>AUTRES FORMATS</h2>
+		<ul>
+		<?php foreach ($formatsAvailable as $formatName => $formatDescription): ?>
+			<li>
+				<a href="<?php echo $formatDescription['url'] ?>" title="<?php echo $formatDescription['title'] ?>"><?php echo $formatName ?></a>
+			</li>
 		<?php endforeach; ?>
-</ul>
-</div>
+		</ul>
+	</div><!-- /div#Panel -->
 
-<!-- -------------------------- -->
+	<div id="content">
+<?php if (count($links)): ?>
+		<p id="loader">Chargement du lecteur en cours. C'est le moment de tapoter des doigts sur le bureau.</p>
+		<div id="player"></div>
 
-<div id="content"><?php if (count($links)): ?>
+		<div id="radio-banner">
+			<p class="about-radio">
+				Tout les mp3 posté par les membres du forum Musiques Incongrues sont écoutable ici. Pour en savoir plus sur le fonctionnement de la radio cliquer 
+			</p>
+			
+			<p class="listing-topic-radio">
+				<a href="">DÉCOUVRIR</a><br />
+				<span class="discover-radio"><a href="#TODO">Une playlist au hasard !</a></span>
+			</p>
+		</div><!-- div#radio-banner -->
+		
+		<p id="placeholder">&nbsp;</p><br />
 
-<p id="loader">Chargement du lecteur en cours. C'est le moment de
-tapoter des doigts sur le bureau.</p>
-<div id="player"></div>
-<p id="placeholder">&nbsp;</p><br />
-
-<?php foreach ($playlist as $link): ?>
-<div class="flower_soundplaylist">
-
-<p><span style="cursor: pointer;"> <span class="tracks-title"><a
-	href="<?php echo $link['url'] ?>" title="<?php echo $link['title'] ?>" class="x-playable"><?php echo truncate_text($link['title'], 80) ?></a></span>
-<!-- 
-<span class="tracks-donwload"><a href="<?php echo $link['url'] ?>"
-	title="<?php echo $link['title'] ?>">TÉLECHARGER</a></span> </span></p>
--->
+	<?php foreach ($playlist as $link): ?>
+		<div class="flower_soundplaylist">
+			<p>
+				<span class="tracks-title">
+					<a href="<?php echo $link['url'] ?>" title="<?php echo $link['title'] ?>" class="x-playable">
+						<?php echo truncate_text($link['title'], 80) ?>
+					</a>
+				</span>
+			</p>
+			<!-- 
+			<span class="tracks-donwload"><a href="<?php echo $link['url'] ?>"
+				title="<?php echo $link['title'] ?>">TÉLECHARGER</a></span> </span></p>
+			-->
  
-<p class="tracks-date" title="<?php echo $link['contributed_at'] ?>"><?php echo $link['contributed_at'] ?></p>
+				<p class="tracks-date" title="<?php echo $link['contributed_at'] ?>"><?php echo $link['contributed_at'] ?></p>
 
-<p class="tracks-who">Posté par <a
-	href="<?php echo $link['contributor_url'] ?>"
-	title="Voir le profil de l'auteur sur Musiques Incongrues"> <?php echo $link['contributor_name']?></a>
-<a href="<?php echo $link['query_contributor'] ?>" class="playlist-ico"
-	title="Écouter la playlist de l'utilisateur. <?php echo $link['playlists']['user']['title'] ?>">♫<?php echo $link['playlists']['user']['num_found'] ?></a>
-dans la discussion <a href="<?php echo $link['discussion_url'] ?>"
-	title="Lire la discussion"> <?php echo $link['discussion_name']?></a> <a
-	href="<?php echo $link['query_discussion'] ?>"
-	title="Écouter la playlist de la discussion. <?php echo $link['playlists']['discussion']['title'] ?>"
-	class="playlist-ico">♫<?php echo $link['playlists']['discussion']['num_found'] ?></a>
-&bull; Hébergé par <a href="<?php echo $link['domain_fqdn'] ?>"><?php echo $link['domain_fqdn'] ?></a>
-<a href="<?php echo $link['query_domain'] ?>" class="playlist-ico"
-	title="Écouter la playlist de l'hébergeur. <?php echo $link['playlists']['host']['title'] ?>">♫<?php echo $link['playlists']['host']['num_found'] ?></a>
-</p>
-
-</div>
-<?php endforeach; ?> <?php else: ?>
+			<p class="tracks-who">
+				Posté par <a href="<?php echo $link['contributor_url'] ?>" title="Voir le profil de l'auteur sur Musiques Incongrues"> <?php echo $link['contributor_name']?></a>
+				<a href="<?php echo $link['query_contributor'] ?>" class="playlist-ico"	title="Écouter la playlist de l'utilisateur. <?php echo $link['playlists']['user']['title'] ?>">♫<?php echo $link['playlists']['user']['num_found'] ?></a>
+				dans la discussion <a href="<?php echo $link['discussion_url'] ?>" title="Lire la discussion"> <?php echo $link['discussion_name']?></a>
+				<a href="<?php echo $link['query_discussion'] ?>" title="Écouter la playlist de la discussion. <?php echo $link['playlists']['discussion']['title'] ?>"	class="playlist-ico">♫<?php echo $link['playlists']['discussion']['num_found'] ?></a>
+				&bull; Hébergé par <a href="<?php echo $link['domain_fqdn'] ?>"><?php echo $link['domain_fqdn'] ?></a>
+				<a href="<?php echo $link['query_domain'] ?>" class="playlist-ico" title="Écouter la playlist de l'hébergeur. <?php echo $link['playlists']['host']['title'] ?>">♫<?php echo $link['playlists']['host']['num_found'] ?></a>
+			</p>
+		</div><!-- /div.flower_soundplaylist -->
+	<?php endforeach; ?>
+<?php else: ?>
 
 <h2>Aucun résultat. MERDRE ALORS ! | <a
 	href="<?php echo $_SERVER['PHP_SELF'] ?>"
