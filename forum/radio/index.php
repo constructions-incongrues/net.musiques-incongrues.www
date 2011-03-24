@@ -49,7 +49,7 @@ $sortsAvailable = array(
 	'oldest' => array('text' => 'Les plus anciens', 'sort_field' => 'contributed_at', 'sort_direction' => 'asc'),
 	'random' => array('text' => 'Aléatoire',        'sort_field' => 'random',         'sort_direction' => 'asc'),
 );
-
+ 
 foreach ($sortsAvailable as $sortName => $sortDescription) {
 	$sortsAvailable[$sortName]['url'] = '?'.http_build_query(array_merge($parameters, array('sort' => $sortName)));
 }
@@ -105,7 +105,6 @@ if (count($links)) {
 		if ($link['domain_fqdn'] == 'soundcloud.com') {
 			$link['url'] .= '.mp3';
 		}
-
 
 		// Title
 		$link['title'] = guessTitle($link);
@@ -189,9 +188,9 @@ if (count($links)) {
 	href="<?php echo $Configuration['WEB_ROOT'] ?>themes/vanilla/styles/scene/favicon.png" />
 <link rel="playlist" type="application/xspf+xml"
 	title="<?php echo $formatsAvailable['xspf']['title'] ?>"
-	href="<?php echo $formatsAvailable['XSPF']['url'] ?>" />
+	href="<?php echo $formatsAvailable['xspf']['url'] ?>" />
 <link rel="raw" type="text/html"
-	title="<?php echo $formatsAvailable['XSPF']['title'] ?>"
+	title="<?php echo $formatsAvailable['xspf']['title'] ?>"
 	href="<?php echo $formatsAvailable['raw']['url'] ?>" />
 <link rel="stylesheet"
 	href="<?php echo $Configuration['WEB_ROOT'] ?>radio/css/style.radio.css"
@@ -228,13 +227,11 @@ window.addEvent('domready', function() {
             player.addEvent('ready', function() {
                 this.createPagePlayer('player');
                 $$('#loader').each(function(el){el.setStyle('display','none');});
-                $$('.flower_soundplayer_next').each(function(el){el.setStyle('display','none');});
-                $$('.flower_soundplayer_play').each(function(el){el.setStyle('display','none');});
-                $$('.flower_soundplayer_prev').each(function(el){el.setStyle('display','none');});
-                $$('.flower_soundplayer_time').each(function(el){el.setStyle('display','none');});
+                $$('.flower_soundplayer_title').grab($$('.flower_soundplayer_controls'));
+                $$('.flower_soundplayer_title').grab($$('.flower_soundplayer_time'));
             });
 
-            $$('p.tracks-date').each(function(el) {
+            $$('.tracks-date').each(function(el) {
 				var date = prettyDate(el.title);
 				if (date != undefined) {
                 	el.innerHTML = date;
@@ -245,15 +242,8 @@ window.addEvent('domready', function() {
 </head>
 
 <body>
-<div id="Session">TODO : <a
-	href="<?php echo $Configuration['WEB_ROOT'] ?>account">gérer son compte</a>
-- <a
-	href="<?php echo $Configuration['WEB_ROOT'] ?>people.php?PostBackAction=SignOutNow">se
-déconnecter</a> - <a
-	href="<?php echo $Configuration['WEB_ROOT'] ?>page/contact">nous
-contacter</a></div>
 
-<h1 class="logo"><a href=""<?php echo $Configuration['WEB_ROOT'] ?>"> <span
+<h1 class="logo"><a href="<?php echo $Configuration['WEB_ROOT'] ?>"> <span
 	class="first">Musiques</span> <span class="last">Incongrues</span> </a>
 </h1>
 
@@ -344,24 +334,29 @@ contacter</a></div>
 <p id="loader">Chargement du lecteur en cours. C'est le moment de
 tapoter des doigts sur le bureau.</p>
 <div id="player"></div>
-<p>&nbsp;</p>
-		<?php if (count($links) < $linksCount): ?>
+<p id="placeholder">&nbsp;</p><br />
+
+<?php if (count($links) < $linksCount): ?>
+<!-- 
 <p>
 Naviguer dans la playlist : <a
 	href="<?php echo $pagination['urlPrevious'] ?>">&larr;</a> | <a
 	href="<?php echo $pagination['urlNext'] ?>">&rarr;</a> | <?php echo $parameters['start'] + 1 ?>
 - <?php echo $parameters['start'] + $parameters['limit'] ?> / <?php echo $linksCount ?> morceaux
 </p>
+-->
 <?php endif; ?>
 
 <?php foreach ($playlist as $link): ?>
 <div class="flower_soundplaylist">
 
 <p><span style="cursor: pointer;"> <span class="tracks-title"><a
-	href="<?php echo $link['url'] ?>" title="<?php echo $link['title'] ?>"><?php echo truncate_text($link['title'], 80) ?></a></span>
+	href="<?php echo $link['url'] ?>" title="<?php echo $link['title'] ?>" class="x-playable"><?php echo truncate_text($link['title'], 80) ?></a></span>
+<!-- 
 <span class="tracks-donwload"><a href="<?php echo $link['url'] ?>"
 	title="<?php echo $link['title'] ?>">TÉLECHARGER</a></span> </span></p>
-
+-->
+ 
 <p class="tracks-date" title="<?php echo $link['contributed_at'] ?>"><?php echo $link['contributed_at'] ?></p>
 
 <p class="tracks-who">Posté par <a

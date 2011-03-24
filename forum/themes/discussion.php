@@ -34,7 +34,7 @@ $this->DelegateParameters['DiscussionList'] = &$DiscussionList;
 $DiscussionList .= '
 <li id="Discussion_'.$Discussion->DiscussionID.'" class="Discussion'.$Discussion->Status.($Discussion->CountComments == 1?' NoReplies':'').($this->Context->Configuration['USE_CATEGORIES'] ? ' Category_'.$Discussion->CategoryID:'').($Alternate ? ' Alternate' : '').'">';
 	$this->CallDelegate('PreDiscussionOptionsRender');
-	if (is_array($response) && $response['num_found'] > 0 && in_array($this->Context->Session->UserID, $this->Context->Configuration['BETA_TESTERS_IDS'])) {
+	if (is_array($response) && $response['num_found'] > 0) {
 	$DiscussionList .= '<ul>
 		<li class="DiscussionType">
 			<span>'.$this->Context->GetDefinition('DiscussionType').'</span>'.DiscussionPrefix($this->Context, $Discussion).'

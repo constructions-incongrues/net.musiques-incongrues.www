@@ -30,20 +30,18 @@ color:#FF00FF;
 text-decoration:none;
 
 }
-/*
 
-h2.sublogo
+
+.sublogo
 {
-color:#CCC;
-text-align:center;
-font-size:2em;
-font-family: 'Just Another Hand', arial, serif;
-font-weight:bold;
-letter-spacing:2px;
-text-transform:uppercase;
-margin-top:-40px;
+color:#71c7fd!important;
+font-size:0.5em!important;
+	font-family: 'Copse', arial, serif!important;
+letter-spacing:0px!important;
+text-transform:lowercase!important;
+font-weight:lighter!important;
 }
-*/
+
 
 #content {
 width:80%!important;
@@ -130,32 +128,7 @@ margin-left:20px;	}
 	}
 	
 	
-#Header ul li.Eyes .TabOn {
-	background-color:#fff;
-	color: #ff00ff;
-	}
 
-#Header ul li.Eyes .TabOn a {
-	background-color:#fff;
-	color:#ff00ff;
-	border: 1px solid #ccc;
-	border-bottom: 1px solid #fff;
-}
-
-#Header ul li.Eyes .TabOn a:hover, #Header ul li.Eyes .TabOn a:hover  {
-	background-color:yellow;
-	color:#000;
-	border: 1px solid #ccc;
-	border-bottom: 1px solid #fff;
-	}
-	
-#Header ul li.TabOn a:hover, #Header ul li.TabOn a:hover  {
-	background-color:yellow;
-	color:#000;
-	border: 1px solid #ccc;
-	border-bottom: 1px solid #fff;
-	}
-	
 #Header ul {
 text-align:center;
 font-weight:bold;
@@ -166,6 +139,7 @@ margin-top:-20px;
 {
 margin-bottom:20px;
 }
+
 #navbar-1 a, #navbar-1 a:active, #navbar-1 a:link
 {
 	color: #BBB;
@@ -184,6 +158,10 @@ margin-bottom:20px;
 	font-size:1em;
 }
 
+.navbar-link-actived
+{
+color:#000!important;
+}
 	
 
 #Header ul li.PosTab {float:left;}
@@ -329,6 +307,15 @@ font-family: 'Vibur', arial, serif;
 
 }
 
+h2.about a 
+{color:#CCC!important;}
+h2.about  
+{
+text-transform:lowercase;
+border:0px!important;
+font-weight:normal!important;
+font-size:0.8em!important;
+}
 
 #Panel a, #Panel a:active, #Panel a:link
 {
@@ -374,7 +361,7 @@ font-size:1em;
 {
 text-align:center;
 margin:0 auto;
-margin-bottom:50px;
+margin-bottom:30px;
 
 }
 
@@ -389,14 +376,6 @@ margin-bottom:-25px;
 margin-top:30px;
 letter-spacing:2px;
 }
-
-.logo H1 .beta
-{
-color:#DDD;
-font-size:0.4em;
-margin-top:100px!important;
-}
-
 #footer
 {
 		position: absolute;
@@ -434,7 +413,7 @@ margin-top:-30px!important;
 margin-left:50px;
 text-align:left;
 text-transform:lowercase;
-	font-family: 'Copse', arial, serif;
+	font-family: 'Copse', arial, serif!important;
 font-weight:normal;
 border-bottom:0px!important;
 }
@@ -517,8 +496,13 @@ font-family: 'Copse', arial, serif!important;
 margin-left:0px!important;
 font-weight:lighter!important;
 color:#CCC!important;
+margin-top:-15px!important;
 }
 
+#placeholder 
+{
+margin-top:-10px!important;
+}
 .tracks-title.playing
 {
 background-color:#DDD!important;
@@ -597,14 +581,24 @@ color:#666;
  font-family: 'Vibur', arial, serif;
 text-transform:uppercase;
 }
-.radio-playing .flower_soundplayer_time
-{color:#BBB;}
+
+.flower_soundplayer_time
+{
+font-family: 'Vibur', arial, serif!important;
+text-transform:uppercase!important;
+color:#666!important;
+margin-top:-24px!important;
+padding-right:20px!important;
+letter-spacing:-1px;
+}
 
  div.flower_soundplayer_title
  {
 color:#000; 
-margin-top:20px;
- font-family: 'Vibur', arial, serif;
+margin-top:10px;
+margin-bottom: -10px;
+margin-left:85px;
+font-family: 'Vibur', arial, serif;
 text-transform:uppercase;
 }
 
@@ -629,7 +623,7 @@ font-weight:lighter!important;
 div.flower_soundplayer_controls       
  {
 text-align:right!important;
-margin-top:-40px!important;
+margin-top:-50px!important;
 margin-bottom:-10px!important;
 }
  div.flower_soundplayer_controls a,  div.flower_soundplayer_controls a:link,  div.flower_soundplayer_controls a:active
