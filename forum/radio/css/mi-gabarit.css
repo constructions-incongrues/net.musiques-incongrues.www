@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with Musiques Incongrues.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
 /* AFFICHAGE DU CONTENU  - BLOC À DROITE */
 
 #content
@@ -32,9 +33,10 @@ margin-left:20px;
 	margin-top:-20px;
 	border-bottom: 1px dotted #ccc;
 	text-align:center;
+	font-size:0.9em;
 	}
 
-#Header ul#navbar-1 li, #Header ul#navbar-2 li 
+#Header ul#navbar-1 li, #Header ul#navbar-2 li, #Header ul#session li
 {	
 text-align:center!important;
 display:inline;
@@ -47,49 +49,45 @@ padding-left:10px;
 	padding:0px;
 	}
 
-#navbar-1 
+#navbar-1
 {
 text-transform:lowercase;
-color:#BBB!important;
+color:#eee;
+margin:0 auto;
+margin-top:40px!important;
 
-}
-
-#navbar-1.session-nav
-{
-color:#BBB;
 }
 
 #navbar-2
 {
-margin-bottom:-5px;
-margin-top:-5px;
 text-transform:lowercase;
 color:#0099FF;
 }
+
 #navbar-1 a, #navbar-1 a:active, #navbar-1 a:link
 {
-	color: #000;
+	color: #CCC;
 	font-family: 'Copse', arial, serif;
-	font-size:0.8em;
+	font-size:0.9em;
 	text-decoration:none;
 }
 
-#navbar-1 .session-nav a
+#navbar-1 .session-nav a, #navbar-1 .session-nav a:active, #navbar-1 .session-nav a:link
 {
-	color: #000;
+	color: #DDD;
 	font-family: 'Copse', arial, serif;
-	margin-top:30px;
-	font-size:0.8em;
+	font-size:0.9em;
 	text-decoration:none;
 }
+
 #navbar-1 a:hover, #navbar-2 a:hover {color:#000!important;}
 
 #navbar-2 a, #navbar-2 a:active, #navbar-2 a:link
 {
-	color: #0099FF;
+	color: #FF0099;
 	font-family: 'Copse', arial, serif;
 	text-decoration:none;
-	font-size:1em;
+	font-size:1.4em;
 }
 
 #navbar-1 .navbar-link-actived a, #navbar-2 .navbar-link-actived a
@@ -97,14 +95,15 @@ color:#0099FF;
 color:#000!important;
 }
 
+
 /* DESIGN DU CHAMPS SEARCHBAR */
 
 #search
 {
 float:right;
 font-size: 90%;
-margin-top:-25px;
 color:#bbb;
+margin-top:-15px;
 }
 
 #search  label
@@ -115,21 +114,19 @@ color:#ccc!important;
 text-transform:lowercase;
 font-family: 'Copse', arial, serif;
 letter-spacing:1px;
-float:right;
-margin-right:30px;
+visibility:hidden;
 }
 
 input.champs
 {
+text-align:center;
 color: #000;
 border-bottom:1px dotted #CCC;
 border-left:0px;
 border-right:0px;
 border-top:0px;
-width:120px;
+width:190px;
 background-color:#eee;
-margin-top:-20px;
-margin-right:-30px;
 }
 
 input.champs:hover
@@ -145,16 +142,20 @@ background-image: none ;background-color: #FFF;
 
 input.valid 
 {
-background-color:#FFF;
-border:0px solid #CCC;
-color:#bbb!important;
+text-align:center;
+color: #bbb;
+padding:2px;
+border-bottom:1px dotted #CCC;
+background-color:#eee;
+border-left:0px;
+border-right:0px;
+border-top:0px;
 font-weight:lighter;
-float:right;
 text-transform:lowercase;
 font-family: 'Copse', arial, serif;
 letter-spacing:1px;
-margin-top:-39px;
 }
+
 
 /* PANEL - BLOC GAUCHE INFO */
 
@@ -182,8 +183,9 @@ margin-right:30px;
 margin-bottom:5px;
 padding-left:5px;
 font-size:1.4em;
-font-family: 'Vibur', arial, serif;
+font-family: 'Copse', arial, serif;
 border-bottom:1px solid yellow;
+text-transform:lowercase;
 font-weight:normal!important;
 }
 

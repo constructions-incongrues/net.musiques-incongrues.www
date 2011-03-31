@@ -178,5 +178,5 @@ if (count($links)) {
 	if (isset($parameters['show'])) {
 		$playlistType = sprintf("l'émission %s", $showsAvailable[$parameters['show']]['title']);
 	} else if (isset($parameters['domain_fqdn'])) {
-		$playlistType = sprintf("de l'hébergeur %s", $parameters['domain_fqdn']);
+		$playlistType = sprintf("du domaine %s", $parameters['domain_fqdn']);
 	}

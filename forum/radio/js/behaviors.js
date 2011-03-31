@@ -1,3 +1,4 @@
+// Mootools
 window.addEvent('domready', function() {
     var player = new FlowerSoundPlayer({
     	swfLocation:'assets/scripts/SoundPlayer.swf',

@@ -1,10 +1,26 @@
-/* BLOC INFORMATIONS RADIO */
-
+/*
+ * This file is part of Musiques Incongrues.
+ *
+ * Musiques Incongrues is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Musiques Incongrues is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with Musiques Incongrues.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
 #radio-banner 
 {
 width:100%;
-margin-bottom:40px!important;
 margin-top:25px!important;
+margin-bottom:80px;
+border-bottom:1px dotted #CCC!important;
 }
 
 .listing-topic-radio
@@ -74,7 +90,13 @@ color:#000!important;
 
 /* DESIGN PLAYLIST  */
 
+/* affichage nom playlist */
+
+/* WIP : AFFICHAGE DU TITRE DU TOPIC 
+ * SUB LOGO */
+
 .panel-link-counter {float:right;}
+.panel-link-actived .panel-link-counter {margin-top:-18px!important; color:#000!important}
 .radio-counter {
 font-family: 'Vibur', arial, serif;
 border-top:1px dotted #CCC!important;
@@ -96,9 +118,10 @@ display:block;
 {
   content: url(../img/ico-radio/playlist-title.png);
   display: block;
-  margin-top:-6px;
+  margin-top:-2px;
   float:left;
 }
+
 
 .radio-counter-number
 {
@@ -181,15 +204,16 @@ text-transform:lowercase;
  div.flower_soundplayer_title
  {
 color:#000; 
-margin-top:20px;
-font-family: 'Vibur', arial, serif;
-text-transform:uppercase;
+margin-top:15px;
+font-family: 'Copse', arial, serif;
+text-transform:lowercase;
 float:left;
+font-size:1.3em;
 }
 
 .flower_soundplaylist
 {
-list-style-type:none!;
+list-style-type:none;
 border-bottom:1px dotted #eee;
 font-family: 'Copse', arial, serif;
 margin-left:0px!important;
@@ -197,19 +221,18 @@ font-weight:lighter;
 color:#CCC;
 margin-top:20px!important;
 
-
 }
 
 
 .flower_soundplayer_time
 {
-font-family: 'Vibur', arial, serif!important;
+	font-family: 'Copse', arial, serif!important;
 text-transform:uppercase!important;
 color:#666!important;
 margin-top:0px!important;
 letter-spacing:-1px;
 margin-left:10px!important;
-margin-top:20px!important;
+margin-top:18px!important;
 float:left;
 }
 
@@ -219,7 +242,6 @@ float:left;
 {
 text-decoration:none;
 	font-family: 'Copse', arial, serif!important;
-font-weight:lighter!important;
 }
  
  .flower_soundplayer_title a:hover, .flower_soundplaylist a:hover 

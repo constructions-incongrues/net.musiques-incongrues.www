@@ -1,55 +1,44 @@
-/* DESIGN LOGO MUSIQUES INCONGRUES
-   STYLE 1
-*/
-
+/*
+ * This file is part of Musiques Incongrues.
+ *
+ * Musiques Incongrues is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Musiques Incongrues is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with Musiques Incongrues.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
 .logo 
 {
 margin:0 auto;
-text-align:center;
-margin-top:40px!important;
-margin-bottom:-25px!important;
 }
 
 
+
 h1 {
-text-align:left;
-font-size:4em;
-color:#FF00FF;
-font-family: 'Just Another Hand', arial, serif;
-font-weight:bold;
-letter-spacing:2px;
-text-transform:uppercase;
+font-size:3.7em;
+color:#0099FF;
+font-family: 'Copse', arial, serif;
+font-weight:normal;
+letter-spacing:0px;
+text-transform:lowercase;
 }
 
 h1.logo a, h1.logo a:active, h1.logo a:link
 {
-color:#FF00FF;
+color:#0099FF;
 text-decoration:none;
+
 }
 
 
-/* SUB LOGO */
 
-.sub 
-{
-margin-top:-10px!important;
-margin-bottom:50px;
-text-align:center;
-}
-.sub-logo
-{
-font-size:0.6em;
-margin-left:0px;
-font-family: 'Copse', arial, serif;
-font-weight:lighter;
-letter-spacing:2px;
-text-transform:lowercase;
-color:#ccc!important;
-padding:2px;
-}
 
-.sub-logo-title a
-{
-color:#666;
-text-decoration:none;
-}
+

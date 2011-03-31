@@ -1,10 +1,15 @@
 <?php require(dirname(__FILE__).'/lib/radio.controller.php'); ?>
 <!DOCTYPE html>
-<html>
+<html xmlns:og="http://ogp.me/ns#">
 
 	<head>
-		<title>Radio Substantifique Moëlle - Musiques Incongrues</title>
+		<title>Radio Substantifique Moëlle (playlist <?php echo $playlistType ?> - Musiques Incongrues</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<!-- Opengraph (see http://ogp.me/) -->
+		<meta property="og:site_name" content="Musiques Incongrues" />
+		<meta property="og:title" content="Radio Substantifique Moëlle Incongrue - Playlist <?php echo $playlistType ?>" />
+		<meta property="og:description" content="Cette radio extrait la substantifique moëlle sonore du forum des Musiques Incongrues" />
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/png" href="<?php echo $Configuration['WEB_ROOT'] ?>themes/vanilla/styles/scene/favicon.png" />
@@ -19,8 +24,6 @@
 		<link rel="stylesheet" href="<?php echo $Configuration['WEB_ROOT'] ?>radio/css/mi-logo1.css" type="text/css" media="screen" />
 		
 		<!-- Web fonts -->
-		<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Vibur' type='text/css' />
-		<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Just+Another+Hand' type='text/css' />
 		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Copse' type='text/css' />
 
 		<!-- Vendor JS -->
@@ -36,22 +39,6 @@
 
 	<body>
 
-		<h1 class="logo">
-			<a href="<?php echo $Configuration['WEB_ROOT'] ?>">Musiques Incongrues</a>
-		</h1><!-- /h1.logo -->
-
-		<h2 class="sub"><span class="sub-logo">vous êtes à l'écoute de la playlist de <?php echo $playlistType ?></span></h2>
-
-		<div id="search">
-			<form id="SearchSimple" method="get" action="<?php echo $Configuration['WEB_ROOT'] ?>search/">
-				<label for="search" style="color: white">Rechercher &bull;</label>
-				<br />
-				<input type="text" name="Keywords" class="champs" />
-				<input type="hidden" name="PostBackAction" value="Search" />
-				<input name="Submit" value="ok" class="valid" type="submit" />
-			</form>
-		</div><!-- /div#search -->
-
 		<div id="Header">
 			<ul id="navbar-1">
 				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>page/about">À propos</a></li>
@@ -61,6 +48,10 @@
 				<li class="session-nav"><a href="<?php echo $Configuration['WEB_ROOT'] ?>account">Gérer son compte</a></li>
 				<li class="session-nav"><a href="<?php echo $Configuration['WEB_ROOT'] ?>people.php?PostBackAction=SignOutNow">Se déconnecter</a></li>
 			</ul><!-- /ul#navbar-1 -->
+
+			<h1 class="logo">
+				<a href="<?php echo $Configuration['WEB_ROOT'] ?>">Musiques Incongrues</a>
+			</h1><!-- /h1.logo -->
 
 			<ul id="navbar-2">
 				<li><a href="<?php echo $Configuration['WEB_ROOT'] ?>events/">Agenda</a></li>
@@ -120,7 +111,8 @@
 	
 			<div id="radio-banner">
 				<p class="about-radio">
-					Tout les mp3 posté par les membres du forum Musiques Incongrues sont écoutable ici. Pour en savoir plus sur le fonctionnement de la radio cliquer 
+					 Vous écoutez actuellement la playlist <em><?php echo $playlistType ?></em>.<br />
+					 <a href="readme.html" target="_blank" title="Consulter le mode d'emploi de la radio">En savoir plus sur le fonctionnement de cette radio</a>.
 				</p>
 				
 				<p class="listing-topic-radio">
@@ -131,8 +123,6 @@
 				</p>
 			</div><!-- div#radio-banner -->
 			
-			<p id="placeholder">&nbsp;</p><br />
-
 	<?php foreach ($playlist as $link): ?>
 			<div class="flower_soundplaylist">
 				<p>
