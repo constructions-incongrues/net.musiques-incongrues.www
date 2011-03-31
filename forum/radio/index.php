@@ -115,12 +115,14 @@
 					 <a href="readme.html" target="_blank" title="Consulter le mode d'emploi de la radio">En savoir plus sur le fonctionnement de cette radio</a>.
 				</p>
 				
+				<!--
 				<p class="listing-topic-radio">
 					<a href="<?php echo $playlistRandom['url'] ?>">DÉCOUVRIR</a><br />
 					<span class="discover-radio">
 						<a href="<?php echo $playlistRandom['url'] ?>">Une playlist au hasard !</a>
 					</span>
 				</p>
+				-->
 			</div><!-- div#radio-banner -->
 			
 	<?php foreach ($playlist as $link): ?>
