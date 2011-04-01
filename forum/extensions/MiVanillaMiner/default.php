@@ -25,7 +25,7 @@ function MiVanillaMiner_PostComment(&$DiscussionForm) {
 	}
 	
 	$matches = array();
-	preg_match_all('#\b..?tps?://[-A-Z0-9+&@\#/%?=~_|!:,.;]*[-A-Z0-9+&@\#/%=~_|]#i', $body, $matches);
+	preg_match_all('#\b..?tps?://[-A-Z0-9+&@\#/%?=~_|!:,.;]*[-A-Z0-9+&@\#/%=~_|]#i', strip_tags($body), $matches);
 	$urlsFound = $matches[0];
 
 	// Build payload
@@ -37,9 +37,9 @@ function MiVanillaMiner_PostComment(&$DiscussionForm) {
 				'comment_id'         => $commentId, 
 				'contributed_at'     => time(),
 				'contributor_id'     => $DiscussionForm->Context->Session->UserID,
-				'contributor_name'   => $DiscussionForm->Context->Session->User->Name, 
+				'contributor_name'   => utf8_encode($DiscussionForm->Context->Session->User->Name), 
 				'discussion_id'      => $DiscussionForm->Discussion->DiscussionID, 
-				'discussion_name'    => $DiscussionForm->Discussion->Name
+				'discussion_name'    => utf8_encode($DiscussionForm->Discussion->Name)
 			);
 			$resources[] = $payload;
 		}
