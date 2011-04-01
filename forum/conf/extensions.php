@@ -32,4 +32,5 @@ include($Configuration['EXTENSIONS_PATH']."MiSidebar/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiRandomDiscussion/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiBase/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiBetaTesting/default.php");
+include($Configuration['EXTENSIONS_PATH']."MiOpengraph/default.php");
 ?>
