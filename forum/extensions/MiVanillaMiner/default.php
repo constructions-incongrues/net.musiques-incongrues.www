@@ -19,6 +19,11 @@ function MiVanillaMiner_PostComment(&$DiscussionForm) {
 	if (empty($body)) {
 		$body = $DiscussionForm->Discussion->Comment->Body;
 	}
+	$commentId = $DiscussionForm->Comment->CommentID;
+	if (!$commentId) {
+		$commentId = $DiscussionForm->Discussion->Comment->CommentID;
+	}
+	
 	$matches = array();
 	preg_match_all('#\b..?tps?://[-A-Z0-9+&@\#/%?=~_|!:,.;]*[-A-Z0-9+&@\#/%=~_|]#i', $body, $matches);
 	$urlsFound = $matches[0];
@@ -29,7 +34,7 @@ function MiVanillaMiner_PostComment(&$DiscussionForm) {
 		foreach ($urlsFound as $url) {
 			$payload = array(
 				'url'                => $url, 
-				'comment_id'         => $DiscussionForm->Comment->CommentID, 
+				'comment_id'         => $commentId, 
 				'contributed_at'     => time(),
 				'contributor_id'     => $DiscussionForm->Context->Session->UserID,
 				'contributor_name'   => $DiscussionForm->Context->Session->User->Name, 
