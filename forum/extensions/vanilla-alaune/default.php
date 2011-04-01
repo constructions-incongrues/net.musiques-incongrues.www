@@ -138,7 +138,7 @@ class DiscussionsPeer
 function getFirstImageUrl($discussion_id)
 {
 	$url_image = null;
-	$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/images/get?discussion_id=%d&sort_field=contributed_at&sort_direction=asc&limit=1&&is_available=1&format=json', $discussion_id);
+	$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/images/get?discussion_id=%d&sort_field=contributed_at&sort_direction=asc&limit=1&is_available=1&format=json', $discussion_id);
 
 	require_once 'HTTP/Request2.php';
 	$request = new HTTP_Request2($url, HTTP_Request2::METHOD_GET);
@@ -170,7 +170,7 @@ function getFirstImageUrl($discussion_id)
 function getVideosUrls($discussion_id)
 {
 	$urlsVideos = array();
-	$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/youtube/get?discussion_id=%d&sort_field=contributed_at&sort_order=asc&limit=-1&&is_available=1&format=json', $discussion_id);
+	$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/youtube/get?discussion_id=%d&sort_field=contributed_at&sort_direction=asc&limit=-1&is_available=1&format=json', $discussion_id);
 
 	require_once 'HTTP/Request2.php';
 	$request = new HTTP_Request2($url, HTTP_Request2::METHOD_GET);
