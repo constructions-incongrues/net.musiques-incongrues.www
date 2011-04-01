@@ -2,6 +2,9 @@
 // Note: This file is included from the library/Vanilla/Vanilla.Control.Menu.php class.
 
 echo '<div id="Session">';
+	if (in_array($this->Context->Session->UserID, $this->Context->Configuration['BETA_TESTERS_IDS'])) {
+		echo '[beta] ';
+	}
 	if ($this->Context->Session->UserID > 0) {
 		echo $this->Context->Session->User->Name
 			. ' : <a href="/forum/account/">gérer son compte</a> - <a href="'

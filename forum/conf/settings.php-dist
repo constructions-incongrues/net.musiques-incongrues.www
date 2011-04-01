@@ -120,4 +120,20 @@ $Configuration['JQMEDIA_ALLOW_SOUNDCLOUD'] = '0';
 $Configuration['SUBCATEGORIES_DELEGATE'] = 'PreRender';
 $Configuration['SUBCATEGORIES_DELEGATE_SCOPE'] = 'DiscussionGrid';
 $Configuration['CATEGORYICONS_VERSION'] = '1.0.3';
+/*
+ * 1   - bozoorak
+ * 2   - mbertier
+ * 3   - mobyone
+ * 9   - 
+ * 14  - 
+ * 21  - 
+ * 47 - bill
+ * 90  - 
+ * 95  -
+ * 132 -
+ * 328 - bibi mati
+ * 366 -
+ * 665 -
+ */
+$Configuration['BETA_TESTERS_IDS'] = array(1, 2, 3, 9, 14, 21, 47, 90, 95, 132, 328, 366, 665);
 ?>

@@ -53,6 +53,9 @@ include("appg/init_vanilla.php");
 	} else {
 		$Context->PageTitle = $AccountUser->Name;
 	}
+	if (in_array($Context->Session->UserID, $Context->Configuration['BETA_TESTERS_IDS'])) {
+		$Context->PageTitle .= ' [beta] ';
+	}
 
 // 2. BUILD PAGE CONTROLS
 
