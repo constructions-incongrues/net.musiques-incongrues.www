@@ -112,7 +112,7 @@
 			<div id="radio-banner">
 				<p class="about-radio">
 					Cette radio extrait la substantifique moëlle sonore du forum des Musiques Incongrues.<br />
-					Vous écoutez actuellement la playlist de <em><?php echo $playlistType ?></em>. &bull;
+					Vous écoutez actuellement la playlist de <em><?php echo $playlistType ?></em>. <br />
 					<a href="readme.html" target="_blank" title="Consulter le mode d'emploi de la radio">En savoir plus sur le fonctionnement de cette radio</a>.
 				</p>
 				

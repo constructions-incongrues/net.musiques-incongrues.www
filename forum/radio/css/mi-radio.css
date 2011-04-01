@@ -19,16 +19,16 @@
 {
 width:100%;
 margin-top:25px!important;
-margin-bottom:80px;
+margin-bottom:100px;
 border-bottom:1px dotted #CCC!important;
 }
 
 .listing-topic-radio
 {
 width:20%;
-font-size:0.8em; 
+font-size:1em; 
 float:right;
-min-height:37px;
+min-height:50px;
 background-color:#ececec!important;
 border:1px dotted #DDD;
 text-align:center!important;
@@ -41,7 +41,7 @@ margin-top:10px!important;
 font-size:0.8em;
 width:74%;
 float:left;
-min-height:35px;
+min-height:48px;
 margin-right:-40px;
 background-color:#f4f1f1!important;
 border:1px dotted #DDD;
@@ -231,14 +231,12 @@ font-family: 'Copse', arial, serif;
 margin-left:0px!important;
 font-weight:lighter;
 color:#CCC;
-margin-top:20px!important;
-
 }
 
 
 .flower_soundplayer_time
 {
-	font-family: 'Copse', arial, serif!important;
+font-family: 'Copse', arial, serif!important;
 text-transform:uppercase!important;
 color:#666!important;
 margin-top:0px!important;
