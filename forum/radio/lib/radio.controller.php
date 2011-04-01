@@ -179,7 +179,7 @@ if (count($links)) {
 
 	// Playlist contents description
 	// TODO : refactoring smell
-	$playlistType = 'globale';
+	$playlistType = 'tous les morceaux';
 	if (isset($parameters['discussion_id'])) {
 		$playlistType = sprintf('la discussion %s', $playlist[0]['discussion_name']);
 	}
