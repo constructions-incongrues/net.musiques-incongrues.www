@@ -41,7 +41,7 @@ function MiVanillaMiner_PostComment(&$DiscussionForm) {
 	
 		// Post payload to Vanilla Miner instance
 		$jsonResources = json_encode($resources);
-		$curl = curl_init('http://localhost/constructions-incongrues/vanilla-miner/index.php/extract');
+		$curl = curl_init(sprintf('%s/extract', $DiscussionForm->Context->Configuration['VANILLA_MINER_URL']));
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_POST, true);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonResources);
