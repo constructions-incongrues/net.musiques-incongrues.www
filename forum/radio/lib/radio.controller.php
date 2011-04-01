@@ -136,7 +136,7 @@ if (count($links)) {
 		foreach ($link['playlists'] as $playlistType => $playlistDescription)  {
 			$response = $cache->call('callService', array($playlistDescription['filterFieldName'], $playlistDescription['filterFieldValue']));
 			$link['playlists'][$playlistType]['num_found'] = $response['num_found'];
-			if (isset($response[0])) {
+			if (is_array($response[0]) && isset($response[0])) {
 				$link['playlists'][$playlistType]['title'] = sprintf('Aperçu : %s', guessTitle($response[0]));
 			} else {
 				$link['playlists'][$playlistType]['title'] = '';
