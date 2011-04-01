@@ -3,12 +3,12 @@
 <html xmlns:og="http://ogp.me/ns#">
 
 	<head>
-		<title>Radio Substantifique Moëlle (playlist <?php echo $playlistType ?> - Musiques Incongrues</title>
+		<title>Radio Substantifique Moëlle (playlist de <?php echo $playlistType ?> - Musiques Incongrues</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 		<!-- Opengraph (see http://ogp.me/) -->
 		<meta property="og:site_name" content="Musiques Incongrues" />
-		<meta property="og:title" content="Radio Substantifique Moëlle Incongrue - Playlist <?php echo $playlistType ?>" />
+		<meta property="og:title" content="Radio Substantifique Moëlle Incongrue - Playlist de <?php echo $playlistType ?>" />
 		<meta property="og:description" content="Cette radio extrait la substantifique moëlle sonore du forum des Musiques Incongrues" />
 
 		<!-- Favicon -->
