@@ -1,8 +1,8 @@
 <?php
 // Find out if discussion contains any MP3s
 if (!function_exists('checkForMp3s')) {
-	function checkForMp3s($discussionID) {
-		$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/mp3/get?format=json&discussion_id=%d', $discussionID);
+	function checkForMp3s($key, $discussionID) {
+		$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/mp3/get?format=json&%s=%d', $key, $discussionID);
 		$curl = curl_init($url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		$response = json_decode(curl_exec($curl), true);
@@ -18,7 +18,9 @@ Zend_Loader_Autoloader::getInstance();
 $cache = Zend_Cache::factory('Function', 'File');
 
 // Call service and cache response
-$response = $cache->call('checkForMp3s', array($Discussion->DiscussionID));
+$responseDiscussion = $cache->call('checkForMp3s', array('discussion_id', $Discussion->DiscussionID));
+//$responseCreator = $cache->call('checkForMp3s', array('contributor_id', $Discussion->AuthUserID));
+//$responseLastAuthor = $cache->call('checkForMp3s', array('contributor_id', $Discussion->LastUserID));
 
 // Note: This file is included from the library/Vanilla/Vanilla.Control.SearchForm.php
 // class and also from the library/Vanilla/Vanilla.Control.DiscussionForm.php's
@@ -34,14 +36,14 @@ $this->DelegateParameters['DiscussionList'] = &$DiscussionList;
 $DiscussionList .= '
 <li id="Discussion_'.$Discussion->DiscussionID.'" class="Discussion'.$Discussion->Status.($Discussion->CountComments == 1?' NoReplies':'').($this->Context->Configuration['USE_CATEGORIES'] ? ' Category_'.$Discussion->CategoryID:'').($Alternate ? ' Alternate' : '').'">';
 	$this->CallDelegate('PreDiscussionOptionsRender');
-	if (is_array($response) && $response['num_found'] > 0) {
+	if (is_array($responseDiscussion) && $responseDiscussion['num_found'] > 0) {
 	$DiscussionList .= '<ul>
 		<li class="DiscussionType">
 			<span>'.$this->Context->GetDefinition('DiscussionType').'</span>'.DiscussionPrefix($this->Context, $Discussion).'
 		</li>
 		<li class="DiscussionTopic">
 			<span>'.$this->Context->GetDefinition('DiscussionTopic').'</span><a href="'.$UnreadUrl.'">'.$Discussion->Name.'</a>
-			<a href="'.$this->Context->Configuration['WEB_ROOT'].'radio/?discussion_id='.$Discussion->DiscussionID.'" title="Écouter le(s) '.$response['num_found'].' morceau(x) contenu(s) dans cette discussion avec la radio du forum" style="background-color:yellow;">♫'.$response['num_found'].'</a>
+			<a href="'.$this->Context->Configuration['WEB_ROOT'].'radio/?discussion_id='.$Discussion->DiscussionID.'" title="Écouter le(s) '.$responseDiscussion['num_found'].' morceau(x) contenu(s) dans cette discussion avec la radio du forum" style="background-color:yellow;">♫'.$responseDiscussion['num_found'].'</a>
 		</li>
 	';
 	} else {
