@@ -115,11 +115,22 @@ if (count($links)) {
 
 		// Define related playlists links
 		$link['playlists'] = array(
-			'user'       => array('filterFieldName' => 'contributor_name', 'filterFieldValue' => utf8_decode($link['contributor_name']), 'num_found' => 0),
-			'discussion' => array('filterFieldName' => 'discussion_id', 'filterFieldValue' => $link['discussion_id'], 'num_found' => 0),
-			'host'       => array('filterFieldName' => 'domain_fqdn', 'filterFieldValue' => $link['domain_fqdn'], 'num_found' => 0)
+			'user'       => array('filterFieldName' => 'contributor_name', 'filterFieldValue' => utf8_decode($link['contributor_name']), 'num_found' => 0, 'class' => 'playlist-ico'),
+			'discussion' => array('filterFieldName' => 'discussion_id', 'filterFieldValue' => $link['discussion_id'], 'num_found' => 0, 'class' => 'playlist-ico'),
+			'host'       => array('filterFieldName' => 'domain_fqdn', 'filterFieldValue' => $link['domain_fqdn'], 'num_found' => 0, 'class' => 'playlist-ico')
 		);
-
+		
+		// Show active playlist
+		if (isset($parameters['contributor_name']) && $parameters['contributor_name'] == $link['contributor_name']) {
+			$link['playlists']['user']['class'] = 'playlist-ico-link-active';
+		}
+		if (isset($parameters['discussion_id']) && $parameters['discussion_id'] == $link['discussion_id']) {
+			$link['playlists']['discussion']['class'] = 'playlist-ico-link-active';
+		}
+		if (isset($parameters['domain_fqdn']) && $parameters['domain_fqdn'] == $link['domain_fqdn']) {
+			$link['playlists']['host']['class'] = 'playlist-ico-link-active';
+		}
+		
 		// For selecting a random playlist
 		$playlistsInteresting = array();
 		foreach ($link['playlists'] as $playlistType => $playlistDescription)  {

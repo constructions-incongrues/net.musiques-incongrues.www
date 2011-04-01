@@ -47,6 +47,12 @@ background-color:#f4f1f1!important;
 border:1px dotted #DDD;
 }
 
+.about-radio a
+{
+color: #000;
+text-decoration: none;
+border-bottom: 1px dotted #000;
+}
 
 .about-radio, .listing-topic-radio
 {
@@ -86,6 +92,12 @@ font-size:0.8em!important;
 a:hover.playlist-ico
 {
 color:#000!important;
+}
+
+a.playlist-ico-link-active
+{
+color: #000!important;
+font-size:0.8em!important;
 }
 
 /* DESIGN PLAYLIST  */

@@ -111,18 +111,17 @@
 	
 			<div id="radio-banner">
 				<p class="about-radio">
-					 Vous écoutez actuellement la playlist <em><?php echo $playlistType ?></em>.<br />
-					 <a href="readme.html" target="_blank" title="Consulter le mode d'emploi de la radio">En savoir plus sur le fonctionnement de cette radio</a>.
+					Cette radio extrait la substantifique moëlle sonore du forum des Musiques Incongrues.<br />
+					Vous écoutez actuellement la playlist de <em><?php echo $playlistType ?></em>. &bull;
+					<a href="readme.html" target="_blank" title="Consulter le mode d'emploi de la radio">En savoir plus sur le fonctionnement de cette radio</a>.
 				</p>
 				
-				<!--
 				<p class="listing-topic-radio">
 					<a href="<?php echo $playlistRandom['url'] ?>">DÉCOUVRIR</a><br />
 					<span class="discover-radio">
 						<a href="<?php echo $playlistRandom['url'] ?>">Une playlist au hasard !</a>
 					</span>
 				</p>
-				-->
 			</div><!-- div#radio-banner -->
 			
 	<?php foreach ($playlist as $link): ?>
@@ -143,11 +142,11 @@
 	
 				<p class="tracks-who">
 					Posté par <a href="<?php echo $link['contributor_url'] ?>" title="Voir le profil de l'auteur sur Musiques Incongrues"> <?php echo $link['contributor_name']?></a>
-					<a href="<?php echo $link['query_contributor'] ?>" class="playlist-ico"	title="Écouter la playlist de l'utilisateur. <?php echo $link['playlists']['user']['title'] ?>">♫<?php echo $link['playlists']['user']['num_found'] ?></a>
+					<a href="<?php echo $link['query_contributor'] ?>" class="<?php echo $link['playlists']['user']['class'] ?>"	title="Écouter la playlist de l'utilisateur. <?php echo $link['playlists']['user']['title'] ?>">♫<?php echo $link['playlists']['user']['num_found'] ?></a>
 					dans la discussion <a href="<?php echo $link['discussion_url'] ?>" title="Lire la discussion <?php echo $link['discussion_name'] ?>"> <?php echo truncate_text($link['discussion_name'], 30) ?></a>
-					<a href="<?php echo $link['query_discussion'] ?>" title="Écouter la playlist de la discussion <?php echo $link['discussion_name'] ?>. <?php echo $link['playlists']['discussion']['title'] ?>"	class="playlist-ico">♫<?php echo $link['playlists']['discussion']['num_found'] ?></a>
+					<a href="<?php echo $link['query_discussion'] ?>" title="Écouter la playlist de la discussion <?php echo $link['discussion_name'] ?>. <?php echo $link['playlists']['discussion']['title'] ?>"	class="<?php echo $link['playlists']['discussion']['class'] ?>">♫<?php echo $link['playlists']['discussion']['num_found'] ?></a>
 					&bull; Hébergé par <a href="<?php echo $link['domain_fqdn'] ?>"><?php echo $link['domain_fqdn'] ?></a>
-					<a href="<?php echo $link['query_domain'] ?>" class="playlist-ico" title="Écouter la playlist de l'hébergeur. <?php echo truncate_text($link['playlists']['host']['title'], 10) ?>">♫<?php echo $link['playlists']['host']['num_found'] ?></a>
+					<a href="<?php echo $link['query_domain'] ?>" class="<?php echo $link['playlists']['host']['class'] ?>" title="Écouter la playlist du domaine. <?php echo truncate_text($link['playlists']['host']['title'], 10) ?>">♫<?php echo $link['playlists']['host']['num_found'] ?></a>
 				</p>
 			</div><!-- /div.flower_soundplaylist -->
 	<?php endforeach; ?>
