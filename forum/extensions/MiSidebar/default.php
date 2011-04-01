@@ -73,7 +73,7 @@ if (is_array($response) && $response['num_found'] > 0) {
 	);
 }
 
-$blocks['topicActions'] = array('html' => '', 'userIds' => $Context->Configuration['BETA_TESTERS_IDS']);
+$blocks['topicActions'] = array('html' => '');
 $htmlLinks = '';
 if (count($linksActions)) {
 	foreach ($linksActions as $link) {

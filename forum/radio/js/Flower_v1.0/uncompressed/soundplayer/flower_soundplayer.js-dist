@@ -226,8 +226,8 @@ var FlowerSoundPlayer = new Class({
 					} else {
 						playlistName = $random(10000,99999);
 					}
-					el.getElements('a').each(function(a){	
 						var parsedA = this.parseAforPlaylist(a);
+					el.getElements('a').each(function(a){	
 						if (parsedA) {
 							playlist.push(parsedA);
 						}
@@ -611,7 +611,7 @@ var SoundPlaylist = new Class({
 			this.currentSound.sound.resume();
 		} else {
 			this.currentSound.sound.play();
-		}
+		}						
 		this.SoundPlayer.fireEvent('play',[this.currentSound.sound.url,this.currentSound.title,this.currentSound.artist]);
 	},
 	
@@ -906,7 +906,7 @@ var defaultSoundPlayerUI = new Class({
 	addControllerElements: function() {
 		this.controlsSpc = new Element('div',{'class':'flower_soundplayer_ui'}).inject(this.playerSpc);
 		this.soundtitle = new Element('div', {'class':'flower_soundplayer_title','html':this.options.loadTitle}).inject(this.controlsSpc);
-		this.soundtime = new Element('div', {'class':'flower_soundplayer_time','html':'&nbsp;'}).inject(this.controlsSpc);
+		this.soundtime = new Element('div', {'class':'flower_soundplayer_time','html':'0:00 / 0:00'}).inject(this.controlsSpc);
 		this.seekbarSpc = new Element('div', {
 			'class':'flower_soundplayer_seekbarcontainer',
 			'styles': this.elementStyles.get('seekbarSpc')
