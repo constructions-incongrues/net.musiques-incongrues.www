@@ -26,7 +26,7 @@ function MiVanillaMiner_PostComment(&$DiscussionForm) {
 	
 	$matches = array();
 	preg_match_all('#\b..?tps?://[-A-Z0-9+&@\#/%?=~_|!:,.;]*[-A-Z0-9+&@\#/%=~_|]#i', strip_tags($body), $matches);
-	$urlsFound = $matches[0];
+	$urlsFound = array_unique($matches[0]);
 
 	// Build payload
 	if (count($urlsFound)) {

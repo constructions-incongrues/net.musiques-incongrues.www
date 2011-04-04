@@ -10,7 +10,10 @@
 
 // Helpers
 // Current discussionID
-$discussionID = filter_var($_GET['DiscussionID'], FILTER_VALIDATE_INT);
+$discussionID = null;
+if (isset($_GET['DiscussionID'])) {
+	$discussionID = filter_var($_GET['DiscussionID'], FILTER_VALIDATE_INT);
+}
 
 // TODO : move code to this extension
 $Head->AddStyleSheet('extensions/SidepanelRotator/style.css');
