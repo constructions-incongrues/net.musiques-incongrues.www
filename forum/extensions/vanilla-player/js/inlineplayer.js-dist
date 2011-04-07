@@ -240,7 +240,7 @@ var inlinePlayer = null;
 soundManager.debugMode = false; // disable or enable debug output
 
 // path to directory containing SM2 SWF
-soundManager.url = '/forum/extensions/vanilla-releases/js/soundmanager2/swf/';
+soundManager.url = '@PATHS.BASEURI@extensions/vanilla-releases/js/soundmanager2/swf/';
 
 soundManager.onload = function() {
   // soundManager.createSound() etc. may now be called
