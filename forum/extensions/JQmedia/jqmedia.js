@@ -190,9 +190,6 @@ jQuery.fn.jqmedia = function(sourceVideo){
 				videoIDTemp = url.match(/video\/([0-9-]+)/)||[];
 				embedParam.getStage6(cls,videoIDTemp[videoIDTemp.length-1]);
 				break;
-			case 'mp3' :
-				embedParam.getMp3(cls,url);
-				break;
 			case 'playlist' :
 				embedParam.getPlaylist(cls,url);
 				break;
