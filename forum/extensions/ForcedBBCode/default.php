@@ -64,17 +64,13 @@ if (in_array($Context->SelfUrl, array("post.php", "comments.php"))) {
 			<a onclick="insert('align=left','/align')"><img src="<?php echo $path ?>buttons/text_align_left.gif" alt="<?php echo $this->Context->GetDefinition('bbalignleft') ?>" title="<?php echo $this->Context->GetDefinition('bbalignleft') ?>" /></a>
 			<a onclick="insert('align=center','/align')"><img src="<?php echo $path ?>buttons/text_align_center.gif" alt="<?php echo $this->Context->GetDefinition('bbaligncenter') ?>" title="<?php echo $this->Context->GetDefinition('bbaligncenter') ?>" /></a>
 			<a onclick="insert('align=right','/align')"><img src="<?php echo $path ?>buttons/text_align_right.gif" alt="<?php echo $this->Context->GetDefinition('bbalignright') ?>" title="<?php echo $this->Context->GetDefinition('bbalignright') ?>" /></a>
-			<a onclick="insert('code','/code')"><img src="<?php echo $path ?>buttons/text_code.gif" alt="<?php echo $this->Context->GetDefinition('bbcode') ?>" title="<?php echo $this->Context->GetDefinition('bbcode') ?>" /></a>
 			<a onclick="showColor()"><img src="<?php echo $path ?>buttons/text_color.gif" alt="<?php echo $this->Context->GetDefinition('bbcolor') ?>" title="<?php echo $this->Context->GetDefinition('bbcolor') ?>" /></a>
 			<a onclick="showFont()"><img src="<?php echo $path ?>buttons/text_font.gif" alt="<?php echo $this->Context->GetDefinition('font') ?>" title="<?php echo $this->Context->GetDefinition('bbfont') ?>" /></a>
-			<a onclick="insertImage()"><img src="<?php echo $path ?>buttons/text_image.gif" alt="<?php echo $this->Context->GetDefinition('bbimage') ?>" title="<?php echo $this->Context->GetDefinition('bbimage') ?>" /></a>
-			<a onclick="list('u')"><img src="<?php echo $path ?>buttons/text_list_bullets.gif" alt="<?php echo $this->Context->GetDefinition('bblist') ?>" title="<?php echo $this->Context->GetDefinition('bblist') ?>" /></a>
-			<a onclick="list('o')"><img src="<?php echo $path ?>buttons/text_list_numbers.gif" alt="<?php echo $this->Context->GetDefinition('bbolist') ?>" title="<?php echo $this->Context->GetDefinition('bbolist') ?>" /></a>
-			<a onclick="insert('quote','/quote')"><img src="<?php echo $path ?>buttons/text_quote.gif" alt="<?php echo $this->Context->GetDefinition('bbquote') ?>" title="<?php echo $this->Context->GetDefinition('bbquote') ?>" /></a>
-			<a onclick="insert('sub','/sub')"><img src="<?php echo $path ?>buttons/text_subscript.gif" alt="<?php echo $this->Context->GetDefinition('bbsub') ?>" title="<?php echo $this->Context->GetDefinition('bbsub') ?>" /></a>
-			<a onclick="insert('sup','/sup')"><img src="<?php echo $path ?>buttons/text_superscript.gif" alt="<?php echo $this->Context->GetDefinition('bbsup') ?>" title="<?php echo $this->Context->GetDefinition('bbsup') ?>" /></a>
 			<a onclick="insertURL()"><img src="<?php echo $path ?>buttons/text_url.gif" alt="<?php echo $this->Context->GetDefinition('bburl') ?>" title="<?php echo $this->Context->GetDefinition('bburl') ?>" /></a>
-			<a onclick="insertMail()"><img src="<?php echo $path ?>buttons/text_mail.gif" alt="<?php echo $this->Context->GetDefinition('bbmail') ?>" title="<?php echo $this->Context->GetDefinition('bbmail') ?>" /></a>
+
+			<p>
+			Si vous souhaitez insérer du contenu comme des vidéos, des images ou des mp3s ce n'est pas compliqué :<br />mettez juste le lien, on se charge de l'afficher dans le player qui va bien (cf. la <a title="Consulter la Foire aux Questions" href="<?php echo $Context->Configuration['WEB_ROOT']?>page/faq">FAQ</a>).
+			</p>
 			
 			<?php
 			
