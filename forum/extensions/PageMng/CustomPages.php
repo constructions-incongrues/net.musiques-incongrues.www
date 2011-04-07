@@ -1,4 +1,4 @@
-<?php return array(0 => array('tab' => 'Agenda', 'page' => 'events', 'url' => '/forum/events/', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6), 'hidden' => ''), 1 => array('tab' => 'Releases', 'page' => 'releases', 'url' => '/forum/releases/', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 4, 2 => 7, 3 => 8, 4 => 9, 5 => 10, 6 => 5, 7 => 2, 8 => 3, 9 => 6), 'hidden' => ''), 2 => array('tab' => 'Labels', 'page' => 'labels', 'url' => 'http://www.musiques-incongrues.net/forum/labels', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6), 'hidden' => ''), 3 => array('tab' => 'Émissions', 'page' => 'emissions', 'url' => 'http://www.musiques-incongrues.net/forum/shows', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6), 'hidden' => ''), 4 => array('tab' => 'TVi', 'page' => 'tvi', 'url' => 'http://www.tele-incongrue.net/', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 4, 2 => 7, 3 => 8, 4 => 9, 5 => 10, 6 => 5, 7 => 2, 8 => 3, 9 => 6), 'hidden' => ''), 5 => array('tab' => 'Œil', 'page' => 'Oeil', 'url' => '/forum/oeil/', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6), 'hidden' => ''), 6 => array('tab' => 'Discussions', 'page' => 'discussions', 'url' => '/forum/discussions/', 'html' => 0, 'custom' => 0, 'attribs' => 'class="Pink"', 'roles' => array(0 => 0, 1 => 4, 2 => 7, 3 => 8, 4 => 9, 5 => 10, 6 => 5, 7 => 2, 8 => 3, 9 => 6), 'hidden' => ''), 7 => array('tab' => 'Categories', 'page' => 'categories', 'url' => '/forum/categories/', 'html' => 0, 'custom' => 0, 'attribs' => 'class="Pink"', 'roles' => array(), 'hidden' => ''), 8 => array('tab' => 'Search', 'page' => 'search', 'url' => '/forum/search/', 'html' => 0, 'custom' => 0, 'attribs' => 'class="Pink"', 'roles' => array(), 'hidden' => ''), 9 => array('tab' => 'Settings', 'page' => 'settings', 'url' => '/forum/settings/', 'html' => 0, 'custom' => 0, 'attribs' => 'class="Pink"', 'roles' => array(0 => 0, 1 => 4, 2 => 7, 3 => 8, 4 => 9, 5 => 10, 6 => 5, 7 => 2, 8 => 3, 9 => 6), 'hidden' => ''), 10 => array('tab' => 'Ego', 'page' => 'ego', 'url' => 'http://www.musiques-incongrues.net/forum/s/ego', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Pink"', 'roles' => array(), 'hidden' => ''), 11 => array('tab' => 'Dons', 'page' => 'dons', 'url' => 0, 'html' => '<div id="pourquoijedonnemesorganes">
+<?php return array(0 => array('tab' => 'Agenda', 'page' => 'events', 'url' => '/forum/events/', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6, 8 => 12, 9 => 13, 10 => 14), 'hidden' => ''), 1 => array('tab' => 'Releases', 'page' => 'releases', 'url' => '/forum/releases/', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 4, 2 => 7, 3 => 8, 4 => 9, 5 => 10, 6 => 5, 7 => 2, 8 => 3, 9 => 6, 10 => 12, 11 => 13, 12 => 14), 'hidden' => ''), 2 => array('tab' => 'Labels', 'page' => 'labels', 'url' => 'http://www.musiques-incongrues.net/forum/labels', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6, 8 => 12, 9 => 13, 10 => 14), 'hidden' => ''), 3 => array('tab' => 'Émissions', 'page' => 'emissions', 'url' => 'http://www.musiques-incongrues.net/forum/shows', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6, 8 => 12, 9 => 13, 10 => 14), 'hidden' => ''), 4 => array('tab' => 'TVi', 'page' => 'tvi', 'url' => 'http://www.tele-incongrue.net/', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 4, 2 => 7, 3 => 8, 4 => 9, 5 => 10, 6 => 5, 7 => 2, 8 => 3, 9 => 6, 10 => 12, 11 => 13, 12 => 14), 'hidden' => ''), 5 => array('tab' => 'Radio', 'page' => 'radio', 'url' => 'http://www.musiques-incongrues.net/forum/radio/', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 5, 2 => 12, 3 => 13, 4 => 3, 5 => 7, 6 => 4, 7 => 2, 8 => 6, 9 => 14), 'hidden' => ''), 6 => array('tab' => 'Œil', 'page' => 'Oeil', 'url' => '/forum/oeil/', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Eyes"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6, 8 => 12, 9 => 13, 10 => 14), 'hidden' => ''), 7 => array('tab' => 'Discussions', 'page' => 'discussions', 'url' => '/forum/discussions/', 'html' => 0, 'custom' => 0, 'attribs' => 'class="Pink"', 'roles' => array(0 => 0, 1 => 4, 2 => 7, 3 => 8, 4 => 9, 5 => 10, 6 => 5, 7 => 2, 8 => 3, 9 => 6, 10 => 12, 11 => 13, 12 => 14), 'hidden' => ''), 8 => array('tab' => 'Categories', 'page' => 'categories', 'url' => '/forum/categories/', 'html' => 0, 'custom' => 0, 'attribs' => 'class="Pink"', 'roles' => array(), 'hidden' => ''), 9 => array('tab' => 'Search', 'page' => 'search', 'url' => '/forum/search/', 'html' => 0, 'custom' => 0, 'attribs' => 'class="Pink"', 'roles' => array(), 'hidden' => ''), 10 => array('tab' => 'Settings', 'page' => 'settings', 'url' => '/forum/settings/', 'html' => 0, 'custom' => 0, 'attribs' => 'class="Pink"', 'roles' => array(0 => 0, 1 => 4, 2 => 7, 3 => 8, 4 => 9, 5 => 10, 6 => 5, 7 => 2, 8 => 3, 9 => 6, 10 => 12, 11 => 13, 12 => 14), 'hidden' => ''), 11 => array('tab' => 'Ego', 'page' => 'ego', 'url' => 'http://www.musiques-incongrues.net/forum/s/ego', 'html' => 0, 'custom' => 1, 'attribs' => 'class="Pink"', 'roles' => array(), 'hidden' => ''), 12 => array('tab' => 'Dons', 'page' => 'dons', 'url' => 0, 'html' => '<div id="pourquoijedonnemesorganes">
 <h2 class="surtout donate-1">Pourquoi faire un don ? </h2>
 
 <p>
@@ -71,7 +71,7 @@ En cliquant sur le bouton Paypal ci-dessous, en nous envoyant un chèque ou en n
 <li><a href="http://www.thibaulthuertas.com/">Super Promotion</a></li>
 <li><a href="http://www.ouiedire.net/">Valkiri</a></li>
 <li><a href="http://egotwister.com/">Yan</a>
-<li><a href="http://n-roll.blogspot.com/">nroll</a>', 'custom' => 1, 'attribs' => 'class="dons"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6), 'hidden' => ''), 12 => array('tab' => 'Contact', 'page' => 'contact', 'url' => 0, 'html' => '<h2 class="surtout donate-2" id="20">Nous contacter</h2> 
+<li><a href="http://n-roll.blogspot.com/">nroll</a>', 'custom' => 1, 'attribs' => 'class="dons"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6, 8 => 12, 9 => 13, 10 => 14), 'hidden' => ''), 13 => array('tab' => 'Contact', 'page' => 'contact', 'url' => 0, 'html' => '<h2 class="surtout donate-2" id="20">Nous contacter</h2> 
 <div id="faq">
 Soyons bien clairs : le moyen idéal pour nous contacter est de se créer un compte sur le forum et de poster un message.<br  />
 Toutefois, pour les timides, il est possible de nous contacter par d\'autres biais :
@@ -81,7 +81,7 @@ Toutefois, pour les timides, il est possible de nous contacter par d\'autres bia
 <li><strong>en vrai :</strong> en zonant dans une des nombreuses soirées parisiennes annoncées dans l\'agenda du forum.</li>
 <br />
 <img src="http://bozoo.pastis-hosting.net/mail.jpg" alt="mail" />
-</div>', 'custom' => 1, 'attribs' => 'class="Faq"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6), 'hidden' => 1), 13 => array('tab' => 'Faq', 'page' => 'faq', 'url' => 0, 'html' => '<div id="faq"> 
+</div>', 'custom' => 1, 'attribs' => 'class="Faq"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6, 8 => 12, 9 => 13, 10 => 14), 'hidden' => 1), 14 => array('tab' => 'Faq', 'page' => 'faq', 'url' => 0, 'html' => '<div id="faq"> 
 
 <h2 class="surtout donate-2">Comment se servir du forum ? </h2> 
 
@@ -114,7 +114,7 @@ Toutefois, pour les timides, il est possible de nous contacter par d\'autres bia
 </ul>
 
 <h2 class="surtout donate-1" id="1">Comment poster une image ? <a href="#1">#</a></h2> 
-<p>Ecrire l\'adresse de l\' image entre les balises <strong> [img]http://[/img] </strong>et elle apparaitra comme par magie.
+<p>Écrire l\'adresse de l\'image et elle apparaitra comme par enchantement.
 <br /> 
 Par exemple&nbsp:<code>[img]http://www.momes.net/jouets/jouets-magie/magie-cape-sorcier.jpg[/img]</code></p> 
  
@@ -131,7 +131,7 @@ En clair : oui bien sûr. Il suffit de recopier la nouvelle adresse de la nouvel
  
 <h2 class="surtout donate-2" id="4">Comment poster une vidéo ? <a href="#4">#</a></h2> 
 <p> 
-Ecrire l\'adresse de la video et elle apparaitra comme par enchantement (<strong>ATTENTION SEULEMENT</strong> 
+Écrire l\'adresse de la video et elle apparaitra comme par enchantement (<strong>ATTENTION SEULEMENT</strong> 
 <a href="http://www.youtube.com">Youtube</a>, <a href="http://www.dailymotion.com">Dailymotion</a> et <a href="http://www.vimeo.com">Vimeo</a> 
 pour l\'instant)
 <br /> 
@@ -300,11 +300,31 @@ Une envie ? Un caprice ? Nous sommes à l\'écoute (et demandeurs !). Il suffit 
 C\'est aussi l\'endroit où il est possible de voter pour les idées existantes. Nous consultons attentivement la liste lors que chaque réunion aux <a href="http://www.musiques-incongrues.net/forum/discussion/3105/bienvenue-aux-bureaux-incongrus/">Bureaux Incongrus</a> :)
 
 </div>
-</div>', 'custom' => 1, 'attribs' => 'class="Faq"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 6), 'hidden' => ''), 14 => array('tab' => 'A propos', 'page' => 'about', 'url' => 0, 'html' => '<div id="faq"> 
-<h2 class="surtout donate-1" id="1">En savoir plus</h2>
+</div>', 'custom' => 1, 'attribs' => 'class="Faq"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 6, 7 => 12, 8 => 13, 9 => 14), 'hidden' => ''), 15 => array('tab' => 'À propos', 'page' => 'about', 'url' => 0, 'html' => '<div id="faq">
+<h2 class="surtout donate-1" id="1">Musiques Incongrues qu\'est-ce que c\'est ?</h2>
 
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras accumsan euismod nibh molestie tempus. Nulla accumsan, leo ac congue porta, lorem tortor ultricies diam, vel vehicula dolor lacus a dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor lacus, hendrerit non vestibulum vel, iaculis imperdiet ante. In dignissim ultrices iaculis. Morbi id nunc vel tortor scelerisque molestie. Sed vitae turpis at neque rutrum elementum nec nec felis. Vestibulum eget sapien quis sapien congue porta. In imperdiet dapibus hendrerit. Vivamus venenatis volutpat leo, ut placerat dolor pellentesque et. Duis ipsum elit, vulputate at ornare vitae, accumsan ac nibh. Phasellus odio nulla, laoreet nec accumsan feugiat, aliquet vel magna. Suspendisse ac lacus et neque blandit molestie. Donec semper imperdiet diam, sit amet pulvinar odio hendrerit sed. In et metus turpis, at imperdiet nisl. Proin in felis id nisi iaculis tempor. Nulla bibendum justo luctus dolor scelerisque nec egestas nulla suscipit. Integer id odio eu diam ultrices sollicitudin. Aliquam erat volutpat. Vivamus in orci est.</p>
+Musiques Incongrues est une communauté autogérée née en 2006 et basée principalement à Paris, mais rayonnant aussi partout dans le monde grâce à la puissance de l\'INTERNET !
+</p>
+<p>
+Forum où l\'on parle musiques décalées, électroniques ou pas, c\'est aussi un agenda de sorties, une radio et télé incongrues. Plus largement, une base de données où vous trouverez une myriade d\'images et de videos, des infos sur la culture "undergound" et "overground", mais aussi tout ce qui est incongru en général.
+</p>
+<p>
+Tout ce que vous verrez et entendrez ici y a été apporté par les membres du forum, c\'est à dire VOUS aussi, à partir du moment ou vous décidez de poster.
+Ici le mot "participatif" n\'est pas juste un mot : des projets comme <a href="http://www.tele-incongrue.net/">TVi</a>, <a href="http://www.pardon-my-french.fr/">Pardon my french</a> ou <a href="http://thisisradioclash.org">This is Radioclash</a> sont nés et prospèrent grâce aux idées et à l\'énergie des membres du forum.
+</p>
+<p>
+Si vous avez une idée de projet collectif, il ne tient qu\'à vous de la soumettre : si elle emporte l\'adhésion et si vous êtes prêt vous aussi à vous investir, elle trouvera ici la place et les moyens de vivre.
+</p>
+<p>
+Projet en développement continu grâce à <a href="http://www.musiques-incongrues.net/forum/account/2/">Michel Bertier</a> et <a href="http://www.musiques-incongrues.net/forum/account/1/">Johan</a> assistés d\'un noyau dur de membres actifs, Musiques Incongrues se construit en permanence et plus particulièrement le jeudi soir lors des fameuses "Constructions Incongrues parties" où nos petits travailleurs de l\'ombre œuvrent pour un meilleur Musiques Incongrues et développent les projets adjacents.
+</p>
+<p>
+Car cette communauté n\'est pas seulement virtuelle : plusieurs membres de ce forum organisent des soirées et/ou y participent régulièrement, principalement à Paris mais aussi à Nantes, Rennes, Bruxelles ou Liège par exemple. L\'occasion de se rencontrer en chair, en os et en ananas !
+</p>
+
+<p> Musiques Incongrues est aussi sur Facebook : <a href="http://www.facebook.com/musiquesincongrues">http://www.facebook.com/musiquesincongrues</a>.</p>
+
 
 <h2 class="surtout donate-2" id="2">Découvrir les projets</h2>
 
@@ -322,11 +342,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras accumsan euismod n
 	ou quelqu\'un d\'autre. 
 	</p> 
 
-	<h3><a http://www.musiques-incongrues.net/forum/discussion/2305/4/les-productions-incongrues-lisez-tous-sil-vous-plait/">Productions Incongrue</a></h3> 
-	<p> 
-	Texte rédiger par Puyo Puyo 
-	</p> 
-	
 <h2 class="surtout donate-1" id="1">Admirer les stickers</h2>
 
 <p> 
@@ -356,7 +371,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras accumsan euismod n
 
 <h2 class="surtout donate-1" id="1">Faire un don</h2>
 
-<p>C\'est par <a href="http://www.musiques-incongrues.net/forum/page/dons">ici</a></p>', 'custom' => 1, 'attribs' => 'class="Faq"', 'roles' => array(0 => 4), 'hidden' => ''), 15 => array('tab' => 'Android', 'page' => 'android', 'url' => 0, 'html' => '<h2 class="top-title-category-label" id="5">Applications Android</h2> 
+<p>A vot\' bon coeur messieurs dames c\'est par ici :  <a href="http://www.musiques-incongrues.net/forum/page/dons">ici</a></p>', 'custom' => 1, 'attribs' => 'class="Faq"', 'roles' => array(0 => 0, 1 => 5, 2 => 12, 3 => 3, 4 => 7, 5 => 4, 6 => 2, 7 => 6, 8 => 13, 9 => 14), 'hidden' => ''), 16 => array('tab' => 'Android', 'page' => 'android', 'url' => 0, 'html' => '<h2 class="top-title-category-label" id="5">Applications Android</h2> 
 <p>Vous trouverez ici toutes les informations utiles pour télécharger/tester la version pour Android du forum.</p> 
 
 
@@ -369,4 +384,4 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras accumsan euismod n
 
 <p>	Vous pouvez télécharger les sources ici : <a href="https://github.com/contructions-incongrues/musiques-incongrues-android">https://github.com/contructions-incongrues/musiques-incongrues-android</a><br/> 
 <a href="https://github.com/contructions-incongrues/musiques-incongrues-android/wiki">Wiki sur Github</a> 
-<p>	Les sources sont placées sous licence <a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a> </p>', 'custom' => 1, 'attribs' => '', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6), 'hidden' => 1)); ?>
+<p>	Les sources sont placées sous licence <a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a> </p>', 'custom' => 1, 'attribs' => '', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 2, 7 => 6, 8 => 12, 9 => 13, 10 => 14), 'hidden' => 1)); ?>
