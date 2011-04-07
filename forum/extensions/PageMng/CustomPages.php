@@ -116,7 +116,7 @@ Toutefois, pour les timides, il est possible de nous contacter par d\'autres bia
 <h2 class="surtout donate-1" id="1">Comment poster une image ? <a href="#1">#</a></h2> 
 <p>Écrire l\'adresse de l\'image et elle apparaitra comme par enchantement.
 <br /> 
-Par exemple&nbsp:<code>[img]http://www.momes.net/jouets/jouets-magie/magie-cape-sorcier.jpg[/img]</code></p> 
+Par exemple&nbsp:<code>http://www.momes.net/jouets/jouets-magie/magie-cape-sorcier.jpg</code></p> 
  
 <h2 class="surtout donate-2" id="2">Peut-on redimensionner une image ? <a href="#2">#</a></h2>
 <p>
