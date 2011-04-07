@@ -66,7 +66,6 @@ if (in_array($Context->SelfUrl, array("post.php", "comments.php"))) {
 			<a onclick="insert('align=right','/align')"><img src="<?php echo $path ?>buttons/text_align_right.gif" alt="<?php echo $this->Context->GetDefinition('bbalignright') ?>" title="<?php echo $this->Context->GetDefinition('bbalignright') ?>" /></a>
 			<a onclick="showColor()"><img src="<?php echo $path ?>buttons/text_color.gif" alt="<?php echo $this->Context->GetDefinition('bbcolor') ?>" title="<?php echo $this->Context->GetDefinition('bbcolor') ?>" /></a>
 			<a onclick="showFont()"><img src="<?php echo $path ?>buttons/text_font.gif" alt="<?php echo $this->Context->GetDefinition('font') ?>" title="<?php echo $this->Context->GetDefinition('bbfont') ?>" /></a>
-			<a onclick="insertImage()"><img src="<?php echo $path ?>buttons/text_image.gif" alt="<?php echo $this->Context->GetDefinition('bbimage') ?>" title="<?php echo $this->Context->GetDefinition('bbimage') ?>" /></a>
 			<a onclick="insertURL()"><img src="<?php echo $path ?>buttons/text_url.gif" alt="<?php echo $this->Context->GetDefinition('bburl') ?>" title="<?php echo $this->Context->GetDefinition('bburl') ?>" /></a>
 			
 			<?php
