@@ -15,7 +15,7 @@ Author Url: http://scammell.co.uk/
  $JQPPath = 'extensions/JQuery/plugins/';
  // Please don't mess with these unless you know what you're doing, otherwise you can break update version checking
  $JQext = 'v15-1.2.6';
- $JQjs = '1.2.6';
+ $JQjs = '1.5.2';
 
  // Set the Extension and JavaScript version numbers.
  if (!array_key_exists('JQUERY_VERSION_EXT', $Configuration) || ($Configuration['JQUERY_VERSION_EXT'] != $JQext)) {
@@ -44,7 +44,7 @@ Author Url: http://scammell.co.uk/
   global $Head, $Configuration, $Context;
    /* Use jQuery 1.2.6 */
    // Default - Minified
-   if ($Context->Configuration['JQUERY_FILE_TYPE'] == '0') {$Head->AddScript('extensions/JQuery/jquery-1.2.6.min.js');}
+   if ($Context->Configuration['JQUERY_FILE_TYPE'] == '0') {$Head->AddScript('extensions/JQuery/jquery-1.5.2.min.js');}
    // Compressed - Packed - only use this if you can't get GZ on your server
    elseif ($Context->Configuration['JQUERY_FILE_TYPE'] == '1') {$Head->AddScript('extensions/JQuery/jquery-1.2.6.pack.js');}
    // Development Mode - Original
