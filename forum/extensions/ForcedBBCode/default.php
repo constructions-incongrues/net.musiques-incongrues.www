@@ -69,7 +69,7 @@ if (in_array($Context->SelfUrl, array("post.php", "comments.php"))) {
 			<a onclick="insertURL()"><img src="<?php echo $path ?>buttons/text_url.gif" alt="<?php echo $this->Context->GetDefinition('bburl') ?>" title="<?php echo $this->Context->GetDefinition('bburl') ?>" /></a>
 
 			<p>
-			Si vous souhaitez insérer du contenu comme des vidéos, des images ou des mp3s ce n'est pas compliqué :<br />mettez juste le lien, on se charge de l'afficher dans le player qui va bien (cf. la <a title="Consulter la Foire aux Questions" href="<?php echo $Context->Configuration['WEB_ROOT']?>page/faq">FAQ</a>).
+			Si vous souhaitez insérer du contenu comme des vidéos, des images ou des mp3s ce n'est pas compliqué :<br />mettez juste le lien, on se charge de l'afficher dans le player qui va bien (cf. la <a title="Consulter la Foire aux Questions" href="<?php echo $this->Context->Configuration['WEB_ROOT']?>page/faq">FAQ</a>).
 			</p>
 			
 			<?php
