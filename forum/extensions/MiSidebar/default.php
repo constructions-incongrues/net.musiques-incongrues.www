@@ -22,6 +22,19 @@ $Head->AddStyleSheet('extensions/SidepanelRotator/style.css');
 // Sample structure
 $blocks = array('sample' => array('html' => '', 'css' => array(''), 'js' => array(), 'userIds' => array()));
 
+// Discussions essentielles
+$blocks['understand'] = array('html' => '
+<h2>Comprendre</h2>
+<ul class="ailleurs-links">
+	<li><a href="http://www.musiques-incongrues.net/forum/discussion/3055/ananas-ex-machina" title="Chaque semaine, le forum évolue. C\'est là qu\'on présente les progrès réalisés">Ananas Ex Machina</a></li>
+	<li><a href="http://www.musiques-incongrues.net/forum/discussion/3278/lignes-topiques" title="Obsessions collaboratives">Lignes Topiques</a></li>
+	<li><a href="http://www.musiques-incongrues.net/forum/discussion/816/musique-approximative" title="Pour discuter du site Musique Approximative et de ce qu\'on peut y entendre">Musique Approximative</a></li>
+	<li><a href="http://www.musiques-incongrues.net/forum/discussion/1869/pardon-my-french" title="Proposez vos créations">Pardon My French</a></li>
+	<li><a href="http://www.musiques-incongrues.net/forum/discussion/4148/-radio-substantifique-moelle-incongrue-episode-2-" title="Comprendre comment fonctionne notre radio automatique et étonnante">Radio Substantifique Moëlle</a></li>
+	<li><a href="http://www.musiques-incongrues.net/forum/discussion/3787/this-is-radioclash" title="Don\'t hate the Radioclash, be the Radioclash !">This is Radioclash</a></li>
+</ul>
+');
+
 // Ailleurs
 $blocks['ailleurs'] = array('html' => '
 <h2>Ailleurs</h2>
@@ -107,8 +120,8 @@ $blocks['introspection'] = array('html' => ob_get_clean());
 
 // Setup controller <=> blocks mappings
 $mappings = array(
-	'default'     => array('randomDiscussion', 'ailleurs', 'introspection'),
-	'discussions' => array('randomDiscussion', 'ailleurs', 'introspection', 'affiner'),
+	'default'     => array('randomDiscussion', 'understand', 'introspection'),
+	'discussions' => array('randomDiscussion', 'understand', 'introspection', 'affiner'),
 	'comments'    => array('randomDiscussion', 'topicActions', 'instrospection'),
 	'label'       => array(),
 	'show'        => array(),
