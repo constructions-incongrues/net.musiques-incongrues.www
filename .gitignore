@@ -7,3 +7,7 @@ data/sql/vanilla.styles.sql
 forum/themes/foot.php
 forum/themes/menu.php
 forum/radio/js/Flower_v1.0/uncompressed/soundplayer/flower_soundplayer.js
+forum/extensions/PageMng/CustomPages.php
+forum/extensions/Vanillacons/smilies.js
+forum/extensions/Vanillacons/smilies.php
+etc/*.ini
