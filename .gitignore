@@ -11,3 +11,4 @@ forum/extensions/PageMng/CustomPages.php
 forum/extensions/Vanillacons/smilies.js
 forum/extensions/Vanillacons/smilies.php
 etc/*.ini
+forum/extensions/vanilla-player/js/inlineplayer.js
