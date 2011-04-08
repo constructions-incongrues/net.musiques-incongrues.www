@@ -110,7 +110,6 @@ $Smilies["pin-reverse"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organi
 $Smilies["pin-saint"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-saint.gif";
 $Smilies["pin-santa"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-santa.jpg";
 $Smilies["pin-skull1"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-skull1.jpg";
-$Smilies["pin-skull2"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-skull2.jpg";
 $Smilies["pin-skull3"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-skull3.gif";
 $Smilies["pin-sort"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-sort.gif";
 $Smilies["pin-t"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-t.png";
