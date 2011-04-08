@@ -23,7 +23,6 @@ $Context->Dictionary['VanillaconsRebuilded'] = 'The smilies have succesfully bee
 $Context->Dictionary['SmiliesFound'] = 'Smilies found.';
 
 if (in_array($Context->SelfUrl, array("post.php", "comments.php", "settings.php"))) {
-
 	if( file_exists( dirname(__FILE__) . '/smilies.php' )) {
 		include(dirname(__FILE__) . '/smilies.php');
 	}
@@ -55,8 +54,6 @@ if (in_array($Context->SelfUrl, array("post.php", "comments.php", "settings.php"
 		function Rebuild() {
 			$count = 0;
 			$dircount = 0;
-			$fh  = fopen(dirname(__FILE__).'/smilies.js', 'w');
-			$fh2 = fopen(dirname(__FILE__).'/smilies.php', 'w');
 			$Smilies = "<?php\n";
 			$Output  = "var arrSmilies = new Array();\n";
 			$SmiliesDir = $this->Context->Configuration["APPLICATION_PATH"] . $this->Context->Configuration["SMILIES_PATH"];
@@ -77,10 +74,9 @@ if (in_array($Context->SelfUrl, array("post.php", "comments.php", "settings.php"
 			}
 			$Smilies .= "\$Configuration['SMILIES_CATEGORIES'] = \"".$dircount."\";\n";
 			$Smilies .= "?>";
-			fwrite($fh,  $Output);
-			fwrite($fh2, $Smilies);
-			fclose($fh);	// smilies.js
-			fclose($fh2);	// smilies.php
+			file_put_contents(dirname(__FILE__).'/smilies.js', $Output);
+			file_put_contents(dirname(__FILE__).'/smilies.php', $Smilies);
+
 			return $count;
 		}
 
@@ -159,7 +155,9 @@ if (in_array($Context->SelfUrl, array("post.php", "comments.php", "settings.php"
 		$Context->AddToDelegate("DiscussionForm", "CommentForm_PreButtonsRender", "CommentForm_Vanillacons");
 		$Context->AddToDelegate("DiscussionForm", "DiscussionForm_PreButtonsRender", "CommentForm_Vanillacons");
 	}
-
+	
+	include(dirname(__FILE__) . '/smilies.php');
+	
 	// Global StringFormatter
 	$VanillaconsFormatter = $Context->ObjectFactory->NewObject($Context, "VanillaconsFormatter");
 	$VanillaconsFormatter->LoadSmilies($Smilies);
