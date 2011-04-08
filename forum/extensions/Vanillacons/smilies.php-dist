@@ -94,6 +94,7 @@ $Smilies["pin-crotal"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic
 $Smilies["pin-cry"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-cry.gif";
 $Smilies["pin-devil"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-devil.jpg";
 $Smilies["pin-freaky"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-freaky.gif";
+$Smilies["pin-fukushima"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-fukushima.gif";
 $Smilies["pin-funk"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-funk.jpg";
 $Smilies["pin-jump"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-jump.gif";
 $Smilies["pin-laught"] = "@PATHS.BASEURI@/extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-laught.gif";
