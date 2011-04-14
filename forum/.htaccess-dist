@@ -37,6 +37,8 @@ RewriteRule ^shows/thebrain$ index.php?CategoryID=10 [QSA,L]
 RewriteRule ^shows/thebrain/$ index.php?CategoryID=10 [QSA,L]
 RewriteRule ^shows/gbbg$ index.php?CategoryID=23 [QSA,L]
 RewriteRule ^shows/gbbg/$ index.php?CategoryID=23 [QSA,L]
+RewriteRule ^shows/cobrafoutre$ index.php?CategoryID=29 [QSA,L]
+RewriteRule ^shows/cobrafoutre/$ index.php?CategoryID=29 [QSA,L]
 
 #Discussions
 RewriteRule ^discussions$ index.php [QSA,L]
