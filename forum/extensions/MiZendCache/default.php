@@ -20,7 +20,7 @@ $cacheManager = new Zend_Cache_Manager();
 $cacheManager->setCacheTemplate('functions', 
 	array(
 		'frontend' => array('name' => 'Function', 'options' => array('cache_id_prefix' => 'MiZendCache_Miner')), 
-		'backend'  => array('name' => 'File', 'options' => array('cache_dir' => '/tmp/', 'file_name_prefix' => 'mi_miner_cache'))
+		'backend'  => array('name' => 'File', 'options' => array('cache_dir' => $Context->Configuration['VANILLA_MINER_CACHEDIR'], 'file_name_prefix' => 'mi_miner_cache'))
 	)
 );
 
