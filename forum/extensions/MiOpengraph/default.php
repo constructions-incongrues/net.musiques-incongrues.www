@@ -9,7 +9,7 @@
  */
 
 // Helpers
-function callService($segment, $filterFieldName, $filterFieldValue, $sortField = 'contributed_at', $sortDirection = 'desc') {
+function ogCallService($segment, $filterFieldName, $filterFieldValue, $sortField = 'contributed_at', $sortDirection = 'desc') {
 	$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/%s/get?format=json&%s=%s&sort_field=%s&sort_direction=%s&limit=1', $segment, $filterFieldName, $filterFieldValue, $sortField, $sortDirection);
 	$curl = curl_init($url);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -35,13 +35,13 @@ if ($Context->SelfUrl == 'comments.php') {
 	$ogMetaTags['title'] = $discussion['Name'];
 	
 	// Look for an image
-	$imagesDiscussion = callService('images', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
+	$imagesDiscussion = ogCallService('images', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
 	if (is_array($imagesDiscussion) && $imagesDiscussion['num_found'] > 0) {
 		$ogMetaTags['image'] = $imagesDiscussion[0]['url'];
 	}
 	
 	// Check if discussion holds any link to an MP3 file
-	$mp3sDiscussion = callService('mp3', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
+	$mp3sDiscussion = ogCallService('mp3', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
 	if (is_array($mp3sDiscussion) && $mp3sDiscussion['num_found'] > 0) {
 		$ogMetaTags['type'] = 'song';
 		$ogMetaTags['audio'] = $mp3sDiscussion[0]['url'];
