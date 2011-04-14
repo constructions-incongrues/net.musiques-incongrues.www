@@ -61,7 +61,10 @@ if ($Context->SelfUrl == 'comments.php') {
 }
 
 // Add meta tags to header
-foreach ($ogMetaTags as $name => $value) {
-	$Head->AddString(sprintf('<meta property="og:%s" content="%s" />'."\n", $name, $value));
+// TODO : enable delegation of OG tags settings in any extension
+if (!array_intersect(explode('/', $_SERVER['REQUEST_URI']), array('shows', 'labels'))) {
+	foreach ($ogMetaTags as $name => $value) {
+		$Head->AddString(sprintf('<meta property="og:%s" content="%s" />'."\n", $name, $value));
+	}
 }
 
