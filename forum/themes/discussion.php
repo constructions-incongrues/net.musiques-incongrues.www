@@ -1,26 +1,22 @@
 <?php
 // Find out if discussion contains any MP3s
+// TODO : move to MiVanillaMiner extension
 if (!function_exists('checkForMp3s')) {
-	function checkForMp3s($key, $discussionID) {
-		$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/mp3/get?format=json&%s=%d', $key, $discussionID);
+	function checkForMp3s($key, $discussionID, $configuration) {
+		$url = sprintf('%s/collections/links/segments/mp3/get?format=json&%s=%d', $configuration['VANILLA_MINER_URL'], $key, $discussionID);
 		$curl = curl_init($url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		$response = json_decode(curl_exec($curl), true);
 		return $response;
 	}
 }
-// TODO : this is definitely *not* the right place for this
-// Setup autoloading
-require_once 'Zend/Loader/Autoloader.php';
-Zend_Loader_Autoloader::getInstance();
-
-// Instanciate and configure cache handler
-$cache = Zend_Cache::factory('Function', 'File');
 
 // Call service and cache response
-$responseDiscussion = $cache->call('checkForMp3s', array('discussion_id', $Discussion->DiscussionID));
-//$responseCreator = $cache->call('checkForMp3s', array('contributor_id', $Discussion->AuthUserID));
-//$responseLastAuthor = $cache->call('checkForMp3s', array('contributor_id', $Discussion->LastUserID));
+$responseDiscussion = $this->Context->ZendCacheManager->getCache('functions')->call(
+	'checkForMp3s', 
+	array('discussion_id', $Discussion->DiscussionID, $this->Context->Configuration),
+	array('discussions', sprintf('discussion_%d', $Discussion->DiscussionID))
+);
 
 // Note: This file is included from the library/Vanilla/Vanilla.Control.SearchForm.php
 // class and also from the library/Vanilla/Vanilla.Control.DiscussionForm.php's

@@ -1,5 +1,6 @@
 <?php
 // Enabled Extensions
+include($Configuration['EXTENSIONS_PATH']."MiZendCache/default.php");
 include($Configuration['EXTENSIONS_PATH']."Audioscrobbler/default.php");
 include($Configuration['EXTENSIONS_PATH']."GuestWelcome/default.php");
 include($Configuration['EXTENSIONS_PATH']."GoogleAnalytics/default.php");
