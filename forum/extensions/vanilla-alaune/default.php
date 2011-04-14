@@ -35,12 +35,8 @@ $Head->AddStyleSheet('http://fonts.googleapis.com/css?family=Molengo');
 $uid = $Context->Session->UserID;
 if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && strtolower(ForceIncomingString('Page', '')) != 'contact' && strtolower(ForceIncomingString('Page', '')) != 'about' && !ForceIncomingInt('CategoryID', null))
 {
-	// Setup autoloading
-	require_once 'Zend/Loader/Autoloader.php';
-	Zend_Loader_Autoloader::getInstance();
-	
 	// Instanciate and configure cache handler
-	$cache = Zend_Cache::factory('Function', 'File');
+	$cache = $Context->ZendCacheManager->getCache('functions');
 	
 	$Head->AddScript('extensions/vanilla-alaune/js/behaviors.js');
 	$sticky_discussions = DiscussionsPeer::getStickyDiscussions($Context);
@@ -64,7 +60,7 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
 			$discussions_strings[] = sprintf($discussion_tpl,
 			$modulo_class,
 			$url_topic,
-			$cache->call('getFirstImageUrl', array($discussion['DiscussionID'])),
+			$cache->call('getFirstImageUrl', array($discussion['DiscussionID']), array('discussions', sprintf('discussion_%d', $discussion['DiscussionID']))),
 			$discussion['Name'],
 			$discussion['Name'],
 			$url_topic,

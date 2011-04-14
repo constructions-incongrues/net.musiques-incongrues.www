@@ -1,16 +1,12 @@
 <?php
-require('Zend/Loader/Autoloader.php');
 require(dirname(__FILE__).'/radio.lib.php');
 
 // Get configuration from Vanilla
-$Configuration = array();
-require(dirname(__FILE__).'/../../conf/settings.php');
-
-// Setup Zend Framework autoloading
-Zend_Loader_Autoloader::getInstance();
+require(dirname(__FILE__).'/../../appg/settings.php');
+require(dirname(__FILE__).'/../../appg/init_vanilla.php');
 
 // Instanciate and configure cache handler
-$cache = Zend_Cache::factory('Function', 'File');
+$cache = $Context->ZendCacheManager->getCache('functions');
 
 // TODO : refactor using http_build_query
 
