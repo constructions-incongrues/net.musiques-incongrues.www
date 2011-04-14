@@ -29,12 +29,24 @@ $requestedCategoryId = ForceIncomingInt('CategoryID', null);
 if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsProjectsCategories)) || in_array($postBackAction, array('Labels', 'Shows'))) {
 
 	$Context->AddToDelegate('DiscussionGrid', 'PreRender', 'MiProject_RenderGridHeader');
+
+	$show = MiProjectsDatabasePeer::getProjects(array(ForceIncomingInt('CategoryID', null)), $Context);
 	
+	// Setup OpenGraph metatags
+	$ogMetaTags['title'] = sprintf('%s - Musiques Incongrues', $show[0]['Name']);
+	$ogMetaTags['url'] = sprintf('http://%s%s', $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
+	$ogMetaTags['description'] = $show[0]['Description'];
+	$ogMetaTags['image'] = $show[0]['ImageUrl'];
+	$ogMetaTags['site_name'] = 'Musiques Incongrues';
+	foreach ($ogMetaTags as $name => $value) {
+		$Head->AddString(sprintf('<meta property="og:%s" content="%s" />'."\n", $name, $value));
+	}
+
 	// Update sidebar
 	if (isset($Panel)) {
 
 		// Inject custom sidebar contents
-		$show = MiProjectsDatabasePeer::getProjects(array(ForceIncomingInt('CategoryID', null)), $Context);
+	
 		if (count($show)) {
 			$Panel->addString(utf8_encode($show[0]['SidebarHtml']));
 		}
@@ -121,13 +133,21 @@ $Head->AddStyleSheet('extensions/MiProjects/css/style.css');
 
 class MiProjectPage
 {
+	/**
+	 * @var Context
+	 */
 	private $context;
 	private $type;
 	private $idsProjectsCategoriesSorted;
+	/**
+	 * @var Head
+	 */
+	private $head;
 
 	public function __construct(Context $context, Head $head, $type, array $idsProjectsCategoriesSorted)
 	{ 
 		$this->context = $context;
+		$this->head = $head;
 		$this->type = $type;
 		$this->idsProjectsCategoriesSorted = $idsProjectsCategoriesSorted;
 	}
@@ -382,6 +402,7 @@ function MiProject_RenderGridHeader(DiscussionGrid $grid)
 	$project = MiProjectsDatabasePeer::getProjects(array(ForceIncomingInt('CategoryID', null)), $grid->Context);
 	$project = $project[0];
 
+	
 	// Render template
 	$tplProject = <<<EOT
 <ol id="Discussions"> 
