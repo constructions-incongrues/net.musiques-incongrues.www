@@ -86,14 +86,11 @@ EOT;
 				}
 			}
 			
-			// Instanciate and configure cache handler
-			$cache = $Context->ZendCacheManager->getCache('functions');
-			
 			$Panel->addString(sprintf(
 				$tplStickies.'<hr />', 
 				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
 				$dbSticky['Name'], 
-				$cache->call('getFirstImageUrl', array($dbSticky['DiscussionID']), array('discussions', sprintf('discussion_%d', $dbSticky['DiscussionID']))),
+				getFirstImageUrl($dbSticky['DiscussionID']), array('discussions', sprintf('discussion_%d', $dbSticky['DiscussionID'])),
 				GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $dbSticky['DiscussionID'], '', '#Item_1', CleanupString($dbSticky['Name']).'/'),
 				$dbSticky['Name'],
 				truncate_text($dbSticky['Name'], 25),
