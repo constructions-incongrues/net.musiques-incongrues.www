@@ -1,22 +1,7 @@
 <?php
 // Find out if discussion contains any MP3s
-// TODO : move to MiVanillaMiner extension
-if (!function_exists('checkForMp3s')) {
-	function checkForMp3s($key, $discussionID, $configuration) {
-		$url = sprintf('%s/collections/links/segments/mp3/get?format=json&%s=%d', $configuration['VANILLA_MINER_URL'], $key, $discussionID);
-		$curl = curl_init($url);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		$response = json_decode(curl_exec($curl), true);
-		return $response;
-	}
-}
-
-// Call service and cache response
-$responseDiscussion = $this->Context->ZendCacheManager->getCache('functions')->call(
-	'checkForMp3s', 
-	array('discussion_id', $Discussion->DiscussionID, $this->Context->Configuration),
-	array('discussions', sprintf('discussion_%d', $Discussion->DiscussionID))
-);
+$minerClient = CI_Miner_Client::getInstance();
+$minerResponse = $minerClient->query('links', 'mp3', array('discussion_id' => $Discussion->DiscussionID));
 
 // Note: This file is included from the library/Vanilla/Vanilla.Control.SearchForm.php
 // class and also from the library/Vanilla/Vanilla.Control.DiscussionForm.php's
@@ -32,14 +17,14 @@ $this->DelegateParameters['DiscussionList'] = &$DiscussionList;
 $DiscussionList .= '
 <li id="Discussion_'.$Discussion->DiscussionID.'" class="Discussion'.$Discussion->Status.($Discussion->CountComments == 1?' NoReplies':'').($this->Context->Configuration['USE_CATEGORIES'] ? ' Category_'.$Discussion->CategoryID:'').($Alternate ? ' Alternate' : '').'">';
 	$this->CallDelegate('PreDiscussionOptionsRender');
-	if (is_array($responseDiscussion) && $responseDiscussion['num_found'] > 0) {
+	if (is_array($minerResponse) && $minerResponse['num_found'] > 0) {
 	$DiscussionList .= '<ul>
 		<li class="DiscussionType">
 			<span>'.$this->Context->GetDefinition('DiscussionType').'</span>'.DiscussionPrefix($this->Context, $Discussion).'
 		</li>
 		<li class="DiscussionTopic">
 			<span>'.$this->Context->GetDefinition('DiscussionTopic').'</span><a href="'.$UnreadUrl.'">'.$Discussion->Name.'</a>
-			<a href="'.$this->Context->Configuration['WEB_ROOT'].'radio/?discussion_id='.$Discussion->DiscussionID.'" title="Écouter le(s) '.$responseDiscussion['num_found'].' morceau(x) contenu(s) dans cette discussion avec la radio du forum" style="background-color:yellow;">♫'.$responseDiscussion['num_found'].'</a>
+			<a href="'.$this->Context->Configuration['WEB_ROOT'].'radio/?discussion_id='.$Discussion->DiscussionID.'" title="Écouter le(s) '.$minerResponse['num_found'].' morceau(x) contenu(s) dans cette discussion avec la radio du forum" style="background-color:yellow;">♫'.$minerResponse['num_found'].'</a>
 		</li>
 	';
 	} else {

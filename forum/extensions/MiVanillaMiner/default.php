@@ -8,6 +8,11 @@
  Author Url: http://github.com/trivoallan
  */
 
+// Instanciate and configure Miner client
+require(dirname(__FILE__).'/CI/Miner/Client.php');
+$cacheBackend = new Zend_Cache_Backend_File(array('cache_dir' => $Context->Configuration['VANILLA_MINER_CACHEDIR'], 'file_name_prefix' => 'mi_miner_cache'));
+CI_Miner_Client::getInstance($Configuration['VANILLA_MINER_URL'], $cacheBackend);
+
 if (in_array($Context->SelfUrl, array('comments.php', 'post.php'))) {
 	$Context->AddToDelegate('DiscussionForm','PostSaveComment','MiVanillaMiner_PostComment');
 	$Context->AddToDelegate('DiscussionForm','PostSaveDiscussion','MiVanillaMiner_PostComment');
@@ -57,9 +62,9 @@ function MiVanillaMiner_PostComment(&$DiscussionForm) {
 		));
 		$response = curl_exec($curl);
 		$status = curl_getinfo($curl);
+		// TODO : use vanilla notice collector
 		if ($status['http_code'] > 299) {
-			trigger_error(sprintf('Posting resources to %s did not succeed (HTTP status code %d)', $status['url'], $status['http_code']), E_USER_WARNING);
-			trigger_error($response);
+			trigger_error(sprintf("Posting resources to %s did not succeed (HTTP status code %d).\nResponse :\n%s", $status['url'], $status['http_code'], print_r($response, true)), E_USER_WARNING);
 		}
 		curl_close($curl);
 	}

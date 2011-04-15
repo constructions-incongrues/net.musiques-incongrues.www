@@ -1,6 +1,7 @@
 <?php
 // Enabled Extensions
-include($Configuration['EXTENSIONS_PATH']."MiZendCache/default.php");
+include($Configuration['EXTENSIONS_PATH']."MiZendFramework/default.php");
+include($Configuration['EXTENSIONS_PATH']."MiVanillaMiner/default.php");
 include($Configuration['EXTENSIONS_PATH']."Audioscrobbler/default.php");
 include($Configuration['EXTENSIONS_PATH']."GuestWelcome/default.php");
 include($Configuration['EXTENSIONS_PATH']."GoogleAnalytics/default.php");
@@ -32,6 +33,5 @@ include($Configuration['EXTENSIONS_PATH']."MiRandomDiscussion/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiBase/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiBetaTesting/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiOpengraph/default.php");
-include($Configuration['EXTENSIONS_PATH']."MiVanillaMiner/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiExpandContents/default.php");
 ?>
