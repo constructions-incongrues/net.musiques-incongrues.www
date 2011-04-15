@@ -22,22 +22,10 @@ if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Co
 	return;
 }
 
-/*
- // Limit access to thoses uids
- $uid = $Context->Session->UserID;
- if (!($uid == 1 || $uid == 2 || $uid == 47))
- {
- return;
- }
- */
-
 $Head->AddStyleSheet('http://fonts.googleapis.com/css?family=Molengo');
 $uid = $Context->Session->UserID;
 if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingString('Page', '')) != 'dons' && strtolower(ForceIncomingString('Page', '')) != 'faq' && strtolower(ForceIncomingString('Page', '')) != 'contact' && strtolower(ForceIncomingString('Page', '')) != 'about' && !ForceIncomingInt('CategoryID', null))
 {
-	// Instanciate and configure cache handler
-	$cache = $Context->ZendCacheManager->getCache('functions');
-	
 	$Head->AddScript('extensions/vanilla-alaune/js/behaviors.js');
 	$sticky_discussions = DiscussionsPeer::getStickyDiscussions($Context);
 	if ($sticky_discussions)
@@ -60,7 +48,7 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
 			$discussions_strings[] = sprintf($discussion_tpl,
 			$modulo_class,
 			$url_topic,
-			$cache->call('getFirstImageUrl', array($discussion['DiscussionID']), array('discussions', sprintf('discussion_%d', $discussion['DiscussionID']))),
+			getFirstImageUrl($discussion['DiscussionID'], $NoticeCollector),
 			$discussion['Name'],
 			$discussion['Name'],
 			$url_topic,
@@ -131,61 +119,58 @@ class DiscussionsPeer
 	}
 }
 
-function getFirstImageUrl($discussion_id)
+/**
+ * Returns URL to first available image in discussion.
+ * 
+ * @param int $discussion_id
+ * 
+ * @return string URL to image
+ */
+function getFirstImageUrl($discussionId)
 {
-	$url_image = null;
-	$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/images/get?discussion_id=%d&sort_field=contributed_at&sort_direction=asc&limit=1&is_available=1&format=json', $discussion_id);
-
-	require_once 'HTTP/Request2.php';
-	$request = new HTTP_Request2($url, HTTP_Request2::METHOD_GET);
-	try {
-		$response = $request->send();
-		if (200 == $response->getStatus())
-		{
-			$discussion_data = json_decode($response->getBody(), true);
-			if (isset($discussion_data[0]))
-			{
-				$url_image = $discussion_data[0]['url'];
-			}
-		}
-	}
-	catch (HTTP_Request2_Exception $e)
-	{
-		// We don't give an ananas !
-	}
+	$parameters = array(
+		'discussion_id'  => $discussionId, 
+		'sort_field'     => 'contributed_at', 
+		'sort_direction' => 'asc',
+		'limit'			 => '1'
+	);
+	$response = CI_Miner_Client::getInstance()->doQuery('links', 'images', $parameters);
 
 	// Default image
-	if (!$url_image)
-	{
-		$url_image = 'http://img96.imageshack.us/img96/46/faviconxa.png';
+	if (is_array($response) && $response['num_found'] > 0) {
+		$urlImage = $response[0]['url'];
+	} else {
+		$urlImage = 'http://img96.imageshack.us/img96/46/faviconxa.png';
 	}
 
-	return $url_image;
+	return $urlImage;
 }
 
-function getVideosUrls($discussion_id)
+/**
+ * Returns list of all available youtube videos in discussion.
+ * 
+ * @param int $discussionId
+ * 
+ * @return array Array of URLs
+ */
+function getVideosUrls($discussionId)
 {
 	$urlsVideos = array();
-	$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/youtube/get?discussion_id=%d&sort_field=contributed_at&sort_direction=asc&limit=-1&is_available=1&format=json', $discussion_id);
+	$parameters = array(
+		'discussion_id'  => $discussionId, 
+		'sort_field'     => 'contributed_at', 
+		'sort_direction' => 'asc',
+		'availability'   => 'available',
+		'limit'			 => '-1'
+	);
+	$response = CI_Miner_Client::getInstance()->query('links', 'youtube', $parameters);
 
-	require_once 'HTTP/Request2.php';
-	$request = new HTTP_Request2($url, HTTP_Request2::METHOD_GET);
-	try {
-		$response = $request->send();
-		if (200 == $response->getStatus())
-		{
-			$discussion_data = json_decode($response->getBody(), true);
-			foreach ($discussion_data as $discussion) {
-				if (isset($discussion['url']))
-				{
-					$urlsVideos[] = $discussion['url'];
-				}
-			}
+	// Default image
+	if (is_array($response) && $response['num_found'] > 0) {
+		unset($response['num_found']);
+		foreach ($response as $link) {
+			$urlsVideos[] = $link['url'];
 		}
-	}
-	catch (HTTP_Request2_Exception $e)
-	{
-		// We don't give an ananas !
 	}
 
 	return $urlsVideos;

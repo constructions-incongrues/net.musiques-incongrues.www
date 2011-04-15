@@ -6,7 +6,7 @@ require(dirname(__FILE__).'/../../appg/settings.php');
 require(dirname(__FILE__).'/../../appg/init_vanilla.php');
 
 // Instanciate and configure cache handler
-$cache = $Context->ZendCacheManager->getCache('functions');
+$minerClient = CI_Miner_Client::getInstance();
 
 // TODO : refactor using http_build_query
 
@@ -35,7 +35,7 @@ $showsAvailable = array(
 	'thebrain'      => array('filterFieldName' => 'domain_fqdn', 'filterFieldValue' => 'thebrain.lautre.net', 'title' => 'The Brain', 'url' => '?'.http_build_query(array_merge($showParameters, array('show' => 'thebrain')))),
 );
 foreach ($showsAvailable as $showName => $showDescription) {
-	$response = $cache->call('callService', array($showDescription['filterFieldName'], $showDescription['filterFieldValue']));
+	$response = $minerClient->query('links', 'mp3', array($showDescription['filterFieldName'] => $showDescription['filterFieldValue']));
 	$showsAvailable[$showName]['num_found'] = $response['num_found'];
 }
 
@@ -65,7 +65,7 @@ if (isset($_GET['show']) && isset($showsAvailable[$_GET['show']])) {
 $url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/mp3/get?%s', http_build_query($parameters));
 
 // Call service
-$links = $cache->call('callServiceUrl', array($url));
+$links = $minerClient->query('links', 'mp3', $parameters);
 
 // Other playlist formats
 $playlistFormats = array();
@@ -130,7 +130,7 @@ if (count($links)) {
 		// For selecting a random playlist
 		$playlistsInteresting = array();
 		foreach ($link['playlists'] as $playlistType => $playlistDescription)  {
-			$response = $cache->call('callService', array($playlistDescription['filterFieldName'], $playlistDescription['filterFieldValue']));
+			$response = $minerClient->query('links', 'mp3', array($playlistDescription['filterFieldName'] => $playlistDescription['filterFieldValue']));
 			$link['playlists'][$playlistType]['num_found'] = $response['num_found'];
 			if (isset($response[0]) && is_array($response[0])) {
 				$link['playlists'][$playlistType]['title'] = sprintf('Aperçu : %s', guessTitle($response[0]));

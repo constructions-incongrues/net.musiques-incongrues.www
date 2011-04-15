@@ -76,16 +76,13 @@ $blocks['affiner'] = array('html' => '<h2>Affiner</h2><ul class="label-links">'.
 
 // Topic actions
 // Find out if topic hosts links to mp3s
-$url = sprintf('http://data.musiques-incongrues.net/collections/links/segments/mp3/get?format=json&limit=0&discussion_id=%d', $discussionID);
-$curl = curl_init($url);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-$response = json_decode(curl_exec($curl), true);
+$minerResponse = CI_Miner_Client::getInstance()->query('links', 'mp3', array('discussion_id' => $discussionID));
 $linksActions = array();
-if (is_array($response) && $response['num_found'] > 0) {
+if (is_array($minerResponse) && $minerResponse['num_found'] > 0) {
 	$linksActions[] = array(
 		'href'  => sprintf('%sradio/?discussion_id=%d', $Configuration['WEB_ROOT'], $discussionID),
 		'title' => 'Écouter tous les morceaux postés dans ce topic',
-		'text'  => 'Écouter ce topic ♫'
+		'text'  => sprintf('Écouter ce topic ♫%d', $minerResponse['num_found'])
 	);
 }
 
