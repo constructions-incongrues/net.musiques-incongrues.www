@@ -10,7 +10,11 @@
 
 // Instanciate and configure Miner client
 require(dirname(__FILE__).'/CI/Miner/Client.php');
-$cacheBackend = new Zend_Cache_Backend_File(array('cache_dir' => $Context->Configuration['VANILLA_MINER_CACHEDIR'], 'file_name_prefix' => 'mi_miner_cache'));
+$cacheBackend = new Zend_Cache_Backend_File(array(
+	'cache_dir'        => $Context->Configuration['VANILLA_MINER_CACHEDIR'], 
+	'file_name_prefix' => 'mi_miner_cache',
+	'cache_file_umask' => 0666
+));
 CI_Miner_Client::getInstance($Configuration['VANILLA_MINER_URL'], $cacheBackend);
 
 if (in_array($Context->SelfUrl, array('comments.php', 'post.php'))) {
