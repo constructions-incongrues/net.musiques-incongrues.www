@@ -112,7 +112,7 @@ RewriteRule ^shows(.*)$ extension.php?PostBackAction=Shows$1 [QSA,L]
 
 #Services
 # -- oembed
-RewriteRule RewriteRule ^services/oembed(.*)$ extension.php?PostBackAction=oEmbed$1 [QSA,L]
+RewriteRule ^services/oembed(.*)$ extension.php?PostBackAction=oEmbed$1 [QSA,L]
 
 #Extensions
 RewriteRule ^extension/$ extension.php [QSA,L]
