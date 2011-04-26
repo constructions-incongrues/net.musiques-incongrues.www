@@ -12,3 +12,7 @@
 if ($Context->SelfUrl == 'comments.php') {
 	$Head->AddScript('extensions/MiExpandContents/js/behaviors.js');
 }
+
+if (ForceIncomingString('PostBackAction', '') == 'oEmbed') {
+	// TODO : how to without a layout
+}
