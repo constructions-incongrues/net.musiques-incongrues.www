@@ -10,6 +10,7 @@
 
 // Activate extension when view a discussion
 if ($Context->SelfUrl == 'comments.php') {
+	$Head->AddScript('extensions/MiExpandContents/js/jquery/embedly/jquery.embedly.min.js');
 	$Head->AddScript('extensions/MiExpandContents/js/behaviors.js');
 }
 
