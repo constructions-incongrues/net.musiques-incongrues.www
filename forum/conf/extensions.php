@@ -1,6 +1,7 @@
 <?php
 // Enabled Extensions
 include($Configuration['EXTENSIONS_PATH']."MiZendFramework/default.php");
+include($Configuration['EXTENSIONS_PATH']."MiJQuery/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiVanillaMiner/default.php");
 include($Configuration['EXTENSIONS_PATH']."Audioscrobbler/default.php");
 include($Configuration['EXTENSIONS_PATH']."GuestWelcome/default.php");
@@ -13,8 +14,8 @@ include($Configuration['EXTENSIONS_PATH']."ForcedBBCode/default.php");
 include($Configuration['EXTENSIONS_PATH']."Vanillacons/default.php");
 include($Configuration['EXTENSIONS_PATH']."PreviewPost/default.php");
 include($Configuration['EXTENSIONS_PATH']."Quotations/default.php");
-include($Configuration['EXTENSIONS_PATH']."JQuery/default.php");
-include($Configuration['EXTENSIONS_PATH']."JQmedia/default.php");
+//include($Configuration['EXTENSIONS_PATH']."JQuery/default.php");
+//include($Configuration['EXTENSIONS_PATH']."JQmedia/default.php");
 include($Configuration['EXTENSIONS_PATH']."Statistics/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-events/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-releases/default.php");
