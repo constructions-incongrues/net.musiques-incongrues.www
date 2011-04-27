@@ -14,8 +14,6 @@ include($Configuration['EXTENSIONS_PATH']."ForcedBBCode/default.php");
 include($Configuration['EXTENSIONS_PATH']."Vanillacons/default.php");
 include($Configuration['EXTENSIONS_PATH']."PreviewPost/default.php");
 include($Configuration['EXTENSIONS_PATH']."Quotations/default.php");
-//include($Configuration['EXTENSIONS_PATH']."JQuery/default.php");
-//include($Configuration['EXTENSIONS_PATH']."JQmedia/default.php");
 include($Configuration['EXTENSIONS_PATH']."Statistics/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-events/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-releases/default.php");

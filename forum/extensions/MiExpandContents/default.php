@@ -11,7 +11,18 @@
 // Activate extension when view a discussion
 if ($Context->SelfUrl == 'comments.php') {
 	$Head->AddScript('extensions/MiExpandContents/js/jquery/embedly/jquery.embedly.min.js');
-	$Head->AddScript('extensions/MiExpandContents/js/behaviors.js');
+	
+	if ($Configuration['FEATURES']['oembed']['restricted']) {
+		if (in_array($Context->Session->UserID, $Configuration['FEATURES']['oembed']['uids'])) {
+			$Head->AddScript('extensions/MiExpandContents/js/behaviors-beta.js');
+		} else {
+			$Head->AddScript('extensions/MiExpandContents/js/behaviors.js');
+			include($Configuration['EXTENSIONS_PATH']."JQuery/default.php");
+			include($Configuration['EXTENSIONS_PATH']."JQmedia/default.php");
+		}
+	} else {
+		$Head->AddScript('extensions/MiExpandContents/js/behaviors-beta.js');
+	}
 }
 
 if (ForceIncomingString('PostBackAction', '') == 'oEmbed') {
