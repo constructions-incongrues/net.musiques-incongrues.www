@@ -47,7 +47,15 @@ jQuery(document).ready(function($) {
 		method: 'replace'
 	});
 	
-	$('a:image').each(function() {
-		$(this).after($('<img src="'+ $(this).attr('href') +'" />')).remove();
+	$('div#ContentBody a:image').each(function() {
+		var image = $('<img src="'+ $(this).attr('href') +'" />');
+		$(image).load(function() {
+			if ($(this).width() > 950) {
+				$(this).attr('alt', "Cliquez pour voir l'image entière");
+				$(image).wrap('<a href="'+ $(this).attr('src') +'" />');
+				$(this).thumbs();
+			}
+		});
+		$(this).after(image).remove();
 	});
 });
