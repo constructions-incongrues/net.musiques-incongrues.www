@@ -4,20 +4,23 @@
  * 1   - bozoorak
  * 2   - mbertier
  * 3   - mobyone
- * 9   - 
- * 14  - 
+ * 9   - valkiri
+ * 14  - yan
  * 21  - puyo puyo
+ * 30  - datux
  * 47  - bill
- * 90  - 
- * 95  -
- * 132 -
+ * 90  - deehowyou
+ * 95  - glafouk
+ * 132 - antiulcéreuse
+ * 181 - denni montono
  * 197 - schling
+ * 217 - spintronic
  * 225 - iris
  * 328 - bibi mati
- * 366 -
- * 665 -
+ * 366 - animomarc
+ * 665 - ptite gonze
  */
-$Configuration['BETA_TESTERS_IDS'] = array(1, 2, 3, 9, 14, 21, 47, 90, 95, 132, 197, 225, 328, 366, 665);
+$Configuration['BETA_TESTERS_IDS'] = array(1, 2, 3, 9, 14, 21, 30, 47, 90, 95, 132, 197, 217, 225, 328, 366, 665);
 $Configuration['FEATURES'] = array(
 	'oembed' => array('restricted' => true, 'uids' => $Configuration['BETA_TESTERS_IDS']) 
 );
