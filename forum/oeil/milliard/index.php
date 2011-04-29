@@ -19,8 +19,9 @@ foreach (glob(sprintf('%s/images/parts/3/*.png', dirname(__FILE__))) as $path) {
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Mille Milliard de Hasard - Musiques Incongrues</title>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.js"></script>
-		<script src="http://cdn.jquerytools.org/1.2.5/all/jquery.tools.min.js"></script>
+		<script src="js/jquery.tools.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/scrollable-horizontal.css" />
+		<link rel="shortcut icon" type="image/png" href="http://www.musiques-incongrues.net/forum/themes/vanilla/styles/scene/favicon.png" /> 
 		
 		<script type="text/javascript">
 		$(document).ready(function() {
