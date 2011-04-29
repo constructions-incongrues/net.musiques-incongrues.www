@@ -77,6 +77,15 @@ foreach (glob(sprintf('%s/images/parts/3/*.png', dirname(__FILE__))) as $path) {
 			</div>
 		</div>
 		</div>
+
+		<script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
+		<script type="text/javascript"> 
+            // <![CDATA[
+            _uacct="UA-673133-2";
+            urchinTracker();
+            // ]]>
+		</script>
+
 	</body>
 
 </html>
