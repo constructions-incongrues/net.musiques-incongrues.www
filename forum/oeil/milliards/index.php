@@ -87,6 +87,9 @@ if (isset($first)) {
 			$('a#permalink').hover(function(event) {
 				$(this).attr('href', '?part1='+$('#part1').val()+'&part2='+$('#part2').val()+'&part3='+$('#part3').val());
 			});
+			$('a#download').hover(function(event) {
+				$(this).attr('href', 'download.php?part1='+$('#part1').val()+'&part2='+$('#part2').val()+'&part3='+$('#part3').val());
+			});
 <?php if (isset($_GET['refresh']) && filter_var($_GET['refresh'], FILTER_VALIDATE_INT)): ?>
 			setInterval('$("a#random").click()', <?php echo $_GET['refresh'] ?>);
 <?php endif; ?>
@@ -107,7 +110,10 @@ if (isset($first)) {
 			</p>
 
 			<p class="button">
-				<a href="" id="random" title="Générer une nouvelle identité">mixer</a> &bull; <a href="" id="permalink" title="Accéder à l'URL vers l'identité courante">partager</a> &bull; <a href="contribute.php" title="Soumettre de nouvelles identités">contribuer</a> 
+				<a href="" id="random" title="Générer une nouvelle identité">mixer</a>
+				&bull; <a href="" id="permalink" title="Accéder à l'URL vers l'identité courante">partager</a>
+				&bull; <a href="contribute.php" title="Soumettre de nouvelles identités">contribuer</a>
+				&bull; <a href="" title="Télécharger l'image" id="download">télécharger</a> 
 			</p>
 		</div>
 
@@ -117,7 +123,6 @@ if (isset($first)) {
 	</div>
 
 	<div id="content">
-
 		<div>
 		<div class="scrollable" id="top">
 			<div class=items>
@@ -153,7 +158,6 @@ if (isset($first)) {
 			</div>
 		</div>
 		</div>
-
 	</div>
 		<form id="state">
 			<input type="hidden" id="part1" />
@@ -168,6 +172,7 @@ if (isset($first)) {
             urchinTracker();
             // ]]>
 		</script>
+
 
 	</body>
 

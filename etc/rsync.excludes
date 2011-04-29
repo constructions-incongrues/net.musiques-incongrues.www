@@ -1,8 +1,8 @@
 # Project related
 *.pyc
 forum/oeil/data/*
-forum/oeil/milliard/images/full/*.png
-forum/oeil/milliard/images/parts/*/*.png
+forum/oeil/milliards/images/full/*.png
+forum/oeil/milliards/images/parts/*/*.png
 *-dist
 #forum/extensions/PageMng/CustomPages.php
 
