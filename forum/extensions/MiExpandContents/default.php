@@ -23,6 +23,7 @@ if ($Context->SelfUrl == 'comments.php') {
 		}
 	} else {
 		$Head->AddScript('extensions/MiExpandContents/js/behaviors-beta.js');
+		$Head->AddStyleSheet('extensions/MiExpandContents/css/MiExpandContents.css');
 	}
 }
 
