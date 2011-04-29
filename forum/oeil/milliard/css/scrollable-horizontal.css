@@ -1,8 +1,88 @@
+body 
+{
+background-color:#000;
+}
 
+#content 
+{
+position:fixed !important;
+position:absolute;
+top:50%;
+left:50%;
+margin-top:-300px;
+margin-left:-400px;
+width:800px;
+height:600px;
+}
+
+#info 
+{
+width:300px;
+float:right;
+
+}
+#info h1, #info h2
+{
+font-size:1.1em;
+color:#000;
+font-family: 'Copse', arial, serif;
+font-weight:normal;
+letter-spacing:0px;
+text-transform:lowercase;
+border-radius:5px;
+padding:5px;}
+
+#info h1 a
+{
+color:#FFF;
+padding:5px;
+text-decoration:none;
+background-color:#000;
+border-radius:5px;
+
+}
+
+.button 
+{
+margin-left:60px;
+}
+#info-about .button a 
+{
+margin-top:-14px;
+color:#000;
+font-size:1.2em;
+padding:5px;
+text-decoration:none;
+border-radius:5px;
+}
+
+
+#info-about
+
+{
+background-color:yellow;
+border-radius:10px;
+width:360px;
+padding:10px;
+margin-left:-120px;
+margin-top:90px;
+position: absolute; 
+z-index: 4;
+font-family: 'Expletus Sans', arial, serif; 
+}
 /*
 	root element for the scrollable.
 	when scrolling occurs this element stays still.
 */
+
+#bubble
+{
+float:right;
+margin-top:305px;
+margin-left:-140px;
+position: absolute; 
+z-index: 5;
+}
 .scrollable {
 
 	/* required settings */
@@ -10,6 +90,7 @@
 	overflow:hidden;
 	width: 800px;
 	height:200px;
+	z-index: 2;
 }
 
 /*
@@ -47,5 +128,6 @@
 	position:relative;
 	cursor:default;
 }
+
 
 

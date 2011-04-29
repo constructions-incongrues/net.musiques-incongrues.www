@@ -55,14 +55,22 @@ if (isset($_FILES['file'])) {
 	</head>
 	
 	<body>
+	
+		<h2>Contraintes</h2>
 		<p>L'image doit être au format PNG et avoir pour dimensions 800x600 pixels.</p>
 <?php if($feedback): ?>
 		<p><?php echo $feedback ?></p>
 <?php endif; ?>
+
+		<h2>Modèle</h2>
+		<a href="images/anonymous.png" title="Télécharger le modèle"><img src="images/anonymous.png" width="400" height="300" /></a>
+
+		<h2>Soumettre une nouvelle identité</h2>
 		<form method="post" enctype="multipart/form-data">
 			<input type="file" name="file" size="30" />
 			<input type="submit" name="upload" value="Contribuer" />
 		</form>
+		
 	</body>
 
 </html>

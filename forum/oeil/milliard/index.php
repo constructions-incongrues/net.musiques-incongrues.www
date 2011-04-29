@@ -49,7 +49,8 @@ if (isset($first)) {
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.js"></script>
 		<script src="js/jquery.tools.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/scrollable-horizontal.css" />
-		<link rel="shortcut icon" type="image/png" href="http://www.musiques-incongrues.net/forum/themes/vanilla/styles/scene/favicon.png" /> 
+		<link rel="shortcut icon" type="image/png" href="http://www.musiques-incongrues.net/forum/themes/vanilla/styles/scene/favicon.png" />
+		<link href='http://fonts.googleapis.com/css?family=Expletus+Sans' rel='stylesheet' type='text/css'> 
 		
 		<script type="text/javascript">
 		$(document).ready(function() {
@@ -79,7 +80,10 @@ if (isset($first)) {
 				}, 3000);
 			};
 			$('.scrollable').scrollable({touch: false, keyboard: false, mousewheel: false});
-			$('a#random').click(generate);
+			$('a#random').click(function(event) {
+				event.preventDefault();
+				generate();
+			});
 			$('a#permalink').click(function(event) {
 				$(this).attr('href', '?part1='+$('#part1').val()+'&part2='+$('#part2').val()+'&part3='+$('#part3').val());
 			});
@@ -93,8 +97,26 @@ if (isset($first)) {
 
 	<body>
 
-		<a id="random" href="#">RAND</a>
-		<a id="permalink" href="#" style=display:none;"">PERMALINK</a>
+	<div id="info">
+		<div  id="info-about">
+			<p>
+				Mille Milliard De Hasards est un générateur d'identités incongrues.
+			</p>
+			<p>
+				Un projet inspiré par Raymond Queneau, les livres pour enfants, et l'émerveillement que procure la magie aléatoire de l'Internet.
+			</p>
+
+			<p class="button">
+				<a href="" id="random" title="Générer une nouvelle identité">mixer</a> &bull; <a href="" id="permalink" title="Accéder à l'URL vers l'identité courante">partager</a> &bull; <a href="contribute.php" title="Soumettre de nouvelles identités">contribuer</a> 
+			</p>
+		</div>
+
+		<div id="bubble">
+			<img src="images/bubble.png" alt="bubble" />
+		</div>
+	</div>
+
+	<div id="content">
 
 		<div>
 		<div class="scrollable" id="top">
@@ -132,6 +154,7 @@ if (isset($first)) {
 		</div>
 		</div>
 
+	</div>
 		<form id="state">
 			<input type="hidden" id="part1" />
 			<input type="hidden" id="part2" />
