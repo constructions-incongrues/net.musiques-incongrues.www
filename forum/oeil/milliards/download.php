@@ -18,7 +18,7 @@ imagecopy($imageFull, $image3, 0, 400, 0, 0, 800, 200);
 
 // Serve image
 header('Content-Type: image/png');
-header(sprintf('Content-Disposition: attachment; filename="identite-incongrues_%s.png"', uniqid()));
+header(sprintf('Content-Disposition: attachment; filename="identite-incongrue_%s.png"', uniqid()));
 imagepng($imageFull);
 
 imagedestroy($imageFull);

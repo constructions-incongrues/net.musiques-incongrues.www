@@ -13,6 +13,7 @@ margin-top:-300px;
 margin-left:-400px;
 width:800px;
 height:600px;
+background-color:#fff;
 }
 
 #info 
@@ -44,15 +45,15 @@ border-radius:5px;
 
 .button 
 {
-margin-left:60px;
+/*margin-left:60px;*/
 }
 #info-about .button a 
 {
 margin-top:-14px;
 color:#000;
-font-size:1.2em;
+font-size:1em;
 padding:5px;
-text-decoration:none;
+text-decoration:underline;
 border-radius:5px;
 }
 
@@ -78,7 +79,7 @@ font-family: 'Expletus Sans', arial, serif;
 #bubble
 {
 float:right;
-margin-top:305px;
+margin-top:300px;
 margin-left:-140px;
 position: absolute; 
 z-index: 5;
@@ -121,6 +122,17 @@ z-index: 5;
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
 }
+
+#top.scrollable img {
+	-webkit-mask-box-image: url('../images/layer-top.png');
+}
+#middle.scrollable img {
+	-webkit-mask-box-image: url('../images/layer-middle.png');
+}
+#bottom.scrollable img {
+	-webkit-mask-box-image: url('../images/layer-bottom.png');
+}
+
 
 /* active item */
 .scrollable .active {
