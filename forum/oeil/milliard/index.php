@@ -1,17 +1,45 @@
 <?php
 $imagesTop = array();
 foreach (glob(sprintf('%s/images/parts/1/*.png', dirname(__FILE__))) as $path) {
-	$imagesTop[] = basename($path);
+	$filename = basename($path);
+	if (isset($_GET['part1']) && $filename == filter_var($_GET['part1'])) {
+		$first = $filename;
+		continue;
+	}
+	$imagesTop[] = $filename;
 }
-$imagesMiddle = array();
-foreach (glob(sprintf('%s/images/parts/2/*.png', dirname(__FILE__))) as $path) {
-	$imagesMiddle[] = basename($path);
-}
-$imagesBottom = array();
-foreach (glob(sprintf('%s/images/parts/3/*.png', dirname(__FILE__))) as $path) {
-	$imagesBottom[] = basename($path);
+if (isset($first)) {
+	array_unshift($imagesTop, $first);
+	unset($first);
 }
 
+$imagesMiddle = array();
+foreach (glob(sprintf('%s/images/parts/2/*.png', dirname(__FILE__))) as $path) {
+	$filename = basename($path);
+	if (isset($_GET['part2']) && $filename == filter_var($_GET['part2'])) {
+		$first = $filename;
+		continue;
+	}
+	$imagesMiddle[] = $filename;
+}
+if (isset($first)) {
+	array_unshift($imagesMiddle, $first);
+	unset($first);
+}
+
+$imagesBottom = array();
+foreach (glob(sprintf('%s/images/parts/3/*.png', dirname(__FILE__))) as $path) {
+	$filename = basename($path);
+	if (isset($_GET['part3']) && $filename == filter_var($_GET['part3'])) {
+		$first = $filename;
+		continue;
+	}
+	$imagesBottom[] = $filename;
+}
+if (isset($first)) {
+	array_unshift($imagesBottom, $first);
+	unset($first);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,15 +54,37 @@ foreach (glob(sprintf('%s/images/parts/3/*.png', dirname(__FILE__))) as $path) {
 		<script type="text/javascript">
 		$(document).ready(function() {
 			var generate = function() {
-				// get access to the API
+				$('a#permalink').hide();
 				$("#top").data("scrollable").seekTo(Math.floor(Math.random() * <?php echo count($imagesTop) ?>));
+				$("#top").data("scrollable").onSeek(function(event, index) {
+					var img = $($("#top").data("scrollable").getItems()[index]).find('img').attr('src').replace(/\\/g,'/').replace( /.*\//, '' );
+					$('#part1').val(img);
+				});
+				
 				$("#middle").data("scrollable").seekTo(Math.floor(Math.random() * <?php echo count($imagesMiddle) ?>));
+				$("#middle").data("scrollable").onSeek(function(event, index) {
+					var img = $($("#middle").data("scrollable").getItems()[index]).find('img').attr('src').replace(/\\/g,'/').replace( /.*\//, '' );
+					$('#part2').val(img);
+				});
+				
 				$("#bottom").data("scrollable").seekTo(Math.floor(Math.random() * <?php echo count($imagesBottom) ?>));
+				$("#bottom").data("scrollable").onSeek(function(event, index) {
+					var img = $($("#bottom").data("scrollable").getItems()[index]).find('img').attr('src').replace(/\\/g,'/').replace( /.*\//, '' );
+					$('#part3').val(img);
+				});
+				$('a#permalink').show();
+				$('a#permalink').css('font-weight', 'bold');
+			    setTimeout(function() {
+				    $('a#permalink').css('font-weight', 'normal');
+				}, 3000);
 			};
 			$('.scrollable').scrollable({touch: false, keyboard: false, mousewheel: false});
 			$('a#random').click(generate);
-<?php if (filter_var($_GET['mode'] == 'auto')): ?>
-			setInterval('$("a#random").click()', 10000);
+			$('a#permalink').click(function(event) {
+				$(this).attr('href', '?part1='+$('#part1').val()+'&part2='+$('#part2').val()+'&part3='+$('#part3').val());
+			});
+<?php if (isset($_GET['refresh']) && filter_var($_GET['refresh'], FILTER_VALIDATE_INT)): ?>
+			setInterval('$("a#random").click()', <?php echo $_GET['refresh'] ?>);
 <?php endif; ?>
 		});
 		</script>
@@ -44,11 +94,12 @@ foreach (glob(sprintf('%s/images/parts/3/*.png', dirname(__FILE__))) as $path) {
 	<body>
 
 		<a id="random" href="#">RAND</a>
+		<a id="permalink" href="#" style=display:none;"">PERMALINK</a>
 
 		<div>
 		<div class="scrollable" id="top">
 			<div class=items>
-<?php foreach ($imagesTop as $image): ?>	
+<?php foreach ($imagesTop as $image): ?>
 				<div>
 					<img src="<?php echo sprintf('images/parts/1/%s', $image) ?>" />
 				</div>
@@ -80,6 +131,12 @@ foreach (glob(sprintf('%s/images/parts/3/*.png', dirname(__FILE__))) as $path) {
 			</div>
 		</div>
 		</div>
+
+		<form id="state">
+			<input type="hidden" id="part1" />
+			<input type="hidden" id="part2" />
+			<input type="hidden" id="part3" />
+		</form>
 
 		<script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
 		<script type="text/javascript"> 
