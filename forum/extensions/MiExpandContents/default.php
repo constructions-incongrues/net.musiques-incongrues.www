@@ -15,6 +15,7 @@ if ($Context->SelfUrl == 'comments.php') {
 	if ($Configuration['FEATURES']['oembed']['restricted']) {
 		if (in_array($Context->Session->UserID, $Configuration['FEATURES']['oembed']['uids'])) {
 			$Head->AddScript('extensions/MiExpandContents/js/behaviors-beta.js');
+			$Head->AddStyleSheet('extensions/MiExpandContents/css/MiExpandContents.css');
 		} else {
 			$Head->AddScript('extensions/MiExpandContents/js/behaviors.js');
 			include($Configuration['EXTENSIONS_PATH']."JQuery/default.php");

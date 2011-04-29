@@ -34,7 +34,10 @@ jQuery(document).ready(function($) {
 	};
 	
 	$('div#ContentBody a').bind('embedly-oembed', function(e, oembed) {
-		$(this).after('<h3><a title="Voir le lien dans son contexte original" href="'+ $(this).attr('href') +'">'+ oembed.title +'</a></h3>');
+		var div = $('<div class="embed-player" />');
+		div.css('width', oembed.width);
+		$(this).wrap(div);
+		$(this).before('<h3><a title="Voir le lien dans son contexte original" href="'+ $(this).attr('href') +'">'+ oembed.title +'</a></h3>')
 	});
 	
 	$('div#ContentBody a:video').embedly({
