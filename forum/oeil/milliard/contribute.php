@@ -50,7 +50,7 @@ if (isset($_FILES['file'])) {
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Mille Milliard de Hasard - Contribution - Musiques Incongrues</title>
+		<title>Mille Milliards de Hasard - Contribution - Musiques Incongrues</title>
 		<link rel="shortcut icon" type="image/png" href="http://www.musiques-incongrues.net/forum/themes/vanilla/styles/scene/favicon.png" />
 	</head>
 	
@@ -58,9 +58,6 @@ if (isset($_FILES['file'])) {
 	
 		<h2>Contraintes</h2>
 		<p>L'image doit être au format PNG et avoir pour dimensions 800x600 pixels.</p>
-<?php if($feedback): ?>
-		<p><?php echo $feedback ?></p>
-<?php endif; ?>
 
 		<h2>Modèle</h2>
 		<a href="images/anonymous.png" title="Télécharger le modèle"><img src="images/anonymous.png" width="400" height="300" /></a>
@@ -70,7 +67,11 @@ if (isset($_FILES['file'])) {
 			<input type="file" name="file" size="30" />
 			<input type="submit" name="upload" value="Contribuer" />
 		</form>
-		
+
+<?php if($feedback): ?>
+		<p><strong><?php echo $feedback ?></strong></p>
+<?php endif; ?>
+
 	</body>
 
 </html>

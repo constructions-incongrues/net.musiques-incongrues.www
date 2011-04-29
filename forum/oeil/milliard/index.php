@@ -45,7 +45,7 @@ if (isset($first)) {
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Mille Milliard de Hasard - Musiques Incongrues</title>
+		<title>Mille Milliards de Hasard - Musiques Incongrues</title>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.js"></script>
 		<script src="js/jquery.tools.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/scrollable-horizontal.css" />
@@ -84,7 +84,7 @@ if (isset($first)) {
 				event.preventDefault();
 				generate();
 			});
-			$('a#permalink').click(function(event) {
+			$('a#permalink').hover(function(event) {
 				$(this).attr('href', '?part1='+$('#part1').val()+'&part2='+$('#part2').val()+'&part3='+$('#part3').val());
 			});
 <?php if (isset($_GET['refresh']) && filter_var($_GET['refresh'], FILTER_VALIDATE_INT)): ?>
@@ -100,7 +100,7 @@ if (isset($first)) {
 	<div id="info">
 		<div  id="info-about">
 			<p>
-				Mille Milliard De Hasards est un générateur d'identités incongrues.
+				Mille Milliards De Hasard est un générateur d'identités incongrues.
 			</p>
 			<p>
 				Un projet inspiré par Raymond Queneau, les livres pour enfants, et l'émerveillement que procure la magie aléatoire de l'Internet.
