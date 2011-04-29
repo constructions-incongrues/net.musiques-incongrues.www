@@ -33,6 +33,9 @@ foreach (glob(sprintf('%s/images/parts/3/*.png', dirname(__FILE__))) as $path) {
 			};
 			$('.scrollable').scrollable({touch: false, keyboard: false, mousewheel: false});
 			$('a#random').click(generate);
+<?php if (filter_var($_GET['mode'] == 'auto')): ?>
+			setInterval('$("a#random").click()', 10000);
+<?php endif; ?>
 		});
 		</script>
 		

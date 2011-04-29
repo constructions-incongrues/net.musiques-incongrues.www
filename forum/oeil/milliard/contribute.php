@@ -51,7 +51,7 @@ if (isset($_FILES['file'])) {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Mille Milliard de Hasard - Contribution - Musiques Incongrues</title>
-s		<link rel="shortcut icon" type="image/png" href="http://www.musiques-incongrues.net/forum/themes/vanilla/styles/scene/favicon.png" />
+		<link rel="shortcut icon" type="image/png" href="http://www.musiques-incongrues.net/forum/themes/vanilla/styles/scene/favicon.png" />
 	</head>
 	
 	<body>
