@@ -1,0 +1,29 @@
+.embed-player 
+{
+background-color:#FFF;
+border:1px solid #ccc; 
+padding-top:8px;
+padding-bottom:2px;
+padding-left:8px;
+padding-right:8px;
+
+width:450px;
+}
+
+.embed-player h3 
+{
+text-align:center;
+float:right;
+background-color:#eee; 
+border:1px solid #ccc; 
+margin-top:-1px;
+width:100%;
+padding:3x; 
+text-transform:uppercase;
+}
+
+.embed-player a
+{
+	font-family: 'Copse', arial, serif;
+	font-size:1.2em;
+}
