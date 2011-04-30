@@ -40,6 +40,12 @@ if (isset($_FILES['file'])) {
 	
 	// User feedback
 	$feedback = 'Image successfully uploaded and sliced. Thanks !';
+	
+	// Redirect user to uploaded parts 
+	$url = sprintf('index.php?part1=%s_part_1.png&part2=%s_part_2.png&part3=%s_part_3.png', $imageName, $imageName, $imageName);
+	header(sprintf('Location: %s', $url));
+	exit(0);
+	
 	} catch (Exception $e) {
 		$feedback = $e->getMessage();
 	}
