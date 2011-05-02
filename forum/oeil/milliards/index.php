@@ -1,10 +1,17 @@
-<?php 
+<?php
+// If user request parts
 $images = array(
 	'top'    => filter_input(INPUT_GET, 'part1'),
 	'middle' => filter_input(INPUT_GET, 'part2'),
 	'bottom' => filter_input(INPUT_GET, 'part3')
 );
+
+// Configure
 $urlRoot = sprintf('http://%s%s', $_SERVER['SERVER_NAME'], dirname($_SERVER['PHP_SELF']));
+
+// Count available identities
+// TODO : this should be obtained with an API call
+$countIdentities = pow(count(glob(sprintf('%s/images/full/*.png', dirname(__FILE__)))), 3);
 ?>
 <!DOCTYPE html>
 <html xmlns:og="http://ogp.me/ns#">
@@ -45,7 +52,7 @@ $urlRoot = sprintf('http://%s%s', $_SERVER['SERVER_NAME'], dirname($_SERVER['PHP
 				Un projet inspiré par Raymond Queneau, les livres pour enfants, et l'émerveillement que procure la magie aléatoire de l'Internet.
 			</p>
 			<p>
-				Le projet recense TODO identités à ce jour.
+				Le projet recense <?php echo $countIdentities ?> identités uniques à ce jour.
 			</p>
 
 			<p class="button">
