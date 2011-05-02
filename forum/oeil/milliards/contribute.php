@@ -56,8 +56,8 @@ if (isset($_FILES['file'])) {
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Mille Milliards de Hasard - Contribution - Musiques Incongrues</title>
-		<link rel="shortcut icon" type="image/png" href="http://www.musiques-incongrues.net/forum/themes/vanilla/styles/scene/favicon.png" />
+		<title>Mille Milliards de Hasard - Contribution</title>
+		<link rel="shortcut icon" type="image/png" href="images/static/favicon.png" />
 	</head>
 	
 	<body>
@@ -66,7 +66,7 @@ if (isset($_FILES['file'])) {
 		<p>L'image doit être au format PNG et avoir pour dimensions 800x600 pixels.</p>
 
 		<h2>Modèle</h2>
-		<a href="images/anonymous.png" title="Télécharger le modèle"><img src="images/anonymous.png" width="400" height="300" /></a>
+		<a href="images/static/anonymous.png" title="Télécharger le modèle"><img src="images/static/anonymous.png" width="400" height="300" /></a>
 
 		<h2>Soumettre une nouvelle identité</h2>
 		<form method="post" enctype="multipart/form-data">

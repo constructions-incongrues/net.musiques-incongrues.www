@@ -59,7 +59,6 @@ border-radius:5px;
 
 
 #info-about
-
 {
 background-color:yellow;
 border-radius:10px;
@@ -71,21 +70,18 @@ position: absolute;
 z-index: 4;
 font-family: 'Expletus Sans', arial, serif; 
 }
-/*
-	root element for the scrollable.
-	when scrolling occurs this element stays still.
-*/
 
 #bubble
 {
 float:right;
-margin-top:300px;
+margin-top:335px;
 margin-left:-140px;
 position: absolute; 
 z-index: 5;
 }
-.scrollable {
 
+.scrollable
+{
 	/* required settings */
 	position:relative;
 	overflow:hidden;
@@ -124,19 +120,30 @@ z-index: 5;
 }
 
 #top.scrollable img {
-	-webkit-mask-box-image: url('../images/layer-top.png');
+	-webkit-mask-box-image: url('../images/static/layer-top.png');
 }
 #middle.scrollable img {
-	-webkit-mask-box-image: url('../images/layer-middle.png');
+	-webkit-mask-box-image: url('../images/static/layer-middle.png');
 }
 #bottom.scrollable img {
-	-webkit-mask-box-image: url('../images/layer-bottom.png');
+	-webkit-mask-box-image: url('../images/static/layer-bottom.png');
 }
-
 
 /* active item */
 .scrollable .active {
 	border:2px solid #000;
 	position:relative;
 	cursor:default;
+}
+
+#footer {
+	font-size:0.6em; 
+	color:#bbb; 
+	font-family: 'Copse', arial, serif; 
+	text-align:center; 
+	margin-top: 0em;
+}
+
+#footer a {
+	color: #fff;
 }
