@@ -23,6 +23,8 @@ RewriteRule ^labels/chipbanger$ index.php?CategoryID=25 [QSA,L]
 RewriteRule ^labels/chipbanger/$ index.php?CategoryID=25 [QSA,L]
 RewriteRule ^labels/dataglitch$ index.php?CategoryID=26 [QSA,L]
 RewriteRule ^labels/dataglitch/$ index.php?CategoryID=26 [QSA,L]
+RewriteRule ^labels/darlingdada$ index.php?CategoryID=31 [QSA,L]
+RewriteRule ^labels/darlingdada/$ index.php?CategoryID=31 [QSA,L]
 
 # Shows
 RewriteRule ^shows/istotassaca$ index.php?CategoryID=20 [QSA,L]
