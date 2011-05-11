@@ -119,6 +119,10 @@ arrSmilies["organic - Sons of the Ananas"][25] = '<span onclick="insertSmilie(\'
 arrSmilies["organic - Sons of the Ananas"][26] = '<span onclick="insertSmilie(\'pin-skull3\');" class="VanillaconsLink"><img src="@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-skull3.gif" alt="" /></span>';
 arrSmilies["organic - Sons of the Ananas"][27] = '<span onclick="insertSmilie(\'pin-sort\');" class="VanillaconsLink"><img src="@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-sort.gif" alt="" /></span>';
 arrSmilies["organic - Sons of the Ananas"][28] = '<span onclick="insertSmilie(\'pin-t\');" class="VanillaconsLink"><img src="@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-t.png" alt="" /></span>';
+arrSmilies["organic - Sons of the Ananas"][29] = '<span onclick="insertSmilie(\'pin-lucha\');" class="VanillaconsLink"><img src="@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-lucha.gif" alt="" /></span>';
+arrSmilies["organic - Sons of the Ananas"][30] = '<span onclick="insertSmilie(\'pin-cruel\');" class="VanillaconsLink"><img src="@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-cruel.gif" alt="" /></span>';
+arrSmilies["organic - Sons of the Ananas"][31] = '<span onclick="insertSmilie(\'pin-adolf\');" class="VanillaconsLink"><img src="@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-adolf.png" alt="" /></span>';
+arrSmilies["organic - Sons of the Ananas"][32] = '<span onclick="insertSmilie(\'pin-milliards\');" class="VanillaconsLink"><img src="@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-milliards.gif" alt="" /></span>';
 
 arrSmilies["otro - fruits"] = new Array();
 arrSmilies["otro - fruits"][0] = '<span onclick="insertSmilie(\'grapp01\');" class="VanillaconsLink"><img src="@PATHS.BASEURI@extensions/Vanillacons/smilies/otro - fruits/grapp01.gif" alt="" /></span>';
