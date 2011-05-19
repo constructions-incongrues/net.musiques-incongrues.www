@@ -41,16 +41,21 @@ if ($Context->SelfUrl == 'comments.php') {
 		$ogMetaTags['image'] = $imagesDiscussion[0]['url'];
 	}
 	
-	// Check if discussion holds any link to an MP3 file
-	$mp3sDiscussion = ogCallService('mp3', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
-	if (is_array($mp3sDiscussion) && $mp3sDiscussion['num_found'] > 0) {
-		$ogMetaTags['type'] = 'song';
-		$ogMetaTags['audio'] = $mp3sDiscussion[0]['url'];
-		$ogMetaTags['audio:title'] = $mp3sDiscussion[0]['discussion_name'];
-		$ogMetaTags['audio:type'] = 'application/mp3';
-		// Those seem to be required. See http://developers.facebook.com/docs/opengraph/
-		$ogMetaTags['audio:artist'] = 'Unknown artist';
-		$ogMetaTags['audio:album'] = 'Unknown album';
+	// If it is a release, check if discussion holds any link to an MP3 file
+	$release = mysql_fetch_assoc($Context->Database->Execute('Select LabelName, DownloadLink from LUM_Releases where DiscussionID = ' . $discussion['DiscussionID'], '', '', '', ''));
+	if ($release) {
+		$mp3sDiscussion = ogCallService('mp3', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
+		if (is_array($mp3sDiscussion) && $mp3sDiscussion['num_found'] > 0) {
+			$ogMetaTags['type'] = 'song';
+			$ogMetaTags['audio'] = $mp3sDiscussion[0]['url'];
+			$ogMetaTags['audio:title'] = $mp3sDiscussion[0]['discussion_name'];
+			$ogMetaTags['audio:type'] = 'application/mp3';
+			// Those seem to be required. See http://developers.facebook.com/docs/opengraph/
+			if ($release['LabelName']) {
+				$ogMetaTags['audio:artist'] = $release['LabelName'];
+			}
+			$ogMetaTags['audio:album'] = 'Unknown album';
+		}
 	}
 	
 	// If discussion relates to an event, add location metadata
