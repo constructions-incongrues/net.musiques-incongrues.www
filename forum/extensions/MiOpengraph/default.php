@@ -29,10 +29,11 @@ $ogMetaTags['site_name'] = 'Musiques Incongrues';
 // Discussion related meta data
 if ($Context->SelfUrl == 'comments.php') {
 	// Fetch current discussion
-  	$discussion = mysql_fetch_assoc($Context->Database->Execute('SELECT * FROM LUM_Discussion WHERE LUM_Discussion.DiscussionID = '.ForceIncomingInt("DiscussionID", 0).';', '', '', '', ''));
+  	$discussion = mysql_fetch_assoc($Context->Database->Execute('SELECT d.Name, d.DiscussionID, c.Body FROM LUM_Discussion d INNER JOIN LUM_Comment c on c.DiscussionID = d.DiscussionID WHERE d.DiscussionID = '.ForceIncomingInt("DiscussionID", 0).';', '', '', '', ''));
 	
 	// Update metadata according to current discussion
 	$ogMetaTags['title'] = $discussion['Name'];
+	$ogMetaTags['description'] = substr($discussion['Body'], 0, 300);
 	
 	// Look for an image
 	$imagesDiscussion = ogCallService('images', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
