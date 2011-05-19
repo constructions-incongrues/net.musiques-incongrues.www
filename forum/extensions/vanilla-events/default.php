@@ -130,7 +130,10 @@ if ($Context->SelfUrl == 'post.php')
 // Code needed to display the "events" page
 if(in_array(ForceIncomingString("PostBackAction", ""), array('Events')))
 {
-  $Context->PageTitle = $Context->GetDefinition('Events');
+  $Context->PageTitle = 'Les événements';
+  if (ForceIncomingString('city', null)) {
+    $Context->PageTitle .= ' à ' . trim(ucfirst(ForceIncomingString('city', null)), '/');
+  }
   $Menu->CurrentTab = 'Events';
   $Body->CssClass = 'Discussions';
   $page_events = new EventsPage($Context);
@@ -226,7 +229,7 @@ class EventsPage
     $cities_str = array();
     foreach ($cities as $city)
     {
-      $cities_str[] = sprintf($cities_tpl, GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&city=' . $city), $city);
+      $cities_str[] = sprintf($cities_tpl, GetUrl($this->Context->Configuration, 'Les événements à ' . $city, '', '', '', 'events/'.strtolower($city)), $city);
     }
 
     $next_week = date('Y-m-d', time() + 60 * 60 * 24 * 7);

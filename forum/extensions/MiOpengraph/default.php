@@ -59,6 +59,13 @@ if ($Context->SelfUrl == 'comments.php') {
 		$ogMetaTags['locality'] = $event['City'];
 		$ogMetaTags['country-name'] = $event['Country'];
 	}	
+} else if ($Context->SelfUrl == 'extension.php' && ForceIncomingString('PostBackAction', null) == 'Events') {
+	$ogMetaTags['title'] = 'Musiques Incongrues - Agenda';
+	if (ForceIncomingString('city', null)) {
+		$ogMetaTags['title'] .= ' - ' . trim(ucfirst(ForceIncomingString('city', null)), '/');
+	}
+	
+	$ogMetaTags['description'] = "Ce soir on sort : l'agenda du forum des Musiques Incongrues";
 }
 
 // Add meta tags to header

@@ -95,6 +95,7 @@ RewriteRule ^settings/$ settings.php [QSA,L]
 RewriteRule ^people/$ people.php [QSA,L]
 
 #Events
+RewriteRule ^events/(.*)$ extension.php?PostBackAction=Events&city=$1 [QSA,L]
 RewriteRule ^events/(.*)$ extension.php?PostBackAction=Events$1 [QSA,L]
 RewriteRule ^events(.*)$ extension.php?PostBackAction=Events$1 [QSA,L]
 
