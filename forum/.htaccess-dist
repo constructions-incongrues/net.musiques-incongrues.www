@@ -25,6 +25,8 @@ RewriteRule ^labels/dataglitch$ index.php?CategoryID=26 [QSA,L]
 RewriteRule ^labels/dataglitch/$ index.php?CategoryID=26 [QSA,L]
 RewriteRule ^labels/darlingdada$ index.php?CategoryID=31 [QSA,L]
 RewriteRule ^labels/darlingdada/$ index.php?CategoryID=31 [QSA,L]
+RewriteRule ^labels/steakauzoo$ index.php?CategoryID=32 [QSA,L]
+RewriteRule ^labels/steakauzoo/$ index.php?CategoryID=32 [QSA,L]
 
 # Shows
 RewriteRule ^shows/istotassaca$ index.php?CategoryID=20 [QSA,L]
