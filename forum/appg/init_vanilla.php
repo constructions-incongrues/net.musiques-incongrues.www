@@ -80,7 +80,7 @@ $Head->AddScript('js/global.js');
 $Head->AddScript('js/vanilla.js');
 $Head->AddScript('js/ajax.js');
 $Head->AddScript('js/ac.js');
-$Head->AddStyleSheet($Context->StyleUrl.'vanilla.css?v='.time(), 'screen', 100, '');
+$Head->AddStyleSheet($Context->StyleUrl.'vanilla.css?v='.$Configuration['RELEASE_TAG'], 'screen', 100, '');
 
 // BUILD THE MAIN MENU
 $Menu->AddTab($Context->GetDefinition('Discussions'), 'discussions', GetUrl($Configuration, './'), '', $Configuration['TAB_POSITION_DISCUSSIONS']);
