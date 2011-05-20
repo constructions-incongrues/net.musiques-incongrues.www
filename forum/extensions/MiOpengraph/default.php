@@ -29,10 +29,11 @@ $ogMetaTags['site_name'] = 'Musiques Incongrues';
 // Discussion related meta data
 if ($Context->SelfUrl == 'comments.php') {
 	// Fetch current discussion
-  	$discussion = mysql_fetch_assoc($Context->Database->Execute('SELECT * FROM LUM_Discussion WHERE LUM_Discussion.DiscussionID = '.ForceIncomingInt("DiscussionID", 0).';', '', '', '', ''));
+  	$discussion = mysql_fetch_assoc($Context->Database->Execute('SELECT d.Name, d.DiscussionID, c.Body FROM LUM_Discussion d INNER JOIN LUM_Comment c on c.DiscussionID = d.DiscussionID WHERE d.DiscussionID = '.ForceIncomingInt("DiscussionID", 0).';', '', '', '', ''));
 	
 	// Update metadata according to current discussion
 	$ogMetaTags['title'] = $discussion['Name'];
+	$ogMetaTags['description'] = substr($discussion['Body'], 0, 300);
 	
 	// Look for an image
 	$imagesDiscussion = ogCallService('images', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
@@ -40,16 +41,21 @@ if ($Context->SelfUrl == 'comments.php') {
 		$ogMetaTags['image'] = $imagesDiscussion[0]['url'];
 	}
 	
-	// Check if discussion holds any link to an MP3 file
-	$mp3sDiscussion = ogCallService('mp3', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
-	if (is_array($mp3sDiscussion) && $mp3sDiscussion['num_found'] > 0) {
-		$ogMetaTags['type'] = 'song';
-		$ogMetaTags['audio'] = $mp3sDiscussion[0]['url'];
-		$ogMetaTags['audio:title'] = $mp3sDiscussion[0]['discussion_name'];
-		$ogMetaTags['audio:type'] = 'application/mp3';
-		// Those seem to be required. See http://developers.facebook.com/docs/opengraph/
-		$ogMetaTags['audio:artist'] = 'Unknown artist';
-		$ogMetaTags['audio:album'] = 'Unknown album';
+	// If it is a release, check if discussion holds any link to an MP3 file
+	$release = mysql_fetch_assoc($Context->Database->Execute('Select LabelName, DownloadLink from LUM_Releases where DiscussionID = ' . $discussion['DiscussionID'], '', '', '', ''));
+	if ($release) {
+		$mp3sDiscussion = ogCallService('mp3', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
+		if (is_array($mp3sDiscussion) && $mp3sDiscussion['num_found'] > 0) {
+			$ogMetaTags['type'] = 'song';
+			$ogMetaTags['audio'] = $mp3sDiscussion[0]['url'];
+			$ogMetaTags['audio:title'] = $mp3sDiscussion[0]['discussion_name'];
+			$ogMetaTags['audio:type'] = 'application/mp3';
+			// Those seem to be required. See http://developers.facebook.com/docs/opengraph/
+			if ($release['LabelName']) {
+				$ogMetaTags['audio:artist'] = $release['LabelName'];
+			}
+			$ogMetaTags['audio:album'] = 'Unknown album';
+		}
 	}
 	
 	// If discussion relates to an event, add location metadata
@@ -58,6 +64,13 @@ if ($Context->SelfUrl == 'comments.php') {
 		$ogMetaTags['locality'] = $event['City'];
 		$ogMetaTags['country-name'] = $event['Country'];
 	}	
+} else if ($Context->SelfUrl == 'extension.php' && ForceIncomingString('PostBackAction', null) == 'Events') {
+	$ogMetaTags['title'] = 'Musiques Incongrues - Agenda';
+	if (ForceIncomingString('city', null)) {
+		$ogMetaTags['title'] .= ' - ' . trim(ucfirst(ForceIncomingString('city', null)), '/');
+	}
+	
+	$ogMetaTags['description'] = "Ce soir on sort : l'agenda du forum des Musiques Incongrues";
 }
 
 // Add meta tags to header

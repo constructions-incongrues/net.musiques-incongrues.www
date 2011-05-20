@@ -9,7 +9,6 @@ include($Configuration['EXTENSIONS_PATH']."GoogleAnalytics/default.php");
 include($Configuration['EXTENSIONS_PATH']."WhisperNotification/default.php");
 include($Configuration['EXTENSIONS_PATH']."Atom/default.php");
 include($Configuration['EXTENSIONS_PATH']."RSS2/default.php");
-include($Configuration['EXTENSIONS_PATH']."GuestPost/default.php");
 include($Configuration['EXTENSIONS_PATH']."ForcedBBCode/default.php");
 include($Configuration['EXTENSIONS_PATH']."Vanillacons/default.php");
 include($Configuration['EXTENSIONS_PATH']."PreviewPost/default.php");

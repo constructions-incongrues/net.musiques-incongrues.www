@@ -25,6 +25,8 @@ RewriteRule ^labels/dataglitch$ index.php?CategoryID=26 [QSA,L]
 RewriteRule ^labels/dataglitch/$ index.php?CategoryID=26 [QSA,L]
 RewriteRule ^labels/darlingdada$ index.php?CategoryID=31 [QSA,L]
 RewriteRule ^labels/darlingdada/$ index.php?CategoryID=31 [QSA,L]
+RewriteRule ^labels/steakauzoo$ index.php?CategoryID=32 [QSA,L]
+RewriteRule ^labels/steakauzoo/$ index.php?CategoryID=32 [QSA,L]
 
 # Shows
 RewriteRule ^shows/istotassaca$ index.php?CategoryID=20 [QSA,L]
@@ -93,6 +95,7 @@ RewriteRule ^settings/$ settings.php [QSA,L]
 RewriteRule ^people/$ people.php [QSA,L]
 
 #Events
+RewriteRule ^events/(.*)$ extension.php?PostBackAction=Events&city=$1 [QSA,L]
 RewriteRule ^events/(.*)$ extension.php?PostBackAction=Events$1 [QSA,L]
 RewriteRule ^events(.*)$ extension.php?PostBackAction=Events$1 [QSA,L]
 
