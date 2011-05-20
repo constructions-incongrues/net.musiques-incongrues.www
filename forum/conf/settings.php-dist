@@ -152,4 +152,4 @@ $Configuration['VANILLA_MINER_URL'] = '@PATHS.MINERURL@';
 $Configuration['VANILLA_MINER_CACHEDIR'] = '@PATHS.MINERCACHEDIR@';
 
 // Release
-$Configuration['RELEASE_TAG'] = @RELEASE.TAG@
+$Configuration['RELEASE_TAG'] = '@RELEASE.TAG@';

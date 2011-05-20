@@ -158,6 +158,7 @@ $dbh = new PDO($asaph_db_dsn, $asaph_db_user, $asaph_db_pass);
 // Fetch one random record
 $query = 'select YEAR(created) as year, MONTH(created) as month, source, thumb, title from asaph_posts order by rand() limit 1;';
 $stmt = $dbh->query($query);
+if ($stmt) {
 $image_data = $stmt->fetch();
 if ((int)$image_data['month'] < 10)
 {
@@ -166,6 +167,9 @@ if ((int)$image_data['month'] < 10)
 
 // Compute thumb URL
 $image_url = sprintf('/forum/oeil/data/thumbs/%s/%s/%s', $image_data['year'], $image_data['month'], $image_data['thumb']);
+} else {
+$image_url = 'http://img96.imageshack.us/img96/46/faviconxa.png';
+}
 
 // Write HTML (it is to be included in default.php)
 ?>
