@@ -33,7 +33,7 @@ if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments
      foreach ($today_events as $event)
      {
        $events_string[] = sprintf($event_tpl,
-       		GetUrl($Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&city=' . $event['City']),
+       		sprintf('%sevents/%s/', $Context->Configuration['WEB_ROOT'], strtolower($event['City'])),
        		ucfirst($event['City']),
        		ucfirst($event['City']),
         	GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $event['DiscussionID'], '', '#Item_1', CleanupString($event['Name'].'/')),
@@ -246,11 +246,11 @@ class EventsPage
   function getPanelString()
   {
     $cities = EventsPeer::getCities($this->Context);
-    $cities_tpl = '<li><a href="%s">%s</a></li>';
+    $cities_tpl = '<li><a href="%s" title="Voir tous les événements à venir à %s">%s</a></li>';
     $cities_str = array();
     foreach ($cities as $city)
     {
-      $cities_str[] = sprintf($cities_tpl, GetUrl($this->Context->Configuration, 'Les événements à ' . $city, '', '', '', 'events/'.strtolower($city)), $city);
+      $cities_str[] = sprintf($cities_tpl, sprintf('%sevents/%s/', $this->Context->Configuration['WEB_ROOT'], strtolower($city)), $city, $city);
     }
 
     $next_week = date('Y-m-d', time() + 60 * 60 * 24 * 7);
@@ -281,8 +281,8 @@ EOF;
     $tpl = sprintf(
       $tpl,
       implode("\n", $cities_str),
-      GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start='.date('Y-m-d').'&end='.$next_week),
-      GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start='.date('Y-m-d').'&end='.$next_month),
+      sprintf('%sevents/?start=%s&end=%s', $this->Context->Configuration['WEB_ROOT'], date('Y-m-d'), $next_week),
+      sprintf('%sevents/?start=%s&end=%s', $this->Context->Configuration['WEB_ROOT'], date('Y-m-d'), $next_month),
       $this->Context->Configuration['BASE_URL'].'s/feeds/events'
     );
     return $tpl;
