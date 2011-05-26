@@ -133,3 +133,11 @@ RewriteRule ^(discussions|account|search|post|[0-9]+)/.+/(account.php|categories
 
 #Pages
 RewriteRule ^page/(.*)$ index.php?Page=$1 [QSA,L]
+
+# Newrelic configuration
+php_value newrelic.appname "Musiques Incongrues"
+php_value newrelic.error_collector.record_database_errors 1
+php_value newrelic.framework "no_framework"
+
+# mod_pagespeed configuration
+ModPagespeedDisableFilters trim_urls
