@@ -128,6 +128,7 @@ $mappings = array(
 	'default'     => array('randomDiscussion', 'understand', 'introspection'),
 	'discussions' => array('randomDiscussion', 'understand', 'introspection', 'affiner'),
 	'comments'    => array('randomDiscussion', 'topicActions', 'instrospection', 'metadata-events'),
+	'events'      => array(),
 	'label'       => array(),
 	'show'        => array(),
 	'labels'      => array(),
@@ -146,7 +147,9 @@ if (in_array($categoryID, MiProjectsDatabasePeer::getCategoryIdsForType('labels'
 	$controllerName = 'labels';
 } else if (ForceIncomingString('PostBackAction', '') == 'Shows') {
 	$controllerName = 'shows';
-} else if ($Context->SelfUrl == 'index.php') {
+} else if (ForceIncomingString('PostBackAction', '') == 'Events') {
+	$controllerName = 'events';
+}else if ($Context->SelfUrl == 'index.php') {
 	$controllerName = 'discussions';
 } else if ($Context->SelfUrl == 'comments.php') {
 	$controllerName = 'comments';
