@@ -260,7 +260,7 @@ class EventsPage
 <h2>Où ?</h2>
 <ul class="label-links">
   <li class="nav-left-events-select">
-    <a href="/forum/events">TOUTES LES VILLES</a>
+    <a href="%sevents/">TOUTES LES VILLES</a>
     %s
   </li>
 </ul>
@@ -268,7 +268,7 @@ class EventsPage
 <h2>Quand ?</h2>
 <ul class="label-links">
   <li class="nav-left-events-select">
-    <a href="/forum/events">N'importe quand !</a>
+    <a href="%sevents/">N'importe quand !</a>
   </li>
   <li><a href="%s">Cette semaine</a></li>
   <li><a href="%s">Ce mois-ci</a></li>
@@ -280,7 +280,9 @@ class EventsPage
 EOF;
     $tpl = sprintf(
       $tpl,
+      $this->Context->Configuration['WEB_ROOT'],
       implode("\n", $cities_str),
+      $this->Context->Configuration['WEB_ROOT'],
       sprintf('%sevents/?start=%s&end=%s', $this->Context->Configuration['WEB_ROOT'], date('Y-m-d'), $next_week),
       sprintf('%sevents/?start=%s&end=%s', $this->Context->Configuration['WEB_ROOT'], date('Y-m-d'), $next_month),
       $this->Context->Configuration['BASE_URL'].'s/feeds/events'
@@ -330,15 +332,15 @@ EOF;
       }
       $alternate = $i % 2 == 0 ? '' : 'modulo';
       $discussions .= $month_separator;
-      $city_link = sprintf('<strong class="city">(<a href="%s">%s</a>)</strong>', GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&city=' . $event['City'] . '&start='.$start_date), $event['City']);
+      $city_link = sprintf('<strong class="city">(<a href="%s">%s</a>)</strong>', sprintf('%sevents/%s/?start=%s', $this->Context->Configuration['WEB_ROOT'], strtolower($city), $start_date), $event['City']);
       $discussions .= '<li class="Discussion Events '.$alternate.'"><ul><li class="DiscussionTopic">'.$link.' '.$city_link.'</li></ul></li>';
       $first_iteration = false;
       $i++;
     }
 
     // Create pager
-    $past_url = GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start=' . $previous_date . '&city='.$city);
-    $future_url = GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start=' . $end_date . '&city='.$city);
+    $past_url = sprintf('%sevents/%s/?start=%s', $this->Context->Configuration['WEB_ROOT'], strtolower($city), $previous_date);
+    $future_url = sprintf('%sevents/%s/?start=%s', $this->Context->Configuration['WEB_ROOT'], strtolower($city), $end_date);
 
     $pager = sprintf('
 <div class="PageInfo">
@@ -353,7 +355,7 @@ EOF;
 
     if ($city)
     {
-      $no_city_link = GetUrl($this->Context->Configuration, 'extension.php', '/', '', '', '?PostBackAction=Events&start='.$start_date);
+      $no_city_link = sprintf('%sevents/?start=%s', $this->Context->Configuration['WEB_ROOT'], $start_date);
       $top = sprintf('<h2 style="display:inline;" class="surtout">On fait quoi ce soir à %s ? <a class="ailleurs" href="%s">et ailleurs</a> </h2> ', $city, $no_city_link);
     }
     else
