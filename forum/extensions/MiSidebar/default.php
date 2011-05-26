@@ -115,7 +115,7 @@ $blocks['introspection'] = array('html' => ob_get_clean());
 // Introspection
 // TODO : this should come from "Œil" extension
 ob_implicit_flush(false);
-ob_end_clean();
+@ob_end_clean();
 ob_start();
 include(dirname(__FILE__).'/../vanilla-events/sidebar.php');
 $blocks['metadata-events'] = array('html' => ob_get_clean());
