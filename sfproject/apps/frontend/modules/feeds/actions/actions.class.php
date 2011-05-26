@@ -149,7 +149,7 @@ class feedsActions extends sfActions
             $comment = Doctrine_Core::getTable('LUM_Comment')->findOneByCommentid($event['Discussion']['firstcommentid'], Doctrine_Core::HYDRATE_ARRAY);
 
             // Entry body
-            $body = nl2br($this->bbParse($comment['body']));
+            $body = nl2br(strip_tags($comment['body']));
             $entry->setDescription($body);
             $entry->setContent($body);
 
