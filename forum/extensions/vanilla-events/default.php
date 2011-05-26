@@ -22,14 +22,6 @@ if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Co
 // Add link to podcast in website's head
 $Head->AddString(sprintf('<link rel="alternate" type="application/rss+xml" href="%s" title="Le calendrier des événements à venir" />', $Configuration['BASE_URL'].'s/feeds/events'));
 
-/*
-// Limit access to thoses uids
-$uid = $Context->Session->UserID;
-if (!($uid == 1 || $uid == 2 || $uid == 47))
-{
-  return;
-}
-*/
 $uid = $Context->Session->UserID;
 if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments.php", "index.php", "search.php", "extension.php")))
 {
@@ -184,6 +176,35 @@ class EventsPeer
     return $events;
   }
 
+  static function getEvent(Context $context, $discussionId) {
+    $sql = $context->ObjectFactory->NewContextObject($context, 'SqlBuilder');
+    $sql->SetMainTable('Event','e');
+    $sql->AddJoin('Discussion', 'd', 'DiscussionID', 'e', 'DiscussionID', 'INNER JOIN');
+    $sql->addSelect('DiscussionID', 'e');
+    $sql->addSelect('Date', 'e');
+    $sql->addSelect('City', 'e');
+    $sql->addSelect('Country', 'e');
+    $sql->addSelect('Name', 'd');
+    $sql->addWhere('d', 'DiscussionID', '', $discussionId, '=');
+    $sql->addWhere('d', 'Active', '', '1', '=');
+
+    // Execute query
+    $db = $context->Database;
+    $rs = $db->Execute($sql->GetSelect(), __CLASS__, __FUNCTION__, 'Failed to fetch events from database.');
+
+    // Gather and return events
+    $event = false;
+    if ($db->RowCount($rs) > 0)
+    {
+      while($db_event = $db->GetRow($rs))
+      {
+        $event = $db_event;
+      }
+    }
+
+    return $event;
+  }
+  
   function getCities($context)
   {
     $cities = array();

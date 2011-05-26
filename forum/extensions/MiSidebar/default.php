@@ -112,6 +112,14 @@ ob_start();
 include(dirname(__FILE__).'/../SidepanelRotator/rotator.php');
 $blocks['introspection'] = array('html' => ob_get_clean());
 
+// Introspection
+// TODO : this should come from "Œil" extension
+ob_implicit_flush(false);
+ob_end_clean();
+ob_start();
+include(dirname(__FILE__).'/../vanilla-events/sidebar.php');
+$blocks['metadata-events'] = array('html' => ob_get_clean());
+
 // Statistiques
 // TODO : this is still provided by the "Statistics" extension
 
@@ -119,7 +127,7 @@ $blocks['introspection'] = array('html' => ob_get_clean());
 $mappings = array(
 	'default'     => array('randomDiscussion', 'understand', 'introspection'),
 	'discussions' => array('randomDiscussion', 'understand', 'introspection', 'affiner'),
-	'comments'    => array('randomDiscussion', 'topicActions', 'instrospection'),
+	'comments'    => array('randomDiscussion', 'topicActions', 'instrospection', 'metadata-events'),
 	'label'       => array(),
 	'show'        => array(),
 	'labels'      => array(),
