@@ -40,3 +40,6 @@ if ($this->BodyId != "") $BodyId = ' id="'.$this->BodyId.'"';
 echo $HeadString . '</head>
    <body'.$BodyId.' '.$this->Context->BodyAttributes.'>';
 ?>
+<?php if (function_exists('newrelic_get_browser_timing_header')): ?>
+	<?php echo newrelic_get_browser_timing_header(); ?>
+<?php endif; ?>
