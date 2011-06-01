@@ -22,49 +22,6 @@ if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Co
     return;
 }
 
-/*
- // Limit access to thoses uids
- $uid = $Context->Session->UserID;
- if (!($uid == 1 || $uid == 2 || $uid == 47))
- {
- return;
- }
- */
-
-// Locale setup
-setlocale(LC_ALL, 'fr_FR.UTF-8');
-/*
- // Database setup
- if (!array_key_exists('VANILLARELEASES', $Configuration))
- {
- $query = "SHOW COLUMNS FROM ".$Configuration['DATABASE_TABLE_PREFIX']."Releases";
- $table_exists = mysql_query($query);
- if (!$table_exists)
- {
- $success = mysql_query(sprintf("
- CREATE TABLE `%sReleases` (
- `DiscussionID` int(8) NOT NULL,
- PRIMARY KEY  (`DiscussionID`)
- )
- ", $Configuration['DATABASE_TABLE_PREFIX']));
-
- if ($success)
- {
- $Structure = "// Release Table Structure
- \$DatabaseColumns['Releases']['DiscussionID'] = 'DiscussionID';
- ";
-
- AppendToConfigurationFile($Configuration['APPLICATION_PATH'].'conf/database.php', $Structure);
- AddConfigurationSetting($Context, 'VANILLARELEASES', '1');
- }
- else
- {
- die(mysql_error());
- }
- }
- }
- */
-
 // Add "events" tab
 $Menu->addTab($Context->getDefinition('Releases'),
 $Context->getDefinition('Releases'),

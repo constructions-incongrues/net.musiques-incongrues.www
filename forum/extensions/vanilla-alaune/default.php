@@ -44,11 +44,12 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
 		$modulo_class = 'pink';
 		foreach ($sticky_discussions as $discussion)
 		{
+			$discussionVanilla = $Context->ObjectFactory->NewContextObject($Context, 'DiscussionManager')->getDiscussionByID($discussion['DiscussionID']);
 			$url_topic = GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $discussion['DiscussionID'], '', '#Item_1', CleanupString($discussion['Name'].'/'));
 			$discussions_strings[] = sprintf($discussion_tpl,
 			$modulo_class,
 			$url_topic,
-			getFirstImageUrl($discussion['DiscussionID'], $NoticeCollector),
+			getFirstImageUrl($discussionVanilla),
 			$discussion['Name'],
 			$discussion['Name'],
 			$url_topic,
@@ -126,20 +127,9 @@ class DiscussionsPeer
  * 
  * @return string URL to image
  */
-function getFirstImageUrl($discussionId)
+function getFirstImageUrl(Discussion $discussion)
 {
-	$parameters = array(
-		'discussion_id'  => $discussionId, 
-		'sort_field'     => 'contributed_at', 
-		'sort_direction' => 'asc',
-		'limit'			 => '1'
-	);
-	$response = CI_Miner_Client::getInstance()->doQuery('links', 'images', $parameters);
-
-	// Default image
-	if (is_array($response) && $response['num_found'] > 0) {
-		$urlImage = $response[0]['url'];
-	} else {
+	if (!$urlImage = $discussion->getFirstImage()) {
 		$urlImage = 'http://img96.imageshack.us/img96/46/faviconxa.png';
 	}
 
