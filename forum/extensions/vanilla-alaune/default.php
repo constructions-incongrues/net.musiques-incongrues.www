@@ -44,12 +44,11 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
 		$modulo_class = 'pink';
 		foreach ($sticky_discussions as $discussion)
 		{
-			$discussionVanilla = $Context->ObjectFactory->NewContextObject($Context, 'DiscussionManager')->getDiscussionByID($discussion['DiscussionID']);
 			$url_topic = GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $discussion['DiscussionID'], '', '#Item_1', CleanupString($discussion['Name'].'/'));
 			$discussions_strings[] = sprintf($discussion_tpl,
 			$modulo_class,
 			$url_topic,
-			getFirstImageUrl($discussionVanilla),
+			$Context->ObjectFactory->NewContextObject($Context, 'DiscussionManager')->getDiscussionByID($discussion['DiscussionID'])->getFirstImage(),
 			$discussion['Name'],
 			$discussion['Name'],
 			$url_topic,
@@ -118,22 +117,6 @@ class DiscussionsPeer
 
 		return $discussions;
 	}
-}
-
-/**
- * Returns URL to first available image in discussion.
- * 
- * @param int $discussion_id
- * 
- * @return string URL to image
- */
-function getFirstImageUrl(Discussion $discussion)
-{
-	if (!$urlImage = $discussion->getFirstImage()) {
-		$urlImage = 'http://img96.imageshack.us/img96/46/faviconxa.png';
-	}
-
-	return $urlImage;
 }
 
 /**

@@ -256,7 +256,7 @@ class Discussion extends Delegation {
 	}
 	
 	# MI - Helpers
-	function getFirstImage() {
+	function getFirstImage($defaultUrl = 'http://img96.imageshack.us/img96/46/faviconxa.png') {
 		// Get discussion initial comment
 		include_once($this->Context->Configuration['LIBRARY_PATH'].'Vanilla/Vanilla.Class.CommentManager.php');
 		$commentManager = new CommentManager($this->Context);
@@ -264,7 +264,7 @@ class Discussion extends Delegation {
 		
 		// Extract URLs to find images
 		$extensionsImages = array('jpeg', 'jpg', 'gif', 'png');
-		$urlImage = false;
+		$urlImage = $defaultUrl;
         $matches = array();
         preg_match_all('#\b..?tps?://[-A-Z0-9+&@\#/%?=~_|!:,.;]*[-A-Z0-9+&@\#/%=~_|]#i', $comment->Body, $matches);
         $urls_found = $matches[0];
@@ -281,4 +281,3 @@ class Discussion extends Delegation {
         return $urlImage;
 	}
 }
-?>
