@@ -2,6 +2,9 @@
 // Helpers
 $extensionName = basename(dirname(__FILE__));
 
+// JS configuration
+$Head->AddScript(sprintf('extensions/%s/js/configuration.js', $extensionName));
+
 // jQuery - http://www.jquery.com
 $Head->AddScript(sprintf('extensions/%s/js/jquery/jquery-1.5.2.min.js', $extensionName));
 
