@@ -6,7 +6,6 @@ padding-top:8px;
 padding-bottom:2px;
 padding-left:8px;
 padding-right:8px;
-
 width:450px;
 }
 
@@ -26,4 +25,12 @@ text-transform:uppercase;
 {
 	font-family: 'Copse', arial, serif;
 	font-size:1.2em;
+}
+
+a.expansible {
+display:inline-block;
+padding-right:20px;
+line-height:18px;
+background:transparent url(../img/ajax-loader.gif) center right no-repeat;
+color: #333;
 }
