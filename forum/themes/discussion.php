@@ -1,7 +1,8 @@
 <?php
 // Find out if discussion contains any MP3s
-$minerClient = CI_Miner_Client::getInstance();
-$minerResponse = $minerClient->query('links', 'mp3', array('discussion_id' => $Discussion->DiscussionID));
+//$minerClient = CI_Miner_Client::getInstance();
+//$minerResponse = $minerClient->query('links', 'mp3', array('discussion_id' => $Discussion->DiscussionID));
+$minerResponse = false;
 
 // Note: This file is included from the library/Vanilla/Vanilla.Control.SearchForm.php
 // class and also from the library/Vanilla/Vanilla.Control.DiscussionForm.php's
