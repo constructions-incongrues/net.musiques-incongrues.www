@@ -8,3 +8,6 @@ $Head->AddScript(sprintf('extensions/%s/js/jquery/jquery-1.5.2.min.js', $extensi
 // jQuery Thumbs - http://joanpiedra.com/jquery/thumbs/
 $Head->AddScript(sprintf('extensions/%s/js/jquery/thumbs/jquery.thumbs.js', $extensionName));
 $Head->AddStyleSheet(sprintf('extensions/%s/js/jquery/thumbs/jquery.thumbs.css',$extensionName));
+
+# jQuery Waypoints - http://imakewebthings.github.com/jquery-waypoints/
+$Head->AddScript(sprintf('extensions/%s/js/jquery/waypoints/waypoints.js', $extensionName));
