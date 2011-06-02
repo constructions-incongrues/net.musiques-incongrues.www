@@ -7,6 +7,7 @@ jQuery(document).ready(function($) {
 
 	$('.CommentBody a').each(function() {
 		if ($(this).attr('href').match(regexes.video) || $(this).attr('href').match(regexes.audio) || $(this).attr('href').match(regexes.images)) {
+			$(this).attr('title', 'Expansion du lien en cours. Patience !');
 			$(this).addClass('expansible');
 		}
 	});
