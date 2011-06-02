@@ -11,22 +11,10 @@
 // Activate extension when view a discussion
 if ($Context->SelfUrl == 'comments.php') {
 	$Head->AddScript('extensions/MiExpandContents/js/jquery/embedly/jquery.embedly.min.js');
-	
-	if ($Configuration['FEATURES']['oembed']['restricted']) {
-		if (in_array($Context->Session->UserID, $Configuration['FEATURES']['oembed']['uids'])) {
-			$Head->AddScript('extensions/MiExpandContents/js/behaviors-beta.js');
-			$Head->AddStyleSheet('extensions/MiExpandContents/css/MiExpandContents.css');
-		} else {
-			$Head->AddScript('extensions/MiExpandContents/js/behaviors.js');
-			include($Configuration['EXTENSIONS_PATH']."JQuery/default.php");
-			include($Configuration['EXTENSIONS_PATH']."JQmedia/default.php");
-		}
-	} else {
-		$Head->AddScript('extensions/MiExpandContents/js/behaviors-beta.js');
-		$Head->AddStyleSheet('extensions/MiExpandContents/css/MiExpandContents.css');
+	$Head->AddScript('extensions/MiExpandContents/js/behaviors.js');
+	$Head->AddStyleSheet('extensions/MiExpandContents/css/MiExpandContents.css');
+	if(!in_array(ForceIncomingString("PostBackAction", ""), array('Releases')))
+	{
+		$Head->AddScript('extensions/MiExpandContents/js/inlineplayer.js');
 	}
-}
-
-if (ForceIncomingString('PostBackAction', '') == 'oEmbed') {
-	// TODO : how to without a layout
 }
