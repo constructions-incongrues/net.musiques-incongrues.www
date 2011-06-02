@@ -33,13 +33,10 @@ if ($Context->SelfUrl == 'comments.php') {
 	
 	// Update metadata according to current discussion
 	$ogMetaTags['title'] = $discussion['Name'];
-	$ogMetaTags['description'] = substr($discussion['Body'], 0, 300);
+	$ogMetaTags['description'] = substr($discussion['Body'], 0, 300) . '...';
 	
 	// Look for an image
-	$imagesDiscussion = ogCallService('images', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
-	if (is_array($imagesDiscussion) && $imagesDiscussion['num_found'] > 0) {
-		$ogMetaTags['image'] = $imagesDiscussion[0]['url'];
-	}
+	$ogMetaTags['image'] = $Context->ObjectFactory->NewContextObject($Context, 'DiscussionManager')->getDiscussionByID($discussion['DiscussionID'])->getFirstImage();
 	
 	// If it is a release, check if discussion holds any link to an MP3 file
 	$release = mysql_fetch_assoc($Context->Database->Execute('Select LabelName, DownloadLink from LUM_Releases where DiscussionID = ' . $discussion['DiscussionID'], '', '', '', ''));
@@ -77,7 +74,7 @@ if ($Context->SelfUrl == 'comments.php') {
 // TODO : enable delegation of OG tags settings in any extension
 if (!array_intersect(explode('/', $_SERVER['REQUEST_URI']), array('shows', 'labels'))) {
 	foreach ($ogMetaTags as $name => $value) {
-		$Head->AddString(sprintf('<meta property="og:%s" content="%s" />'."\n", $name, $value));
+		$Head->AddString(sprintf('<meta property="og:%s" content="%s" />'."\n", $name, addcslashes($value, '"')));
 	}
 }
 
