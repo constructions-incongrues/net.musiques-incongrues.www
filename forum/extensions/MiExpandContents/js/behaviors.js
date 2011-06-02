@@ -52,15 +52,20 @@ jQuery(document).ready(function($) {
 	});
 	
 	$('a[href$=".mp3"]').each(function() {
-		var player = '<div style="background-color:red;">&nbsp;</div>';
-//		.jPlayer({
-//			swfPath: configuration.BASEURL + 'extensions/MiJQuery/js/jquery/jplayer/',
-//			solution: 'flash, html',
-//			ready: function() {
-////				$(this).jPlayer('setMedia', {mp3: $(this).attr('href')});
-//			}
-//		});
-		$(player).jPlayer();
+		var player = '<div id="jquery_jplayer"></div><ul><li id="play_button"> play </li><li id="pause_button"> pause </li><li id="stop_button"> stop </li></ul>';
 		$(this).after(player);
+		$('#jquery_jplayer').jPlayer({
+			backgroundColor: '#00FF00',
+			solution: 'html',
+			swfPath: configuration.BASEURL + 'extensions/MiJQuery/js/jquery/jplayer/',
+			customCssIds: true,
+			ready: function() {
+				$(this).jPlayer('setMedia', {mp3: $(this).attr('href')});
+			}
+		});
+		$('#jquery_jplayer').jPlayer('setMedia', {mp3: $(this).attr('href')});
+		$("#jquery_jplayer").jPlayer("cssId", "play", "play_button"); // Associates play  
+	    $("#jquery_jplayer").jPlayer("cssId", "pause", "pause_button"); // Associates pause  
+	    $("#jquery_jplayer").jPlayer("cssId", "stop", "stop_button"); // Associates stop  
 	});
 });
