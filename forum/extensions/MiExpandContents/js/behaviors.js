@@ -119,7 +119,7 @@ Playlist.prototype = {
 		}
 	});
 	
-	$('.CommentBody a').waypoint(function(event, direction) {
+	expandLink = function(event, direction) {
 		var el = $(event.target);
 		if (el.attr('href').match(regexes.video)) {
 			el.embedly({
@@ -150,7 +150,12 @@ Playlist.prototype = {
 			});
 			$(el).after(image).remove();
 		}
-	}, {triggerOnce: true});
+	};
+	
+	$('.CommentBody a').waypoint(expandLink, {triggerOnce: true});
+	$('.CommentBody a:in-viewport').each(function() {
+		expandLink({target:$(this)});
+	});
 	
 	$('div#ContentBody a').bind('embedly-oembed', function(e, oembed) {
 		var div = $('<div class="embed-player" />');

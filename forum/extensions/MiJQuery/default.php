@@ -17,3 +17,6 @@ $Head->AddScript(sprintf('extensions/%s/js/jquery/waypoints/waypoints.js', $exte
 
 # jQuery jPlayer - http://www.jplayer.org/
 $Head->AddScript(sprintf('extensions/%s/js/jquery/jplayer/jquery.jplayer.min.js', $extensionName));
+
+# jQuery Viewport - http://www.appelsiini.net/projects/viewport
+$Head->AddScript(sprintf('extensions/%s/js/jquery/viewport/jquery.viewport.js', $extensionName));
