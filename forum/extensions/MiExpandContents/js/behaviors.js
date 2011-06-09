@@ -192,6 +192,22 @@ Playlist.prototype = {
 			playlist.displayPlaylist();
 			$('#jp_playlist_page').toggle('slide');
 		});
+		$('.collapse-toggle').click(function() {
+			$('#jp_interface_page .jp-track-info').animate({width:'toggle'});
+			$('#jp_interface_page .jp-timer').animate({width:'toggle'});
+			$('#jp_interface_page .jp-progress').animate({height:'toggle'});
+			$('#jp_interface_page .jp-controls .jp-previous').animate({width:'toggle'});
+			$('#jp_interface_page .jp-controls .jp-next').animate({width:'toggle'});
+			$('#jp_interface_page .jp-controls .jp-view').parent().animate({width:'toggle'});
+			$('#jp_interface_page .jp-controls .jp-playlist-toggle').animate({width:'toggle'});
+			if ($('#jp_interface_page').hasClass('collapsed')) {
+				$('#jp_interface_page').animate({width:'100%'});
+				$('#jp_interface_page').removeClass('collapsed');
+			} else {
+				$('#jp_interface_page').animate({width:'10%'});
+				$('#jp_interface_page').addClass('collapsed');
+			}
+		});
 		
 		$('#jquery_jplayer_page').jPlayer({
 			swfPath: configuration.BASEURL + 'extensions/MiJQuery/js/jquery/jplayer/',
@@ -208,6 +224,6 @@ Playlist.prototype = {
 			playlist.playlistConfig(playlist.current + 1);
 		});
 		
-		$('#jp_interface_page').show('slide');
+		$('#jp_interface_page').show();
 	}
 });

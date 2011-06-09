@@ -44,6 +44,7 @@ a.unavailable {background-color:red;}
 #jp_interface_page div.jp-seek-bar {background-color:lime;width:0px;height:100%;cursor:pointer;}
 #jp_interface_page div.jp-play-bar {background-color:#ccc;width:0px;height:100%;}
 #jp_interface_page .jp-timer {float:right;}
+#jp_interface_page .ui-controls {float:right;cursor:pointer;}
 
 /* -- Playlist */
 #jp_playlist_page {position:fixed;left:0px;bottom:50px;width:100%;height:200px;background:#000;color:#fff;font-size:2em;}

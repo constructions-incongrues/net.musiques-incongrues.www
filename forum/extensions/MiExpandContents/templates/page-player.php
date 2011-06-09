@@ -17,7 +17,11 @@
 	</span>
 
 	<span class="jp-track-info"></span>
-		
+	
+	<span class="ui-controls">
+		<span class="collapse-toggle">C</span>
+	</span>
+	
 	<span class="jp-timer">
 		<span class="jp-current-time"></span>
 		<span> / </span>
