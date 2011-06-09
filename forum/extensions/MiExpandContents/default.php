@@ -13,9 +13,4 @@ if ($Context->SelfUrl == 'comments.php') {
 	$Head->AddScript('extensions/MiExpandContents/js/jquery/embedly/jquery.embedly.min.js');
 	$Head->AddScript('extensions/MiExpandContents/js/behaviors.js');
 	$Head->AddStyleSheet('extensions/MiExpandContents/css/MiExpandContents.css');
-	$Context->AddToDelegate('CommentGrid', 'PostRender', 'MiExpandContents_PostRenderCommentFoot');
-}
-
-function MiExpandContents_PostRenderCommentFoot(CommentGrid $commentGrid) {
-	include(dirname(__FILE__).'/templates/page-player.php');
 }
