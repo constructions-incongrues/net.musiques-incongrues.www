@@ -11,8 +11,8 @@
 // Activate extension when view a discussion
 if ($Context->SelfUrl == 'comments.php') {
 	$Head->AddScript('extensions/MiPagePlayer/js/MiPagePlayer.playlist.js');
-	$Head->AddScript('extensions/MiPagePlayer/js/MiPagePlayer.behaviors.js');
-	$Head->AddStyleSheet('extensions/MiPagePlayer/css/MiPagePlayer.main.css');
+	$Head->AddScript('extensions/MiPagePlayer/js/MiPagePlayer.behaviors.js?'.time());
+	$Head->AddStyleSheet('extensions/MiPagePlayer/css/MiPagePlayer.main.css?'.time());
 	$Context->AddToDelegate('CommentGrid', 'PostRender', 'MiPagePlayer_PostRenderCommentFoot');
 }
 

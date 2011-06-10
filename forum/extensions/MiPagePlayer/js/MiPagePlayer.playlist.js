@@ -42,8 +42,14 @@ Playlist.prototype = {
 			var self = this;
 			$(this.cssSelector.playlist + " ul").empty();
 			for (i=0; i < this.playlist.length; i++) {
-				var listItem = (i === this.playlist.length-1) ? "<li class='jp-playlist-last'>" : "<li>";
+				var listitem = '';
+				if (self.current == i) {
+					listItem = (i === this.playlist.length-1) ? "<li class='jp-playlist-last jp-playlist-current"+ this.playlist[i].available +"'>" : "<li class='jp-playlist-current "+ this.playlist[i].available +"'>";
+				} else {
+					listItem = (i === this.playlist.length-1) ? "<li class='jp-playlist-last "+ this.playlist[i].available +"'>" : "<li class='"+ this.playlist[i].available +"'>";
+				}
 				listItem += "<a href='" + this.playlist[i].mp3 + "' id='" + this.cssId.playlist + this.instance + "_item_" + i +"' tabindex='1'>"+ this.playlist[i].name +"</a>";
+				listItem += " (<a href='" + this.playlist[i].mp3 + "' class='download'>DL</a>)";
 
 				// Associate playlist items with their media
 				$(this.cssSelector.playlist + " ul").append(listItem);
@@ -57,20 +63,6 @@ Playlist.prototype = {
 					$(this).blur();
 					return false;
 				});
-
-				// Disable free media links to force access via right click
-				if(this.playlist[i].free) {
-					$.each(this.playlist[i], function(property,value) {
-						if($.jPlayer.prototype.format[property]) { // Check property is a media format.
-							$(self.cssSelector.playlist + "_item_" + i + "_" + property).data("index", i).click(function() {
-								var index = $(this).data("index");
-								$(self.cssSelector.playlist + "_item_" + index).click();
-								$(this).blur();
-								return false;
-							});
-						}
-					});
-				}
 			}
 		},
 		playlistInit: function(autoplay) {
@@ -81,25 +73,35 @@ Playlist.prototype = {
 			}
 		},
 		playlistConfig: function(index) {
-			$(this.cssSelector.playlist + "_item_" + this.current).removeClass("jp-playlist-current").parent().removeClass("jp-playlist-current");
-			$(this.cssSelector.playlist + "_item_" + index).addClass("jp-playlist-current").parent().addClass("jp-playlist-current");
-			$(this.playlist[this.current].element).toggleClass('playing');
-			$(this.playlist[index].element).toggleClass('playing');
-			this.current = index;
-			$('.jp-track-info').html(this.playlist[this.current].name);
-			$('.jp-view').attr('href', '#track-' + this.current);
-			$(this.cssSelector.jPlayer).jPlayer("setMedia", this.playlist[this.current]);
+			if (this.playlist[index] != undefined) {
+				$(this.cssSelector.playlist + "_item_" + this.current).removeClass("jp-playlist-current").parent().removeClass("jp-playlist-current");
+				$(this.cssSelector.playlist + "_item_" + index).addClass("jp-playlist-current").parent().addClass("jp-playlist-current");
+				$(this.playlist[this.current].element).removeClass('playing').removeClass('current').removeClass('paused');
+				$(this.playlist[index].element).addClass('playing').addClass('current');
+				this.current = index;
+				$('.jp-track-info').html(this.playlist[this.current].name);
+				$('.jp-view').attr('href', '#track-' + this.current);
+				$(this.cssSelector.jPlayer).jPlayer("setMedia", this.playlist[this.current]);
+			}
 		},
 		playlistChange: function(index) {
 			this.playlistConfig(index);
 			$(this.cssSelector.jPlayer).jPlayer("play");
 		},
-		playlistNext: function() {
+		playlistNext: function(autoplay) {
 			var index = (this.current + 1 < this.playlist.length) ? this.current + 1 : 0;
-			this.playlistChange(index);
+			if (autoplay) {
+				this.playlistChange(index);
+			} else {
+				this.playlistConfig(index);
+			}
 		},
-		playlistPrev: function() {
+		playlistPrev: function(autoplay) {
 			var index = (this.current - 1 >= 0) ? this.current - 1 : this.playlist.length - 1;
-			this.playlistChange(index);
+			if (autoplay) {
+				this.playlistChange(index);
+			} else {
+				this.playlistConfig(index);
+			}
 		}
 	};
