@@ -23,3 +23,6 @@ $Head->AddScript(sprintf('extensions/%s/js/jquery/viewport/jquery.viewport.js', 
 
 # jQuery popupWindow - http://swip.codylindley.com/popupWindowDemo.html
 $Head->AddScript(sprintf('extensions/%s/js/jquery/popupWindow/jquery.popupWindow.js', $extensionName));
+
+# jQuery jwNotify - http://plugins.jquery.com/project/desktop-notification
+$Head->AddScript(sprintf('extensions/%s/js/jquery/jwnotify/jquery.jwNotify.js', $extensionName));

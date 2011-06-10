@@ -65,6 +65,9 @@ Playlist.prototype = {
 					$(this).find('a.track').click();
 				});
 				$(this.cssSelector.playlist + "_item_" + i).data("index", i).click(function() {
+					if (window.webkitNotifications) {
+						window.webkitNotifications.requestPermission(function() {});
+					}
 					var index = $(this).data("index");
 					if(self.current !== index) {
 						self.playlistChange(index);

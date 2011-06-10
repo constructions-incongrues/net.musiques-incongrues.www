@@ -33,6 +33,9 @@ jQuery(document).ready(function($) {
 			} else {
 				$('a[href$=".mp3"]').removeClass('paused');
 				playlist.playlistConfig($.data(this, 'jp-index'));
+				if (window.webkitNotifications) {
+					window.webkitNotifications.requestPermission(function() {});
+				}
 				$('.jp-play').click();
 			}
 			$('#jp_interface_page').show('slide');
@@ -78,6 +81,11 @@ jQuery(document).ready(function($) {
 			}
 		});
 		
+		$('#jp_interface_page .jp-play').click(function() {
+			if (window.webkitNotifications) {
+				window.webkitNotifications.requestPermission(function() {});
+			}
+		});
 		$('#jp_playlist_page li').live('mouseenter', function() {
 			$(this).find('span.more').show();
 		});
@@ -90,11 +98,22 @@ jQuery(document).ready(function($) {
 			cssSelectorAncestor: '#jp_interface_page'
 		});
 		$('#jquery_jplayer_page').bind($.jPlayer.event.ready + '.pagePlayer', function(event) {
-//			playlist.playlistInit(false);
 			$('.jp-playlist-count').html(playlist.playlist.length + ' tracks');
 		});
 		$('#jquery_jplayer_page').bind($.jPlayer.event.ended + '.pagePlayer', function(event) {
 			playlist.playlistNext(true);
+		});
+		$('#jquery_jplayer_page').bind($.jPlayer.event.play + '.pagePlayer', function(event) {
+			$.jwNotify({
+				image: 'http://img96.imageshack.us/img96/46/faviconxa.png',
+			    title: "► Radio Incongrue",
+			    body: '♫ ' + playlist.playlist[playlist.current].name + ' ♫',
+			    timeout: 10000
+			});
+//			$.jwNotifyHTML({
+//			    url: configuration.BASEURL + 'extensions/MiPagePlayer/popup.php?track='+encodeURIComponent(playlist.playlist[playlist.current].name),
+//			    timeout: 10000
+//			});
 		});
 		$('#jquery_jplayer_page').bind($.jPlayer.event.error + '.pagePlayer', function(event) {
 			playlist.playlist[playlist.current].available = 'unavailable';
