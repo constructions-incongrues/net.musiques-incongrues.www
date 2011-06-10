@@ -20,3 +20,6 @@ $Head->AddScript(sprintf('extensions/%s/js/jquery/jplayer/jquery.jplayer.min.js'
 
 # jQuery Viewport - http://www.appelsiini.net/projects/viewport
 $Head->AddScript(sprintf('extensions/%s/js/jquery/viewport/jquery.viewport.js', $extensionName));
+
+# jQuery popupWindow - http://swip.codylindley.com/popupWindowDemo.html
+$Head->AddScript(sprintf('extensions/%s/js/jquery/popupWindow/jquery.popupWindow.js', $extensionName));

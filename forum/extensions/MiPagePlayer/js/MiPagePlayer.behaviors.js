@@ -4,10 +4,17 @@ jQuery(document).ready(function($) {
 
 	var tracks = [];
 	$('a[href$=".mp3"]').each(function(index) {
+		if ($(this).hasClass('mi-player-skip')) {
+			// Continue
+			return true;
+		}
 		var url = $(this).attr('href');
 		$(this).attr('name', 'track-' + index);
 		$.data(this, 'jp-index', index);
-		var trackName = url.replace(/^.*[\/\\]/g, '').replace(/%20/, ' ');;
+		var trackName = url.replace(/^.*[\/\\]/g, '').replace(/%20/, ' ');
+		if ($(this).attr('x-mi-trackName')) {
+			trackName = $(this).attr('x-mi-trackName');
+		}
 		tracks.push({
 			name: trackName,
 			mp3: url,
@@ -31,12 +38,18 @@ jQuery(document).ready(function($) {
 			$('#jp_interface_page').show('slide');
 		});
 	
-		$('.jp-playlist-toggle').click(function() {
+		$('.jp-playlist-arrow, .jp-playlist-count').click(function() {
 			playlist.displayPlaylist();
 			$('#jp_playlist_page').toggle('slide');
+			if ($('.jp-playlist-arrow').html() == '↑') {
+				$('.jp-playlist-arrow').html('↓');
+			} else {
+				$('.jp-playlist-arrow').html('↑');
+			}
 		});
+		
 		$('.jp-ui-controls .close').click(function() {
-			$('#jp_interface_page').hide();
+			$('#jp_interface_page').animate({height:'hide'});
 		});
 		$('.jp-ui-controls .collapse-toggle').click(function() {
 			$('#jp_interface_page .jp-controls .jp-view').parent().animate({width:'toggle'});
@@ -44,7 +57,8 @@ jQuery(document).ready(function($) {
 				$('#jp_interface_page').animate({width:'100%'}, function() {
 					$('#jp_interface_page .jp-track-info').show();
 					$('#jp_interface_page .jp-timer').show();
-					$('#jp_interface_page .jp-controls .jp-playlist-toggle').show();
+					$('#jp_interface_page .jp-playlist-count').show();
+					$('#jp_interface_page .jp-playlist-arrow').show();
 					$('#jp_interface_page .jp-progress').animate({height:'show'});
 				});
 				$('#jp_interface_page').removeClass('collapsed');
@@ -52,7 +66,8 @@ jQuery(document).ready(function($) {
 			} else {
 				$('#jp_interface_page .jp-track-info').hide();
 				$('#jp_interface_page .jp-timer').hide();
-				$('#jp_interface_page .jp-controls .jp-playlist-toggle').hide();
+				$('#jp_interface_page .jp-playlist-count').hide();
+				$('#jp_interface_page .jp-playlist-arrow').hide();
 				$('#jp_playlist_page').animate({height:'hide'}, function() {
 					$('#jp_interface_page').animate({width:'14%'}, function() {
 						$('#jp_interface_page .jp-progress').animate({height:'hide'});
@@ -63,12 +78,20 @@ jQuery(document).ready(function($) {
 			}
 		});
 		
+		$('#jp_playlist_page li').live('mouseenter', function() {
+			$(this).find('span.more').show();
+		});
+		$('#jp_playlist_page li').live('mouseleave', function() {
+			$(this).find('span.more').hide();
+		});
+		
 		$('#jquery_jplayer_page').jPlayer({
 			swfPath: configuration.BASEURL + 'extensions/MiJQuery/js/jquery/jplayer/',
 			cssSelectorAncestor: '#jp_interface_page'
 		});
 		$('#jquery_jplayer_page').bind($.jPlayer.event.ready + '.pagePlayer', function(event) {
-			playlist.playlistInit(false);
+//			playlist.playlistInit(false);
+			$('.jp-playlist-count').html(playlist.playlist.length + ' tracks');
 		});
 		$('#jquery_jplayer_page').bind($.jPlayer.event.ended + '.pagePlayer', function(event) {
 			playlist.playlistNext(true);
@@ -76,7 +99,7 @@ jQuery(document).ready(function($) {
 		$('#jquery_jplayer_page').bind($.jPlayer.event.error + '.pagePlayer', function(event) {
 			playlist.playlist[playlist.current].available = 'unavailable';
 			$(playlist.playlist[playlist.current].element).addClass('unavailable').attr('title', 'Média indisponible : ' + event.jPlayer.error.message);
-			playlist.playlistConfig(playlist.current + 1);
+			playlist.playlistChange(playlist.current + 1);
 			playlist.displayPlaylist();
 		});
 		

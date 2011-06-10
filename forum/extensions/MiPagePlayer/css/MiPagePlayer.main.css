@@ -8,11 +8,12 @@ a.playable.paused {background-color:#ccc;}
 a.playable.unavailable {background-color:red;}
 
 /* -- Footer player */
-#jp_interface_page {position:fixed;left:0px;bottom:0px;width:100%;background-color:#fff;color:#000;font-size:2em;opacity:0.8;border-top:solid 1px black;border-right:solid 1px black;}
+#jp_interface_page {position:fixed;left:0px;bottom:0px;width:100%;background-color:#fff;color:#000;font-size:2em;border-top:solid 1px black;border-right:solid 1px black;}
 #jp_interface_page:hover {opacity:1;}
 #jp_interface_page div.inner {padding:1em;}
 #jp_interface_page span.jp-controls span {cursor:pointer;padding-right:0.3em;}
-#jp_interface_page span.jp-track-info {margin-left:5em;font-weight:bold;font-size:2em;}
+#jp_interface_page span.jp-playlist-count, #jp_interface_page span.jp-playlist-arrow {cursor:pointer;font-size:2em;}
+#jp_interface_page span.jp-track-info {font-weight:bold;font-size:2em;}
 #jp_interface_page div.jp-progress {height:20px;}
 #jp_interface_page div.jp-seek-bar {background-color:#ccc;width:0px;height:100%;cursor:pointer;}
 #jp_interface_page div.jp-play-bar {background-color:#000;width:0px;height:100%;}
@@ -24,8 +25,11 @@ a.playable.unavailable {background-color:red;}
 #jp_interface_page .jp-ui-controls span {cursor:pointer;font-size:1.5em;}
 
 /* -- Playlist */
-#jp_playlist_page {font-size:1em;border-top:solid 1px black;}
-#jp_playlist_page li {list-style-type:none;}
+#jp_playlist_page {font-size:1em;border-top:solid 1px black;overflow:auto;max-height:400px;}
+#jp_playlist_page ol {padding:0;margin:0}
+#jp_playlist_page li {padding:0.3em;border-bottom:dotted 1px #ccc;}
 #jp_playlist_page li.unavailable a {font-style:italic;color:#bbb;}
+#jp_playlist_page li span.more {margin-left:1em;display:none;}
 #jp_playlist_page a {color:#000;}
 #jp_playlist_page .jp-playlist-current, #jp_playlist_page li:hover, #jp_playlist_page a:hover {background-color:#ccc;}
+#jp_playlist_page .jp-playlist-current, #jp_playlist_page li:hover {border-bottom:dotted 1px #000;}
