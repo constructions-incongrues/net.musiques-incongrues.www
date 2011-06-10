@@ -54,30 +54,38 @@ jQuery(document).ready(function($) {
 		$('.jp-ui-controls .close').click(function() {
 			$('#jp_interface_page').animate({height:'hide'});
 		});
+		
+		var playerCollapse = function() {
+			$('#jp_interface_page .jp-track-info').hide();
+			$('#jp_interface_page .jp-timer').hide();
+			$('#jp_interface_page .jp-playlist-count').hide();
+			$('#jp_interface_page .jp-playlist-arrow').hide();
+			$('#jp_playlist_page').animate({height:'hide'}, function() {
+				$('#jp_interface_page').animate({width:'14%'}, function() {
+					$('#jp_interface_page .jp-progress').animate({height:'hide'});
+				});
+			});
+			$('#jp_interface_page').addClass('collapsed');
+			$('.jp-ui-controls .collapse-toggle').html('+');
+		};
+		
+		var playerExpand = function() {
+			$('#jp_interface_page').animate({width:'100%'}, function() {
+				$('#jp_interface_page .jp-track-info').show();
+				$('#jp_interface_page .jp-timer').show();
+				$('#jp_interface_page .jp-playlist-count').show();
+				$('#jp_interface_page .jp-playlist-arrow').show();
+				$('#jp_interface_page .jp-progress').animate({height:'show'});
+			});
+			$('#jp_interface_page').removeClass('collapsed');
+			$('.jp-ui-controls .collapse-toggle').html('-');
+		};
+		
 		$('.jp-ui-controls .collapse-toggle').click(function() {
-			$('#jp_interface_page .jp-controls .jp-view').parent().animate({width:'toggle'});
 			if ($('#jp_interface_page').hasClass('collapsed')) {
-				$('#jp_interface_page').animate({width:'100%'}, function() {
-					$('#jp_interface_page .jp-track-info').show();
-					$('#jp_interface_page .jp-timer').show();
-					$('#jp_interface_page .jp-playlist-count').show();
-					$('#jp_interface_page .jp-playlist-arrow').show();
-					$('#jp_interface_page .jp-progress').animate({height:'show'});
-				});
-				$('#jp_interface_page').removeClass('collapsed');
-				$(this).html('-');
+				playerExpand();
 			} else {
-				$('#jp_interface_page .jp-track-info').hide();
-				$('#jp_interface_page .jp-timer').hide();
-				$('#jp_interface_page .jp-playlist-count').hide();
-				$('#jp_interface_page .jp-playlist-arrow').hide();
-				$('#jp_playlist_page').animate({height:'hide'}, function() {
-					$('#jp_interface_page').animate({width:'14%'}, function() {
-						$('#jp_interface_page .jp-progress').animate({height:'hide'});
-					});
-				});
-				$('#jp_interface_page').addClass('collapsed');
-				$(this).html('+');
+				playerCollapse();
 			}
 		});
 		
@@ -116,16 +124,16 @@ jQuery(document).ready(function($) {
 			    body: '♫ ' + playlist.playlist[playlist.current].name + ' ♫',
 			    timeout: 10000
 			});
-//			$.jwNotifyHTML({
-//			    url: configuration.BASEURL + 'extensions/MiPagePlayer/popup.php?track='+encodeURIComponent(playlist.playlist[playlist.current].name),
-//			    timeout: 10000
-//			});
 		});
 		$('#jquery_jplayer_page').bind($.jPlayer.event.error + '.pagePlayer', function(event) {
 			playlist.playlist[playlist.current].available = 'unavailable';
 			$(playlist.playlist[playlist.current].element).addClass('unavailable').attr('title', 'Média indisponible : ' + event.jPlayer.error.message);
 			playlist.playlistChange(playlist.current + 1);
 			playlist.displayPlaylist();
+		});
+		
+		$('#CommentBox').focus(function() {
+			playerCollapse();
 		});
 		
 		$('#jp_interface_page').show('slide');

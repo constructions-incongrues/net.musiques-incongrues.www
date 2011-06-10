@@ -14,7 +14,7 @@ a.playable.unavailable {background-color:red;}
 #jp_interface_page span.jp-controls span {cursor:pointer;padding-right:0.3em;}
 #jp_interface_page span.jp-playlist-count, #jp_interface_page span.jp-playlist-arrow {cursor:pointer;font-size:2em;}
 #jp_interface_page span.jp-track-info {font-weight:bold;font-size:2em;}
-#jp_interface_page div.jp-progress {height:20px;border-bottom:solid 1px black;}
+#jp_interface_page div.jp-progress {height:20px;background-color:#eee;}
 #jp_interface_page div.jp-seek-bar {background-color:#ccc;width:0px;height:100%;cursor:pointer;}
 #jp_interface_page div.jp-play-bar {background-color:#000;width:0px;height:100%;}
 #jp_interface_page .jp-timer, #jp_interface_page .jp-ui-controls {font-size:1.5em;}
