@@ -86,6 +86,12 @@ jQuery(document).ready(function($) {
 				window.webkitNotifications.requestPermission(function() {});
 			}
 		});
+		$('#jp_interface_page').mouseleave(function() {
+			setTimeout(function() {$('#jp_interface_page').animate({'opacity':0.5});}, 5000);
+		});
+		$('#jp_interface_page').mouseenter(function() {
+			$(this).css('opacity', 1);
+		});
 		$('#jp_playlist_page li').live('mouseenter', function() {
 			$(this).find('span.more').show();
 		});
@@ -123,5 +129,6 @@ jQuery(document).ready(function($) {
 		});
 		
 		$('#jp_interface_page').show('slide');
+		setTimeout(function() {$('#jp_interface_page').animate({'opacity':0.5});}, 5000);
 	}
 });
