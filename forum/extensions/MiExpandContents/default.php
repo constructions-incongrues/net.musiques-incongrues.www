@@ -15,6 +15,9 @@ if ($Context->SelfUrl == 'comments.php') {
 	$Head->AddStyleSheet('extensions/MiExpandContents/css/MiExpandContents.css');
 	if(!in_array(ForceIncomingString("PostBackAction", ""), array('Releases')))
 	{
-		$Head->AddScript('extensions/MiExpandContents/js/inlineplayer.js');
+		if ($Context->Configuration['FEATURES']['pagePlayer']['restricted'] && !in_array($Context->Session->UserID, $Context->Configuration['FEATURES']['pagePlayer']['uids'])) {
+			$Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2.js');
+			$Head->AddScript('extensions/MiExpandContents/js/inlineplayer.js');
+		}
 	}
 }

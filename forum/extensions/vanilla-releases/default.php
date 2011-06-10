@@ -29,7 +29,7 @@ $Configuration['BASE_URL'] . 'releases/',
 	      'class="Eyes"');
 
 //$Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2-nodebug-jsmin.js');
-$Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2.js');
+//$Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2.js');
 
 // Add link to podcast in website's head
 $Head->AddString(sprintf('<link rel="alternate" type="application/rss+xml" href="%s" title="Le podcast auto-mécanique des Musiques Incongrues" />', $Configuration['BASE_URL'].'s/feeds/podcast'));

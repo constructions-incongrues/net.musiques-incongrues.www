@@ -27,10 +27,4 @@ text-transform:uppercase;
 	font-size:1.2em;
 }
 
-a.expansible {
-display:inline-block;
-padding-right:20px;
-line-height:18px;
-background:transparent url(../img/ajax-loader.gif) center right no-repeat;
-color: #333;
-}
+a.expansible {display:inline-block;padding-right:20px;line-height:18px;background:transparent url(../img/ajax-loader.gif) center right no-repeat;color: #333;}
