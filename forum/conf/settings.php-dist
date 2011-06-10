@@ -14,6 +14,7 @@
  * 95  - glafouk
  * 132 - antiulcéreuse
  * 181 - denni montono
+ * 190 - jknpp
  * 197 - schling
  * 217 - spintronic
  * 225 - iris
@@ -21,7 +22,7 @@
  * 366 - animomarc
  * 665 - ptite gonze
  */
-$Configuration['BETA_TESTERS_IDS'] = array(1, 2, 3, 9, 14, 21, 30, 32, 47, 90, 95, 132, 197, 217, 225, 328, 366, 665);
+$Configuration['BETA_TESTERS_IDS'] = array(1, 2, 3, 9, 14, 21, 30, 32, 47, 90, 95, 132, 181, 190, 197, 217, 225, 328, 366, 665);
 $Configuration['FEATURES'] = array(
 	'oembed' => array('restricted' => false, 'uids' => $Configuration['BETA_TESTERS_IDS']),
 	'pagePlayer' => array('restricted' => true, 'uids' => $Configuration['BETA_TESTERS_IDS']) 
