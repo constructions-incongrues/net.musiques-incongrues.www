@@ -102,14 +102,12 @@ jQuery(document).ready(function($) {
 			$(this).find('span.more').hide();
 		});
 		$('#jquery_jplayer_page').bind($.jPlayer.event.error + '.pagePlayer', function(event) {
-			console.log(event);
 			playlist.playlist[playlist.current].available = 'unavailable';
 			$(playlist.playlist[playlist.current].element).addClass('unavailable').attr('title', 'Média indisponible : ' + event.jPlayer.error.message);
 			playlist.playlistChange(playlist.current + 1);
 			playlist.displayPlaylist();
 		});
 		$('#jquery_jplayer_page').bind($.jPlayer.event.ready + '.pagePlayer', function(event) {
-			console.log('READY');
 			$('.jp-playlist-count').html(playlist.playlist.length + ' tracks');
 			$('#jp_interface_page').show('slide');
 		});
