@@ -1,4 +1,4 @@
-<div id="jquery_jplayer_page" class="jp-jplayer" style="display:none;"></div>
+<div id="jquery_jplayer_page" class="jp-jplayer"></div>
 <div id="jp_interface_page" class="jp-interface" style="display:none;">
 	<div class="jp-progress">
 		<div class="jp-seek-bar">
