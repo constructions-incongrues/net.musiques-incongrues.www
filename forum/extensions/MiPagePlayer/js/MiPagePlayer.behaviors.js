@@ -12,9 +12,16 @@ jQuery(document).ready(function($) {
 		var url = $(this).attr('href');
 		$(this).attr('name', 'track-' + index);
 		$.data(this, 'jp-index', index);
-		var trackName = decodeURIComponent(url).replace(/^.*[\/\\]/g, '');
+		
+		// Guess track name
+		var trackName = 'Unknown';
 		if ($(this).attr('x-mi-trackName')) {
 			trackName = $(this).attr('x-mi-trackName');
+		} else {
+			trackName = decodeURIComponent(url).replace(/^.*[\/\\]/g, '');
+			if (trackName.substr(trackName.length - 4) == '.mp3') {
+				trackName = trackName.substr(0, trackName.length - 4);
+			}
 		}
 		tracks.push({
 			name: trackName,
