@@ -61,10 +61,11 @@ Playlist.prototype = {
 				// Associate playlist items with their media
 				$(this.cssSelector.playlist + " ol").append(listItem);
 				$(this.cssSelector.playlist + " a.share").popupWindow({centerScreen: true, windowName: 'mi-share', height:350});
-				$(this.cssSelector.playlist + "_item_" + i).data("index", i).parent().click(function() {
-					$(this).find('a.track').click();
-				});
-				$(this.cssSelector.playlist + "_item_" + i).data("index", i).click(function() {
+//				$(this.cssSelector.playlist + "_item_" + i).data("index", i).parent().click(function() {
+//					$(this).find('a.track').click();
+//				});
+				$(this.cssSelector.playlist + "_item_" + i).data("index", i).click(function(event) {
+					event.stopPropagation();
 					if (window.webkitNotifications) {
 						window.webkitNotifications.requestPermission(function() {});
 					}
