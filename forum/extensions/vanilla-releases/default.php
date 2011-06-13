@@ -25,11 +25,7 @@ if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Co
 // Add "events" tab
 $Menu->addTab($Context->getDefinition('Releases'),
 $Context->getDefinition('Releases'),
-$Configuration['BASE_URL'] . 'releases/',
-	      'class="Eyes"');
-
-//$Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2-nodebug-jsmin.js');
-//$Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2.js');
+$Configuration['BASE_URL'] . 'releases/', 'class="Eyes"');
 
 // Add link to podcast in website's head
 $Head->AddString(sprintf('<link rel="alternate" type="application/rss+xml" href="%s" title="Le podcast auto-mécanique des Musiques Incongrues" />', $Configuration['BASE_URL'].'s/feeds/podcast'));
@@ -44,8 +40,11 @@ if ($Context->SelfUrl == 'post.php')
 // Code needed to display the "events" page
 if(in_array(ForceIncomingString("PostBackAction", ""), array('Releases')))
 {
-    $Head->AddScript('extensions/vanilla-releases/js/soundmanager2/css/inlineplayer.css');
-    $Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/inlineplayer.js');
+	if ($Context->Configuration['FEATURES']['pagePlayer']['restricted'] && !in_array($Context->Session->UserID, $Context->Configuration['FEATURES']['pagePlayer']['uids'])) {
+		$Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2.js');
+	    $Head->AddScript('extensions/vanilla-releases/js/soundmanager2/css/inlineplayer.css');
+	    $Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/inlineplayer.js');
+	}
 
     $Context->PageTitle = $Context->GetDefinition('Releases');
     $Menu->CurrentTab = 'Releases';
@@ -206,7 +205,7 @@ class ReleasesPage
         foreach ($releases as $release)
         {
             $href = GetUrl($this->Context->Configuration, 'comments.php', '', 'DiscussionID', $release['DiscussionID'], '', '#Item_1', CleanupString($release['Name']).'/');
-            $link = sprintf('<a href="%s" title="Discuter de %s">%s</a>', $href, $release['Name'], $release['Name']);
+            $link = sprintf('<a href="%s" title="Discuter de %s" >%s</a>', $href, addcslashes($release['Name'], '"'), $release['Name']);
             $alternate = $i % 2 == 0 ? '' : 'modulo';
             $download_string = '';
             $label_string = '';
@@ -215,14 +214,14 @@ class ReleasesPage
             {
                 $download_text = 'Download';
                 $download_link_title = sprintf('Télécharger %s', $release['Name']);
-                $download_string = sprintf('<span class="release-download">(<a class="inline-exclude" href="%s" title="%s">%s</a>)</span>', $release['DownloadLink'], $download_link_title, $download_text);
+                $download_string = sprintf('<span class="release-download">(<a class="inline-exclude mi-player-skip" href="%s" title="%s">%s</a>)</span>', $release['DownloadLink'], $download_link_title, $download_text);
 
                 if (pathinfo($release['DownloadLink'], PATHINFO_EXTENSION) == 'mp3')
                 {
                     $listen_text = 'Play';
                     $link_class = 'sm2_link';
                     $listen_link_title = sprintf('Écouter %s', $release['Name']);
-                    $listen_string = sprintf('<span class="release-download">(<a href="%s" class="%s" title="%s">%s</a>)</span>', $release['DownloadLink'], $link_class, $listen_link_title, $listen_text);
+                    $listen_string = sprintf('<span class="release-download">(<a href="%s" class="%s" title="%s" x-mi-sourceUrl="%s" x-mi-trackName="%s">%s</a>)</span>', $release['DownloadLink'], $link_class, $listen_link_title, $href, addcslashes($release['Name'], '"'), $listen_text);
                 }
             }
             if (isset($release['LabelName']) && $release['LabelName'])
@@ -246,7 +245,16 @@ class ReleasesPage
 
         // Body
         $body = '%s<div id="ContentBody" class="releases"><ol id="Discussions">%s</ol></div>';
-
+        
+        if ($this->Context->Configuration['FEATURES']['pagePlayer']['restricted'] && in_array($this->Context->Session->UserID, $this->Context->Configuration['FEATURES']['pagePlayer']['uids'])) {
+			ob_implicit_flush(false);
+			@ob_end_clean();
+			ob_start();
+			$Context = $this->Context;
+			include(dirname(__FILE__).'/../MiPagePlayer/templates/page-player.php');
+			$body .= ob_get_clean();
+        }
+        
         echo sprintf($body, $top, $discussions);
     }
 }
