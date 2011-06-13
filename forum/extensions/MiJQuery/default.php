@@ -6,7 +6,7 @@ $extensionName = basename(dirname(__FILE__));
 $Head->AddScript(sprintf('extensions/%s/js/configuration.js', $extensionName));
 
 // jQuery - http://www.jquery.com
-$Head->AddScript(sprintf('extensions/%s/js/jquery/jquery-1.5.2.min.js', $extensionName));
+$Head->AddScript(sprintf('extensions/%s/js/jquery/jquery-1.6.1.min.js', $extensionName));
 
 // jQuery Thumbs - http://joanpiedra.com/jquery/thumbs/
 $Head->AddScript(sprintf('extensions/%s/js/jquery/thumbs/jquery.thumbs.js', $extensionName));
