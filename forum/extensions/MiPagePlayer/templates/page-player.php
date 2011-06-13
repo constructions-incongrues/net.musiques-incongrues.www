@@ -25,9 +25,9 @@
 	<div class="jp-track-info"></div>
 	
 	<div class="jp-play-controls">
-		<span class="jp-button jp-play">play</span>
+		<span class="jp-button jp-play">play ▶</span>
 		<span class="jp-button jp-pause">pause</span>
-		<span class="jp-button jp-previous">previous</span>
-		<span class="jp-button jp-next">next</span>
+		<span class="jp-button jp-previous">← previous</span>
+		<span class="jp-button jp-next">next →</span>
 	</div>
 </div>
