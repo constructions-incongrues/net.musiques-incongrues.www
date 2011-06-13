@@ -25,13 +25,13 @@ var Playlist = function(instance, playlist, options) {
 	$(this.cssSelector.jPlayer).jPlayer(this.options);
 
 	$(this.cssSelector.interface + " .jp-previous").click(function() {
-		self.playlistPrev();
+		self.playlistPrev($.data($('#jquery_jplayer_page')[0], 'playing'));
 		$(this).blur();
 		return false;
 	});
 
 	$(this.cssSelector.interface + " .jp-next").click(function() {
-		self.playlistNext();
+		self.playlistNext($.data($('#jquery_jplayer_page')[0], 'playing'));
 		$(this).blur();
 		return false;
 	});
@@ -49,21 +49,9 @@ Playlist.prototype = {
 					listItem = (i === this.playlist.length-1) ? "<li class='jp-playlist-last "+ this.playlist[i].available +"'>" : "<li class='"+ this.playlist[i].available +"'>";
 				}
 				listItem += "<a href='" + this.playlist[i].mp3 + "' id='" + this.cssId.playlist + this.instance + "_item_" + i +"' tabindex='1' class='track'>"+ this.playlist[i].name +"</a>";
-				listItem += '<span class="more">';
-				listItem += "[<a target='_blank' href='" + this.playlist[i].mp3 + "' title='Télécharger le fichier' class='download'>D</a>]";
-				listItem += "[<a target='_blank' href='https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.playlist[i].mp3) + "&t="+ encodeURIComponent(this.playlist[i].name) +"' title='Partager ce morceau' class='share'>P</a>]";
-				if ($(this.playlist[i].element).attr('x-mi-sourceUrl')) {
-					listItem += "[<a target='_blank' href='" + $(this.playlist[i].element).attr('x-mi-sourceUrl') + "' title='Accéder à la discussion ou le morceau a été posté initialement' class='source'>S</a>]";
-				}
-				listItem += '</span>';
-				listitem += "</li>";
 
 				// Associate playlist items with their media
 				$(this.cssSelector.playlist + " ol").append(listItem);
-				$(this.cssSelector.playlist + " a.share").popupWindow({centerScreen: true, windowName: 'mi-share', height:350});
-//				$(this.cssSelector.playlist + "_item_" + i).data("index", i).parent().click(function() {
-//					$(this).find('a.track').click();
-//				});
 				$(this.cssSelector.playlist + "_item_" + i).data("index", i).click(function(event) {
 					event.stopPropagation();
 					if (window.webkitNotifications) {
@@ -79,6 +67,7 @@ Playlist.prototype = {
 					return false;
 				});
 			}
+			$('.playlist-count').html(playlist.playlist.length);
 		},
 		playlistInit: function(autoplay) {
 			if(autoplay) {
@@ -104,7 +93,7 @@ Playlist.prototype = {
 			$(this.cssSelector.jPlayer).jPlayer("play");
 		},
 		playlistNext: function(autoplay) {
-			var index = (this.current + 1 < this.playlist.length) ? this.current + 1 : 0;
+			var index = (this.current + 1 < this.playlist.length) ? this.current + 1 : this.current;
 			if (autoplay) {
 				this.playlistChange(index);
 			} else {
@@ -112,7 +101,7 @@ Playlist.prototype = {
 			}
 		},
 		playlistPrev: function(autoplay) {
-			var index = (this.current - 1 >= 0) ? this.current - 1 : this.playlist.length - 1;
+			var index = (this.current - 1 >= 0) ? this.current - 1 : this.current;
 			if (autoplay) {
 				this.playlistChange(index);
 			} else {

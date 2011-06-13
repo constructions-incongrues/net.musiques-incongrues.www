@@ -2,6 +2,7 @@ jQuery(document).ready(function($) {
 	/* Page player */
 	$('a[href$=".mp3"]').addClass('playable');
 
+	// Collect MP3 links on page
 	var tracks = [];
 	$('a[href$=".mp3"]').each(function(index) {
 		if ($(this).hasClass('mi-player-skip')) {
@@ -11,7 +12,7 @@ jQuery(document).ready(function($) {
 		var url = $(this).attr('href');
 		$(this).attr('name', 'track-' + index);
 		$.data(this, 'jp-index', index);
-		var trackName = url.replace(/^.*[\/\\]/g, '').replace(/%20/, ' ');
+		var trackName = decodeURIComponent(url).replace(/^.*[\/\\]/g, '');
 		if ($(this).attr('x-mi-trackName')) {
 			trackName = $(this).attr('x-mi-trackName');
 		}
@@ -22,12 +23,71 @@ jQuery(document).ready(function($) {
 			available: 'available'
 		});
 	});
+	
+	// Setup page player
 	if (tracks.length > 0) {
 		playlist = new Playlist('page', tracks, {
 			swfPath: configuration.BASEURI + 'extensions/MiJQuery/js/jquery/jplayer',
 			cssSelectorAncestor: '#jp_interface_page',
-			solution: 'flash, html'
+			solution: 'html, flash'
 		});
+
+		// Player events
+		// -- Player successfully loaded
+		$('#jquery_jplayer_page').bind($.jPlayer.event.ready + '.pagePlayer', function(event) {
+			// Draw playlist (TODO : rename corresponding method)
+			playlist.displayPlaylist();
+			playlist.playlistConfig(0);
+
+			// Store initial player state
+			$.data($('#jquery_jplayer_page')[0], 'playing', false);
+			
+			// Show footer player
+			$('#jp_interface_page').show('slide');
+		});
+		
+		// Footer controls
+		// -- Playlist button
+		$('span.jp-button.playlist').click(function(event) {
+			$('#jp_playlist_page').animate({height:'toggle'});
+		});
+		
+		// -- Close button
+		$('span.jp-button.close').click(function() {
+			$('#jp_playlist_page').hide();
+			$('#jp_interface_page').animate({height:'hide'});
+		});
+
+		// Player events
+		// -- play
+		$('#jquery_jplayer_page').bind($.jPlayer.event.play + '.pagePlayer', function(event) {
+			$.data($('#jquery_jplayer_page')[0], 'playing', true);
+			$.jwNotify({
+				image: 'http://img96.imageshack.us/img96/46/faviconxa.png',
+			    title: "► Radio Incongrue",
+			    body: '♫ ' + playlist.playlist[playlist.current].name + ' ♫',
+			    timeout: 3000
+			});
+		});
+		
+		// -- pause
+		$('#jquery_jplayer_page').bind($.jPlayer.event.pause + '.pagePlayer', function(event) {
+			$.data($('#jquery_jplayer_page')[0], 'playing', false);
+		});
+		
+		// -- ended
+		$('#jquery_jplayer_page').bind($.jPlayer.event.ended + '.pagePlayer', function(event) {
+			playlist.playlistNext(true);
+		});
+		
+		// -- error
+		$('#jquery_jplayer_page').bind($.jPlayer.event.error + '.pagePlayer', function(event) {
+			playlist.playlist[playlist.current].available = 'unavailable';
+			$(playlist.playlist[playlist.current].element).addClass('unavailable').attr('title', 'Média indisponible : ' + event.jPlayer.error.message);
+			playlist.playlistNext($.data($('#jquery_jplayer_page')[0], 'playing'));
+			playlist.displayPlaylist();
+		});
+		
 		$('a[href$=".mp3"]').click(function(event) {
 			event.preventDefault();
 			if ($(this).hasClass('playing')) {
@@ -42,88 +102,11 @@ jQuery(document).ready(function($) {
 				$('#jquery_jplayer_page').jPlayer('play');
 			}
 		});
-		$('.jp-playlist-arrow, .jp-playlist-count').click(function() {
-			playlist.displayPlaylist();
-			$('#jp_playlist_page').toggle('slide');
-			if ($('.jp-playlist-arrow').html() == '↑') {
-				$('.jp-playlist-arrow').html('↓');
-			} else {
-				$('.jp-playlist-arrow').html('↑');
-			}
-		});
-		
-		$('.jp-ui-controls .close').click(function() {
-			$('#jp_interface_page').animate({height:'hide'});
-		});
-		
-		var playerCollapse = function() {
-			$('#jp_interface_page .jp-track-info').hide();
-			$('#jp_interface_page .jp-timer').hide();
-			$('#jp_interface_page .jp-playlist-count').hide();
-			$('#jp_interface_page .jp-playlist-arrow').hide();
-			$('#jp_playlist_page').animate({height:'hide'}, function() {
-				$('#jp_interface_page').animate({width:'14%'}, function() {
-					$('#jp_interface_page .jp-progress').animate({height:'hide'});
-				});
-			});
-			$('#jp_interface_page').addClass('collapsed');
-			$('.jp-ui-controls .collapse-toggle').html('+');
-		};
-		
-		var playerExpand = function() {
-			$('#jp_interface_page').animate({width:'100%'}, function() {
-				$('#jp_interface_page .jp-track-info').show();
-				$('#jp_interface_page .jp-timer').show();
-				$('#jp_interface_page .jp-playlist-count').show();
-				$('#jp_interface_page .jp-playlist-arrow').show();
-				$('#jp_interface_page .jp-progress').animate({height:'show'});
-			});
-			$('#jp_interface_page').removeClass('collapsed');
-			$('.jp-ui-controls .collapse-toggle').html('-');
-		};
-		
-		$('.jp-ui-controls .collapse-toggle').click(function() {
-			if ($('#jp_interface_page').hasClass('collapsed')) {
-				playerExpand();
-			} else {
-				playerCollapse();
-			}
-		});
 		
 		$('#jp_interface_page .jp-play').click(function() {
 			if (window.webkitNotifications) {
 				window.webkitNotifications.requestPermission(function() {});
 			}
-		});
-		$('#jp_playlist_page li').live('mouseenter', function() {
-			$(this).find('span.more').show();
-		});
-		$('#jp_playlist_page li').live('mouseleave', function() {
-			$(this).find('span.more').hide();
-		});
-		$('#jquery_jplayer_page').bind($.jPlayer.event.error + '.pagePlayer', function(event) {
-			playlist.playlist[playlist.current].available = 'unavailable';
-			$(playlist.playlist[playlist.current].element).addClass('unavailable').attr('title', 'Média indisponible : ' + event.jPlayer.error.message);
-			playlist.playlistChange(playlist.current + 1);
-			playlist.displayPlaylist();
-		});
-		$('#jquery_jplayer_page').bind($.jPlayer.event.ready + '.pagePlayer', function(event) {
-			$('.jp-playlist-count').html(playlist.playlist.length + ' tracks');
-			$('#jp_interface_page').show('slide');
-		});
-		$('#jquery_jplayer_page').bind($.jPlayer.event.ended + '.pagePlayer', function(event) {
-			playlist.playlistNext(true);
-		});
-		$('#jquery_jplayer_page').bind($.jPlayer.event.play + '.pagePlayer', function(event) {
-			$.jwNotify({
-				image: 'http://img96.imageshack.us/img96/46/faviconxa.png',
-			    title: "► Radio Incongrue",
-			    body: '♫ ' + playlist.playlist[playlist.current].name + ' ♫',
-			    timeout: 10000
-			});
-		});
-		$('#CommentBox').focus(function() {
-			playerCollapse();
 		});
 	}
 });
