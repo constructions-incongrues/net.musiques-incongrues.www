@@ -44,7 +44,7 @@ jQuery(document).ready(function($) {
 			// Draw playlist (TODO : rename corresponding method)
 			playlist.displayPlaylist();
 			playlist.playlistConfig(0);
-
+			
 			// Store initial player state
 			$.data($('#jquery_jplayer_page')[0], 'playing', false);
 			
@@ -113,6 +113,6 @@ jQuery(document).ready(function($) {
 			if (window.webkitNotifications) {
 				window.webkitNotifications.requestPermission(function() {});
 			}
-		});
+		});		
 	}
 });

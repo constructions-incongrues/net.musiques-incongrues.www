@@ -1,6 +1,7 @@
 <div id="jquery_jplayer_page" class="jp-jplayer"></div>
 
 <div id="jp_playlist_page">
+	<h3>♫ <span class="jp-track-info"></span></h3>
 	<ol></ol>
 </div>
 

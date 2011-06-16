@@ -49,7 +49,10 @@ Playlist.prototype = {
 					listItem = (i === this.playlist.length-1) ? "<li class='jp-playlist-last "+ this.playlist[i].available +"'>" : "<li class='"+ this.playlist[i].available +"'>";
 				}
 				listItem += "<a href='" + this.playlist[i].mp3 + "' id='" + this.cssId.playlist + this.instance + "_item_" + i +"' tabindex='1' class='track'>"+ this.playlist[i].name +"</a>";
-
+				listItem += ' | <a href="" title="Plus..." class="more">plus...</a>';
+				listItem += ' <span class="more"><a title="Télécharger le morceau" href="'+this.playlist[i].mp3+'" class="download">Télécharger</a> | <a title="Partager le morceau sur Facebook" href="http://www.facebook.com/sharer.php?t='+encodeURIComponent(this.playlist[i].name)+'&u='+encodeURIComponent(this.playlist[i].mp3)+'" class="share">Partager</a></span>';
+				listItem += '</li>';
+				
 				// Associate playlist items with their media
 				$(this.cssSelector.playlist + " ol").append(listItem);
 				$(this.cssSelector.playlist + "_item_" + i).data("index", i).click(function(event) {
@@ -67,6 +70,17 @@ Playlist.prototype = {
 					return false;
 				});
 			}
+			
+			$('#jp_playlist_page li a.more').click(function(event) {
+				event.preventDefault();
+				$('#jp_playlist_page li span.more,').hide();
+				$(this).parent().find('span.more').toggle();
+			});
+			$('#jp_playlist_page li a.share').popupWindow({
+				height: 250,
+				centerScreen: true
+			});
+
 			$('.playlist-count').html(playlist.playlist.length);
 		},
 		playlistInit: function(autoplay) {
@@ -85,6 +99,8 @@ Playlist.prototype = {
 				this.current = index;
 				$('.jp-track-info').html(this.playlist[this.current].name);
 				$('.jp-view').attr('href', '#track-' + this.current);
+				$('#jp_playlist_page li span.more,#jp_playlist_page li span.details').hide();
+				$('#jp_playlist_page_item_' + this.current).parent().find('span.more, span.details').toggle();
 				$(this.cssSelector.jPlayer).jPlayer("setMedia", this.playlist[this.current]);
 			}
 		},
