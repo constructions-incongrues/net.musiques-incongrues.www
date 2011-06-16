@@ -25,7 +25,7 @@
 $Configuration['BETA_TESTERS_IDS'] = array(1, 2, 3, 9, 14, 21, 30, 32, 47, 90, 95, 132, 181, 190, 197, 217, 225, 328, 366, 665);
 $Configuration['FEATURES'] = array(
 	'oembed' => array('restricted' => false, 'uids' => $Configuration['BETA_TESTERS_IDS']),
-	'pagePlayer' => array('restricted' => true, 'uids' => $Configuration['BETA_TESTERS_IDS']) 
+	'pagePlayer' => array('restricted' => false, 'uids' => $Configuration['BETA_TESTERS_IDS']) 
 );
 
 // Application Settings
