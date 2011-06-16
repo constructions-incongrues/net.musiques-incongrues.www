@@ -1,14 +1,13 @@
 jQuery(document).ready(function($) {
-	/* Page player */
-	$('a[href$=".mp3"]').addClass('playable');
-
 	// Collect MP3 links on page
 	var tracks = [];
+	// TODO : a[href*="soundcloud.com"]
 	$('a[href$=".mp3"]').each(function(index) {
 		if ($(this).hasClass('mi-player-skip')) {
 			// Continue
 			return true;
 		}
+		$(this).addClass('playable');
 		var url = $(this).attr('href');
 		$(this).attr('name', 'track-' + index);
 		$.data(this, 'jp-index', index);
@@ -18,7 +17,7 @@ jQuery(document).ready(function($) {
 		if ($(this).attr('x-mi-trackName')) {
 			trackName = $(this).attr('x-mi-trackName');
 		} else {
-			trackName = decodeURIComponent(url).replace(/^.*[\/\\]/g, '');
+			trackName = decodeURIComponent(url).replace(/^.*[\/\\]/g, '').replace(/_/g, ' ');
 			if (trackName.substr(trackName.length - 4) == '.mp3') {
 				trackName = trackName.substr(0, trackName.length - 4);
 			}
