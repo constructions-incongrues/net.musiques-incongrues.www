@@ -40,12 +40,6 @@ if ($Context->SelfUrl == 'post.php')
 // Code needed to display the "events" page
 if(in_array(ForceIncomingString("PostBackAction", ""), array('Releases')))
 {
-	if ($Context->Configuration['FEATURES']['pagePlayer']['restricted'] && !in_array($Context->Session->UserID, $Context->Configuration['FEATURES']['pagePlayer']['uids'])) {
-		$Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/soundmanager2.js');
-	    $Head->AddScript('extensions/vanilla-releases/js/soundmanager2/css/inlineplayer.css');
-	    $Head->AddScript('extensions/vanilla-releases/js/soundmanager2/script/inlineplayer.js');
-	}
-
     $Context->PageTitle = $Context->GetDefinition('Releases');
     $Menu->CurrentTab = 'Releases';
     $Body->CssClass = 'Discussions';
@@ -245,15 +239,14 @@ class ReleasesPage
 
         // Body
         $body = '%s<div id="ContentBody" class="releases"><ol id="Discussions">%s</ol></div>';
-        
-        if ($this->Context->Configuration['FEATURES']['pagePlayer']['restricted'] && in_array($this->Context->Session->UserID, $this->Context->Configuration['FEATURES']['pagePlayer']['uids'])) {
-			ob_implicit_flush(false);
-			@ob_end_clean();
-			ob_start();
-			$Context = $this->Context;
-			include(dirname(__FILE__).'/../MiPagePlayer/templates/page-player.php');
-			$body .= ob_get_clean();
-        }
+
+        // Page player
+		ob_implicit_flush(false);
+		@ob_end_clean();
+		ob_start();
+		$Context = $this->Context;
+		include(dirname(__FILE__).'/../MiPagePlayer/templates/page-player.php');
+		$body .= ob_get_clean();
         
         echo sprintf($body, $top, $discussions);
     }

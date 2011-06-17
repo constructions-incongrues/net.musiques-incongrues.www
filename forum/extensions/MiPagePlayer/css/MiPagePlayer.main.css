@@ -27,7 +27,7 @@ a.playable.unavailable {background-color:red;}
 /* Playlist */
 #jp_playlist_page {position:fixed;left:0;bottom:25px;border-top:solid 2px black;width:100%;background-color:#e1fffe;max-height:40%;overflow:auto;display:none;}
 #jp_playlist_page ol {font-size:1.3em;}
-#jp_playlist_page ol li {border-bottom:solid 1px black;padding:0.3em;}
+#jp_playlist_page ol li {border-bottom:dotted 1px black;padding:0.3em;}
 #jp_playlist_page ol li a.more {font-size:0.7em;}
 #jp_playlist_page li.unavailable, #jp_playlist_page li.unavailable a {text-decoration:line-through;}
 #jp_playlist_page li:hover {background-color:#eee;}

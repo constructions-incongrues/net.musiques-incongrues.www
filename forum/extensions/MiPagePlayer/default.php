@@ -8,14 +8,12 @@
  Author Url: http://github.com/trivoallan
  */
 
-if ($Context->Configuration['FEATURES']['pagePlayer']['restricted'] && in_array($Context->Session->UserID, $Context->Configuration['FEATURES']['pagePlayer']['uids'])) {
-	$Head->AddScript('extensions/MiPagePlayer/js/MiPagePlayer.playlist.js');
-	$Head->AddScript('extensions/MiPagePlayer/js/MiPagePlayer.behaviors.js?'.time());
-	$Head->AddStyleSheet('extensions/MiPagePlayer/css/MiPagePlayer.main.css?'.time());
-	$Context->AddToDelegate('CommentGrid', 'PostRender', 'MiPagePlayer_PostRenderCommentFoot');
-	
-	function MiPagePlayer_PostRenderCommentFoot(CommentGrid $commentGrid) {
-		$Context = $commentGrid->Context;
-		include(dirname(__FILE__).'/templates/page-player.php');
-	}
+$Head->AddScript('extensions/MiPagePlayer/js/MiPagePlayer.playlist.js');
+$Head->AddScript('extensions/MiPagePlayer/js/MiPagePlayer.behaviors.js?'.time());
+$Head->AddStyleSheet('extensions/MiPagePlayer/css/MiPagePlayer.main.css?'.time());
+$Context->AddToDelegate('CommentGrid', 'PostRender', 'MiPagePlayer_PostRenderCommentFoot');
+
+function MiPagePlayer_PostRenderCommentFoot(CommentGrid $commentGrid) {
+	$Context = $commentGrid->Context;
+	include(dirname(__FILE__).'/templates/page-player.php');
 }
