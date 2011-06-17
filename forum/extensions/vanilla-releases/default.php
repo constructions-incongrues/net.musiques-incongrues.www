@@ -28,7 +28,7 @@ $Context->getDefinition('Releases'),
 $Configuration['BASE_URL'] . 'releases/', 'class="Eyes"');
 
 // Add link to podcast in website's head
-$Head->AddString(sprintf('<link rel="alternate" type="application/rss+xml" href="%s" title="Le podcast auto-mécanique des Musiques Incongrues" />', $Configuration['BASE_URL'].'s/feeds/podcast'));
+$Head->AddString('<link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/musiques-incongrues-podcast" title="Le podcast auto-mécanique du forum des Musiques Incongrues" />');
 
 // Add event related form controls
 if ($Context->SelfUrl == 'post.php')
@@ -80,7 +80,7 @@ class ReleasesPage
 '<h2>Mixes</h2>
 <ul class="label-links">
   <li><a href="?only_mixes=1">N\'afficher que les mixes</a></li>
-  <li><a href="'.$this->Configuration['BASE_URL'].'s/feeds/podcast">S\'abonner au podcast</a></li>
+  <li><a href="http://feeds.feedburner.com/musiques-incongrues-podcast" title="Le podcast auto-mécanique du forum des Musiques Incongrues">S\'abonner au podcast</a></li>
 </ul>';
         }
         else
