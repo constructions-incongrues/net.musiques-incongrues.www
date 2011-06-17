@@ -11,4 +11,8 @@ forum/extensions/PageMng/CustomPages.php
 forum/extensions/Vanillacons/smilies.js
 forum/extensions/Vanillacons/smilies.php
 etc/*.ini
-forum/extensions/vanilla-player/js/inlineplayer.js
+forum/extensions/MiExpandContents/js/inlineplayer.js
+forum/extensions/MiJQuery/js/configuration.js
+forum/extensions/MiExpandContents/js/inlineplayer.js
+forum/extensions/MiJQuery/js/configuration.js
+forum/extensions/vanilla-releases/js/soundmanager2/script/inlineplayer.js

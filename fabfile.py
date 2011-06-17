@@ -65,6 +65,16 @@ def symlinks():
   run('ln -sf %s/sfproject/web %s/forum/s' % (install, install))
   run('ln -sf %s/web/* %s/' % (install, webroot))
 
+def newrelic():
+  # Make sure configuration is set
+  require('config', provided_by=[configure])
+
+  # Call Newrelic API
+  # TODO : auto guess "revision" parameter
+  # TODO : -user as task parameter
+  local('curl -H "x-api-key:%s" -d "deployment[app_name]=%s" -d "deployment[description]=Deployed with Fabric" https://rpm.newrelic.com/deployments.xml' % (env.config.get('newrelic', 'key'), env.config.get('newrelic', 'appname')))
+
+
 def reload_db():
   
   # TODO : POTENTIALLY DESTRUCTIVE ACTION. ASK FOR CONFIRMATION

@@ -187,7 +187,7 @@ class Statistics extends PostBackControl {
     $USER_TABLE = (isset($this->Context->DatabaseTables['User'])) ? $this->Context->DatabaseTables['User'] : $Context->DatabaseTables['User'];
     $USERID = (isset($this->Context->DatabaseColumns['User']['UserID'])) ? $this->Context->DatabaseColumns['User']['UserID'] : $Context->DatabaseColumns['User']['UserID'];
 
-    $Query = "SELECT ".$USER_TABLE.".".$USERID." FROM `".$USER_TABLE."` WHERE ".$USER_TABLE.".".$this->Context->DatabaseColumns['User']['Name']." = '".$Username."';";
+    $Query = "SELECT ".$USER_TABLE.".".$USERID." FROM `".$USER_TABLE."` WHERE ".$USER_TABLE.".".$this->Context->DatabaseColumns['User']['Name']." = '".mysql_real_escape_string($Username)."';";
 	$tmpData = $this->Context->Database->Execute($Query, '', '', '', '');
     $data = mysql_fetch_assoc($tmpData);
 
