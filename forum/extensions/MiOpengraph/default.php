@@ -25,6 +25,7 @@ $ogMetaTags['title'] = 'Le forum des Musiques Incongrues';
 $ogMetaTags['url'] = sprintf('http://%s%s', $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
 $ogMetaTags['description'] = "Un forum où l'on parle musiques décalées, électroniques ou pas, c'est aussi un agenda de sorties, une radio et télé incongrues. Plus largement, une base de données où vous trouverez une myriade d'images et de videos, des infos sur la culture 'undergound' et 'overground', mais aussi tout ce qui est incongru en général.";
 $ogMetaTags['site_name'] = 'Musiques Incongrues';
+$ogMetaTags['type'] = 'article';
 
 // Discussion related meta data
 if ($Context->SelfUrl == 'comments.php') {
@@ -40,21 +41,29 @@ if ($Context->SelfUrl == 'comments.php') {
 	
 	// If it is a release, check if discussion holds any link to an MP3 file
 	$release = mysql_fetch_assoc($Context->Database->Execute('Select LabelName, DownloadLink from LUM_Releases where DiscussionID = ' . $discussion['DiscussionID'], '', '', '', ''));
-	if ($release) {
+	if ($release && $release['DownloadLink'] && substr($release['DownloadLink'], -3) == 'mp3') {
+		$ogMetaTags['type'] = 'song';
+		$ogMetaTags['audio'] = $release['DownloadLink'];
+		$ogMetaTags['audio:title'] = $discussion['Name'];
+		$ogMetaTags['audio:type'] = 'application/mp3';
+		$ogMetaTags['audio:album'] = 'Unknown album';			
+		if ($release['LabelName']) {
+			$ogMetaTags['audio:artist'] = $release['LabelName'];
+		} else {
+			$ogMetaTags['audio:artist'] = 'Unknown Artist';
+		}
+	} else {
 		$mp3sDiscussion = ogCallService('mp3', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'asc');
-		if (is_array($mp3sDiscussion) && $mp3sDiscussion['num_found'] > 0) {
+		if (is_array($mp3sDiscussion) && $mp3sDiscussion['num_found'] == 1) {
 			$ogMetaTags['type'] = 'song';
 			$ogMetaTags['audio'] = $mp3sDiscussion[0]['url'];
 			$ogMetaTags['audio:title'] = $mp3sDiscussion[0]['discussion_name'];
 			$ogMetaTags['audio:type'] = 'application/mp3';
-			// Those seem to be required. See http://developers.facebook.com/docs/opengraph/
-			if ($release['LabelName']) {
-				$ogMetaTags['audio:artist'] = $release['LabelName'];
-			}
 			$ogMetaTags['audio:album'] = 'Unknown album';
+			$ogMetaTags['audio:artist'] = 'Unknown Artist';
 		}
 	}
-	
+		
 	// If discussion relates to an event, add location metadata
 	$event = mysql_fetch_assoc($Context->Database->Execute('SELECT * FROM LUM_Event WHERE LUM_Event.DiscussionID = '.ForceIncomingInt("DiscussionID", 0).';', '', '', '', ''));
 	if ($event) {
@@ -74,7 +83,8 @@ if ($Context->SelfUrl == 'comments.php') {
 // TODO : enable delegation of OG tags settings in any extension
 if (!array_intersect(explode('/', $_SERVER['REQUEST_URI']), array('shows', 'labels'))) {
 	foreach ($ogMetaTags as $name => $value) {
-		$Head->AddString(sprintf('<meta property="og:%s" content="%s" />'."\n", $name, addcslashes($value, '"')));
+		$Head->AddString(sprintf('<meta property="og:%s" content="%s"></meta>'."\n", $name, addcslashes($value, '"')));
 	}
+	$Head->AddString('<meta property="fb:admins" content="659012078"></meta>'."\n");
 }
 

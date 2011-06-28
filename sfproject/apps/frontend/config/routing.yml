@@ -5,6 +5,10 @@ feeds_podcast:
   url: /feeds/podcast
   param: {module: feeds, action: podcast }
 
+feeds_releases:
+  url: /feeds/releases
+  param: {module: feeds, action: releases }
+
 feeds_events:
   url: /feeds/events
   param: {module: feeds, action: events }
