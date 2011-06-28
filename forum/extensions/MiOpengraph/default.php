@@ -25,6 +25,7 @@ $ogMetaTags['title'] = 'Le forum des Musiques Incongrues';
 $ogMetaTags['url'] = sprintf('http://%s%s', $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
 $ogMetaTags['description'] = "Un forum où l'on parle musiques décalées, électroniques ou pas, c'est aussi un agenda de sorties, une radio et télé incongrues. Plus largement, une base de données où vous trouverez une myriade d'images et de videos, des infos sur la culture 'undergound' et 'overground', mais aussi tout ce qui est incongru en général.";
 $ogMetaTags['site_name'] = 'Musiques Incongrues';
+$ogMetaTags['type'] = 'article';
 
 // Discussion related meta data
 if ($Context->SelfUrl == 'comments.php') {
