@@ -74,26 +74,29 @@ class ReleasesPage
                 $items[] = sprintf($item_tpl, $label['LabelName'], $classname, $label['LabelName']);
             }
         }
+        $subscriptionLinks = 
+'<ul class="label-links">
+	<li><a href="http://feeds.feedburner.com/musiques-incongrues-podcast" title="Le podcast auto-mécanique du forum des Musiques Incongrues">Podcast</a></li>
+	<li><a href="http://feedburner.google.com/fb/a/mailverify?uri=musiques-incongrues-releases&loc=fr_FR" title="Recevoir les nouvelles sorties par email" target="_blank">Newsletter</a></li>
+	<li><a href="http://feeds.feedburner.com/musiques-incongrues-releases" title="S\'abonner au flux RSS des nouveautés">RSS</a></li>
+</ul>
+';
         if (ForceIncomingString('only_mixes', '0') === '0')
         {
             $mixes_limitation =
-'<h2>Mixes</h2>
-<ul class="label-links">
+'<ul class="label-links">
   <li><a href="?only_mixes=1">N\'afficher que les mixes</a></li>
-  <li><a href="http://feeds.feedburner.com/musiques-incongrues-podcast" title="Le podcast auto-mécanique du forum des Musiques Incongrues">S\'abonner au podcast</a></li>
 </ul>';
         }
         else
         {
             $mixes_limitation =
-'<h2>Mixes</h2>
-<ul class="label-links">
-  <li><a href="?only_mixes=0">Afficher toutes les releases</a></li>
-  <li><a href="'.$this->Configuration['BASE_URL'].'s/feeds/podcast">S\'abonner au podcast</a></li>
+'<ul class="label-links">
+  <li><a href="?only_mixes=0">Tout afficher</a></li>
 </ul>';
         }
 
-        return sprintf('%s<h2>%s</h2><ul class="label-links">%s</ul>', $mixes_limitation, 'Labels', implode("\n", $items));
+        return sprintf('<h2>Affiner</h2>%s<h2>S\'abonner</h2>%s<h2>Labels</h2><ul class="label-links">%s</ul>', $mixes_limitation, $subscriptionLinks, implode("\n", $items));
     }
 
     function getLabels()
@@ -269,6 +272,9 @@ function get_chanteurs($count = -1)
  */
 function VanillaReleases_MetadataControls(&$DiscussionForm)
 {
+    /**
+     *
+     */
     $html = '
       <li id="button-releases">
         <label for="VanillaReleases_isrelease" style="display: inline;">%s</label>
