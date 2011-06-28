@@ -33,6 +33,7 @@ if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsProj
 	$show = MiProjectsDatabasePeer::getProjects(array(ForceIncomingInt('CategoryID', null)), $Context);
 	
 	// Setup OpenGraph metatags
+	$ogMetaTags['type'] = 'musician';
 	$ogMetaTags['title'] = sprintf('%s - Musiques Incongrues', $show[0]['Name']);
 	$ogMetaTags['url'] = sprintf('http://%s%s', $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
 	$ogMetaTags['description'] = $show[0]['Description'];
@@ -41,6 +42,7 @@ if (($Context->SelfUrl == 'index.php' && in_array($requestedCategoryId, $idsProj
 	foreach ($ogMetaTags as $name => $value) {
 		$Head->AddString(sprintf('<meta property="og:%s" content="%s" />'."\n", $name, $value));
 	}
+	$Head->AddString('<meta property="fb:admins" content="659012078"></meta>'."\n");
 
 	// Update sidebar
 	if (isset($Panel)) {

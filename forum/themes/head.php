@@ -2,7 +2,7 @@
 // Note: This file is included from the library/Framework/Framework.Control.Head.php class.
 
 $HeadString = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$this->Context->GetDefinition('XMLLang').'">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$this->Context->GetDefinition('XMLLang').'" xmlns:og="http://ogp.me/ns#">
    <head>
       <title>'.$this->Context->Configuration['APPLICATION_TITLE'].' - '.$this->Context->PageTitle.'</title>
       <link rel="shortcut icon" type="image/png" href="'.$this->Context->StyleUrl.'favicon.png" />';
