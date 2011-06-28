@@ -34,9 +34,9 @@ class feedsActions extends sfActions
         require_once 'Zend/Loader.php';
         Zend_Loader::loadClass('Zend_Feed_Writer_Feed');
         $feed = new Zend_Feed_Writer_Feed();
-        $feed->setTitle('Le podcast auto-mécanique des Musiques Incongrues');
+        $feed->setTitle('Le podcast auto-mécanique du forum des Musiques Incongrues');
         $feed->setLink('http://www.musiques-incongrues.net/forum/releases/?only_mixes=1');
-        $feed->setFeedLink('http://www.musiques-incongrues.net/forum/s/feeds/podcast', 'RSS');
+        $feed->setFeedLink('http://feeds.feedburner.com/musiques-incongrues-podcast', 'RSS');
         $feed->setDescription('Ce podcast est automatiquement généré à partir de la liste des émissions, mixtapes et autres pièces sonores régulièrement ajoutées au forum des Musiques Incongrues par ses contributeurs.');
         $feed->setDateModified(new Zend_Date($mixes[0]['Discussion']['datelastactive'], Zend_Date::ISO_8601));
         foreach ($mixes as $mix)
