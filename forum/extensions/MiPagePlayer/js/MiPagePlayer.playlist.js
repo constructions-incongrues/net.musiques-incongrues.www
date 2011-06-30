@@ -50,7 +50,7 @@ Playlist.prototype = {
 				}
 				listItem += "<a href='" + this.playlist[i].mp3 + "' id='" + this.cssId.playlist + this.instance + "_item_" + i +"' tabindex='1' class='track'>"+ this.playlist[i].name +"</a>";
 				listItem += ' | <a href="" title="Plus..." class="more">plus...</a>';
-				listItem += ' <span class="more"><a title="Télécharger le morceau" href="'+this.playlist[i].mp3+'" class="download">Télécharger</a> | <a title="Partager le morceau sur Facebook" href="http://www.facebook.com/sharer.php?t='+encodeURIComponent(this.playlist[i].name)+'&u='+encodeURIComponent(this.playlist[i].mp3)+'" class="share">Partager</a></span>';
+				listItem += ' <span class="more"><a title="Télécharger le morceau" href="'+this.playlist[i].mp3+'" class="download">Télécharger</a> | <a title="Partager le morceau sur Facebook" href="http://www.facebook.com/sharer.php?t='+encodeURIComponent(this.playlist[i].name)+'&u='+encodeURIComponent(this.playlist[i].discussionUrl)+'" class="share">Partager</a></span>';
 				listItem += '</li>';
 				
 				// Associate playlist items with their media

@@ -25,6 +25,7 @@ jQuery(document).ready(function($) {
 		tracks.push({
 			name: trackName,
 			mp3: url,
+			discussionUrl: document.location.host + document.location.pathname,
 			element: $(this),
 			available: 'available'
 		});
