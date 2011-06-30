@@ -36,10 +36,10 @@ jQuery(document).ready(function($) {
 		if (el.attr('href').match(regexes.images)) {
 		var image = $('<img src="'+ $(el).attr('href') +'" />');
 			$(image).load(function() {
-				if ($(this).width() > 950) {
+				if ($(this).width() > 800) {
 					$(this).attr('alt', "Cliquez pour voir l'image entière");
 					$(image).wrap('<a href="'+ $(this).attr('src') +'" />');
-					$(this).thumbs();
+					$(this).thumbs({center:false});
 				}
 			});
 			$(el).after(image).remove();
