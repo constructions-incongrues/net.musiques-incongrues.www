@@ -1,4 +1,10 @@
 <?php
+$Smilies["zooincongru1.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/Assi Pychaf - Zoo Incongru/zooincongru1.gif";
+$Smilies["zooincongru2.png"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/Assi Pychaf - Zoo Incongru/zooincongru2.png";
+$Smilies["zooincongru3.png"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/Assi Pychaf - Zoo Incongru/zooincongru3.png";
+$Smilies["zooincongru4.png"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/Assi Pychaf - Zoo Incongru/zooincongru4.png";
+$Smilies["zooincongru5.png"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/Assi Pychaf - Zoo Incongru/zooincongru5.png";
+$Smilies["zooincongru6.png"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/Assi Pychaf - Zoo Incongru/zooincongru6.png";
 $Smilies["01.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/bood - lofi/01.gif";
 $Smilies["02.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/bood - lofi/02.gif";
 $Smilies["03.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/bood - lofi/03.gif";
@@ -120,6 +126,8 @@ $Smilies["pin-mustache.jpg"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/or
 $Smilies["pin-ninjabite.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-ninjabite.gif";
 $Smilies["pin-oreilles.jpg"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-oreilles.jpg";
 $Smilies["pin-pepin.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-pepin.gif";
+$Smilies["pin-pyjama.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-pyjama.gif";
+$Smilies["pin-pyramid.jpg"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-pyramid.jpg";
 $Smilies["pin-rabbin.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-rabbin.gif";
 $Smilies["pin-red.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-red.gif";
 $Smilies["pin-reverse.jpg"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-reverse.jpg";
@@ -130,6 +138,7 @@ $Smilies["pin-skull2.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/orga
 $Smilies["pin-skull3.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-skull3.gif";
 $Smilies["pin-sort.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-sort.gif";
 $Smilies["pin-t.png"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-t.png";
+$Smilies["pin-three.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-three.gif";
 $Smilies["pin-whoomp.jpg"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/organic - Sons of the Ananas/pin-whoomp.jpg";
 $Smilies["grapp01.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/otro - fruits/grapp01.gif";
 $Smilies["grapp02.gif"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/otro - fruits/grapp02.gif";
