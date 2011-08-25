@@ -107,6 +107,7 @@ Playlist.prototype = {
 		playlistChange: function(index) {
 			this.playlistConfig(index);
 			$(this.cssSelector.jPlayer).jPlayer("play");
+			$('a').attr('target', '_blank');
 		},
 		playlistNext: function(autoplay) {
 			var index = (this.current + 1 < this.playlist.length) ? this.current + 1 : this.current;

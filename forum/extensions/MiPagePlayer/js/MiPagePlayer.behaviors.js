@@ -68,6 +68,7 @@ jQuery(document).ready(function($) {
 		// Player events
 		// -- play
 		$('#jquery_jplayer_page').bind($.jPlayer.event.play + '.pagePlayer', function(event) {
+			$('a').attr('target', '_blank');
 			$.data($('#jquery_jplayer_page')[0], 'playing', true);
 			$.jwNotify({
 				image: 'http://img96.imageshack.us/img96/46/faviconxa.png',
