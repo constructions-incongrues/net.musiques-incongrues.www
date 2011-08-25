@@ -8,8 +8,6 @@ forum/themes/foot.php
 forum/themes/menu.php
 forum/radio/js/Flower_v1.0/uncompressed/soundplayer/flower_soundplayer.js
 forum/extensions/PageMng/CustomPages.php
-forum/extensions/Vanillacons/smilies.js
-forum/extensions/Vanillacons/smilies.php
 etc/*.ini
 forum/extensions/MiExpandContents/js/inlineplayer.js
 forum/extensions/MiJQuery/js/configuration.js
