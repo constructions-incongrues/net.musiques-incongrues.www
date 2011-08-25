@@ -65,6 +65,16 @@ def symlinks():
   run('ln -sf %s/sfproject/web %s/forum/s' % (install, install))
   run('ln -sf %s/web/* %s/' % (install, webroot))
 
+def permissions():
+  # Make sure configuration is set
+  require('config', provided_by=[configure])
+  
+  # Get base paths
+  install = env.config.get('paths', 'install')
+
+  # Set permissions
+  run('chmod 777 %s/forum/extensions/PageMng/CustomPages.php' % install)
+
 def newrelic():
   # Make sure configuration is set
   require('config', provided_by=[configure])

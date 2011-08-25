@@ -46,7 +46,7 @@ if ($Context->SelfUrl == 'comments.php') {
 		$ogMetaTags['audio'] = $release['DownloadLink'];
 		$ogMetaTags['audio:title'] = $discussion['Name'];
 		$ogMetaTags['audio:type'] = 'application/mp3';
-		$ogMetaTags['audio:album'] = 'Unknown album';			
+		$ogMetaTags['audio:album'] = 'Unknown Album';			
 		if ($release['LabelName']) {
 			$ogMetaTags['audio:artist'] = $release['LabelName'];
 		} else {
@@ -59,7 +59,7 @@ if ($Context->SelfUrl == 'comments.php') {
 			$ogMetaTags['audio'] = $mp3sDiscussion[0]['url'];
 			$ogMetaTags['audio:title'] = $mp3sDiscussion[0]['discussion_name'];
 			$ogMetaTags['audio:type'] = 'application/mp3';
-			$ogMetaTags['audio:album'] = 'Unknown album';
+			$ogMetaTags['audio:album'] = 'Unknown Album';
 			$ogMetaTags['audio:artist'] = 'Unknown Artist';
 		}
 	}

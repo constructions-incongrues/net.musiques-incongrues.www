@@ -17,6 +17,7 @@ jQuery(document).ready(function($) {
 		var el = $(event.target);
 		if (el.attr('href').match(regexes.video)) {
 			el.embedly({
+				key: '292e8feeccad11e0ba1a4040d3dc5c07',
 				maxWidth: 450,
 				success: function(oembed, dict) {
 					$(el).after(oembed.code);
@@ -26,6 +27,7 @@ jQuery(document).ready(function($) {
 		}
 		if (el.attr('href').match(regexes.audio)) {
 			el.embedly({
+				key: '292e8feeccad11e0ba1a4040d3dc5c07',
 				maxWidth: 450,
 				success: function(oembed, dict) {
 					$(el).after(oembed.code);
@@ -36,10 +38,10 @@ jQuery(document).ready(function($) {
 		if (el.attr('href').match(regexes.images)) {
 		var image = $('<img src="'+ $(el).attr('href') +'" />');
 			$(image).load(function() {
-				if ($(this).width() > 950) {
+				if ($(this).width() > 800) {
 					$(this).attr('alt', "Cliquez pour voir l'image entière");
 					$(image).wrap('<a href="'+ $(this).attr('src') +'" />');
-					$(this).thumbs();
+					$(this).thumbs({center:false});
 				}
 			});
 			$(el).after(image).remove();
