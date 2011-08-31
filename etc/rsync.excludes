@@ -2,7 +2,6 @@
 *.pyc
 forum/oeil/data/*
 *-dist
-#forum/extensions/PageMng/CustomPages.php
 
 # symfony related
 sfproject/log/*
