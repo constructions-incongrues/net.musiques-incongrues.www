@@ -147,7 +147,7 @@ if (in_array($Context->SelfUrl, array("post.php", "comments.php", "settings.php"
 	// Add Stylesheet and JavaScript to Head Control
 	$Head->AddStyleSheet("extensions/Vanillacons/style.css");
 	$Head->AddScript('extensions/Vanillacons/functions.js');
-	$Head->AddScript('extensions/Vanillacons/smilies.js');
+	$Head->AddScript('extensions/Vanillacons/smilies.js?v='.time());
 
 	
 	// Create delegates
