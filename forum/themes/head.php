@@ -27,6 +27,7 @@ $HeadString = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://
             <script type="text/javascript" src="'.$this->Scripts[$i].'"></script>';
          }
       }
+            $HeadString .= "\n".'<script type="text/javascript">'."\n".'window.timestamp = '.time().'; window.poller_interval = '. ForceIncomingInt('refresh', 60) .' * 1000;'."\n".'</script>'."\n";
       
       if (is_array($this->Strings)) {
          $StringCount = count($this->Strings);
