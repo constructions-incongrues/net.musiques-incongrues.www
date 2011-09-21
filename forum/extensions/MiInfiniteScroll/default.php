@@ -8,5 +8,6 @@
  Author Url: http://github.com/trivoallan
  */
 if ($Context->SelfUrl == 'index.php') {
-	$Head->AddScript(sprintf('extensions/%s/js/behaviors.js', basename(dirname(__FILE__))));
+	$Head->AddScript(sprintf('extensions/%s/js/favicon.js', basename(dirname(__FILE__))));
+	$Head->AddScript(sprintf('extensions/%s/js/behaviors.js?v='.time(), basename(dirname(__FILE__))));
 }

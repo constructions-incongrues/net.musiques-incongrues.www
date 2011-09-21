@@ -16,7 +16,7 @@ $this->DelegateParameters['Discussion'] = &$Discussion;
 $this->DelegateParameters['DiscussionList'] = &$DiscussionList;
 
 $DiscussionList .= '
-<li id="Discussion_'.$Discussion->DiscussionID.'" class="Discussion'.$Discussion->Status.($Discussion->CountComments == 1?' NoReplies':'').($this->Context->Configuration['USE_CATEGORIES'] ? ' Category_'.$Discussion->CategoryID:'').($Alternate ? ' Alternate' : '').'">';
+<li x-timestamp="'.$Discussion->DateLastActive.'" id="Discussion_'.$Discussion->DiscussionID.'" class="Discussion'.$Discussion->Status.($Discussion->CountComments == 1?' NoReplies':'').($this->Context->Configuration['USE_CATEGORIES'] ? ' Category_'.$Discussion->CategoryID:'').($Alternate ? ' Alternate' : '').'">';
 	$this->CallDelegate('PreDiscussionOptionsRender');
 	if (is_array($minerResponse) && $minerResponse['num_found'] > 0) {
 	$DiscussionList .= '<ul>
