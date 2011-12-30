@@ -126,7 +126,7 @@ ob_implicit_flush(false);
 @ob_end_clean();
 ob_start();
 include(dirname(__FILE__).'/../MiZeitgeist/blocks/current.php');
-$blocks['zeitgeistCurrent'] = array('html' => ob_get_clean(), 'userIds' => $Configuration['BETA_TESTERS_IDS']);
+$blocks['zeitgeistCurrent'] = array('html' => ob_get_clean());
 
 // -- about
 ob_implicit_flush(false);
