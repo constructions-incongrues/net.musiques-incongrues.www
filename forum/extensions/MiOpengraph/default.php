@@ -77,6 +77,9 @@ if ($Context->SelfUrl == 'comments.php') {
 	}
 	
 	$ogMetaTags['description'] = "Ce soir on sort : l'agenda du forum des Musiques Incongrues";
+} else if ($Context->SelfUrl == 'extension.php' && ForceIncomingString('PostBackAction', null) == 'Zeitgeist') {
+	// Zeitgeist
+	require(dirname(__FILE__).'/../MiZeitgeist/ogp.php');
 }
 
 // Add meta tags to header

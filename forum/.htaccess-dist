@@ -119,6 +119,12 @@ RewriteRule ^shows(.*)$ extension.php?PostBackAction=Shows$1 [QSA,L]
 # -- oembed
 RewriteRule ^services/oembed(.*)$ extension.php?PostBackAction=oEmbed$1 [QSA,L]
 
+#Shows
+RewriteRule ^zeitgeist/week/(\d+)(.*)$ extension.php?PostBackAction=Zeitgeist&id=$1&$2 [QSA,L]
+RewriteRule ^zeitgeist/week/(\d+)(.*)$ extension.php?PostBackAction=Zeitgeist&id=$1&$2 [QSA,L]
+RewriteRule ^zeitgeist/(.*)$ extension.php?PostBackAction=Zeitgeist$1 [QSA,L]
+RewriteRule ^zeitgeist(.*)$ extension.php?PostBackAction=Zeitgeist$1 [QSA,L]
+
 #Extensions
 RewriteRule ^extension/$ extension.php [QSA,L]
 

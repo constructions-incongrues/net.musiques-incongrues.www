@@ -120,19 +120,42 @@ ob_start();
 include(dirname(__FILE__).'/../vanilla-events/sidebar.php');
 $blocks['metadata-events'] = array('html' => ob_get_clean());
 
+// Zeitgeist
+// -- current
+ob_implicit_flush(false);
+@ob_end_clean();
+ob_start();
+include(dirname(__FILE__).'/../MiZeitgeist/blocks/current.php');
+$blocks['zeitgeistCurrent'] = array('html' => ob_get_clean(), 'userIds' => $Configuration['BETA_TESTERS_IDS']);
+
+// -- about
+ob_implicit_flush(false);
+@ob_end_clean();
+ob_start();
+include(dirname(__FILE__).'/../MiZeitgeist/blocks/about.php');
+$blocks['zeitgeistAbout'] = array('html' => ob_get_clean());
+
+// -- navigation
+ob_implicit_flush(false);
+@ob_end_clean();
+ob_start();
+include(dirname(__FILE__).'/../MiZeitgeist/blocks/navigation.php');
+$blocks['zeitgeistNavigation'] = array('html' => ob_get_clean());
+
 // Statistiques
 // TODO : this is still provided by the "Statistics" extension
 
 // Setup controller <=> blocks mappings
 $mappings = array(
-	'default'     => array('randomDiscussion', 'understand', 'introspection'),
-	'discussions' => array('randomDiscussion', 'understand', 'introspection', 'affiner'),
-	'comments'    => array('randomDiscussion', 'topicActions', 'instrospection', 'metadata-events'),
+	'default'     => array('randomDiscussion', 'zeitgeistCurrent', 'understand', 'introspection'),
+	'discussions' => array('randomDiscussion', 'zeitgeistCurrent', 'understand', 'introspection', 'affiner'),
+	'comments'    => array('randomDiscussion', 'zeitgeistCurrent', 'topicActions', 'instrospection', 'metadata-events'),
 	'events'      => array(),
 	'label'       => array(),
 	'show'        => array(),
 	'labels'      => array(),
 	'shows'       => array(),
+	'zeitgeist'   => array('zeitgeistAbout', 'zeitgeistNavigation'),
 );
 
 // Compute controller name
@@ -149,6 +172,8 @@ if (in_array($categoryID, MiProjectsDatabasePeer::getCategoryIdsForType('labels'
 	$controllerName = 'shows';
 } else if (ForceIncomingString('PostBackAction', '') == 'Events') {
 	$controllerName = 'events';
+} else if (ForceIncomingString('PostBackAction', '') == 'Zeitgeist') {
+	$controllerName = 'zeitgeist';
 }else if ($Context->SelfUrl == 'index.php') {
 	$controllerName = 'discussions';
 } else if ($Context->SelfUrl == 'comments.php') {

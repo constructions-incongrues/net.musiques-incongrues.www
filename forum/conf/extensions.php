@@ -33,3 +33,4 @@ include($Configuration['EXTENSIONS_PATH']."MiOpengraph/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiExpandContents/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiPagePlayer/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiInfiniteScroll/default.php");
+include($Configuration['EXTENSIONS_PATH']."MiZeitgeist/default.php");
