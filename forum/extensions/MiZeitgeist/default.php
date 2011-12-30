@@ -131,17 +131,25 @@ ORDER BY e.Date ASC
 			}
 		}
 
+		// Image
+		$htmlImage = array();
+		if ($zeitgeist->Image) {
+			$htmlImage[] = "<h3>L'image de la semaine</h3>";
+			$htmlImage[] = sprintf('<img src="%s" />', $zeitgeist->Image);
+		}
+
 		// Render view
 		$html = '
 <div id="ContentBody" class="zeitgeist">
+	%s
 	<ol id="Discussions">
-			%s
-			%s
-			%s
-			%s
+		%s
+		%s
+		%s
+		%s
 	</ol>
 </div>
 ';
-		echo sprintf($html, implode("\n", $htmlReleases), implode("\n", $htmlMixes), implode("\n", $htmlEvents), implode("\n", $htmlUsers));
+		echo sprintf($html, implode("\n", $htmlImage), implode("\n", $htmlReleases), implode("\n", $htmlMixes), implode("\n", $htmlEvents), implode("\n", $htmlUsers));
 	}
 }
