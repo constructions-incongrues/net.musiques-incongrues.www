@@ -48,11 +48,9 @@ class MiZeitgeistPage {
 		$dateStart = new DateTime($zeitgeist->DateStart);
 		$dateEnd = new DateTime($zeitgeist->DateEnd);
 		$this->context->PageTitle = sprintf('Zeitgeist #%s : du %s au %s', $zeitgeist->ZeitgeistID, $dateStart->format('d/m/Y'), $dateEnd->format('d/m/Y'));
-
 	}
 	
 	public function render() {
-
 		$zeitgeist = $this->zeitgeist;
 		$dbh = $this->dbh;
 		$idLastZeitgeist = $this->idLastZeitgeist;
