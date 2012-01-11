@@ -9,7 +9,7 @@ $stmt->execute();
 $idLastZeitgeist = $stmt->fetchObject()->LastZeitgeistID;
 
 // Select appropriate Zeitgeist
-$stmt = $dbh->prepare('SELECT ZeitgeistID, DateStart, DateEnd, Image, Description FROM LUM_Zeitgeist WHERE ZeitgeistID = :id');
+$stmt = $dbh->prepare('SELECT ZeitgeistID, DateStart, DateEnd, Image, Description FROM LUM_Zeitgeist WHERE ZeitgeistID = :id AND IsPublished = 1');
 $stmt->execute(array('id' => ForceIncomingInt('id', $idLastZeitgeist)));
 $zeitgeist = $stmt->fetchObject();
 

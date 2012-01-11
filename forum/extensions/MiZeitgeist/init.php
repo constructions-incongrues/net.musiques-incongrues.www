@@ -15,7 +15,7 @@ while ($dateCurrent->format('U') < time()) {
         $zeitgeist = array('id' => $id++, 'dateStart' => $dateCurrent->format('Y-m-d'));
         $dateCurrent->modify('+7 day');
         $zeitgeist['dateEnd'] = $dateCurrent->format('Y-m-d');
-        $statement = $pdo->prepare('REPLACE INTO LUM_Zeitgeist SET ZeitgeistID = :id, DateStart = :dateStart, DateEnd = :dateEnd');
+        $statement = $pdo->prepare('REPLACE INTO LUM_Zeitgeist SET ZeitgeistID = :id, DateStart = :dateStart, DateEnd = :dateEnd, IsPublished = 1');
         $statement->execute(array('id' => $id, 'dateStart' => $zeitgeist['dateStart'], 'dateEnd' => $zeitgeist['dateEnd']));
         $dateCurrent->modify('+1 day');
         var_dump($zeitgeist);

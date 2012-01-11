@@ -4,7 +4,7 @@ $dsn = sprintf('mysql:dbname=%s;host=%s', $Configuration['DATABASE_NAME'], $Conf
 $dbh = new PDO($dsn, $Configuration['DATABASE_USER'], $Configuration['DATABASE_PASSWORD']);
 
 // Guess last Zeitgeist ID
-$stmt = $dbh->prepare('SELECT MAX(ZeitgeistID) as LastZeitgeistID from LUM_Zeitgeist');
+$stmt = $dbh->prepare('SELECT MAX(ZeitgeistID) as LastZeitgeistID from LUM_Zeitgeist WHERE IsPublished = 1');
 $stmt->execute();
 $idLastZeitgeist = $stmt->fetchObject()->LastZeitgeistID;
 ?>
