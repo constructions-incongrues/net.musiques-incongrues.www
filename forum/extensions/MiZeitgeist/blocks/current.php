@@ -9,4 +9,4 @@ $stmt->execute();
 $idLastZeitgeist = $stmt->fetchObject()->LastZeitgeistID;
 ?>
 <h2>Zeitgeist #<?php echo $idLastZeitgeist ?></h2>
-<p style="text-align:center;"><a href="<?php echo sprintf('%szeitgeist/week/%s', $Configuration['WEB_ROOT'], $idLastZeitgeist) ?>">Un résumé hebdomadaire de l'activité du forum des Musiques Incongrues</a></p>
+<p style="text-align:center;"><a href="<?php echo sprintf('%szeitgeist/issue/%s', $Configuration['WEB_ROOT'], $idLastZeitgeist) ?>">Un résumé hebdomadaire de l'activité du forum des Musiques Incongrues</a></p>

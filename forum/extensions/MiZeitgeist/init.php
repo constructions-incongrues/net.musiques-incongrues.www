@@ -17,6 +17,7 @@ while ($dateCurrent->format('U') < time()) {
         $zeitgeist['dateEnd'] = $dateCurrent->format('Y-m-d');
         $statement = $pdo->prepare('REPLACE INTO LUM_Zeitgeist SET ZeitgeistID = :id, DateStart = :dateStart, DateEnd = :dateEnd');
         $statement->execute(array('id' => $id, 'dateStart' => $zeitgeist['dateStart'], 'dateEnd' => $zeitgeist['dateEnd']));
+        $dateCurrent->modify('+1 day');
         var_dump($zeitgeist);
 }
 unset($pdo);
