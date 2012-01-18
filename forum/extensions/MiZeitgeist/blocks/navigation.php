@@ -17,12 +17,12 @@ $zeitgeist = $stmt->fetchObject();
 $paginationPrevious = '';
 $idPreviousZeitgeist = $zeitgeist->ZeitgeistID - 1;
 if ($idPreviousZeitgeist > 0) {
-	$paginationPrevious = sprintf('<a href="%szeitgeist/week/%s" title="Consulter le Zeitgeist de la semaine précédente">&larr; #%s</a>', $Configuration['WEB_ROOT'], $idPreviousZeitgeist, $idPreviousZeitgeist);
+	$paginationPrevious = sprintf('<a href="%szeitgeist/issue/%s" title="Consulter le Zeitgeist précédent">&larr; #%s</a>', $Configuration['WEB_ROOT'], $idPreviousZeitgeist, $idPreviousZeitgeist);
 }
 $paginationNext = '';
 $idNextZeitgeist = $zeitgeist->ZeitgeistID + 1;
 if ($idNextZeitgeist <= $idLastZeitgeist) {
-	$paginationNext = sprintf('<a href="%szeitgeist/week/%s" title="Consulter le Zeitgeist de la semaine suivante">#%s &rarr;</a>', $Configuration['WEB_ROOT'], $idNextZeitgeist, $idNextZeitgeist);
+	$paginationNext = sprintf('<a href="%szeitgeist/issue/%s" title="Consulter le Zeitgeist suivant">#%s &rarr;</a>', $Configuration['WEB_ROOT'], $idNextZeitgeist, $idNextZeitgeist);
 }
 ?>
 <h2>Archives</h2>
