@@ -14,6 +14,17 @@ if(in_array($postBackAction, array('Zeitgeist'))) {
 	$Menu->CurrentTab = $postBackAction;
 	$Body->CssClass = 'Discussions';
 
+	if (!filter_input(INPUT_GET, 'id')) {
+		// Guess last Zeitgeist ID
+		$stmt = $dbh->prepare('SELECT MAX(ZeitgeistID) as LastZeitgeistID from LUM_Zeitgeist WHERE IsPublished = 1');
+		$stmt->execute();
+		$idLastZeitgeist = $stmt->fetchObject()->LastZeitgeistID;
+		$urlRedirect = sprintf('%szeitgeist/issue/%d', $Configuration['BASE_URL'], $idLastZeitgeist);
+		header('Status: 302 Found');
+		header('Location: '.$urlRedirect);
+		exit;
+	}
+	
 	// Assets
 	$Head->AddStyleSheet('forum/extensions/MiZeitgeist/css/MiZeitgeist.css');
 
@@ -21,13 +32,9 @@ if(in_array($postBackAction, array('Zeitgeist'))) {
 	$dsn = sprintf('mysql:dbname=%s;host=%s', $Configuration['DATABASE_NAME'], $Configuration['DATABASE_HOST']);
 	$dbh = new PDO($dsn, $Configuration['DATABASE_USER'], $Configuration['DATABASE_PASSWORD']);
 
-	// Guess last Zeitgeist ID
-	$stmt = $dbh->prepare('SELECT MAX(ZeitgeistID) as LastZeitgeistID from LUM_Zeitgeist WHERE IsPublished = 1');
-	$stmt->execute();
-	$idLastZeitgeist = $stmt->fetchObject()->LastZeitgeistID;
-
 	// Select appropriate Zeitgeist
 	$stmt = $dbh->prepare('SELECT ZeitgeistID, DateStart, DateEnd, Image, Description FROM LUM_Zeitgeist WHERE ZeitgeistID = :id AND IsPublished = 1');
+	
 	$stmt->execute(array('id' => ForceIncomingInt('id', $idLastZeitgeist)));
 	$zeitgeist = $stmt->fetchObject();
 	
@@ -68,7 +75,7 @@ ORDER BY d.DateCreated ASC
 		$releases = $dbh->query($sqlReleases)->fetchAll();
 		$htmlReleases = array();
 		if (count($releases)) {
-			$htmlReleases = array('<h3>Les sorties de la semaine</h3>');
+			$htmlReleases = array(sprintf('<h3>%d sorties</h3>', count($releases)));
 			foreach ($releases as $release) {
 				$htmlReleases[] = sprintf('<li class="Discussion Release"><ul><li class="DiscussionTopic"><a href="%sdiscussion/%s">%s</a></li></ul></li>', $this->context->Configuration['WEB_ROOT'], $release['DiscussionID'], $release['Name']);
 			}
@@ -87,7 +94,7 @@ ORDER BY d.DateCreated ASC
 		$htmlMixes = array();
 		$mixes = $dbh->query($sqlMixes)->fetchAll();
 		if (count($mixes)) {
-			$htmlMixes = array('<h3>Les nouveaux mixes</h3>');
+			$htmlMixes = array(sprintf('<h3>%d mixes</h3>', count($mixes)));
 			foreach ($mixes as $mix) {
 				$htmlMixes[] = sprintf('<li class="Discussion Release"><ul><li class="DiscussionTopic"><a href="%sdiscussion/%s">%s</a></li></ul></li>', $this->context->Configuration['WEB_ROOT'], $mix['DiscussionID'], $mix['Name'], $mix['DownloadLink']);
 			}
@@ -104,27 +111,27 @@ ORDER BY DateFirstVisit ASC
 		$htmlUsers = array();
 		$users = $dbh->query($sqlUsers)->fetchAll();
 		if (count($users)) {
-			$htmlUsers = array('<h3>Les nouveaux venus</h3>');
+			$htmlUsers = array(sprintf('<h3>%d nouveaux venus</h3>', count($users)));
 			foreach ($users as $user) {
 				$htmlUsers[] = sprintf('<li class="Discussion Release"><ul><li class="DiscussionTopic"><a href="%saccount/%s">%s</a></li></ul></li>', $this->context->Configuration['WEB_ROOT'], $user['UserID'], $user['Name']);
 			}
 		}
 
-		$dateNextWeek = new DateTime($zeitgeist->DateStart);
+		$dateNextWeek = new DateTime($zeitgeist->DateEnd);
 		$dateNextWeek->modify('+7 day');
 		$sqlEvents = sprintf("
 SELECT e.DiscussionID, d.Name, e.Date, e.City
 FROM  `LUM_Event` e
 INNER JOIN LUM_Discussion d ON d.DiscussionID = e.DiscussionID
-WHERE e.Date >= '%s'
-AND e.date <=  '%s'
+WHERE e.Date > '%s'
+AND e.Date <=  '%s'
 ORDER BY e.Date ASC
-		", $zeitgeist->DateStart, $dateNextWeek->format('Y-m-d'));
+		", $zeitgeist->DateEnd, $dateNextWeek->format('Y-m-d'));
 
 		$htmlEvents = array();
 		$events = $dbh->query($sqlEvents)->fetchAll();
 		if (count($events)) {
-			$htmlEvents = array('<h3>La semaine prochaine, on sort !</h3>');
+			$htmlEvents = array(sprintf('<h3>%d évènements</h3>', count($events)));
 			foreach ($events as $event) {
 				$dateEvent = new DateTime($event['Date']);
 				$htmlEvents[] = sprintf('<li class="Discussion Release"><ul><li class="DiscussionTopic"><a href="%sdiscussion/%s">%s</a> [%s] [%s]</li></ul></li>', $this->context->Configuration['WEB_ROOT'], $event['DiscussionID'], $event['Name'], $dateEvent->format('l j'), ucfirst(strtolower($event['City'])));
@@ -143,13 +150,15 @@ ORDER BY e.Date ASC
 <div id="ContentBody" class="zeitgeist">
 	%s
 	<ol id="Discussions">
+		<h2>Les nouveautés</h2>
 		%s
 		%s
 		%s
+		<h2>À venir</h2>
 		%s
 	</ol>
 </div>
 ';
-		echo sprintf($html, implode("\n", $htmlImage), implode("\n", $htmlReleases), implode("\n", $htmlMixes), implode("\n", $htmlEvents), implode("\n", $htmlUsers));
+		echo sprintf($html, implode("\n", $htmlImage), implode("\n", $htmlReleases), implode("\n", $htmlMixes), implode("\n", $htmlUsers), implode("\n", $htmlEvents));
 	}
 }
