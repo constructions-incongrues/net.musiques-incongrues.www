@@ -26,7 +26,7 @@ if(in_array($postBackAction, array('Zeitgeist'))) {
 	}
 	
 	// Assets
-	$Head->AddStyleSheet('forum/extensions/MiZeitgeist/css/MiZeitgeist.css');
+	$Head->AddStyleSheet('extensions/MiZeitgeist/css/MiZeitgeist.css');
 
 	// Instanciate DB
 	$dsn = sprintf('mysql:dbname=%s;host=%s', $Configuration['DATABASE_NAME'], $Configuration['DATABASE_HOST']);
