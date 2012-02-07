@@ -86,7 +86,7 @@ if ($Context->SelfUrl == 'comments.php') {
 // Add meta tags to header
 if (!array_intersect(explode('/', $_SERVER['REQUEST_URI']), array('shows', 'labels'))) {
 	foreach ($ogMetaTags as $name => $value) {
-		$Head->AddString(sprintf('<meta property="og:%s" content="%s"></meta>'."\n", $name, htmlentities($value)));
+		$Head->AddString(sprintf('<meta property="og:%s" content="%s"></meta>'."\n", $name, htmlentities(utf8_decode($value))));
 	}
 	$Head->AddString('<meta property="fb:admins" content="659012078"></meta>'."\n");
 }
