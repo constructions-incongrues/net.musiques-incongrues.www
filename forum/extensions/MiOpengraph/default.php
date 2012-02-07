@@ -84,10 +84,9 @@ if ($Context->SelfUrl == 'comments.php') {
 }
 
 // Add meta tags to header
-// TODO : enable delegation of OG tags settings in any extension
 if (!array_intersect(explode('/', $_SERVER['REQUEST_URI']), array('shows', 'labels'))) {
 	foreach ($ogMetaTags as $name => $value) {
-		$Head->AddString(sprintf('<meta property="og:%s" content="%s"></meta>'."\n", $name, addcslashes($value, '"')));
+		$Head->AddString(sprintf('<meta property="og:%s" content="%s"></meta>'."\n", $name, htmlentities($value)));
 	}
 	$Head->AddString('<meta property="fb:admins" content="659012078"></meta>'."\n");
 }
