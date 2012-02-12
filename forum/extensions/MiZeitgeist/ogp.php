@@ -18,5 +18,6 @@ $dateStart = new DateTime($zeitgeist->DateStart);
 $dateEnd = new DateTime($zeitgeist->DateEnd);
 
 // Define tags
-$ogMetaTags['title'] = sprintf('Zeitgeist #%s : du %s au %s | Musiques Incongrues', $zeitgeist->ZeitgeistID, $dateStart->format('d/m/Y'), $dateEnd->format('d/m/Y'));
-$ogMetaTags['description'] = sprintf("Chaque semaine, le Zeitgeist Incongru résume l'actualité du forum des Musiques Incongrues : nouvelles productions, mixes et autres pièces. Il propose aussi un agenda des concerts pour la semaine à venir.", $dateStart->format('d/m/Y'), $dateEnd->format('d/m/Y'));
+$ogMetaTags['title'] = sprintf('Zeitgeist Incongru #%s : du %s au %s | Musiques Incongrues', $zeitgeist->ZeitgeistID, $dateStart->format('d/m/Y'), $dateEnd->format('d/m/Y'));
+$ogMetaTags['description'] = sprintf("Chaque semaine, le Zeitgeist Incongru résume l'actualité du forum des Musiques Incongrues : nouvelles productions, mixes et autres pièces. Il propose aussi un agenda des concerts pour la semaine à  venir.", $dateStart->format('d/m/Y'), $dateEnd->format('d/m/Y'));
+$ogMetaTags['image'] = $zeitgeist->Image;
