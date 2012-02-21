@@ -5,6 +5,7 @@ include($Configuration['EXTENSIONS_PATH']."MiJQuery/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiVanillaMiner/default.php");
 include($Configuration['EXTENSIONS_PATH']."Audioscrobbler/default.php");
 include($Configuration['EXTENSIONS_PATH']."GuestWelcome/default.php");
+include($Configuration['EXTENSIONS_PATH']."reCAPTCHA/default.php");
 include($Configuration['EXTENSIONS_PATH']."GoogleAnalytics/default.php");
 include($Configuration['EXTENSIONS_PATH']."WhisperNotification/default.php");
 include($Configuration['EXTENSIONS_PATH']."Atom/default.php");

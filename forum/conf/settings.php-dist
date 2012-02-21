@@ -150,6 +150,12 @@ $Configuration['SUBCATEGORIES_DELEGATE'] = 'PreRender';
 $Configuration['SUBCATEGORIES_DELEGATE_SCOPE'] = 'DiscussionGrid';
 $Configuration['CATEGORYICONS_VERSION'] = '1.0.3';
 
+// reCAPTCHA
+$Configuration['reCAPTCHA.ApplyForm'] = 1;
+$Configuration['reCAPTCHA.PublicKey'] = '6Lfj8c0SAAAAAMlVi6uxjO80rJ_xlvnGClnUXEvx';
+$Configuration['reCAPTCHA.PrivateKey'] = '6Lfj8c0SAAAAAK3TL8f4rQEQTa_BrPRe-5jIb8J8';
+$Configuration['reCAPTCHA.Theme'] = 'clean';
+
 // Vanilla Miner configuration
 $Configuration['VANILLA_MINER_URL'] = '@PATHS.MINERURL@';
 $Configuration['VANILLA_MINER_CACHEDIR'] = '@PATHS.MINERCACHEDIR@';
