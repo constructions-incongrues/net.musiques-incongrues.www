@@ -142,6 +142,19 @@ ob_start();
 include(dirname(__FILE__).'/../MiZeitgeist/blocks/navigation.php');
 $blocks['zeitgeistNavigation'] = array('html' => ob_get_clean());
 
+// -- alternatives
+ob_implicit_flush(false);
+@ob_end_clean();
+ob_start();
+include(dirname(__FILE__).'/../MiVanillaMiner/blocks/gallery.php');
+$blocks['data-gallery'] = array('html' => ob_get_clean());
+
+ob_implicit_flush(false);
+@ob_end_clean();
+ob_start();
+include(dirname(__FILE__).'/../MiVanillaMiner/blocks/gallery-user.php');
+$blocks['data-gallery-user'] = array('html' => ob_get_clean());
+
 // Statistiques
 // TODO : this is still provided by the "Statistics" extension
 
@@ -149,13 +162,14 @@ $blocks['zeitgeistNavigation'] = array('html' => ob_get_clean());
 $mappings = array(
 	'default'     => array('randomDiscussion', 'zeitgeistCurrent', 'understand', 'introspection'),
 	'discussions' => array('randomDiscussion', 'zeitgeistCurrent', 'understand', 'introspection', 'affiner'),
-	'comments'    => array('randomDiscussion', 'zeitgeistCurrent', 'topicActions', 'instrospection', 'metadata-events'),
+	'comments'    => array('randomDiscussion', 'zeitgeistCurrent', 'topicActions', 'instrospection', 'metadata-events', 'data-gallery'),
 	'events'      => array(),
 	'label'       => array(),
 	'show'        => array(),
 	'labels'      => array(),
 	'shows'       => array(),
-	'zeitgeist'   => array('zeitgeistAbout', 'zeitgeistNavigation'),
+	'zeitgeist'   => array('zeitgeistAbout', 'zeitgeistNavigation',),
+	'account'     => array('data-gallery-user')
 );
 
 // Compute controller name
@@ -178,6 +192,8 @@ if (in_array($categoryID, MiProjectsDatabasePeer::getCategoryIdsForType('labels'
 	$controllerName = 'discussions';
 } else if ($Context->SelfUrl == 'comments.php') {
 	$controllerName = 'comments';
+} else if ($Context->SelfUrl == 'account.php') {
+	$controllerName = 'account';
 }
 
 // Select appropriate mapping
