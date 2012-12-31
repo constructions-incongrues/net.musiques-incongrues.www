@@ -37,12 +37,12 @@ $Configuration['EXTENSIONS_PATH'] = sprintf('%s/extensions/', $Configuration['AP
 $Configuration['LANGUAGES_PATH'] = sprintf('%s/languages/', $Configuration['APPLICATION_PATH']);
 $Configuration['THEME_PATH'] = sprintf('%s/themes/vanilla/', $Configuration['APPLICATION_PATH']);
 
-$Configuration['DEFAULT_STYLE'] = '@PATHS.BASEURL@/themes/vanilla/styles/scene/';
-$Configuration['WEB_ROOT'] = '@PATHS.BASEURI@';
-$Configuration['BASE_URL'] = '@PATHS.BASEURL@';
-$Configuration['FORWARD_VALIDATED_USER_URL'] = '@PATHS.BASEURL@';
-$Configuration['COOKIE_DOMAIN'] = '@COOKIE.DOMAIN@';
-$Configuration['COOKIE_PATH'] = '@COOKIE.PATH@';
+$Configuration['DEFAULT_STYLE'] = '@paths.baseurl@/themes/vanilla/styles/scene/';
+$Configuration['WEB_ROOT'] = '@paths.baseuri@';
+$Configuration['BASE_URL'] = '@paths.baseurl@';
+$Configuration['FORWARD_VALIDATED_USER_URL'] = '@paths.baseurl@';
+$Configuration['COOKIE_DOMAIN'] = '@cookie.domain@';
+$Configuration['COOKIE_PATH'] = '@cookie.path@';
 
 $Configuration['SUPPORT_EMAIL'] = 'contact@musiques-incongrues.net';
 $Configuration['SUPPORT_NAME'] = 'Musiques Incongrues';
@@ -157,8 +157,8 @@ $Configuration['reCAPTCHA.PrivateKey'] = '6Lfj8c0SAAAAAK3TL8f4rQEQTa_BrPRe-5jIb8
 $Configuration['reCAPTCHA.Theme'] = 'clean';
 
 // Vanilla Miner configuration
-$Configuration['VANILLA_MINER_URL'] = '@PATHS.MINERURL@';
-$Configuration['VANILLA_MINER_CACHEDIR'] = '@PATHS.MINERCACHEDIR@';
+$Configuration['VANILLA_MINER_URL'] = '@paths.minerurl@';
+$Configuration['VANILLA_MINER_CACHEDIR'] = '@paths.minercachedir@';
 
 // Release
-$Configuration['RELEASE_TAG'] = '@RELEASE.TAG@';
+$Configuration['RELEASE_TAG'] = '@release.tag@';

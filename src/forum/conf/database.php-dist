@@ -1,9 +1,9 @@
 <?php
 // Database Configuration Settings
-$Configuration['DATABASE_HOST'] = '@DATABASE_VANILLA.HOST@';
-$Configuration['DATABASE_NAME'] = '@DATABASE_VANILLA.NAME@';
-$Configuration['DATABASE_USER'] = '@DATABASE_VANILLA.USER@';
-$Configuration['DATABASE_PASSWORD'] = '@DATABASE_VANILLA.PASSWORD@';
+$Configuration['DATABASE_HOST'] = '@database.vanilla.host@';
+$Configuration['DATABASE_NAME'] = '@database.vanilla.name@';
+$Configuration['DATABASE_USER'] = '@database.vanilla.user@';
+$Configuration['DATABASE_PASSWORD'] = '@database.vanilla.password@';
 // Saved Searches Table Structure
 $DatabaseTables['Notify'] = 'Notify';
 $DatabaseColumns['Notify']['NotifyID'] = 'NotifyID';

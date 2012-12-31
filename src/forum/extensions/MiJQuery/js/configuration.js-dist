@@ -1,4 +1,4 @@
 var configuration = {
-	BASEURL: '@PATHS.BASEURL@',
-	BASEURI: '@PATHS.BASEURI@',
+	BASEURL: '@paths.baseurl@',
+	BASEURI: '@paths.baseuri@',
 };

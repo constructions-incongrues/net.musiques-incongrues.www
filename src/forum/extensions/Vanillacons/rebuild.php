@@ -16,8 +16,8 @@ foreach ($categoriesPaths as $categoryPath) {
 
 // Rebuild files
 // -- js
-$tplJs = "arrSmilies[\"%s\"][%s] = '<span onclick=\"insertSmilie(\'%s\');\" class=\"VanillaconsLink\"><img src=\"@PATHS.BASEURI@extensions/Vanillacons/smilies/%s/%s\" /></span>';";
-$tplPhp = '$Smilies["%s"] = "@PATHS.BASEURI@extensions/Vanillacons/smilies/%s/%s";';
+$tplJs = "arrSmilies[\"%s\"][%s] = '<span onclick=\"insertSmilie(\'%s\');\" class=\"VanillaconsLink\"><img src=\"@paths.baseuri@extensions/Vanillacons/smilies/%s/%s\" /></span>';";
+$tplPhp = '$Smilies["%s"] = "@paths.baseuri@extensions/Vanillacons/smilies/%s/%s";';
 $php = array('<?php');
 $js = array('var arrSmilies = [];');
 foreach ($categories as $category) {

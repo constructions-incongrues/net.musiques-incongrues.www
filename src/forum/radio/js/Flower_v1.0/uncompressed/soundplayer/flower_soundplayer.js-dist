@@ -742,7 +742,7 @@ var defaultSoundPlayerUI = new Class({
 	initialize: function(playlist,targetElement,options) {
 		this.parent(playlist,targetElement,options);
 		this.setOptions(options);
-		var scriptLocation = '@PATHS.BASEURI@' + 'radio/js/Flower_v1.0/uncompressed/soundplayer/';
+		var scriptLocation = '@paths.baseuri@' + 'radio/js/Flower_v1.0/uncompressed/soundplayer/';
 		this.controlImages = {
 			'previous': scriptLocation + '/assets/defaultSoundPlayerUI/images/previous.png',
 			'next': scriptLocation + '/assets/defaultSoundPlayerUI/images/next.png',

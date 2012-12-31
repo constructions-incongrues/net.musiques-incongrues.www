@@ -3,7 +3,7 @@
 if ($_SERVER['argv'][1] == 'reset')
 {
   logmsg('RESETTING !');
-  $con = new MySQLi('@DATABASE_ASAPH.HOST@', '@DATABASE_ASAPH.USER@', '@DATABASE_ASAPH.PASSWORD@', '@DATABASE_ASAPH.NAME@');
+  $con = new MySQLi('@database.asaph.host@', '@database.asaph.user@', '@database.asaph.password@', '@database.asaph.name@');
   $con->query('TRUNCATE TABLE asaph_posts');
   exit(0);
 }

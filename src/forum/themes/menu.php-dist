@@ -11,7 +11,7 @@ echo '<div id="Session">';
 			. FormatStringForDisplay(AppendUrlParameters(
 				$this->Context->Configuration['SIGNOUT_URL'],
 				'FormPostBackKey=' . $this->Context->Session->GetCsrfValidationKey() ))
-			. '">'.$this->Context->GetDefinition('SignOut').'</a> - <a href="@PATHS.BASEURI@page/contact">nous contacter</a>';
+			. '">'.$this->Context->GetDefinition('SignOut').'</a> - <a href="@paths.baseuri@page/contact">nous contacter</a>';
 	} else {
 		echo $this->Context->GetDefinition('NotSignedIn') . ' (<a href="'
 			. FormatStringForDisplay(AppendUrlParameters(
@@ -25,7 +25,7 @@ echo '<div id="Session">';
 <div id="search">
 	<p>
 	
-		<form id="SearchSimple" method="get" action="@PATHS.BASEURI@search/">
+		<form id="SearchSimple" method="get" action="@paths.baseuri@search/">
 			<label for="search" style="color:white">Rechercher</label> 
 			<input type="text" name="Keywords" class="champs" />
 			<input type="hidden" name="PostBackAction" value="Search" />
@@ -39,7 +39,7 @@ echo '<div id="Session">';
 <div id="search" class="notitle">
 	<p>
 	
-		<form id="SearchSimple" method="get" action="@PATHS.BASEURI@search/">
+		<form id="SearchSimple" method="get" action="@paths.baseuri@search/">
 			<label for="search" style="color:white">Rechercher</label> 
 			<input type="text" name="Keywords" class="champs" />
 			<input type="hidden" name="PostBackAction" value="Search" />
@@ -53,7 +53,7 @@ echo '<div id="Session">';
 	echo '<div id="Header">
 			<a name="pgtop"></a>
 			<h1>
-				<a href="@PATHS.BASEURI@">
+				<a href="@paths.baseuri@">
 					<span class="first">Musiques</span>
 					<span class="last">Incongrues</span>
 				</a>

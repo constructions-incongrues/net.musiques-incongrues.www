@@ -1,0 +1,11 @@
+# Project related
+*.pyc
+/src/forum/oeil/data/*
+*-dist
+
+# symfony related
+/src/sfproject/log/*
+/src/sfproject/cache/*
+
+# SCM
+.git

@@ -7,8 +7,8 @@ class Asaph_Config {
 	
 	// Domain name and path where Asaph is installed in
 	public static $domain = 'www.musiques-incongrues.net';
-	public static $vanillaPath = '@PATHS.BASEURI@';
-	public static $absolutePath = '@PATHS.BASEURI@oeil/';
+	public static $vanillaPath = '@paths.baseuri@';
+	public static $absolutePath = '@paths.baseuri@oeil/';
 	
 	// If you want to be able to move/edit/delete generated files and folders 
 	// with your ftp-client, it's likely you'll have to set chmod to 0777
@@ -26,10 +26,10 @@ class Asaph_Config {
 	
 	// Settings for your mysql database
 	public static $db = array(
-		'host' => '@DATABASE_ASAPH.HOST@',
-		'database' => '@DATABASE_ASAPH.NAME@',
-		'user' => '@DATABASE_ASAPH.USER@',
-		'password' => '@DATABASE_ASAPH.PASSWORD@',
+		'host' => '@database.asaph.host@',
+		'database' => '@database.asaph.name@',
+		'user' => '@database.asaph.user@',
+		'password' => '@database.asaph.password@',
 		'prefix' => 'asaph_'
 	);
 	

@@ -147,9 +147,9 @@
 	$extList['png'] = 'image/png';
 	
 // Asaph info
-$asaph_db_dsn = 'mysql:dbname=@DATABASE_ASAPH.NAME@;host=@DATABASE_ASAPH.HOST@';
-$asaph_db_user = '@DATABASE_ASAPH.USER@';
-$asaph_db_pass = '@DATABASE_ASAPH.PASSWORD@';
+$asaph_db_dsn = 'mysql:dbname=@database.asaph.name@;host=@database.asaph.host@';
+$asaph_db_user = '@database.asaph.user@';
+$asaph_db_pass = '@database.asaph.password@';
 $asaph_data_dir = '/srv/bouteille_data/plesk-vhosts/musiques-incongrues.net/httpdocs/forum/oeil/data';
 
 // Connect to database

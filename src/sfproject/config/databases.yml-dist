@@ -5,7 +5,7 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn:      mysql:host=@DATABASE_VANILLA.HOST@;dbname=@DATABASE_VANILLA.NAME@
-      username: @DATABASE_VANILLA.USER@
-      password: @DATABASE_VANILLA.PASSWORD@ 
+      dsn:      mysql:host=@database.vanilla.host@;dbname=@database.vanilla.name@
+      username: @database.vanilla.user@
+      password: @database.vanilla.password@ 
       encoding: latin1
