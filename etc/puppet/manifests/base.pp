@@ -1,4 +1,4 @@
-class com::thibaulthuertas::www {
+class net::musiquesincongrues::www {
   exec { 'apt-get update':
     command => '/usr/bin/apt-get update'
   }
@@ -11,7 +11,7 @@ class com::thibaulthuertas::www {
   }
 
   exec { 'mysql load dumps': 
-    command => '/usr/bin/mysql -uroot -e "create database main default charset utf8 collate utf8_general_ci; create database net_musiquesincongrues_www_asaph default charset utf8 collate utf8_general_ci" && /usr/bin/mysql -uroot main < /vagrant/data/sql/vanilla.sql && /usr/bin/mysql -uroot main < /vagrant/data/sql/asaph.sql',
+    command => '/usr/bin/mysql -uroot -e "create database if not exists main default charset utf8 collate utf8_general_ci; create database if not exists net_musiquesincongrues_www_asaph default charset utf8 collate utf8_general_ci" && /usr/bin/mysql -uroot main < /vagrant/data/sql/vanilla.sql && /usr/bin/mysql -uroot main < /vagrant/data/sql/asaph.sql',
     require => Package['mysql-server']
   }
 
@@ -51,4 +51,4 @@ class com::thibaulthuertas::www {
 
 }
 
-include com::thibaulthuertas::www
+include net::musiquesincongrues::www
