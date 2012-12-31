@@ -1,8 +1,4 @@
-.buildpath
-.externalToolBuilders/
-.project
-.settings/
-*.pyc
+# dist
 data/sql/vanilla.styles.sql
 forum/themes/foot.php
 forum/themes/menu.php
@@ -16,3 +12,8 @@ forum/extensions/MiJQuery/js/configuration.js
 forum/extensions/vanilla-releases/js/soundmanager2/script/inlineplayer.js
 forum/extensions/Vanillacons/smilies.js
 forum/extensions/Vanillacons/smilies.php
+
+# editors
+*~
+*.bak
+*.orig
