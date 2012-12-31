@@ -1,0 +1,228 @@
+/*
+ * This file is part of Musiques Incongrues.
+ *
+ * Musiques Incongrues is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Musiques Incongrues is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with Musiques Incongrues.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+/* AFFICHAGE DU CONTENU  - BLOC À DROITE */
+
+#content
+{
+width:80%;
+float:left;
+margin-left:20px;
+}
+
+/* DESIGN DE L'ENTÊTE - (header - navbar - searchbar) */
+
+#Header 
+	{
+	background: #fefefe;
+	padding-bottom:5px;
+	margin-top:-20px;
+	border-bottom: 1px dotted #ccc;
+	text-align:center;
+	font-size:0.9em;
+	}
+
+#Header ul#navbar-1 li, #Header ul#navbar-2 li, #Header ul#session li
+{	
+text-align:center!important;
+display:inline;
+padding-left:10px;
+ }
+ 	
+#Header * 
+	{
+	margin:0px;
+	padding:0px;
+	}
+
+#navbar-1
+{
+text-transform:lowercase;
+color:#eee;
+margin:0 auto;
+margin-top:40px!important;
+
+}
+
+#navbar-2
+{
+text-transform:lowercase;
+color:#0099FF;
+}
+
+#navbar-1 a, #navbar-1 a:active, #navbar-1 a:link
+{
+	color: #CCC;
+	font-family: 'Copse', arial, serif;
+	font-size:0.9em;
+	text-decoration:none;
+}
+
+#navbar-1 .session-nav a, #navbar-1 .session-nav a:active, #navbar-1 .session-nav a:link
+{
+	color: #DDD;
+	font-family: 'Copse', arial, serif;
+	font-size:0.9em;
+	text-decoration:none;
+}
+
+#navbar-1 a:hover, #navbar-2 a:hover {color:#000!important;}
+
+#navbar-2 a, #navbar-2 a:active, #navbar-2 a:link
+{
+	color: #FF0099;
+	font-family: 'Copse', arial, serif;
+	text-decoration:none;
+	font-size:1.4em;
+}
+
+#navbar-1 .navbar-link-actived a, #navbar-2 .navbar-link-actived a
+{
+color:#000!important;
+}
+
+
+/* DESIGN DU CHAMPS SEARCHBAR */
+
+#search
+{
+float:right;
+font-size: 90%;
+color:#bbb;
+margin-top:-15px;
+}
+
+#search  label
+{
+background-color:#FFF;
+border:0px solid #CCC;
+color:#ccc!important;
+text-transform:lowercase;
+font-family: 'Copse', arial, serif;
+letter-spacing:1px;
+visibility:hidden;
+}
+
+input.champs
+{
+text-align:center;
+color: #000;
+border-bottom:1px dotted #CCC;
+border-left:0px;
+border-right:0px;
+border-top:0px;
+width:190px;
+background-color:#eee;
+}
+
+input.champs:hover
+{
+color: #FF0099;
+background-color:#fff;
+}
+
+input.champs:focus
+{
+background-image: none ;background-color: #FFF;
+}
+
+input.valid 
+{
+text-align:center;
+color: #bbb;
+padding:2px;
+border-bottom:1px dotted #CCC;
+background-color:#eee;
+border-left:0px;
+border-right:0px;
+border-top:0px;
+font-weight:lighter;
+text-transform:lowercase;
+font-family: 'Copse', arial, serif;
+letter-spacing:1px;
+}
+
+
+/* PANEL - BLOC GAUCHE INFO */
+
+#Panel {
+	width:201px;
+	margin-left:18px;
+	float:left;
+	display:inline;
+	border-right:1px dotted #DDD;
+	margin-top:10px;
+	}
+	
+#Panel * {
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	}
+
+#Panel h2 {
+
+color:#FF0099;
+padding-top:10px;
+margin-top:-5px;
+margin-right:30px;
+margin-bottom:5px;
+padding-left:5px;
+font-size:1.4em;
+font-family: 'Copse', arial, serif;
+border-bottom:1px solid yellow;
+text-transform:lowercase;
+font-weight:normal!important;
+}
+
+#Panel a, #Panel a:active, #Panel a:link
+{
+font-family: 'Copse', arial, serif;
+color:#666;
+font-size:1em;
+text-decoration:none;
+}
+
+#Panel  .panel-link-actived a
+{
+color:#000;
+background-color:#EEE;
+width:170px;
+padding:5px;
+display:block;
+margin-left:-2px;
+margin-bottom:-4px;
+border-bottom:1px dotted #bbb;
+}
+
+#Panel a:hover
+{
+color:#000;
+}
+
+#Panel li
+{
+border-bottom:1px dotted #DDD;
+margin-bottom:10px;
+margin-right:20px;
+padding-left:5px;
+padding:3px;
+color:#bbb;
+text-transform:lowercase;
+font-size:0.9em;
+}
+

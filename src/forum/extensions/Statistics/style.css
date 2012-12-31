@@ -1,0 +1,44 @@
+#Legend {
+	margin:-3px 0px 0px 0px !important;
+	width:200px;
+	}
+
+#Legend li {
+color:#000;
+background-color:#eee!important; 
+padding:4px!important;
+margin-top:4px;
+list-style-type:none; 
+text-transform:uppercase;
+font-weight:bold;
+font-size:12px;
+width:190px;
+padding-left:3px;
+padding:2px;
+}
+
+#Legend li strong {font-weight:normal;}
+
+#Legend li:hover {background-color:yellow;}
+
+/* ORIGINAL CSS 
+*****************************************************/
+
+/*
+#Legend li {
+	margin:0px !important;
+	padding:2px 5px;
+	font-size:11px;
+	color:#999999;
+	border-bottom:1px solid #cccccc;
+	}
+
+#Legend li a {
+	color:#999999;
+	text-decoration: underline;
+	}
+
+#Legend li a:hover {
+	text-decoration: none;
+	}	
+*/

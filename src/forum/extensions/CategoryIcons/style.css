@@ -1,0 +1,122 @@
+/* Category icons on the discussions page by DraganBabic */
+
+/* Make the .Discussion li relative so that we can absolutely position things within it for Category icons */
+
+/*IE Fix*/
+#Categories li li {
+	height:60px;
+}
+
+.CategoryDescription {
+	margin-top:-40px;
+}
+
+/*Image overlap fix*/
+#Discussions li li {
+	height:40px;
+}
+/**********************/
+
+.Discussion{
+position:relative;
+}
+
+.DiscussionCategory {
+width:60px !important; height:60px !important;
+padding:0; margin:0;
+text-indent:-9999px;
+position:absolute; top:4px; left:2px;
+}
+.DiscussionCategory span{
+display:none;
+}
+.DiscussionCategory a:link,
+.DiscussionCategory a:visited,
+.DiscussionCategory a:hover{
+display:block;
+width:60px !important; height:60px !important;
+padding:0; margin:0 !important;
+}
+.Category_1 .DiscussionCategory a{
+background: transparent url(images/nay-kicon10.jpg) 2px 50% no-repeat;
+}
+.Category_2 .DiscussionCategory a{
+background: transparent url(images/nay-kiconcarribe1.01.jpg) 2px 50% no-repeat;
+}
+.Category_3 .DiscussionCategory a{
+background: transparent url(images/nay-kiconwinter1.01.jpg) 2px 50% no-repeat;
+}
+.Category_4 .DiscussionCategory a{
+background: transparent url(images/nay-kicon11.jpg) 2px 50% no-repeat;
+}
+.Category_5 .DiscussionCategory a{
+background: transparent url(images/nay-kiconwinter1.02.jpg) 2px 50% no-repeat;
+}
+.Category_6 .DiscussionCategory a{
+background: transparent url(images/nay-kicon12.jpg) 2px 50% no-repeat;
+}
+.Category_7 .DiscussionCategory a{
+background: transparent url(images/nay-kiconwinter1.03.jpg) 2px 50% no-repeat;
+}
+.Category_8 .DiscussionCategory a{
+background: transparent url(images/nay-kiconwinter1.04.jpg) 2px 50% no-repeat;
+}
+.Category_9 .DiscussionCategory a{
+background: transparent url(images/nay-kiconwinter1.05.jpg) 2px 50% no-repeat;
+}
+.Category_10 .DiscussionCategory a{
+background: transparent url(images/nay-kiconwinter1.06.jpg) 2px 50% no-repeat;
+}
+/* Follow this pattern to whatever number of categories you have set up */
+
+/* Add paddings for the linked icons */
+.CategoryDescription,
+.CategoryDiscussionCount,
+.CategoryOptions,
+#Discussions li ul{
+padding-left:65px;
+}
+
+/* Add the icons to the categories page */
+#Categories .Category_1 .CategoryDescription{
+background: transparent url(images/nay-kicon10.jpg) 2px 50% no-repeat;
+min-height:60px;
+}
+#Categories .Category_2 .CategoryDescription{
+background: transparent url(images/nay-kiconcarribe1.01.jpg) 2px 50% no-repeat;
+min-height:60px;
+}
+#Categories .Category_3 .CategoryDescription{
+background: transparent url(images/nay-kiconwinter1.01.jpg) 2px 50% no-repeat;
+min-height:60px;
+}
+#Categories .Category_4 .CategoryDescription{
+background: transparent url(images/nay-kicon11.jpg) 2px 50% no-repeat;
+min-height:60px;
+}
+#Categories .Category_5 .CategoryDescription{
+background: transparent url(images/nay-kiconwinter1.02.jpg) 2px 50% no-repeat;
+min-height:60px;
+}
+#Categories .Category_6 .CategoryDescription{
+background: transparent url(images/nay-kicon12.jpg) 2px 50% no-repeat;
+min-height:60px;
+}
+#Categories .Category_7 .CategoryDescription{
+background: transparent url(images/nay-kiconwinter1.03.jpg) 2px 50% no-repeat;
+min-height:60px;
+}
+#Categories .Category_8 .CategoryDescription{
+background: transparent url(images/nay-kiconwinter1.04.jpg) 2px 50% no-repeat;
+min-height:60px;
+}
+#Categories .Category_9 .CategoryDescription{
+background: transparent url(images/nay-kiconwinter1.05.jpg) 2px 50% no-repeat;
+min-height:60px;
+}
+#Categories .Category_10 .CategoryDescription{
+background: transparent url(images/nay-kiconwinter1.06.jpg) 2px 50% no-repeat;
+min-height:60px;
+}
+/* end Category icon style by DraganBabic */
+

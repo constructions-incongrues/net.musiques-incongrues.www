@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CASH Music: Flower</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" type="image/png" href="http://cashmusic.org/images/icons/cash.png" /> 
+
+<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js" type="text/javascript"></script>
+<!-- script src="http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools.js" type="text/javascript"></script -->
+<script src="../uncompressed/flower_core.js" type="text/javascript"></script>
+<script src="../uncompressed/flower_init.js" type="text/javascript"></script>
+
+<link href="assets/css/main.css" rel="stylesheet" type="text/css" /> 
+
+</head>
+<body>
+
+<div id="wrap">
+	<div id="cashstatementspc"> 
+		<div id="cash_sitelogo"><a href="/"><img src="http://cashmusic.org/assets/images/cash.png" alt="CASH Music" width="30" height="30" /></a></div> 
+		<div id="mainmenu"> 
+			<a href="http://cashmusic.org/about/">About CASH Music</a> 
+			<a href="http://cashmusic.org/donate/">Donate</a> 
+			<a href="http://help.cashmusic.org/">Get Help</a> 
+		</div> 
+	</div>
+	
+	<div id="mainspc">
+		<div id="aboutspc"> 
+			<h1>Flower v1.0</h1> 
+			<p class="openingp"> 
+				Flower is a JavaScript library designed to give musicians easy access to UI tools 
+				like image/video lightboxes and sound players.
+			</p><p>
+				All Flower modules have been built to work easily or automatically. The Moviebox
+				lightbox detects links to YouTube, Vimeo, Google Video, MySpace TV, Vevo, and 
+				Quicktime video files. The Imagebox module only requires you to add a class to a links
+				or divs — same for Soundplayer.
+			</p><p>
+				These scripts are built using <a href="http://mootools.net/">MooTools</a> and the
+				Soundplayer is powered by the excellent <a href="http://www.schillmania.com/projects/soundmanager2/">SoundManager 2</a> by Scott Schiller.
+				For more information and advanced usage please refer to the included README file.
+			</p>
+			<br /> 
+		</div>
+			
+		<div>
+			<h2>Moviebox</h2>
+			<p >Links to video sites and quicktime files are automatically lightboxed:</p>
+			<div class="oneoffour firstcol">
+				<a href="http://youtube.com/watch?v=IntMIqUk1Mg" title="Zan Lyons live in Leeds" class="nofx"><img src="assets/images/moviebox/youtube.jpg" alt="youtube" width="100%"/></a><br />
+				<span class="notation">YouTube, default settings.</span>
+			</div><div class="oneoffour">
+				<a href="http://dutchmoney.com/archive/2007/movies/redorblue/trailer.mov" rev="moviebox:width=450,height=300" title="are you red or blue?" class="nofx"><img src="assets/images/moviebox/quicktime.jpg" alt="quicktime" width="100%"/></a><br />
+				<span class="notation">Link to Quicktime .mov, custom size.</span>
+			</div><div class="oneoffour">
+				<a href="http://vimeo.com/175757" rev="moviebox:width=600,height=450" class="nofx"><img src="assets/images/moviebox/vimeo.jpg" alt="vimeo" width="100%"/></a><br />
+				<span class="notation">Vimeo, custom size.</span>
+			</div><div class="oneoffour lastcol">
+				<a href="http://myspacetv.com/index.cfm?fuseaction=vids.individual&amp;videoid=30674760" title="&lt;b&gt;Dan Le Sac vs. Scroobius Pip&lt;/b&gt;&lt;br /&gt;Look For The Woman" class="nofx"><img src="assets/images/moviebox/myspace.jpg" alt="myspace" width="100%"/></a><br />
+				<span class="notation">MyspaceTV, default settings.</span> 
+			</div>
+			
+			<div class="clearfix">.</div><br />
+			
+			<h2>Imagebox</h2>
+			<p>Images are automatically added to galleries by using the 'flower_imagebox' class on a div or link:</p>
+			<div class="oneoffour firstcol"> 
+				<a href="assets/images/imagebox/portugaltheman.jpg" class="flower_imagebox nofx" title="Portugal. The Man" rev="imagebox:collection=justthisone"><img src="assets/images/imagebox/portugaltheman_sm.jpg" alt="portugal the man" width="100%"/></a> 
+				<br /> 
+				<span class="notation">A single image.</span> 
+			</div><div class="oneoffour"> 
+				<a href="assets/images/imagebox/freemusic.jpg" class="flower_imagebox nofx" title="50FOOTWAVE: Free Music [cover]" rev="imagebox:collection=scalingimagebox"><img src="assets/images/imagebox/scaling_sm.jpg" alt="scaling imagebox" width="100%"/></a> 
+				<a href="assets/images/imagebox/cassettecity.jpg" title="Lushlife: Cassette City [cover]" rev="imagebox:collection=scalingimagebox" class="flower_imagebox ifjs_displaynone nofx">Lushlife: Cassette City</a> 
+				<br /> 
+				<span class="notation">Oversized images<br />(will scale.)</span> 
+			</div><div id="deerhoofcollection" class="oneoftwo lastcol flower_imagebox nofx"> 
+				<a href="assets/images/imagebox/deerhoof_0006.jpg" title="Deerhoof by Daisuke Shimote"><img src="assets/images/imagebox/deerhoof_0006_sm.jpg" alt="deerhoof" width="50" height="50"/></a> 
+				<a href="assets/images/imagebox/deerhoof_0009.jpg" title="Deerhoof by Daisuke Shimote"><img src="assets/images/imagebox/deerhoof_0009_sm.jpg" alt="deerhoof" width="50" height="50"/></a> 
+				<a href="assets/images/imagebox/deerhoof_0120.jpg" title="Deerhoof by Daisuke Shimote"><img src="assets/images/imagebox/deerhoof_0120_sm.jpg" alt="deerhoof" width="50" height="50"/></a> 
+				<a href="assets/images/imagebox/deerhoof_0129.jpg" title="Deerhoof by Daisuke Shimote"><img src="assets/images/imagebox/deerhoof_0129_sm.jpg" alt="deerhoof" width="50" height="50"/></a> 
+				<a href="assets/images/imagebox/deerhoof_0374.jpg" title="Deerhoof by Daisuke Shimote"><img src="assets/images/imagebox/deerhoof_0374_sm.jpg" alt="deerhoof" width="50" height="50"/></a> 
+				<a href="assets/images/imagebox/deerhoof_9739.jpg" title="Deerhoof by Daisuke Shimote"><img src="assets/images/imagebox/deerhoof_9739_sm.jpg" alt="deerhoof" width="50" height="50"/></a> 
+				<a href="assets/images/imagebox/deerhoof_46.jpg" title="Deerhoof by David Garland"><img src="assets/images/imagebox/deerhoof_46_sm.jpg" alt="deerhoof" width="50" height="50"/></a> 
+				<a href="assets/images/imagebox/deerhoof_47.jpg" title="Deerhoof by David Garland"><img src="assets/images/imagebox/deerhoof_47_sm.jpg" alt="deerhoof" width="50" height="50"/></a> 
+				<a href="assets/images/imagebox/deerhoof_48.jpg" title="Deerhoof by David Garland"><img src="assets/images/imagebox/deerhoof_48_sm.jpg" alt="deerhoof" width="50" height="50"/></a> 
+				<a href="assets/images/imagebox/deerhoof_49.jpg" title="Deerhoof by David Garland"><img src="assets/images/imagebox/deerhoof_49_sm.jpg" alt="deerhoof" width="50" height="50"/></a> 
+				<br /> 
+				<span class="notation">A &lt;div&gt; full of thumbs/images creating a collection.</span> 
+			</div>
+			
+			<div class="clearfix">.</div><br />
+		
+			<h2>Soundplayer</h2>
+			<p>
+				Soundplayers are created by adding the 'flower_soundplayer' class to a div containing links to audio files.
+				Multiple players are handled intelligently, and by adding 'flower_soundplayer' to a link outside a 
+				soundplayer div you can even play links inline, like with this link to 
+				<a href="http://s3.amazonaws.com/cash_users/calexico/live/01.mp3" class="flower_soundplayer">"Roka" by Calexico</a>.
+			</p><p>
+				There is also a special 'flower_soundplayer_pageplayer' that can be added to a div, gathering all audio links on a 
+				page not included in other soundplayers for a play-this-page style player.  <a class="flower_drawertoggle ifjsdisplayi" rev="drawer:target=pagePlayerTarget,altLinkText=[close page player],horizontalDrawer=true,forceWidthHeight=400">[open page player]</a>
+				<a href="https://s3.amazonaws.com/cash_users/bukeandgass/riposte/01MedullaOblongata.mp3" style="display:none;">Buke &amp; Gass: Medulla Oblongata (hidden link)</a> 
+			</p>
+			<div id="pagePlayerTarget" class="flower_soundplayer_pageplayer ifjs_displaynone"><small>Play all un-spoken-for MP3s:<br /><br /></small></div>
+			<div id="soundplayerspc" class="flower_soundplayer oneoftwo firstcol">
+				<a href="http://s3.amazonaws.com/cash_users/kristinhersh/Crooked/release/128/07Crooked.mp3">Kristin Hersh: Crooked</a><br />
+				<a href="http://s3.amazonaws.com/cash_users/learningmusic/vos003/02MyOriginalDictionary.mp3" title="Learning Music: My Original Dictionary">Learning Music: My Original Dictionary</a><br />
+				<a href="http://s3.amazonaws.com/cash_users/earlgreyhound/EarlGreyHound_EP_mp3128/02GhostAndTheWitness.mp3" title="Earl Greyhound: Ghost And The Witness">Earl Greyhound: Ghost And The Witness</a>
+			</div>
+		
+			<div class="oneoftwo lastcol">
+				<div id="soundplayerspc2" class="flower_soundplayer">
+					<a href="http://s3.amazonaws.com/cash_users/50footwave/catalog/50FootWave/05Lavender.mp3" title="50FOOTWAVE: Lavender">50FOOTWAVE: Lavender</a><br />
+					<a href="http://s3.amazonaws.com/cash_users/bukeandgass/riposte/01MedullaOblongata.mp3" title="Buke and Gass: Medulla Oblongata">Buke and Gass: Medulla Oblongata</a><br />
+					<a href="http://s3.amazonaws.com/cash_users/xiuxiu/DearGodIHateMyself/06.mp3" title="Xiu Xiu: Dear God, I Hate Myself">Xiu Xiu: Dear God, I Hate Myself</a><br />
+					<a href="http://s3.amazonaws.com/cash_users/calexico/live/01.mp3" title="Calexico: Roka">Calexico: Roka</a>
+				</div>
+			</div>
+			
+			<div class="clearfix">.</div><br />
+
+			<h2>Anchor enhancements</h2>
+			<p>We've also included some handy things like sliding content drawers, progressive-enhancement popup links, and some very basic AJAX behavior:
+			<div class="oneofthree firstcol">
+				<a href="http://cashmusic.org" class="external">external anchor</a><br />
+				<a href="http://50footwave.cashmusic.org/" class="popup" rev="popup:width=750,height=590">linkpopup anchor</a>
+			</div><div class="oneofthree">
+				<a class="flower_drawertoggle ifjsdisplayi" rev="drawer:target=flower_drawer_testspc,altLinkText=sliding drawer (close)">sliding drawer (open)</a>
+				<div id="flower_drawer_testspc" class="ifjs_displaynone">drawer test passed</div>
+			</div><div class="oneofthree lastcol">
+				<span><a href="assets/linkinside.txt" class="flower_linkinside" rev="linkinside:target=parent">linkinside anchor</a></span><br />
+				<a href="assets/linkinside2.txt" class="flower_linkinside" rev="linkinside:target=flower_anchor_testspc">targeted linkinside anchor</a> <span id="flower_anchor_testspc"></span>
+			</div>
+			
+			<div class="clearfix">.</div><br />
+		</div>
+
+	</div>
+</div>
+
+<div id="footer">
+	<p><b>&copy; 2010 CASH Music.</b> All our code is open-source. <a href="http://cashmusic.org/tools/">Learn more</a>.</p>
+</div>
+
+</body>
+</html>
