@@ -1,61 +1,0 @@
-8
-
-dir
-23421
-http://svn.symfony-project.com/components/templating/trunk
-http://svn.symfony-project.com
-
-
-
-2009-10-17T12:00:42.427282Z
-23155
-fabien
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-ee427ae8-e902-0410-961c-c3ed070cd9f9
-
-test
-dir
-
-LICENSE
-file
-
-
-
-
-2009-10-28T21:21:57.000000Z
-4828aab1cb984d8a5d29e1c0df3cdcbd
-2009-07-09T13:53:50.555041Z
-20058
-fabien
-
-doc
-dir
-
-lib
-dir
-
-README.markdown
-file
-
-
-
-
-2009-10-28T21:21:57.000000Z
-a50883c1fd795e33e2ff7c9af2086c94
-2009-09-21T06:32:46.588442Z
-22215
-fabien
-
