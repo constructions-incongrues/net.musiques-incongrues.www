@@ -5,6 +5,7 @@ git clone git@github.com:constructions-incongrues/net.musiques-incongrues.www.gi
 ```
 
 ## Démarrage et configuration de la machine virtuelle
+Se placer dans le répertoire contenant les sources du projet et exécuter la commande suivante :
 ```bash
 vagrant up
 ant configure build -Dprofile=vagrant
@@ -21,3 +22,9 @@ ifconfig
 ```
 
 Le site est accessible à l'adresse : http://IP/forum
+
+## Arrêt de la machine virtuelle
+Se placer dans le répertoire contenant les sources du projet et exécuter la commande suivante :
+```bash
+vagrant halt
+```
