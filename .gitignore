@@ -5,6 +5,7 @@
 /data/sql/vanilla.styles.sql
 /src/forum/themes/foot.php
 /src/forum/themes/menu.php
+/src/forum/conf/settings.php
 /src/forum/radio/js/Flower_v1.0/uncompressed/soundplayer/flower_soundplayer.js
 /src/forum/extensions/PageMng/CustomPages.php
 /src/forum/extensions/MiExpandContents/js/inlineplayer.js
