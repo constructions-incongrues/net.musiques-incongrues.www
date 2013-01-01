@@ -1,4 +1,3 @@
-/.vagrant
 # composer
 /vendor/*
 
@@ -21,3 +20,9 @@
 *~
 *.bak
 *.orig
+
+# vagrant
+/.vagrant
+
+# vanilla
+/src/forum/extensions/Statistics/options.inc
