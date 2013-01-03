@@ -1,5 +1,7 @@
 <?php
 // Enabled Extensions
+include($Configuration['EXTENSIONS_PATH']."CiSymfony2ExtensionController/default.php");
+include($Configuration['EXTENSIONS_PATH']."CiStubSymfony2Extension/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiZendFramework/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiJQuery/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiVanillaMiner/default.php");

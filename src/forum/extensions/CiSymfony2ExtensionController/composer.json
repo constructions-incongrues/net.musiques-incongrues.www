@@ -1,0 +1,14 @@
+{
+    "name": "constructions-incongrues/vanilla-symfony2-extension-controller",
+    "require": {
+        "symfony/http-kernel": "2.1.x-dev",
+        "symfony/routing": "2.1.x-dev",
+        "symfony/finder": "2.1.x-dev"
+    },
+    "authors": [
+        {
+            "name": "Tristan Rivoallan",
+            "email": "tristan@rivoallan.net"
+        }
+    ]
+}
