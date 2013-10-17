@@ -44,18 +44,23 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
 		$modulo_class = 'pink';
 		foreach ($sticky_discussions as $discussion)
 		{
-			$url_topic = GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $discussion['DiscussionID'], '', '#Item_1', CleanupString($discussion['Name'].'/'));
-			$discussions_strings[] = sprintf($discussion_tpl,
-			$modulo_class,
-			$url_topic,
-			$Context->ObjectFactory->NewContextObject($Context, 'DiscussionManager')->getDiscussionByID($discussion['DiscussionID'])->getFirstImage(),
-			$discussion['Name'],
-			$discussion['Name'],
-			$url_topic,
-			$discussion['Name'],
-			$discussion['Name'],
-			truncate_text($discussion['Name'], 20));
-			$i++;
+                        $dbDiscussion = $Context->ObjectFactory->NewContextObject($Context, 'DiscussionManager')->getDiscussionByID($discussion['DiscussionID']);
+                        if (!$dbDiscussion) {
+                                continue;
+                        }
+                        $url_topic = GetUrl($Context->Configuration, 'comments.php', '', 'DiscussionID', $discussion['DiscussionID'], '', '#Item_1', CleanupString($discussion['Name'].'/'));
+                        $discussions_strings[] = sprintf($discussion_tpl,
+                        $modulo_class,
+                        $url_topic,
+                        $dbDiscussion->getFirstImage(),
+                        $discussion['Name'],
+                        $discussion['Name'],
+                        $url_topic,
+                        $discussion['Name'],
+                        $discussion['Name'],
+                        truncate_text($discussion['Name'], 20));
+                        $i++;
+
 			if ($i % 2 === 0)
 			{
 				$modulo_class = 'pink';
