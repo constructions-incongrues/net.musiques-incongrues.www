@@ -151,10 +151,10 @@ class EventsPeer
     $sql->addSelect('Name', 'd');
     if ($city)
     {
-      $sql->addWhere('e', 'City', '', mysql_escape_string($city), '=');
+      $sql->addWhere('e', 'City', '', mysql_real_escape_string($city), '=');
     }
-    $sql->addWhere('e', 'Date', '', mysql_escape_string($start_date), '>=', 'and', '', 1, 1);
-    $sql->addWhere('e', 'Date', '', mysql_escape_string($end_date), '<=');
+    $sql->addWhere('e', 'Date', '', mysql_real_escape_string($start_date), '>=', 'and', '', 1, 1);
+    $sql->addWhere('e', 'Date', '', mysql_real_escape_string($end_date), '<=');
     $sql->addWhere('d', 'Active', '', '1', '=');
     $sql->EndWhereGroup();
     $sql->AddOrderBy('Date', 'e', 'asc');
