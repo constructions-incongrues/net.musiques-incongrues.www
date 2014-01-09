@@ -55,7 +55,7 @@ $DiscussionList .= '
 			<span><a href="'.$LastUrl.'">'.$this->Context->GetDefinition('LastCommentBy').'</a> </span><a href="'.GetUrl($this->Context->Configuration, 'account.php', '', 'u', $Discussion->LastUserID).'">'.$Discussion->LastUsername.'</a>
 		</li>
 		<li class="DiscussionActive">
-			<span><a href="'.$LastUrl.'">'.$this->Context->GetDefinition('LastActive').'</a> </span>'.TimeDiff($this->Context, $Discussion->DateLastActive,mktime()).'
+			<span><a href="'.$LastUrl.'">'.$this->Context->GetDefinition('LastActive').'</a> </span>'.TimeDiff($this->Context, $Discussion->DateLastActive,time()).'
 		</li>';
 		if ($this->Context->Session->UserID > 0) {
 				$DiscussionList .= '
