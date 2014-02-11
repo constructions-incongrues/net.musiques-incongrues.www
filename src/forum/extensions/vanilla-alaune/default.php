@@ -83,7 +83,7 @@ if (in_array($Context->SelfUrl, array("index.php")) && strtolower(ForceIncomingS
 
 class DiscussionsPeer
 {
-	public function getStickyDiscussions($context, $limit = null, $random = false)
+	static public function getStickyDiscussions($context, $limit = null, $random = false)
 	{
 		$discussions = array();
 
