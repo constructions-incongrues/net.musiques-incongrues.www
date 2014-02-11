@@ -46,7 +46,7 @@ function DiscussionManager_GetFirstCommentForAtom($DiscussionManager) {
 function FixDateForAtom($Date = '') {
    $DateFormat = 'Y-m-d\TH:i:sO';
    if ($Date == '') {
-      $NewDate = date($DateFormat, mktime());
+      $NewDate = date($DateFormat, time());
    } else {
       $NewDate = date($DateFormat, UnixTimestamp($Date));
    }
