@@ -2,6 +2,7 @@
 *.pyc
 /src/forum/oeil/data/*
 *-dist
+/src/web/data
 
 # symfony related
 /src/symfony/log/*
