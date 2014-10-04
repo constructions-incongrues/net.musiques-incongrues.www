@@ -7,6 +7,7 @@
     ],
     "require": {
         "constructions-incongrues/ananas-build-toolkit": "~0.11",
-        "symfony/symfony1": "1.4.*"
+        "symfony/symfony1": "1.4.*",
+        "zendframework/zendframework1": "1.12.*@dev"
     }
 }
