@@ -3,18 +3,18 @@
 
 # dist
 /data/sql/vanilla.styles.sql
-/src/forum/themes/foot.php
-/src/forum/themes/menu.php
-/src/forum/conf/settings.php
-/src/forum/radio/js/Flower_v1.0/uncompressed/soundplayer/flower_soundplayer.js
-/src/forum/extensions/PageMng/CustomPages.php
-/src/forum/extensions/MiExpandContents/js/inlineplayer.js
-/src/forum/extensions/MiJQuery/js/configuration.js
-/src/forum/extensions/MiExpandContents/js/inlineplayer.js
-/src/forum/extensions/MiJQuery/js/configuration.js
-/src/forum/extensions/vanilla-releases/js/soundmanager2/script/inlineplayer.js
-/src/forum/extensions/Vanillacons/smilies.js
-/src/forum/extensions/Vanillacons/smilies.php
+/src/web/forum/themes/foot.php
+/src/web/forum/themes/menu.php
+/src/web/forum/conf/settings.php
+/src/web/forum/radio/js/Flower_v1.0/uncompressed/soundplayer/flower_soundplayer.js
+/src/web/forum/extensions/PageMng/CustomPages.php
+/src/web/forum/extensions/MiExpandContents/js/inlineplayer.js
+/src/web/forum/extensions/MiJQuery/js/configuration.js
+/src/web/forum/extensions/MiExpandContents/js/inlineplayer.js
+/src/web/forum/extensions/MiJQuery/js/configuration.js
+/src/web/forum/extensions/vanilla-releases/js/soundmanager2/script/inlineplayer.js
+/src/web/forum/extensions/Vanillacons/smilies.js
+/src/web/forum/extensions/Vanillacons/smilies.php
 
 # editors
 *~
@@ -22,8 +22,8 @@
 *.orig
 
 # symfony
-/src/sfproject/cache/*
-/src/sfproject/log/*
+/src/symfony/cache/*
+/src/symfony/log/*
 
 # vagrant
 /.vagrant
