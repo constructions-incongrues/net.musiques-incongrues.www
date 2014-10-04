@@ -1,6 +1,7 @@
 # Project related
 *.pyc
-/src/forum/oeil/data/*
+/src/web/forum/oeil/data/thumbs
+/src/web/forum/oeil/data/images
 *-dist
 /src/web/data
 
