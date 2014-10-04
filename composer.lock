@@ -1,37 +1,50 @@
 {
-    "hash": "45a87363cf2b113cb7beb1872f6a0b46",
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "23b4bd1350a728e04a73d0471fdc8258",
     "packages": [
         {
             "name": "constructions-incongrues/ananas-build-toolkit",
-            "version": "0.11.1",
+            "version": "0.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/constructions-incongrues/ananas-build-toolkit.git",
-                "reference": "0.11.1"
+                "reference": "0.15.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/constructions-incongrues/ananas-build-toolkit/zipball/0.11.1",
-                "reference": "0.11.1",
+                "url": "https://github.com/constructions-incongrues/ananas-build-toolkit/zipball/0.15.0",
+                "reference": "0.15.0",
                 "shasum": ""
             },
-            "time": "2014-02-23 22:07:04",
             "type": "library",
-            "installation-source": "dist",
             "description": "L'Ananas Build Toolkit est un framework de configuration et de déploiement de projet logiciel.",
             "homepage": "http://constructions-incongrues.github.com/ananas-build-toolkit/",
             "support": {
                 "issues": "https://github.com/constructions-incongrues/ananas-build-toolkit/issues",
                 "source": "https://github.com/constructions-incongrues/ananas-build-toolkit"
-            }
+            },
+            "time": "2014-09-10 12:30:32"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],
     "minimum-stability": "stable",
     "stability-flags": [
+
+    ],
+    "prefer-stable": false,
+    "platform": [
+
+    ],
+    "platform-dev": [
 
     ]
 }

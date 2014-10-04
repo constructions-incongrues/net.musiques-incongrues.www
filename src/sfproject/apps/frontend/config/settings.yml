@@ -3,12 +3,13 @@
 
 prod:
   .settings:
+    error_reporting:        <?php echo (E_ALL | E_STRICT) ^ E_DEPRECATED."\n" ?>
     no_script_name:         true
     logging_enabled:        false
 
 dev:
   .settings:
-    error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
+    error_reporting:        <?php echo (E_ALL | E_STRICT) ^ E_DEPRECATED."\n" ?>
     web_debug:              false
     cache:                  false
     no_script_name:         false

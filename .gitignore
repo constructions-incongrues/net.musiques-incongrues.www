@@ -21,6 +21,10 @@
 *.bak
 *.orig
 
+# symfony
+/src/sfproject/cache/*
+/src/sfproject/log/*
+
 # vagrant
 /.vagrant
 
