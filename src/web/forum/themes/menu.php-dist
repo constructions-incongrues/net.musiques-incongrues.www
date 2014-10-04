@@ -11,7 +11,7 @@ echo '<div id="Session">';
 			. FormatStringForDisplay(AppendUrlParameters(
 				$this->Context->Configuration['SIGNOUT_URL'],
 				'FormPostBackKey=' . $this->Context->Session->GetCsrfValidationKey() ))
-			. '">'.$this->Context->GetDefinition('SignOut').'</a> - <a href="@paths.baseuri@page/contact">nous contacter</a>';
+			. '">'.$this->Context->GetDefinition('SignOut').'</a> - <a href="@paths.baseuri@/forum/page/contact">nous contacter</a>';
 	} else {
 		echo $this->Context->GetDefinition('NotSignedIn') . ' (<a href="'
 			. FormatStringForDisplay(AppendUrlParameters(
@@ -24,9 +24,9 @@ echo '<div id="Session">';
 	echo '
 <div id="search">
 	<p>
-	
-		<form id="SearchSimple" method="get" action="@paths.baseuri@search/">
-			<label for="search" style="color:white">Rechercher</label> 
+
+		<form id="SearchSimple" method="get" action="@paths.baseuri@/forum/search/">
+			<label for="search" style="color:white">Rechercher</label>
 			<input type="text" name="Keywords" class="champs" />
 			<input type="hidden" name="PostBackAction" value="Search" />
 			<input name="Submit" value="Search" class="valid" type="submit" />
@@ -38,9 +38,9 @@ echo '<div id="Session">';
 	echo '
 <div id="search" class="notitle">
 	<p>
-	
-		<form id="SearchSimple" method="get" action="@paths.baseuri@search/">
-			<label for="search" style="color:white">Rechercher</label> 
+
+		<form id="SearchSimple" method="get" action="@paths.baseuri@/forum/search/">
+			<label for="search" style="color:white">Rechercher</label>
 			<input type="text" name="Keywords" class="champs" />
 			<input type="hidden" name="PostBackAction" value="Search" />
 			<input name="Submit" value="Search" class="valid" type="submit" />
@@ -53,7 +53,7 @@ echo '<div id="Session">';
 	echo '<div id="Header">
 			<a name="pgtop"></a>
 			<h1>
-				<a href="@paths.baseuri@">
+				<a href="@paths.baseuri@/forum/">
 					<span class="first">Musiques</span>
 					<span class="last">Incongrues</span>
 				</a>

@@ -104,7 +104,7 @@ function InlinePlayer() {
 //      this._data.oLink.innerHTML = 'Pause';
       pl.removeClass(this._data.oLink,this._data.className);
       this._data.className = pl.css.sPlaying;
-      pl.addClass(this._data.oLink,this._data.className);      
+      pl.addClass(this._data.oLink,this._data.className);
     },
 
     finish: function() {
@@ -186,7 +186,7 @@ function InlinePlayer() {
         oLink: o, // DOM node for reference within SM2 object event handlers
         className: self.css.sPlaying
       };
-      
+
       self.soundsByURL[soundURL] = thisSound;
       self.sounds.push(thisSound);
       if (self.lastSound) self.stopSound(self.lastSound);
@@ -240,7 +240,7 @@ var inlinePlayer = null;
 soundManager.debugMode = false; // disable or enable debug output
 
 // path to directory containing SM2 SWF
-soundManager.url = '@paths.baseuri@extensions/vanilla-releases/js/soundmanager2/swf/';
+soundManager.url = '@paths.baseuri@/forum/extensions/vanilla-releases/js/soundmanager2/swf/';
 
 soundManager.onload = function() {
   // soundManager.createSound() etc. may now be called

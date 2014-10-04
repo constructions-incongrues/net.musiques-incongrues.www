@@ -1,1 +1,1 @@
-update LUM_Style set Url = concat('@PATHS.BASEURL@', Url);
+update LUM_Style set Url = concat('@PATHS.BASEURL@/forum', Url);

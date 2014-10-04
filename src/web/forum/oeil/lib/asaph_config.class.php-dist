@@ -1,29 +1,29 @@
 <?php
 
 class Asaph_Config {
-	
+
 	// This title is used in templates and the rss feed
 	public static $title = 'Une poussière dans l\'œil';
-	
+
 	// Domain name and path where Asaph is installed in
 	public static $domain = 'www.musiques-incongrues.net';
-	public static $vanillaPath = '@paths.baseuri@';
-	public static $absolutePath = '@paths.baseuri@oeil/';
-	
-	// If you want to be able to move/edit/delete generated files and folders 
+	public static $vanillaPath = '@paths.baseuri@/forum';
+	public static $absolutePath = '@paths.baseuri@/forum/oeil/';
+
+	// If you want to be able to move/edit/delete generated files and folders
 	// with your ftp-client, it's likely you'll have to set chmod to 0777
 	public static $defaultChmod = 0777;
-	
+
 	public static $postsPerPage = 9;
 	public static $adminPostsPerPage = 9;
-	
+
 	// Templates
 	public static $templates = array(
 		'posts' => 'templates/incongrues/posts.html.php',
 		'about' => 'templates/incongrues/about.html.php',
 		'feed' => 'templates/rss.xml.php'
 	);
-	
+
 	// Settings for your mysql database
 	public static $db = array(
 		'host' => '@database.asaph.host@',
@@ -32,7 +32,7 @@ class Asaph_Config {
 		'password' => '@database.asaph.password@',
 		'prefix' => 'asaph_'
 	);
-	
+
 	// Image and thumbnail settings
 	public static $images = array(
 		'imagePath' => 'data/images/',
