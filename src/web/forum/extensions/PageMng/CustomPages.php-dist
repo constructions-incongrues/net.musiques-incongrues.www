@@ -109,7 +109,6 @@ Toutefois, pour les timides, il est possible de nous contacter par d\'autres bia
 <li><a href="#21">Comment nous contacter ?</a></li>
 <li><a href="#22">Pourquoi tout ce qui est à faire n\'est pas fait en 5 minutes ?</a></li>
 <li><a href="#26">Les discussions suivies, mais qu\'est-ce donc ?</a></li>
-<li><a href="#27">Comment nous suggérer une idée ?</a></li>
 
 </ul>
 
@@ -293,11 +292,6 @@ Pour restreindre la liste des discussions à celles que vous suivez :
 <br />
 
 </p>
-
-<h2 class="surtout donate-2" id="27">Comment nous suggérer une idée ?<a href="#27">#</a></h2>
-
-Une envie ? Un caprice ? Nous sommes à l\'écoute (et demandeurs !). Il suffit pour ce faire d\'aller déposer l\'idée sur l\'infinie et extensible <a href="https://musiquesincongrues.uservoice.com/">TODOLIST de l\'enfer</a>.
-C\'est aussi l\'endroit où il est possible de voter pour les idées existantes. Nous consultons attentivement la liste lors que chaque réunion aux <a href="http://www.musiques-incongrues.net/forum/discussion/3105/bienvenue-aux-bureaux-incongrus/">Bureaux Incongrus</a> :)
 
 </div>
 </div>', 'custom' => 1, 'attribs' => 'class="Faq"', 'roles' => array(0 => 0, 1 => 5, 2 => 3, 3 => 7, 4 => 4, 5 => 9, 6 => 6, 7 => 12, 8 => 13, 9 => 14), 'hidden' => ''), 15 => array('tab' => 'À propos', 'page' => 'about', 'url' => 0, 'html' => '<div id="faq">
