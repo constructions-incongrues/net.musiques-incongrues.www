@@ -25,7 +25,7 @@
 $Configuration['BETA_TESTERS_IDS'] = array(1, 2, 3, 9, 14, 21, 30, 32, 47, 90, 95, 132, 181, 190, 197, 217, 225, 328, 366, 665);
 $Configuration['FEATURES'] = array(
 	'oembed' => array('restricted' => false, 'uids' => $Configuration['BETA_TESTERS_IDS']),
-	'pagePlayer' => array('restricted' => false, 'uids' => $Configuration['BETA_TESTERS_IDS']) 
+	'pagePlayer' => array('restricted' => false, 'uids' => $Configuration['BETA_TESTERS_IDS'])
 );
 
 // Application Settings
@@ -37,9 +37,9 @@ $Configuration['EXTENSIONS_PATH'] = sprintf('%s/extensions/', $Configuration['AP
 $Configuration['LANGUAGES_PATH'] = sprintf('%s/languages/', $Configuration['APPLICATION_PATH']);
 $Configuration['THEME_PATH'] = sprintf('%s/themes/vanilla/', $Configuration['APPLICATION_PATH']);
 
-$Configuration['DEFAULT_STYLE'] = '@paths.baseurl@/themes/vanilla/styles/scene/';
-$Configuration['WEB_ROOT'] = '@paths.baseuri@';
-$Configuration['BASE_URL'] = '@paths.baseurl@';
+$Configuration['DEFAULT_STYLE'] = '@paths.baseurl@/forum/themes/vanilla/styles/scene/';
+$Configuration['WEB_ROOT'] = '@paths.baseuri@/forum/';
+$Configuration['BASE_URL'] = '@paths.baseurl@/forum/';
 $Configuration['FORWARD_VALIDATED_USER_URL'] = '@paths.baseurl@';
 $Configuration['COOKIE_DOMAIN'] = '@cookie.domain@';
 $Configuration['COOKIE_PATH'] = '@cookie.path@';
