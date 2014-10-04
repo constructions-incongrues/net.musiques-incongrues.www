@@ -28,3 +28,6 @@
 
 # vagrant
 /.vagrant
+
+# vanilla
+/src/web/forum/extensions/Statistics/options.inc
