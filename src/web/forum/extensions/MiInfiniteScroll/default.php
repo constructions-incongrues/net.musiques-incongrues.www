@@ -9,5 +9,5 @@
  */
 if ($Context->SelfUrl == 'index.php') {
 	$Head->AddScript(sprintf('extensions/%s/js/favicon.js', basename(dirname(__FILE__))));
-	$Head->AddScript(sprintf('extensions/%s/js/behaviors.js?v='.time(), basename(dirname(__FILE__))));
+	$Head->AddScript(sprintf('extensions/%s/js/behaviors.js?v='.$Context->Configuration['RELEASE_TAG'], basename(dirname(__FILE__))));
 }
