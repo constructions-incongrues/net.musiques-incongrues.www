@@ -117,7 +117,7 @@ if (in_array($Context->SelfUrl, array("post.php", "comments.php", "settings.php"
 			return $sReturn;
 		}
 	}
-	
+
 
 	function CommentForm_Vanillacons(&$CommentForm) {
 		$SmiliesDir  = $CommentForm->Context->Configuration["APPLICATION_PATH"] . $CommentForm->Context->Configuration["SMILIES_PATH"];
@@ -134,7 +134,7 @@ if (in_array($Context->SelfUrl, array("post.php", "comments.php", "settings.php"
 			$DirSelect->AddOption(basename($dir), basename($dir));
 		}
 		echo '<div id="Vanillacons">';
-		if( $CommentForm->Context->Configuration["SMILIES_CATEGORIES"] > 1 ) 
+		if( $CommentForm->Context->Configuration["SMILIES_CATEGORIES"] > 1 )
 		{
 		  echo '<label for="smilies-select" style="display: inline;">&nbsp;Des smileys tout plein :</label>';
 		  $DirSelect->Write();
@@ -147,17 +147,17 @@ if (in_array($Context->SelfUrl, array("post.php", "comments.php", "settings.php"
 	// Add Stylesheet and JavaScript to Head Control
 	$Head->AddStyleSheet("extensions/Vanillacons/style.css");
 	$Head->AddScript('extensions/Vanillacons/functions.js');
-	$Head->AddScript('extensions/Vanillacons/smilies.js?v='.time());
+	$Head->AddScript('extensions/Vanillacons/smilies.js?v='.$Context->Configuration['RELEASE_TAG']);
 
-	
+
 	// Create delegates
 	if( $Context->Session->UserID > 0) {
 		$Context->AddToDelegate("DiscussionForm", "CommentForm_PreButtonsRender", "CommentForm_Vanillacons");
 		$Context->AddToDelegate("DiscussionForm", "DiscussionForm_PreButtonsRender", "CommentForm_Vanillacons");
 	}
-	
+
 	include(dirname(__FILE__) . '/smilies.php');
-	
+
 	// Global StringFormatter
 	$VanillaconsFormatter = $Context->ObjectFactory->NewObject($Context, "VanillaconsFormatter");
 	$VanillaconsFormatter->LoadSmilies($Smilies);
@@ -170,7 +170,7 @@ if( $Context->SelfUrl == 'settings.php' && $Context->Session->User->Permission('
 	class VanillaconsForm extends PostBackControl {
 		var $Name;
 		var $VanillaconsCount;
-		
+
 		function VanillaconsForm(&$Context) {
 			$this->ValidActions = array('Vanillacons', 'RebuildVanillacons');
 			$this->Constructor($Context);

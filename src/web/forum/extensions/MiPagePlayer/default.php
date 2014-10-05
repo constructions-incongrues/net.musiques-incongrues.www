@@ -9,8 +9,8 @@
  */
 
 $Head->AddScript('extensions/MiPagePlayer/js/MiPagePlayer.playlist.js');
-$Head->AddScript('extensions/MiPagePlayer/js/MiPagePlayer.behaviors.js?'.time());
-$Head->AddStyleSheet('extensions/MiPagePlayer/css/MiPagePlayer.main.css?'.time());
+$Head->AddScript('extensions/MiPagePlayer/js/MiPagePlayer.behaviors.js?v='.$Context->Configuration['RELEASE_TAG']);
+$Head->AddStyleSheet('extensions/MiPagePlayer/css/MiPagePlayer.main.css?v='.$Context->Configuration['RELEASE_TAG']);
 $Context->AddToDelegate('CommentGrid', 'PostRender', 'MiPagePlayer_PostRenderCommentFoot');
 
 function MiPagePlayer_PostRenderCommentFoot(CommentGrid $commentGrid) {
