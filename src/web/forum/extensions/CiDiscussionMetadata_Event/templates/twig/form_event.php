@@ -8,6 +8,7 @@
     onclick="jQuery('#CiDiscussionMetadata_Event_fieldset').toggle();"
 {% if self.Discussion.Metadata.event is defined %}
     checked
+    disabled
 {% endif %}
     />
 </li>

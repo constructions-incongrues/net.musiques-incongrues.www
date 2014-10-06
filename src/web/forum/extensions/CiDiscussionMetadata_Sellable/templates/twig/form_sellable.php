@@ -8,6 +8,7 @@
     onclick="jQuery('#CiDiscussionMetadata_Sellable_fieldset').toggle();"
 {% if self.Discussion.Metadata.sellable is defined %}
     checked
+    disabled
 {% endif %}
     />
 </li>

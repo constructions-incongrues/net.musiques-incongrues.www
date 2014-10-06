@@ -8,6 +8,7 @@
     onclick="jQuery('#CiDiscussionMetadata_Release_fieldset').toggle();"
 {% if self.Discussion.Metadata.release is defined %}
     checked
+    disabled
 {% endif %}
     />
 </li>
