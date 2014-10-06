@@ -36,7 +36,7 @@ $DiscussionList .= '
 		<li class="DiscussionTopic">
 			<span>'.$this->Context->GetDefinition('DiscussionTopic').'</span><a href="'.$UnreadUrl.'">'.$Discussion->Name.'</a>
 		</li>
-	';		
+	';
 	}
 		if ($this->Context->Configuration['USE_CATEGORIES']) {
 			$DiscussionList .= '

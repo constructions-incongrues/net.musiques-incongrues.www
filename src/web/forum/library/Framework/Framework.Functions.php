@@ -69,11 +69,11 @@ function AppendToConfigurationFile($File, $Append) {
 /**
  * Makes sure that a url and some parameters are concatentated properly
  * (ie. an ampersand is used instead of a question mark when necessary)
- * 
+ *
  * @param string $Url
  * @param string $Parameters
  * @return string
- */ 
+ */
 function AppendUrlParameters($Url, $Parameters) {
 	$ReturnUrl = $Url;
 	$ReturnUrl .= (strpos($Url, '?') === false) ? '?' : '&';
@@ -534,7 +534,7 @@ function GetRemoteIp($FormatIpForDatabaseInput = '0') {
 
 /**
  * Return the request URL
- * 
+ *
  * The returned URL is tainted (based on $_SERVER['QUERY_STRING']).
  * However, by default ($FormatUrlForDisplay == true), the url is safe for html used.
  *
@@ -627,7 +627,7 @@ function ThemeFilePath($Configuration, $FileName) {
 }
 
 function MysqlDateTime($Timestamp = '') {
-	if ($Timestamp == '') $Timestamp = mktime();
+	if ($Timestamp == '') $Timestamp = time();
 	return date('Y-m-d H:i:s', $Timestamp);
 }
 

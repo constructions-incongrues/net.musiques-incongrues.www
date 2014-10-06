@@ -137,7 +137,7 @@ RewriteRule ^discussion/([0-9]+/){1,2}[^/]*/(account.php|categories.php|comments
 RewriteRule ^(discussions|account|search|post|[0-9]+)/.+/(extensions|themes|images|ajax)/(.*) $2/$3 [QSA,L]
 RewriteRule ^(discussions|account|search|post|[0-9]+)/.+/(account.php|categories.php|comments.php|extension.php|index.php|people.php|post.php|search.php|settings.php) $2 [QSA,L]
 
-#Pages
+# Pages
 RewriteRule ^page/(.*)$ index.php?Page=$1 [QSA,L]
 
 # Newrelic configuration

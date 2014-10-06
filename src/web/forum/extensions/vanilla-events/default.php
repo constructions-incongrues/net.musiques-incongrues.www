@@ -204,7 +204,7 @@ class EventsPeer
 
     return $event;
   }
-  
+
   function getCities($context)
   {
     $cities = array();
@@ -637,5 +637,3 @@ function VanillaEvents_SaveEvent(&$DiscussionForm, $date, $city, $country)
     die(sprintf('Event was not saved : date is not properly formatted. <a href="%s">Click here</a> to fix that !', $discussion_url));
   }
 }
-
-?>

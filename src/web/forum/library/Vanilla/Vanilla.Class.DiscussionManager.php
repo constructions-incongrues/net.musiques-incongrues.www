@@ -228,7 +228,7 @@ class DiscussionManager extends Delegation {
 	}
 
 	function GetDiscussionList($RowsPerPage, $CurrentPage, $CategoryID) {
-		// validate CategoryID, should be an int or an array of int superior to 0 
+		// validate CategoryID, should be an int or an array of int superior to 0
 		$tmp = $CategoryID;
 		$CategoryID = array();
 		if (is_array($tmp)) {
@@ -462,7 +462,7 @@ class DiscussionManager extends Delegation {
 				if ($this->Context->Database->RowCount($CategoryAllowed) < 1) {
 					$Discussion->CategoryID = 0;
 				}
-				
+
 				if ($Discussion->CategoryID <= 0) {
 					$this->Context->WarningCollector->Add($this->Context->GetDefinition('ErrSelectCategory'));
 				}
