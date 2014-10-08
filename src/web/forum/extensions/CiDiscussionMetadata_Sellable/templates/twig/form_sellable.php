@@ -15,7 +15,7 @@
 
 <fieldset id="CiDiscussionMetadata_Sellable_fieldset" {% if self.Discussion.Metadata.sellable is not defined %}style="display:none;"{% endif %}>
   <li>
-    <label for="CiDiscussionMetadata_Sellable_Price">Price</label>
+    <label for="CiDiscussionMetadata_Sellable_Price">Prix</label>
     <input name="CiDiscussionMetadata_Sellable_Price" class="Sellable-input" value="{{ self.Discussion.Metadata.sellable.Price }}" />
   </li>
 </fieldset>
