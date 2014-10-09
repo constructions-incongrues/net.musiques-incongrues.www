@@ -11,6 +11,6 @@
 // Activate extension when view a discussion
 if ($Context->SelfUrl == 'comments.php') {
 	$Head->AddScript('extensions/MiExpandContents/js/jquery/jquery.oembed.js');
-	$Head->AddScript('extensions/MiExpandContents/js/behaviors.js?v=8');
+	$Head->AddScript('extensions/MiExpandContents/js/behaviors.js?v='.$Context->Configuration['RELEASE_TAG']);
 	$Head->AddStyleSheet('extensions/MiExpandContents/css/MiExpandContents.css');
 }
