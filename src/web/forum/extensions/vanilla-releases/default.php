@@ -74,7 +74,7 @@ class ReleasesPage
                 $items[] = sprintf($item_tpl, $label['LabelName'], $classname, $label['LabelName']);
             }
         }
-        $subscriptionLinks = 
+        $subscriptionLinks =
 '<ul class="label-links">
 	<li><a href="http://feeds.feedburner.com/musiques-incongrues-podcast" title="Le podcast auto-mécanique du forum des Musiques Incongrues">Podcast</a></li>
 	<li><a href="http://feedburner.google.com/fb/a/mailverify?uri=musiques-incongrues-releases&loc=fr_FR" title="Recevoir les nouvelles sorties par email" target="_blank">Newsletter</a></li>
@@ -192,6 +192,28 @@ class ReleasesPage
         return $releases;
     }
 
+    public function getDiscussion($id)
+    {
+        // Build selection query
+        $sql = $this->Context->ObjectFactory->NewContextObject($this->Context, 'SqlBuilder');
+        $sql->SetMainTable('Releases','r');
+        $sql->addSelect('DiscussionID', 'r');
+        $sql->addSelect('LabelName', 'r');
+        $sql->addSelect('DownloadLink', 'r');
+        $sql->addSelect('IsMix', 'r');
+        $sql->addWhere('r', 'DiscussionID', '', $id, '=');
+
+        // Execute query
+        $db = $this->Context->Database;
+        $rs = $db->Execute($sql->GetSelect(), $this, __FUNCTION__, 'Failed to fetch release from database.');
+
+        if ($db->RowCount($rs) > 0) {
+            $db_release = $db->GetRow($rs);
+        }
+
+        return $db_release;
+    }
+
     function render()
     {
         $discussions = '';
@@ -250,7 +272,7 @@ class ReleasesPage
 		$Context = $this->Context;
 		include(dirname(__FILE__).'/../MiPagePlayer/templates/page-player.php');
 		$body .= ob_get_clean();
-        
+
         echo sprintf($body, $top, $discussions);
     }
 }

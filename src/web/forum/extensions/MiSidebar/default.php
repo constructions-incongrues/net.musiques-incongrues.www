@@ -56,7 +56,7 @@ $blocks['ailleurs'] = array('html' => '
 
 // Affiner
 $filters = '
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Bookmarks">Discussions suivies</a></li> 
+	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Bookmarks">Discussions suivies</a></li>
 	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=YourDiscussions">Discussions auxquelles vous avez participé</a></li>
 	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Private">Discussions privées</a></li>
 	<li><a href="'.$Configuration['WEB_ROOT'].'search/?PostBackAction=Search&amp;Keywords=whisper;&amp;Type=Comments" >Commentaires chuchotés</a></li>
@@ -112,13 +112,19 @@ ob_start();
 include(dirname(__FILE__).'/../SidepanelRotator/rotator.php');
 $blocks['introspection'] = array('html' => ob_get_clean());
 
-// Introspection
-// TODO : this should come from "Œil" extension
+// Events
 ob_implicit_flush(false);
 @ob_end_clean();
 ob_start();
 include(dirname(__FILE__).'/../vanilla-events/sidebar.php');
 $blocks['metadata-events'] = array('html' => ob_get_clean());
+
+// Releases
+ob_implicit_flush(false);
+@ob_end_clean();
+ob_start();
+include(dirname(__FILE__).'/../vanilla-releases/sidebar.php');
+$blocks['metadata-releases'] = array('html' => ob_get_clean());
 
 // Zeitgeist
 // -- current
@@ -162,7 +168,7 @@ $blocks['data-gallery-user'] = array('html' => ob_get_clean());
 $mappings = array(
 	'default'     => array('randomDiscussion', 'zeitgeistCurrent', 'understand', 'introspection'),
 	'discussions' => array('randomDiscussion', 'zeitgeistCurrent', 'understand', 'introspection', 'affiner'),
-	'comments'    => array('randomDiscussion', 'zeitgeistCurrent', 'topicActions', 'instrospection', 'metadata-events', 'data-gallery'),
+	'comments'    => array('randomDiscussion', 'zeitgeistCurrent', 'topicActions', 'instrospection', 'metadata-events', 'metadata-releases', 'data-gallery'),
 	'events'      => array(),
 	'label'       => array(),
 	'show'        => array(),
@@ -205,10 +211,10 @@ if (isset($mappings[$controllerName])) {
 foreach ($mapping as $block) {
 	if (isset($blocks[$block])) {
 		if (isset($Panel)) {
-			// "premium" features			
+			// "premium" features
 			if (isset($blocks[$block]['userIds'])) {
 				if (in_array($Context->Session->UserID, $blocks[$block]['userIds'])) {
-					$Panel->addString($blocks[$block]['html']);	
+					$Panel->addString($blocks[$block]['html']);
 				}
 			} else {
 				$Panel->addString($blocks[$block]['html']);
