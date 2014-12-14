@@ -209,7 +209,10 @@ class ReleasesPage
 
         if ($db->RowCount($rs) > 0) {
             $db_release = $db->GetRow($rs);
+        } else {
+            $db_release = false;
         }
+
 
         return $db_release;
     }

@@ -1,11 +1,14 @@
 <?php
 $releasesPeer = new ReleasesPage($Context, $Configuration);
 $discussion = $releasesPeer->getDiscussion(ForceIncomingInt('DiscussionID', null));
-$releases = $releasesPeer->getReleases($discussion['LabelName']);
-if (count($releases) > 6) {
-    $limit = 6;
-} else {
-    $limit = count($releases);
+$releases = array();
+if (false !== $discussion) {
+    $releases = $releasesPeer->getReleases($discussion['LabelName']);
+    if (count($releases) > 6) {
+        $limit = 6;
+    } else {
+        $limit = count($releases);
+    }
 }
 ?>
 <?php if (count($releases)): ?>
