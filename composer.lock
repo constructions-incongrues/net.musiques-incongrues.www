@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8421eb7023eea9dbd690a016959eaba9",
+    "hash": "e48b9c05083a8720515e898847c10446",
     "packages": [
         {
             "name": "constructions-incongrues/ananas-build-toolkit",
@@ -31,28 +31,25 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.3.0",
+            "version": "v4.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "b86b927dfefdb56ab0b22d1350033d9a38e9f205"
+                "reference": "28ac862c8d5ccbe5c7ee8cecc07e1ca9d5195b56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/b86b927dfefdb56ab0b22d1350033d9a38e9f205",
-                "reference": "b86b927dfefdb56ab0b22d1350033d9a38e9f205",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/28ac862c8d5ccbe5c7ee8cecc07e1ca9d5195b56",
+                "reference": "28ac862c8d5ccbe5c7ee8cecc07e1ca9d5195b56",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9.1"
+                "php": ">=5.2.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.3-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -62,15 +59,17 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "LGPL"
             ],
             "authors": [
                 {
-                    "name": "Chris Corbyn"
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "name": "Chris Corbyn"
                 }
             ],
             "description": "Swiftmailer, free feature-rich PHP mailer",
@@ -79,24 +78,21 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-10-04 05:53:18"
+            "time": "2012-06-17 20:55:34"
         },
         {
             "name": "symfony/symfony1",
-            "version": "v1.4.25",
+            "version": "v1.4.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hostnet/symfony1.git",
-                "reference": "cc7df0b282b21f4efe08bb15166ad4443d1990e4"
+                "reference": "75664fa9120db962f2fa29dc21428842f71e18bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hostnet/symfony1/zipball/cc7df0b282b21f4efe08bb15166ad4443d1990e4",
-                "reference": "cc7df0b282b21f4efe08bb15166ad4443d1990e4",
+                "url": "https://api.github.com/repos/hostnet/symfony1/zipball/75664fa9120db962f2fa29dc21428842f71e18bb",
+                "reference": "75664fa9120db962f2fa29dc21428842f71e18bb",
                 "shasum": ""
-            },
-            "require": {
-                "swiftmailer/swiftmailer": ">=5.0.0"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -106,24 +102,26 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "Symfony is a complete framework designed to optimize the development of web applications by way of several key features. For starters, it separates a web application's business rules, server logic, and presentation views. It contains numerous tools and classes aimed at shortening the development time of a complex web application. Additionally, it automates common tasks so that the developer can focus entirely on the specifics of an application. The end result of these advantages means there is no need to reinvent the wheel every time a new web application is built!",
-            "time": "2014-08-04 07:18:10"
+            "time": "2012-11-26 15:31:15"
         },
         {
             "name": "zendframework/zendframework1",
-            "version": "dev-master",
+            "version": "1.12.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf1.git",
-                "reference": "901da6b34ddc89ea57286b086ad145201830c040"
+                "reference": "5faa0abbd371bebb76f2208c389e4d7e15c11f81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf1/zipball/901da6b34ddc89ea57286b086ad145201830c040",
-                "reference": "901da6b34ddc89ea57286b086ad145201830c040",
+                "url": "https://api.github.com/repos/zendframework/zf1/zipball/5faa0abbd371bebb76f2208c389e4d7e15c11f81",
+                "reference": "5faa0abbd371bebb76f2208c389e4d7e15c11f81",
                 "shasum": ""
             },
             "require": {
@@ -157,24 +155,15 @@
                 "ZF1",
                 "framework"
             ],
-            "time": "2014-09-26 07:47:15"
+            "time": "2014-09-16 20:47:34"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "zendframework/zendframework1": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
 }

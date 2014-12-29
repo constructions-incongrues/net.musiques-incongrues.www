@@ -74,7 +74,7 @@ class feedsActions extends sfActions
         // Select template
         return sfView::SUCCESS;
     }
-    
+
 	/**
      * Generates a podcast feed out of all mixes listed on forum.
      *
@@ -194,7 +194,11 @@ class feedsActions extends sfActions
         $q->free();
 
         // Build
-        require_once 'Zend/Loader.php';
+        set_include_path(get_include_path().PATH_SEPARATOR.sprintf(
+            '%s/../../vendor/zendframework/zendframework1/library',
+            sfConfig::get('sf_root_dir')
+        ));
+        require_once('Zend/Loader.php');
         Zend_Loader::loadClass('Zend_Feed_Writer_Feed');
         $feed = new Zend_Feed_Writer_Feed();
         $feed->setTitle("L'(anan)agenda des Musiques Incongrues");
@@ -202,8 +206,7 @@ class feedsActions extends sfActions
         $feed->setFeedLink('http://www.musiques-incongrues.net/forum/s/feeds/events', 'RSS');
         $feed->setDescription("L'agenda collaboratif du forum des Musiques Incongrues");
         $feed->setDateModified(new Zend_Date($events[0]['Discussion']['datelastactive'], Zend_Date::ISO_8601));
-        foreach ($events as $event)
-        {
+        foreach ($events as $event) {
             $entry = $entry = $feed->createEntry();
             $entry->setTitle($event['Discussion']['name']);
             $entry->setDateCreated(new Zend_Date($event['Discussion']['datecreated'], Zend_Date::ISO_8601));

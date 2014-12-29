@@ -7,7 +7,8 @@
     ],
     "require": {
         "constructions-incongrues/ananas-build-toolkit": "~0.11",
+        "swiftmailer/swiftmailer": "4.1.*",
         "symfony/symfony1": "1.4.*",
-        "zendframework/zendframework1": "1.12.*@dev"
+        "zendframework/zendframework1": "1.12.*"
     }
 }
