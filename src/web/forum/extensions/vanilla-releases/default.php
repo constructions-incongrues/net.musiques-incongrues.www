@@ -40,7 +40,11 @@ if ($Context->SelfUrl == 'post.php')
 // Code needed to display the "events" page
 if(in_array(ForceIncomingString("PostBackAction", ""), array('Releases')))
 {
-    $Context->PageTitle = $Context->GetDefinition('Releases');
+    $title = 'Toutes les sorties' ;
+    if ($label = ForceIncomingString("label", "")) {
+        $title = 'Toutes les sorties de ' . $label;
+    }
+    $Context->PageTitle = $title;
     $Menu->CurrentTab = 'Releases';
     $Body->CssClass = 'Discussions';
     $page = new ReleasesPage($Context, $Configuration);

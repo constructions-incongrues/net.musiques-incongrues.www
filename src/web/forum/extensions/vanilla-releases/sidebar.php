@@ -2,7 +2,7 @@
 $releasesPeer = new ReleasesPage($Context, $Configuration);
 $discussion = $releasesPeer->getDiscussion(ForceIncomingInt('DiscussionID', null));
 $releases = array();
-if (false !== $discussion) {
+if (false !== $discussion && $discussion['LabelName']) {
     $releases = $releasesPeer->getReleases($discussion['LabelName']);
     if (count($releases) > 6) {
         $limit = 6;
@@ -11,7 +11,7 @@ if (false !== $discussion) {
     }
 }
 ?>
-<?php if (count($releases)): ?>
+<?php if (count($releases) > 1): ?>
 <h2>Et aussi</h2>
 <ul class="ailleurs-links">
     <?php for ($i = 0; $i < $limit; $i++): ?>
