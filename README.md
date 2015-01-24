@@ -1,30 +1,14 @@
-# Installation
-## Récupération des sources
-```bash
-git clone git@github.com:constructions-incongrues/net.musiques-incongrues.www.git
-```
+# Installation d'un environnement de développement
 
-## Démarrage et configuration de la machine virtuelle
-Se placer dans le répertoire contenant les sources du projet et exécuter la commande suivante :
 ```bash
+sudo apt-get install virtualbox resolvconf dnsmasq
+wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
+sudo dpkg -i vagrant_1.7.2_x86_64.deb
+vagrant plugin install vagrant-vbguest
+vagrant plugin install vagrant-share
+vagrant plugin install landrush
 vagrant up
-ant configure build -Dprofile=vagrant
-```
 
-## Accès au site
-Pour obtenir l'IP de la machine virtuelle, se placer dans le répertoire des sources et s'y connecter :
-```bash
-vagrant ssh
-```
-Une fois connecté, identifier l'ip de la machine : 
-```bash
-ifconfig
-```
-
-Le site est accessible à l'adresse : http://IP/forum
-
-## Arrêt de la machine virtuelle
-Se placer dans le répertoire contenant les sources du projet et exécuter la commande suivante :
-```bash
-vagrant halt
+sudo sh -c 'echo "server=/vagrant.dev/127.0.0.1#10053" > /etc/dnsmasq.d/vagrant-landrush'
+sudo service dnsmasq restart
 ```
