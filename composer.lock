@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e48b9c05083a8720515e898847c10446",
+    "hash": "5c45bc9f2b37bb9ad55265402a26285f",
     "packages": [
         {
             "name": "constructions-incongrues/ananas-build-toolkit",
@@ -112,16 +112,16 @@
         },
         {
             "name": "zendframework/zendframework1",
-            "version": "1.12.9",
+            "version": "1.12.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf1.git",
-                "reference": "5faa0abbd371bebb76f2208c389e4d7e15c11f81"
+                "reference": "60567ad6d0eb2f216a88d2d87069f25be3d9a010"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf1/zipball/5faa0abbd371bebb76f2208c389e4d7e15c11f81",
-                "reference": "5faa0abbd371bebb76f2208c389e4d7e15c11f81",
+                "url": "https://api.github.com/repos/zendframework/zf1/zipball/60567ad6d0eb2f216a88d2d87069f25be3d9a010",
+                "reference": "60567ad6d0eb2f216a88d2d87069f25be3d9a010",
                 "shasum": ""
             },
             "require": {
@@ -155,7 +155,7 @@
                 "ZF1",
                 "framework"
             ],
-            "time": "2014-09-16 20:47:34"
+            "time": "2015-01-14 19:44:24"
         }
     ],
     "packages-dev": [],
