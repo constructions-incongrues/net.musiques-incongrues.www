@@ -1,3 +1,5 @@
+Options +FollowSymLinks -Multiviews
+
 AddType text/x-component .htc
 AddType image/vnd.microsoft.icon .ico
 
@@ -28,4 +30,148 @@ FileETag none
 	RewriteCond %{REQUEST_FILENAME} -l [OR]
 	RewriteCond %{REQUEST_FILENAME} -d
 	RewriteRule ^.*$ - [NC,L]
+
+	# symfony
+	RewriteRule ^s/(.*) - [L]
+
+	# Random discussion
+	RewriteRule ^discussions/random$ index.php?PostBackAction=RandomDiscussion [QSA,L]
+
+	# Labels
+	RewriteRule ^labels/daheardit-records$ index.php?CategoryID=3 [QSA,L]
+	RewriteRule ^labels/daheardit-records/$ index.php?CategoryID=3 [QSA,L]
+	RewriteRule ^labels/egotwister$ index.php?CategoryID=9 [QSA,L]
+	RewriteRule ^labels/egotwister/$ index.php?CategoryID=9 [QSA,L]
+	RewriteRule ^labels/dokidoki$ index.php?CategoryID=24 [QSA,L]
+	RewriteRule ^labels/dokidoki/$ index.php?CategoryID=24 [QSA,L]
+	RewriteRule ^labels/chipbanger$ index.php?CategoryID=25 [QSA,L]
+	RewriteRule ^labels/chipbanger/$ index.php?CategoryID=25 [QSA,L]
+	RewriteRule ^labels/dataglitch$ index.php?CategoryID=26 [QSA,L]
+	RewriteRule ^labels/dataglitch/$ index.php?CategoryID=26 [QSA,L]
+	RewriteRule ^labels/darlingdada$ index.php?CategoryID=31 [QSA,L]
+	RewriteRule ^labels/darlingdada/$ index.php?CategoryID=31 [QSA,L]
+	RewriteRule ^labels/steakauzoo$ index.php?CategoryID=32 [QSA,L]
+	RewriteRule ^labels/steakauzoo/$ index.php?CategoryID=32 [QSA,L]
+
+	# Shows
+	RewriteRule ^shows/istotassaca$ index.php?CategoryID=20 [QSA,L]
+	RewriteRule ^shows/istotassaca/$ index.php?CategoryID=20 [QSA,L]
+	RewriteRule ^shows/lelaboratoire$ index.php?CategoryID=21 [QSA,L]
+	RewriteRule ^shows/lelaboratoire/$ index.php?CategoryID=21 [QSA,L]
+	RewriteRule ^shows/ouiedire$ index.php?CategoryID=2 [QSA,L]
+	RewriteRule ^shows/ouiedire/$ index.php?CategoryID=2 [QSA,L]
+	RewriteRule ^shows/radioclash$ index.php?CategoryID=12 [QSA,L]
+	RewriteRule ^shows/radioclash/$ index.php?CategoryID=12 [QSA,L]
+	RewriteRule ^shows/thebrain$ index.php?CategoryID=10 [QSA,L]
+	RewriteRule ^shows/thebrain/$ index.php?CategoryID=10 [QSA,L]
+	RewriteRule ^shows/gbbg$ index.php?CategoryID=23 [QSA,L]
+	RewriteRule ^shows/gbbg/$ index.php?CategoryID=23 [QSA,L]
+	RewriteRule ^shows/cobrafoutre$ index.php?CategoryID=29 [QSA,L]
+	RewriteRule ^shows/cobrafoutre/$ index.php?CategoryID=29 [QSA,L]
+
+	#Discussions
+	RewriteRule ^discussions$ index.php [QSA,L]
+	RewriteRule ^discussions/$ index.php [QSA,L]
+	RewriteRule ^discussions/([0-9]+)$ index.php?page=$1 [QSA,L]
+	RewriteRule ^discussions/([0-9]+)/$ index.php?page=$1 [QSA,L]
+	RewriteRule ^([0-9]+)/$ index.php?CategoryID=$1 [QSA,L]
+	RewriteRule ^([0-9]+)/([0-9]+)$ index.php?CategoryID=$1&page=$2 [QSA,L]
+	RewriteRule ^([0-9]+)/([0-9]+)/$ index.php?CategoryID=$1&page=$2 [QSA,L]
+	RewriteRule ^([0-9]+)/(.*)/$ index.php?CategoryID=$1 [QSA,L]
+
+	#Comments
+	RewriteRule ^discussion/([0-9]+)/([0-9]+)/(.*)$ comments.php?DiscussionID=$1&page=$2 [QSA,L]
+	RewriteRule ^discussion/([0-9]+)/([0-9]+)/(.*)/$ comments.php?DiscussionID=$1&page=$2 [QSA,L]
+	RewriteRule ^discussion/([0-9]+)/(.*)$ comments.php?DiscussionID=$1 [QSA,L]
+	RewriteRule ^discussion/([0-9]+)/(.*)/$ comments.php?DiscussionID=$1 [QSA,L]
+	RewriteRule ^discussion/([0-9]+)/([0-9]+)$ comments.php?DiscussionID=$1&page=$2 [QSA,L]
+	RewriteRule ^discussion/([0-9]+)/([0-9]+)/$ comments.php?DiscussionID=$1&page=$2 [QSA,L]
+	RewriteRule ^discussion/([0-9]+)$ comments.php?DiscussionID=$1 [QSA,L]
+	RewriteRule ^discussion/([0-9]+)/$ comments.php?DiscussionID=$1 [QSA,L]
+
+	#Categories
+	RewriteRule ^categories/$ categories.php [QSA,L]
+
+	#Account
+	RewriteRule ^account/$ account.php [QSA,L]
+	RewriteRule ^account/([0-9]+)$ account.php?u=$1 [QSA,L]
+	RewriteRule ^account/([0-9]+)/$ account.php?u=$1 [QSA,L]
+
+	#Search
+	RewriteRule ^search/$ search.php [QSA,L]
+	RewriteRule ^search/([0-9]+)$ search.php?page=$1 [QSA,L]
+	RewriteRule ^search/([0-9]+)/$ search.php?page=$1 [QSA,L]
+	RewriteRule ^search/saved/([0-9]+)$ search.php?SearchID=$1 [QSA,L]
+	RewriteRule ^search/saved/([0-9]+)/$ search.php?SearchID=$1 [QSA,L]
+	RewriteRule ^search/saved/([0-9]+)/([0-9]+)$ search.php?SearchID=$1&page=$2 [QSA,L]
+	RewriteRule ^search/saved/([0-9]+)/([0-9]+)/$ search.php?SearchID=$1&page=$2 [QSA,L]
+
+	#Post
+	RewriteRule ^post/$ post.php [QSA,L]
+	RewriteRule ^post/([0-9]+)$ post.php?CommentID=$1 [QSA,L]
+	RewriteRule ^post/([0-9]+)/$ post.php?CommentID=$1 [QSA,L]
+	RewriteRule ^post/category/([0-9]+)$ post.php?CategoryID=$1 [QSA,L]
+	RewriteRule ^post/category/([0-9]+)/$ post.php?CategoryID=$1 [QSA,L]
+
+	#Settings
+	RewriteRule ^settings/$ settings.php [QSA,L]
+
+	#People
+	RewriteRule ^people/$ people.php [QSA,L]
+
+	#Events
+	RewriteRule ^events/(.*)$ extension.php?PostBackAction=Events&city=$1 [QSA,L]
+	RewriteRule ^events/(.*)$ extension.php?PostBackAction=Events$1 [QSA,L]
+	RewriteRule ^events(.*)$ extension.php?PostBackAction=Events$1 [QSA,L]
+
+	#Releases
+	RewriteRule ^releases/(.*)$ extension.php?PostBackAction=Releases$1 [QSA,L]
+	RewriteRule ^releases(.*)$ extension.php?PostBackAction=Releases$1 [QSA,L]
+
+	#Shop
+	RewriteRule ^shop/(.*)$ extension.php?PostBackAction=Shop$1 [QSA,L]
+	RewriteRule ^shop(.*)$ extension.php?PostBackAction=Shop$1 [QSA,L]
+
+	#Labels
+	RewriteRule ^labels/(.*)$ extension.php?PostBackAction=Labels$1 [QSA,L]
+	RewriteRule ^labels(.*)$ extension.php?PostBackAction=Labels$1 [QSA,L]
+
+	#Shows
+	RewriteRule ^shows/(.*)$ extension.php?PostBackAction=Shows$1 [QSA,L]
+	RewriteRule ^shows(.*)$ extension.php?PostBackAction=Shows$1 [QSA,L]
+
+	#Services
+	# -- oembed
+	RewriteRule ^services/oembed(.*)$ extension.php?PostBackAction=oEmbed$1 [QSA,L]
+
+	#Shows
+	RewriteRule ^zeitgeist/issue/(\d+)(.*)$ extension.php?PostBackAction=Zeitgeist&id=$1&$2 [QSA,L]
+	RewriteRule ^zeitgeist/issue/(\d+)(.*)$ extension.php?PostBackAction=Zeitgeist&id=$1&$2 [QSA,L]
+	RewriteRule ^zeitgeist/(.*)$ extension.php?PostBackAction=Zeitgeist$1 [QSA,L]
+	RewriteRule ^zeitgeist(.*)$ extension.php?PostBackAction=Zeitgeist$1 [QSA,L]
+
+	#Extensions
+	RewriteRule ^extension/$ extension.php [QSA,L]
+
+	# Prevent some little bad effects of Friendly Urls on relative links in some
+	# extensions
+	RewriteRule ^(discussions|categories|search|post|settings|people|[0-9]+)/(extensions|themes|images|ajax)/(.*) $2/$3 [QSA,L]
+	RewriteRule ^(discussions|categories|search|post|settings|people|[0-9]+)/(account.php|categories.php|comments.php|extension.php|index.php|people.php|post.php|search.php|settings.php) $2 [QSA,L]
+	RewriteRule ^discussion/([0-9]+/){1,2}[^/]*/(extensions|themes|images|ajax)/(.*) $2/$3 [QSA,L]
+	RewriteRule ^discussion/([0-9]+/){1,2}[^/]*/(account.php|categories.php|comments.php|extension.php|index.php|people.php|post.php|search.php|settings.php) $2 [QSA,L]
+	RewriteRule ^(discussions|account|search|post|[0-9]+)/.+/(extensions|themes|images|ajax)/(.*) $2/$3 [QSA,L]
+	RewriteRule ^(discussions|account|search|post|[0-9]+)/.+/(account.php|categories.php|comments.php|extension.php|index.php|people.php|post.php|search.php|settings.php) $2 [QSA,L]
+
+	# Pages
+	RewriteRule ^page/(.*)$ index.php?Page=$1 [QSA,L]
+</IfModule>
+
+# Newrelic configuration
+php_value newrelic.appname "Musiques Incongrues"
+php_value newrelic.error_collector.record_database_errors 1
+php_value newrelic.framework "no_framework"
+
+# mod_pagespeed configuration
+<IfModule pagespeed_module>
+	ModPagespeedDisableFilters trim_urls
 </IfModule>
