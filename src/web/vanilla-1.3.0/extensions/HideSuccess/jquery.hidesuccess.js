@@ -1,0 +1,1 @@
+(function(a){a.hideSuccess={selector:"#Success",delay:2000,speed:"slow",init:function(){var b=a.hideSuccess;setTimeout(b.hide,b.delay)},hide:function(){var b=a.hideSuccess;a(b.selector).slideUp(b.speed)}};a(a.hideSuccess.init)})(jQuery.noConflict());

@@ -1,0 +1,1 @@
+function SwitchTextMode(d,b,c){var a=new DataManager();a.Param="HtmlOn";a.RequestFailedEvent=HandleFailure;a.RequestCompleteEvent=RefreshPageWhenAjaxComplete;a.LoadData(d+"?Type=HtmlOn&PostBackKey="+c+"&Switch="+b)};

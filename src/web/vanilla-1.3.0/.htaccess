@@ -1,0 +1,31 @@
+AddType text/x-component .htc
+AddType image/vnd.microsoft.icon .ico
+
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml application/x-javascript application/javascript text/javascript text/css
+</IfModule>
+
+FileETag none
+
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresByType image/jpeg "access plus 1 year"
+	ExpiresByType image/png "access plus 1 year"
+	ExpiresByType image/gif "access plus 1 year"
+	ExpiresByType text/css "access plus 1 month"
+	ExpiresByType application/x-javascript "access plus 1 month"
+	ExpiresByType application/javascript "access plus 1 month"
+	ExpiresByType text/javascript "access plus 1 month"
+	ExpiresByType application/x-shockwave-flash "access plus 1 years"
+	ExpiresByType application/x-shockwave-flash "access plus 1 years"
+	ExpiresByType image/vnd.microsoft.icon "access plus 1 years"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	RewriteCond %{REQUEST_FILENAME} -s [OR]
+	RewriteCond %{REQUEST_FILENAME} -l [OR]
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteRule ^.*$ - [NC,L]
+</IfModule>

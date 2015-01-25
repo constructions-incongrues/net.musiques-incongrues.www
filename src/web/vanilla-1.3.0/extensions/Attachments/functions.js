@@ -1,0 +1,1 @@
+function DeleteAttachment(d,e){var f=("Are you sure you want to delete the attachment?");if(confirm(f)){var a=document.getElementById("Attachment_"+e);if(a){a.innerHTML="Deleting..."}var c="AttachmentID="+e;var b=new DataManager();b.RequestCompleteEvent=RefreshPageWhenAjaxComplete;b.RequestFailedEvent=HandleFailure;b.LoadData(d+"?Action=RemoveAttachment&"+c)}};

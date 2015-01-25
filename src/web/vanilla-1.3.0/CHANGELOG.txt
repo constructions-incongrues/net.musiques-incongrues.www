@@ -1,0 +1,64 @@
+Version:        1.3.0
+Date:           2012-02-17
+Changes:        https://code.google.com/p/lussumo-vanilla/source/list?num=82&start=1100
+Summary:        - Update checker works (#44)
+                - Added invisible protection against spambot registration
+                - "Top of Page" and "Back to Discussions" links stick to the bottom when the main menu isn't on-screen anymore
+                - CSS fixes
+                - Installation is more user-friendly
+		- Added overall_footer and overall_header to themes (#53)
+		- Language improvements
+		- Dynamic image resizing is done with CSS now instead of JavaScript, making it faster
+                - Added the extensions AjaxQuote, DiscussionPages and MembersList to the official package
+                - Made improvements/bugfixes to the extensions Notifi, SetList, Hide Success, HTMLFormatter, Attachments, YellowFade, Friendly Urls, New Applicants
+
+Version:        1.2.2
+Date:           2011-11-09
+Changes:        https://code.google.com/p/lussumo-vanilla/source/list?num=19&start=1018
+Summary:        - Left menu follows the page as the browser scrolls
+                - Support Facebook video (HTMLFormatter extension)
+                - Updated jQuery to 1.7 from 1.4
+                - Added the DiscussionPages extension
+                - Improved cross-browser compatibility
+                - Improved design at low resolutions
+                - Added a default user icon
+                - Minor design improvements
+                - Fixed rare bug with external image support
+                - Fixed dynamic image resizing
+
+Version:        1.2.1
+Date:           2011-04-26
+Changes:        https://code.google.com/p/lussumo-vanilla/source/list?num=149&start=999
+
+Version:        1.1.10
+Date:           2009-11-21
+Changes:        https://code.google.com/p/lussumo-vanilla/source/list?num=21&start=847
+Summary:        - Fixed a bug with the installer
+
+Version:        1.1.9
+Date:           2009-08-30
+Changes:        https://code.google.com/p/lussumo-vanilla/source/list?num=5&start=826
+Summary:        - Fixed a bug with the installer
+
+Version:        1.1.8
+Date:           2009-05-15
+Changes:        https://code.google.com/p/lussumo-vanilla/source/list?num=5&start=821
+Summary         - Fixed an XSS vulnerability discovered in the update checker.
+
+Version:        1.1.7
+Date:           2009-04-24
+Changes:        https://code.google.com/p/lussumo-vanilla/source/list?num=4&start=816
+Summary:        - Fixed a bug with the installer
+
+Version:        1.1.6
+Date:           2009-04-13
+Changes:        https://code.google.com/p/lussumo-vanilla/source/list?num=47&start=812
+
+Version:        1.1.5
+Date:           2008-09-22
+Changes:        https://code.google.com/p/lussumo-vanilla/source/list?num=99&start=765
+Summary         - Fixed XSS and CSRF vulnerabilities
+
+Version:        1.1.4
+Date:           2007-10-23
+Summary:        - Fixed a serious security vulnerability

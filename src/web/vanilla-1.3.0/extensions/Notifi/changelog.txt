@@ -1,0 +1,113 @@
+dev
+  - Fixed CSRF vulnerabilities.
+  - Removed depencies with Prototype. The extension should be compatible
+    with MooTools based extensions.
+  - Added the following definitions: SubscribeTo, Unsubscribe, UnsubscribeFrom,
+    Forum, SubscribeUnsubscribeForumTitle, Category,
+    SubscribeUnsubscribeCategoryTitle, Discussion,
+    SubscribeUnsubscribeDiscussionTitle.
+  - Removed to following definitions: Notification, SubscribeForum,
+    SubscribeForumTitle, UnsubscribeForum, UnsubscribeForumTitle,
+    SubscribeCategory, SubscribeCategoryTitle, UnsubscribeCategory,
+    UnsubscribeCategoryTitle, SubscribeDiscussion, SubscribeDiscussionTitle,
+    UnsubscribeDiscussion, UnsubscribeDiscussionTitle.
+
+2.0.3
+  - Fixed the links in the emails, they now take you to the last viewed comment
+
+2.0.2
+  - Added support for the Quotations extension
+
+2.0.1
+  - Fixed a bug that would email anyone of a whisper if they were subscribed to that specific discussion (Thanks to hadfieldn)
+  - Fixed the double space before the username in the email
+  - Changed from 3-space to tab indentation and some other code organisation changes
+  - Created the emailtemplates include just for code organisation
+
+2.0
+  - Added the option for users to be automatically subscribed to discussions they participate in
+  - Added the option for the admin to choose between sending emails as HTML or Plaintext
+  - Added optional BBCode support
+  - Changed the email format a bit (now that there is a plaintext option I removed the plain URL in the emails)
+  - Added a notice reminding people to customize the Notifi settings, now that there are quite a few settings
+  - Removed unused definitions
+  - Many little code cleanups to make it run faster than it would without them
+
+1.8.2
+  - Fixed a bug that caused too many emails to be sent
+  - Now requires Vanilla 1.1.5 or higher to work, this makes it run faster for everyone and removes the need for the custom email class
+  - Updated code indentation
+
+1.8.1
+  - Fixed a bug with the new installer
+
+1.8
+  - Rewrote the installer using new logic, so now it should handle upgrading from any version, and cause less
+    regular server load because it only needs to ask one question each page load instead of many
+  - Added a new admin setting, allow admins to force user notification for all posts. Mostly it's just useful for
+    testing. Enabling it disables the Notification options in the Account tab.
+
+1.7.4
+  - Fixed some PHP 5.1+ specific errors and warnings
+  - Fixed some installer problems. I will still rewrite the install.php file later, though
+
+1.7.3
+  - Fixed a bug with Vanilla 1.1.5 that would cause an error message when non-extension emails were sent
+
+1.7.2
+  - Fixed a bug that would cause errors if Low-Cal Vanilla had never been installed
+
+1.7.1
+  - Now works with, and is optimized for, Low-Cal Vanilla 0.4.3a (Thanks to dinoboff for collaborating)
+
+1.7
+  - Added the ability to set global Notifi permissions in the Settings tab
+  - Users are no longer notified of post edits, only new posts
+
+1.6.2
+  - Added the option for the recipient to copy/paste the URL instead of clicking the link in case their email client
+    doesn't allow links
+  - Made the email for new discussions different from the new comments email again, only slightly
+
+1.6.1
+  - Went back to using the (slightly customized) Lussumo Mailer instead of custom emailing code
+  - The email is now always the same, regardless of whether it is a new discussion or not
+
+1.6
+  - Emails are now sent in HTML, so now they look a bit nicer and include more information
+  - Optimized some parts of the code in order to execute fewer database queries
+  - There are now two email templates; one for new discussions and one for new comments in existing discussions
+  - The _includes folder has returned
+
+1.5.1:
+  - Fixed a critical bug that prevented fresh installs
+  - Fixed another bug from the old Notify that sometimes stopped new users from registering with the forum
+  - Combined a bunch of functions together to save code space
+  - Removed the _includes folder
+
+1.5:
+  - Users no longer receive notifications for categories they don't have access to
+  - Added an option in the Account tab for users to keep receiving emails regardless of their forum visits
+  - Added the comment to the email (Thanks to J. Singh)
+  - Corrected the method used to add definitions
+  - Fixed the Notification options display so that the AJAXy loading gif displays again
+  - Removed some old code that wasn't doing anything
+  - Altered some logic to place less load on the server
+
+1.4:
+  - Made it possible for forum members to choose to be automatically subscribed to discussions they start
+  - Changed the JavaScript so that the options don't disappear when you change them anymore
+  - If a user chooses to subscribe to the entire forum, all options that would make that redundant disappear.
+    Old settings are still saved in case the user changes their mind
+  - Removed some code redundancies
+  - Changed various text descriptions to provide clearer/more information
+
+1.3.1:
+  - Fixed a bug which could cause the side menu links to not display on comments.php
+
+1.3 (From Notify 1.2.1):
+  - Page and comment number is now included in the email link (where before it was just
+    comments.php?DiscussionID=20, now it will be comments.php?DiscussionID=20&page5#Item_5, for example)
+  - Rewrite of the email text
+  - Complete code re-indentation and comments
+  - Syntactical changes that may fix bugs some users have reported
