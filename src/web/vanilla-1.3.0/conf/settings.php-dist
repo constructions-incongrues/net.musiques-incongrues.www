@@ -1,0 +1,47 @@
+<?php
+
+// Database Settings
+$Configuration['DATABASE_HOST'] = '@database.vanilla.host@';
+$Configuration['DATABASE_NAME'] = '@database.vanilla.name@';
+$Configuration['DATABASE_USER'] = '@database.vanilla.user@';
+$Configuration['DATABASE_PASSWORD'] = '@database.vanilla.password@';
+$Configuration['DATABASE_CHARACTER_ENCODING'] = 'latin1';
+
+// Path Settings
+$Configuration['APPLICATION_PATH'] = __DIR__.'/../';
+$Configuration['LIBRARY_PATH'] = $Configuration['APPLICATION_PATH'].'/library/';
+$Configuration['EXTENSIONS_PATH'] = $Configuration['APPLICATION_PATH'].'/extensions/';
+$Configuration['LANGUAGES_PATH'] = $Configuration['APPLICATION_PATH'].'/languages/';
+$Configuration['THEME_PATH'] = $Configuration['APPLICATION_PATH'].'/themes/vanilla/';
+$Configuration['BASE_URL'] = 'http://musiques-incongrues.vagrant.dev/vanilla-1.3.0/';
+$Configuration['WEB_ROOT'] = '/vanilla-1.3.0/';
+$Configuration['DEFAULT_STYLE'] = '/vanilla-1.3.0/themes/vanilla/styles/default/';
+
+// People Settings
+$Configuration['SESSION_NAME'] = 'musiques-incongrues';
+$Configuration['COOKIE_USER_KEY'] = 'musiques-incongrues_lussumocookieone';
+$Configuration['COOKIE_VERIFICATION_KEY'] = 'musiques-incongrues_lussumocookietwo';
+$Configuration['SESSION_USER_IDENTIFIER'] = 'LussumoUserID';
+$Configuration['COOKIE_DOMAIN'] = '@cookie.domain@';
+$Configuration['COOKIE_PATH'] = '/';
+$Configuration['SUPPORT_EMAIL'] = 'contact@musiques-incongrues.net';
+$Configuration['SUPPORT_NAME'] = 'Musiques Incongrues';
+
+// Framework Settings
+$Configuration['DEFAULT_EMAIL_MIME_TYPE'] = 'text/plain';
+$Configuration['LANGUAGE'] = "English";
+$Configuration['URL_BUILDING_METHOD'] = 'Standard';  // Standard or mod_rewrite
+$Configuration['CHARSET'] = 'utf-8';
+$Configuration['APPLICATION_TITLE'] = 'Le Forum des Musiques Incongrues';
+$Configuration['BANNER_TITLE'] = 'Musiques Incongrues';
+$Configuration['UPDATE_REMINDER'] = 'Monthly';
+$Configuration['LAST_UPDATE'] = '';
+$Configuration['HTTP_METHOD'] = 'http'; // Could alternately be https
+
+// Vanilla Settings
+$Configuration['ENABLE_WHISPERS'] = '1';
+
+// Newbie settings
+// Has Vanilla been installed (this will be set to true in conf/settings.php when setup completes)
+$Configuration['SETUP_COMPLETE'] = '1';
+$Configuration['ADDON_NOTICE'] = '1';
