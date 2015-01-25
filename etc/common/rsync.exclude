@@ -20,3 +20,6 @@
 *.bak
 *.swo
 *~
+
+# vagrant
+/.vagrant

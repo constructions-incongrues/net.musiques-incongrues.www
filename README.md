@@ -12,3 +12,13 @@ vagrant up
 sudo sh -c 'echo "server=/vagrant.dev/127.0.0.1#10053" > /etc/dnsmasq.d/vagrant-landrush'
 sudo service dnsmasq restart
 ```
+
+# Déploiement des sources
+
+```bash
+# Test
+ant deploy -Dprofile=jeroboam
+
+# Déploiement effectif
+ant deploy -Dprofile=jeroboam -Drsync.options=--delete-after
+```

@@ -34,7 +34,7 @@ apt-get install -y phpmyadmin
 # -- forum
 mysql --defaults-file=/etc/mysql/debian.cnf -e "drop database if exists net_musiquesincongrues_www_forum"
 mysql --defaults-file=/etc/mysql/debian.cnf -e "create database net_musiquesincongrues_www_forum default charset utf8 collate utf8_general_ci"
-mysql --defaults-file=/etc/mysql/debian.cnf net_musiquesincongrues_www_forum < /vagrant/src/data/net_musiquesincongrues_www_forum.dump.sql
+gunzip /vagrant/src/data/net_musiquesincongrues_www_forum.dump.sql.gz | mysql --defaults-file=/etc/mysql/debian.cnf net_musiquesincongrues_www_forum
 # -- asaph
 mysql --defaults-file=/etc/mysql/debian.cnf -e "drop database if exists net_musiquesincongrues_www_asaph"
 mysql --defaults-file=/etc/mysql/debian.cnf -e "create database net_musiquesincongrues_www_asaph default charset utf8 collate utf8_general_ci"
