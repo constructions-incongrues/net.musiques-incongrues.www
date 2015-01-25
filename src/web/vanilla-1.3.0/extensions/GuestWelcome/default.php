@@ -1,68 +1,35 @@
 <?php
 /*
 Extension Name: Guest Welcome Message
-Extension Url: http://vanillaforums.org/addon/9/guest-welcome-message
+Extension Url: http://lussumo.com/docs/
 Description: Adds a welcome message to the panel if the person viewing the forum doesn't have an active session.
-Version: 4.0
+Version: 3.0
 Author: Mark O'Sullivan
 Author Url: http://markosullivan.ca/
- *
- *
- * Copyright 2006 Mark O'Sullivan <http://markosullivan.ca/>
- * Copyright 2010 Damien Lebrun <dinoboff@gmail.com>
- *
- * Changes:
- *
- *   4.0:
- *
- *     - GuestWelcome definition is deprecated. It uses GuestWelcomeMessage
- *       definition instead. This definition doesn't need to include the
- *       sign-in and registration URLs.
- *
- */
+*/
 
+$Context->Dictionary["GuestWelcome"] = "<strong>Bienvenue sur le forum des musiques incongrues</strong>
+   <p>Ce que vous allez trouver ici :</p>
+   <ul>
+     <li>Des <a href='/forum/discussions'>discussions</a> plus ou moins inspirées (car nous sommes bien sur un forum)</li>
+     <li><a href='/forum/events'>Un calendrier d'évènements</a>, pour vous aider à occuper vos soirées</li>
+     <li>La liste exhaustive de <a href='/forum/releases/'>toutes les sorties musicales annoncées sur ce forum</a> depuis sa création</li>
+     <li>Une <a href='/forum/radio-random.php'>radio</a> automatique et surprenante</li>
+     <li>Une <a href='/forum/oeil'>pinacothèque</a> collaborative</li>
+   </ul>
+   
+   <p>
+     Cerise sur le gâteau, vous pouvez très facilement apporter votre contribution à tout ça.
+     Pour ce faire, le mieux est encore de vous <a href='".GetUrl($Configuration, "people.php")."'>connecter</a> 
+     ou de vous <a href='".GetUrl($Configuration, "people.php", "", "", "", "", "PostBackAction=ApplyForm")."'>inscrire</a> :)
+   </p>
+   
+   <p>
+     Enfin, vous pouvez nous contacter directement à l'adresse email : <a href=\"#\">contact (CHEZ) musiques-incongrues (POINT) net</a>
+   </p>
+   ";
 
-
-$Context->SetDefinition(
-		"GuestWelcomeMessage",
-		'<strong>Welcome Guest!</strong><br />'
-			. 'Want to take part in these discussions? If you have an account, '
-			. '<a href="%s">sign in now</a>. <br />'
-			. 'If you don\'t have an account, '
-			. '<a href="%s">apply for one now</a>.');
-
-
-$GuestWelcomeMessagePage = array(
-		"account.php",
-		"categories.php",
-		"comments.php",
-		"index.php",
-		"search.php");
-
-if (in_array($Context->SelfUrl, $GuestWelcomeMessagePage)
-		&& $Context->Session->UserID == 0
-) {
-	$SignInUrl = empty($Configuration['SIGNIN_URL']) ?
-		GetUrl($Configuration, "people.php")
-		: ConcatenatePath(
-			$Configuration['BASE_URL'],
-			$Configuration['SIGNIN_URL']);
-	$RegisterUrl = empty($Configuration['REGISTRATION_URL']) ?
-		GetUrl(
-			$Configuration,
-			"people.php", "", "", "", "",
-			"PostBackAction=ApplyForm")
-		: ConcatenatePath(
-			$Configuration['BASE_URL'],
-			$Configuration['REGISTRATION_URL']);
-	
-	$NoticeCollector->AddNotice(
-		sprintf(
-			$Context->GetDefinition('GuestWelcomeMessage'),
-			$SignInUrl,
-			$RegisterUrl));
-
-	unset($SignInUrl, $RegisterUrl);
+if (in_array($Context->SelfUrl, array("account.php", "categories.php", "comments.php", "index.php", "search.php", "extension.php")) && $Context->Session->UserID == 0) {
+   $NoticeCollector->AddNotice($Context->GetDefinition('GuestWelcome'));
 }
-
-unset($GuestWelcomeMessagePage);
+?>

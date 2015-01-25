@@ -1,11 +1,12 @@
 <?php
 
 // Database Settings
+$Configuration['DATABASE_CHARACTER_ENCODING'] = 'latin1';
 $Configuration['DATABASE_HOST'] = '@database.vanilla.host@';
 $Configuration['DATABASE_NAME'] = '@database.vanilla.name@';
-$Configuration['DATABASE_USER'] = '@database.vanilla.user@';
 $Configuration['DATABASE_PASSWORD'] = '@database.vanilla.password@';
-$Configuration['DATABASE_CHARACTER_ENCODING'] = 'latin1';
+$Configuration['DATABASE_SERVER'] = 'MySQL';
+$Configuration['DATABASE_USER'] = '@database.vanilla.user@';
 
 // Path Settings
 $Configuration['APPLICATION_PATH'] = __DIR__.'/../';
@@ -13,7 +14,8 @@ $Configuration['LIBRARY_PATH'] = $Configuration['APPLICATION_PATH'].'/library/';
 $Configuration['EXTENSIONS_PATH'] = $Configuration['APPLICATION_PATH'].'/extensions/';
 $Configuration['LANGUAGES_PATH'] = $Configuration['APPLICATION_PATH'].'/languages/';
 $Configuration['THEME_PATH'] = $Configuration['APPLICATION_PATH'].'/themes/vanilla/';
-$Configuration['BASE_URL'] = 'http://musiques-incongrues.vagrant.dev/vanilla-1.3.0/';
+$Configuration['DATABASE_PATH'] = __DIR__.'/database.php';
+$Configuration['BASE_URL'] = '@paths.baseurl@/vanilla-1.3.0/';
 $Configuration['WEB_ROOT'] = '/vanilla-1.3.0/';
 $Configuration['DEFAULT_STYLE'] = '/vanilla-1.3.0/themes/vanilla/styles/default/';
 
@@ -30,18 +32,29 @@ $Configuration['SUPPORT_NAME'] = 'Musiques Incongrues';
 // Framework Settings
 $Configuration['DEFAULT_EMAIL_MIME_TYPE'] = 'text/plain';
 $Configuration['LANGUAGE'] = "English";
-$Configuration['URL_BUILDING_METHOD'] = 'Standard';  // Standard or mod_rewrite
+$Configuration['URL_BUILDING_METHOD'] = 'mod_rewrite';  // Standard or mod_rewrite
 $Configuration['CHARSET'] = 'utf-8';
 $Configuration['APPLICATION_TITLE'] = 'Le Forum des Musiques Incongrues';
 $Configuration['BANNER_TITLE'] = 'Musiques Incongrues';
-$Configuration['UPDATE_REMINDER'] = 'Monthly';
+$Configuration['UPDATE_REMINDER'] = '';
 $Configuration['LAST_UPDATE'] = '';
 $Configuration['HTTP_METHOD'] = 'http'; // Could alternately be https
 
 // Vanilla Settings
 $Configuration['ENABLE_WHISPERS'] = '1';
+$Configuration['USE_CATEGORIES'] = '0';
 
 // Newbie settings
 // Has Vanilla been installed (this will be set to true in conf/settings.php when setup completes)
 $Configuration['SETUP_COMPLETE'] = '1';
-$Configuration['ADDON_NOTICE'] = '1';
+$Configuration['ADDON_NOTICE'] = '0';
+$Configuration['DATABASE_VERSION'] = '2';
+$Configuration['WHISPERFI_AUTO_ALL'] = '0';
+$Configuration['WHISPERFI_INSTALL_COMPLETE'] = '1';
+
+// Release
+$Configuration['RELEASE_TAG'] = '@release.tag@';
+
+// Vanilla Miner configuration
+$Configuration['VANILLA_MINER_URL'] = '@paths.minerurl@';
+$Configuration['VANILLA_MINER_CACHEDIR'] = '@paths.minercachedir@';

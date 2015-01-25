@@ -1,0 +1,36 @@
+/* Page player */
+#jquery_jplayer_page {height:0;}
+
+/* -- Inline links*/
+a.playable {display:inline-block;line-height:18px;border-radius:4px;font-weight:bold;padding:0.5em;padding-left:1.5em;background:transparent url(../img/control_play.png) center left no-repeat;background-color:#09F;}
+a.playable:hover {background-color:yellow;opacity:0.8;}
+a.playable.current {background-color:yellow;}
+a.playable.playing {background:transparent url(../img/control_pause.png) center left no-repeat;background-color:yellow;}
+a.playable.paused {background-color:#ccc;}
+a.playable.unavailable {background-color:red;}
+
+/* Footer bar */
+#jp_interface_page {position:fixed;left:0;bottom:0;width:100%;border-top:solid 2px black;padding:0.5em;background-color:yellow;display:none;}
+#jp_interface_page .jp-other-controls .jp-button {float:right;}
+#jp_interface_page .jp-track-info {font-weight:bold;float:right;}
+#jp_interface_page .jp-button, #jp_interface_page .jp-track-info, #jp_interface_page .jp-timer {padding-left:0.5em;padding-right:0.5em;border-right:solid 1px black;}
+#jp_interface_page .jp-timer {float:right;border-right:none;}
+#jp_interface_page .jp-button:hover {text-decoration:underline;cursor:pointer;}
+#jp_interface_page .jp-play-controls, #jp_interface_page .jp-button, #jp_interface_page .jp-track-info, #jp_interface_page .jp-timer {background-color:yellow;}
+#jp_interface_page .jp-progress {border:solid 1px black;background-color:#eee;float:right;width:15%;}
+#jp_interface_page .jp-progress, #jp_interface_page .jp-seek-bar, #jp_interface_page .jp-play-bar {height:10px;}
+#jp_interface_page .jp-progress:hover {cursor:pointer;}
+#jp_interface_page .jp-progress .jp-seek-bar {background-color:#ccc;}
+#jp_interface_page .jp-progress .jp-play-bar {background-color:#000;}
+
+
+/* Playlist */
+#jp_playlist_page {position:fixed;left:0;bottom:25px;border-top:solid 2px black;width:100%;background-color:#e1fffe;max-height:40%;overflow:auto;display:none;}
+#jp_playlist_page ol {font-size:1.3em;}
+#jp_playlist_page ol li {border-bottom:dotted 1px black;padding:0.3em;}
+#jp_playlist_page ol li a.more {font-size:0.7em;}
+#jp_playlist_page li.unavailable, #jp_playlist_page li.unavailable a {text-decoration:line-through;}
+#jp_playlist_page li:hover {background-color:#eee;}
+#jp_playlist_page .jp-playlist-current {background-color:yellow;}
+#jp_playlist_page li span.more, #jp_playlist_page li span.details {display:none;}
+#jp_playlist_page h3 {background-color:black;margin:0;padding:0.5em;color:#fff;font-size:1.5em;}

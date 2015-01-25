@@ -1,0 +1,13 @@
+.VanillaconsLink {
+	cursor: pointer;
+	}
+
+#VanillaconsSmilies {
+	margin: 5px 0 0 0;
+	}
+
+#VanillaconsSmilies li {
+	margin: 0;
+	padding: 0 5px;
+	display: inline;
+	}

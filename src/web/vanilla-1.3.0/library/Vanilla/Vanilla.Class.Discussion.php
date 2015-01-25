@@ -253,5 +253,31 @@ class Discussion extends Delegation {
 		$this->Name = FormatStringForDisplay($this->Name, 0);
 		$this->CallDelegate('PostFormatPropertiesForDisplay');
 	}
+
+	# MI - Helpers
+	function getFirstImage($defaultUrl = 'http://img96.imageshack.us/img96/46/faviconxa.png') {
+		// Get discussion initial comment
+		include_once($this->Context->Configuration['LIBRARY_PATH'].'Vanilla/Vanilla.Class.CommentManager.php');
+		$commentManager = new CommentManager($this->Context);
+		$comment = $commentManager->GetCommentByID($this->FirstCommentID, $this->Context->Session->UserID);
+		
+		// Extract URLs to find images
+		$extensionsImages = array('jpeg', 'jpg', 'gif', 'png');
+		$urlImage = $defaultUrl;
+        $matches = array();
+        preg_match_all('#\b..?tps?://[-A-Z0-9+&@\#/%?=~_|!:,.;]*[-A-Z0-9+&@\#/%=~_|]#i', $comment->Body, $matches);
+        $urls_found = $matches[0];
+        if (count($urls_found)) {
+        	foreach ($urls_found as $url) {
+        		$extension = strtolower(substr($url, strrpos($url, '.') + 1));
+        		if (in_array($extension, $extensionsImages)) {
+        			$urlImage = $url;
+        			break;
+        		}
+        	}
+        }
+      	
+        return $urlImage;
+	}
 }
 ?>
