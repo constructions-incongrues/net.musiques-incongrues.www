@@ -7,14 +7,13 @@
  * Lussumo's Software Library is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
  * Lussumo's Software Library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- * The latest source code is available at www.lussumo.com
+ * The latest source code is available at www.vanilla1forums.com
  * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
  *
  * @author Mark O'Sullivan
  * @copyright 2003 Mark O'Sullivan
- * @license http://lussumo.com/community/gpl.txt GPL 2
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPL 2
  * @package People
- * @version 1.1.5
  */
 
 
@@ -177,10 +176,7 @@ class UserManager extends Delegation {
 						$AffectedUser->Name,
 						$this->Context->Configuration['APPLICATION_TITLE'],
 						strtolower($AffectedUser->Role),
-						ConcatenatePath(
-							$this->Context->Configuration['BASE_URL'],
-							GetUrl($this->Context->Configuration, 'account.php', '', 'u', $AffectedUser->UserID)
-						)
+						GetUrl($this->Context->Configuration, 'account.php', '', 'u', $AffectedUser->UserID)
 					),
 					$EmailBody
 				);
@@ -231,13 +227,7 @@ class UserManager extends Delegation {
 				if ($this->SetNewPassword($User, $User->NewPassword)
 					&& $this->Context->Session->UserID == $User->UserID
 				) {
-					// @todo: 	Create a generic method (in PeopleSession)
-					// 			that would also destroy the old session data
-					if (function_exists('session_regenerate_id')
-						&& session_id()
-					) {
-						session_regenerate_id();
-					}
+					$this->Context->Session->RegenerateId($this->Context);
 				}
 			}
 		}
@@ -278,6 +268,11 @@ class UserManager extends Delegation {
 		Validate($this->Context->GetDefinition('PasswordLower'), 1, $SafeUser->NewPassword, 50, '', $this->Context);
 		if ($SafeUser->NewPassword != $SafeUser->ConfirmPassword) $this->Context->WarningCollector->Add($this->Context->GetDefinition('ErrPasswordsMatchBad'));
 		if (!$SafeUser->AgreeToTerms) $this->Context->WarningCollector->Add($this->Context->GetDefinition('ErrAgreeTOS'));
+
+		// This is the honeypot field.
+		if (!empty($SafeUser->Username)) {
+			$this->Context->WarningCollector->Add($this->Context->GetDefinition('ErrHoneypotTriggered'));
+		}
 
 		// Ensure the username isn't taken already
 		$s = $this->Context->ObjectFactory->NewContextObject($this->Context, 'SqlBuilder');
@@ -360,10 +355,7 @@ class UserManager extends Delegation {
 						array(
 							$User->Name,
 							$User->Email,
-							ConcatenatePath(
-								$this->Context->Configuration['BASE_URL'],
-								GetUrl($this->Context->Configuration, 'settings.php', '', '', '', '', 'PostBackAction=Applicants')
-							)
+							GetUrl($this->Context->Configuration, 'settings.php', '', '', '', '', 'PostBackAction=Applicants')
 						),
 						$EmailBody
 					);
@@ -521,6 +513,29 @@ class UserManager extends Delegation {
 			}
 		}
 		return $UserID;
+	}
+
+	function GetUserIdsByVerificationKey($VerificationKey) {
+		$VerificationKey = FormatStringForDatabaseInput($VerificationKey);
+		$UserIDs = array();
+		if ($VerificationKey) {
+			$s = $this->Context->ObjectFactory->NewContextObject($this->Context, 'SqlBuilder');
+			$s->SetMainTable('User', 'u');
+			$s->AddSelect('UserID', 'u');
+			$s->AddWhere('u', 'VerificationKey', '', $VerificationKey, '=');
+
+			$Result = $this->Context->Database->Select($s,
+				$this->Name,
+				'GetUserIdsByVerificationKey',
+				'An error occurred while attempting to validate your remember me credentials');
+
+			if ($Result) {
+				while ($rows = $this->Context->Database->GetRow($Result)) {
+					$UserIDs[] = ForceInt($rows['UserID'], 0);
+				}
+			}
+		}
+		return $UserIDs;
 	}
 
 	function GetUserRoleHistoryByUserId($UserID) {
@@ -855,10 +870,7 @@ class UserManager extends Delegation {
 						array(
 							$Name,
 							$this->Context->Configuration['APPLICATION_TITLE'],
-							ConcatenatePath(
-								$this->Context->Configuration['BASE_URL'],
-								GetUrl($this->Context->Configuration, 'people.php', '', '', '', '', 'PostBackAction=PasswordResetForm&u='.$UserID.'&k='.$EmailVerificationKey)
-							)
+							GetUrl($this->Context->Configuration, 'people.php', '', '', '', '', 'PostBackAction=PasswordResetForm&u='.$UserID.'&k='.$EmailVerificationKey)
 						),
 						$EmailBody
 					);
@@ -1146,7 +1158,7 @@ class UserManager extends Delegation {
 			$result = $this->Context->Database->Select($s, $this->Name, 'UpdateUserDiscussionCount', 'An error occurred while retrieving user activity data.');
 			while ($rows = $this->Context->Database->GetRow($result)) {
 				$LastDiscussionPost = UnixTimestamp($rows['LastDiscussionPost']);
-				$DateDiff = time() - $LastDiscussionPost;
+				$DateDiff = mktime() - $LastDiscussionPost;
 				$DiscussionSpamCheck = ForceInt($rows['DiscussionSpamCheck'], 0);
 			}
 			$SecondsSinceLastPost = ForceInt($DateDiff, 0);
@@ -1282,35 +1294,26 @@ class UserManager extends Delegation {
 	}
 
 	/**
-	 * Validate user's Verification
+	 * Validate user's Verification Key
 	 *
 	 * Return user's id
 	 *
-	 * @param int $UserID
+	 * @deprecated
+	 * @param string $EncryptedUserID
 	 * @param string $VerificationKey
-	 * @return unknown
+	 * @return int
 	 */
-	function ValidateVerificationKey($UserID, $VerificationKey) {
-		$UserID = ForceInt($UserID, 0);
-		$VerificationKey = FormatStringForDatabaseInput($VerificationKey);
-		if ($UserID && $VerificationKey) {
-			$s = $this->Context->ObjectFactory->NewContextObject($this->Context, 'SqlBuilder');
-			$s->SetMainTable('User', 'u');
-			$s->AddSelect('UserID', 'u');
-			$s->AddWhere('u', 'UserID', '', $UserID, '=');
-			$s->AddWhere('u', 'VerificationKey', '', $VerificationKey, '=');
-
-			$Result = $this->Context->Database->Select($s,
-				$this->Name,
-				'VerifyVerificationKey',
-				'An error occurred while attempting to validate your remember me credentials');
-
-			if ($Result) {
-				$UserID = 0;
-				while ($rows = $this->Context->Database->GetRow($Result)) {
-					$UserID = ForceInt($rows['UserID'], 0);
+	function ValidateVerificationKey($EncryptedUserID, $VerificationKey) {
+		$EncryptedUserID = ForceString($EncryptedUserID, '');
+		if ($EncryptedUserID && $VerificationKey) {
+			$UserIDs = $this->GetUserIdsByVerificationKey($VerificationKey);
+			foreach ($UserIDs as $UserID) {
+				// For backward compatibility, the UserID might not be encrypted
+				if ($EncryptedUserID === ForceString($UserID, '0')
+					|| $EncryptedUserID === md5($UserID)
+				) {
+					return $UserID;
 				}
-				return $UserID;
 			}
 		}
 		return 0;

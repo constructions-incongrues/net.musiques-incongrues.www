@@ -15,16 +15,27 @@ echo '<div id="Form" class="Account UpdateCheck Extensions">
 			if (is_array($this->Extensions)) {
 				$ExtensionList = '';
 				while (list($ExtensionKey, $Extension) = each($this->Extensions)) {
-					$ExtensionList .= '<li id="'.$ExtensionKey.'" class="UpdateChecking">
-						<div id="'.$ExtensionKey.'Name" class="Name">'.$Extension->Name.' '.$Extension->Version.'</div>
-						<div id="'.$ExtensionKey.'Details" class="Details">'.$this->Context->GetDefinition('CheckingForUpdates').'</div>
-					</li>';
+					$OfficialExtensionsArray = explode (';', $this->Context->Configuration['OFFICIAL_EXTENSIONS']);
+					$match = false;
+					foreach ($OfficialExtensionsArray as $OfficialExtension) {
+						if ($Extension->Name == $OfficialExtension) {
+							$match = true;
+						}
+					}
+					if ($match == false) {
+						$ExtensionList .= '<li id="'.$ExtensionKey.'" class="UpdateChecking">
+							<div id="'.$ExtensionKey.'Name" class="Name">'.$Extension->Name.' '.$Extension->Version.'</div>
+							<div id="'.$ExtensionKey.'Details" class="Details">'.$this->Context->GetDefinition('CheckingForUpdates').'</div>
+						</li>';
+					}
 				}
 				echo $ExtensionList;
 			} else {
 				echo '<li><p>'.$this->Context->GetDefinition('NoExtensions').'</p></li>';
 			}
-		echo '</ul>
+		echo '
+			</ul>
+			<strong>Note:</strong> Official extensions are only released with Vanilla, not separately.<br />This updater will not check for updates for them.
 		</form>
 	</fieldset>
 </div>';

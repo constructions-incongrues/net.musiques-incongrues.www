@@ -1,13 +1,13 @@
 <?php
+// Make sure this file was not accessed directly and prevent register_globals configuration array attack
+if (!defined('IN_VANILLA')) exit();
 // Enabled Extensions
 include($Configuration['EXTENSIONS_PATH']."MiZendFramework/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiJQuery/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiVanillaMiner/default.php");
-include($Configuration['EXTENSIONS_PATH']."Audioscrobbler/default.php");
 include($Configuration['EXTENSIONS_PATH']."GuestWelcome/default.php");
 include($Configuration['EXTENSIONS_PATH']."reCAPTCHA/default.php");
 include($Configuration['EXTENSIONS_PATH']."GoogleAnalytics/default.php");
-include($Configuration['EXTENSIONS_PATH']."WhisperNotification/default.php");
 include($Configuration['EXTENSIONS_PATH']."Atom/default.php");
 include($Configuration['EXTENSIONS_PATH']."RSS2/default.php");
 include($Configuration['EXTENSIONS_PATH']."ForcedBBCode/default.php");
@@ -21,9 +21,7 @@ include($Configuration['EXTENSIONS_PATH']."vanilla-alaune/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-visuels/default.php");
 include($Configuration['EXTENSIONS_PATH']."PageMng/default.php");
 include($Configuration['EXTENSIONS_PATH']."comments_permalinks/default.php");
-include($Configuration['EXTENSIONS_PATH']."SubCategories/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-symfony/default.php");
-include($Configuration['EXTENSIONS_PATH']."DiscussionFilters/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiProjects/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiSidebar/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiRandomDiscussion/default.php");

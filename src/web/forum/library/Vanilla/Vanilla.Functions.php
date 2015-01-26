@@ -7,14 +7,13 @@
  * Lussumo's Software Library is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
  * Lussumo's Software Library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- * The latest source code is available at www.lussumo.com
+ * The latest source code is available at www.vanilla1forums.com
  * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
  *
  * @author Mark O'Sullivan
  * @copyright 2003 Mark O'Sullivan
- * @license http://lussumo.com/community/gpl.txt GPL 2
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPL 2
  * @package Vanilla
- * @version 1.1.5a
  */
 
 
@@ -72,12 +71,52 @@ function HighlightTrimmedString($Haystack, $Needles, $TrimLength = '') {
 function ParseQueryForHighlighting(&$Context, $Query) {
 	if ($Query != '') {
 		$Query = DecodeHtmlEntities($Query);
-		$Query = eregi_replace('"', '', $Query);
-		$Query = eregi_replace(' '.$Context->GetDefinition('And').' ', ' ', $Query);
-		$Query = eregi_replace(' '.$Context->GetDefinition('Or').' ', ' ', $Query);
+		$Query = str_replace('"', '', $Query);
+		$Query = preg_replace('/ '.$Context->GetDefinition('And').' /i', ' ', $Query);
+		$Query = preg_replace('/ '.$Context->GetDefinition('Or').' /i', ' ', $Query);
 		return explode(' ', $Query);
 	} else {
 		return array();
 	}
 }
+
+/**
+ * Create a form to select the category of discussion.
+ *
+ * Return an empty string if there is less than two categories available.
+ *
+ * @param Context $Context
+ * @param string $SessionPostBackKey
+ * @param int $DiscussionID
+ * @return string
+ */
+function MoveDiscussionForm(&$Context, $SessionPostBackKey, $DiscussionID) {
+	$CategoryManager = $Context->ObjectFactory->NewContextObject($Context, 'CategoryManager');
+	$CategoryData = $CategoryManager->GetCategories(0, 1);
+	if ($Context->Database->RowCount($CategoryData) < 2) {
+		return '';
+	}
+	else {
+		$Select = $Context->ObjectFactory->NewObject($Context, 'Select');
+		$Select->Name = 'CategoryID';
+		$Select->SelectedValue = ForceIncomingInt('MoveDiscussionDropdown', 0);
+		$Select->Attributes .= " id=\"MoveDiscussionDropdown\" onchange=\"if (confirm('".$Context->GetDefinition("ConfirmMoveDiscussion")."')) DiscussionSwitch('".$Context->Configuration['WEB_ROOT']."ajax/switch.php', 'Move', '".$DiscussionID."', ''+this.options[this.selectedIndex].value+'', 'MoveDiscussion', '".$SessionPostBackKey."'); return false;\"";
+		$Select->AddOption(0, $Context->GetDefinition('SelectCategoryToMoveTo'));
+		$cat = $Context->ObjectFactory->NewObject($Context, 'Category');
+		$Row = $Context->Database->GetRow($CategoryData);
+		while ($Row) {
+			$cat->Clear();
+			$cat->GetPropertiesFromDataSet($Row);
+			$Select->AddOption($cat->CategoryID, $cat->Name);
+			$Row = $Context->Database->GetRow($CategoryData);
+		}
+		return "<form id=\"frmMoveDiscussion\"
+				name=\"frmMoveDiscussion\"
+				method=\"post\"
+				action=\"".$Context->Configuration['WEB_ROOT']."post.php\">".
+      			$Select->Get()."
+	     		</form>";
+	}
+}
+
 ?>

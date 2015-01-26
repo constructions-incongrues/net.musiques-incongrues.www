@@ -18,7 +18,7 @@ while ($Row = $this->Context->Database->GetRow($this->Data)) {
 	$CategoryList .= '<li id="Category_'.$Category->CategoryID.'" class="Category'.($Category->Blocked?' BlockedCategory':' UnblockedCategory').($FirstRow?' FirstCategory':'').' Category_'.$Category->CategoryID.($Alternate ? ' Alternate' : '').'">
 		<ul>
 			<li class="CategoryName">
-				<span>'.$this->Context->GetDefinition('Category').'</span> <a href="'.GetUrl($this->Context->Configuration, 'index.php', '', 'CategoryID', $Category->CategoryID, CleanupString($Category->Name)).'">'.$Category->Name.'</a>
+				<span>'.$this->Context->GetDefinition('Category').'</span> <a href="'.GetUrl($this->Context->Configuration, 'index.php', '', 'CategoryID', $Category->CategoryID).'">'.$Category->Name.'</a>
 			</li>
 			<li class="CategoryDescription">
 				<span>'.$this->Context->GetDefinition('CategoryDescription').'</span> '.$Category->Description.'

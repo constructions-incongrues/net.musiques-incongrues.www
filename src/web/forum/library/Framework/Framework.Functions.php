@@ -8,14 +8,13 @@
  * Lussumo's Software Library is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
  * Lussumo's Software Library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- * The latest source code is available at www.lussumo.com
+ * The latest source code is available at www.vanilla1forums.com
  * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
  *
  * @author Mark O'Sullivan
  * @copyright 2003 Mark O'Sullivan
- * @license http://lussumo.com/community/gpl.txt GPL 2
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPL 2
  * @package Framework
- * @version 1.1.5
  */
 
 
@@ -44,24 +43,33 @@ function AppendFolder($RootPath, $FolderToAppend) {
 	return $RootPath.'/'.$FolderToAppend;
 }
 
+/**
+ * Appends code to a php file, typically used for configuration.
+ *
+ * The php ending tag "?>" should be either on its own line,
+ * or be ommited all together
+ *
+ * @param string $File Path to configuration file.
+ * @param string $Append Code to append.
+ * @return boolean
+ */
 function AppendToConfigurationFile($File, $Append) {
-	$Success = 1;
+	$Success = 0;
 	if (file_exists($File)) {
 		$Lines = file($File);
-		for ($i = 0; $i < count($Lines); $i++) {
-			if (substr($Lines[$i], 0, 2) == '?>') $Lines[$i] = '';
+		for ($i=0, $c=count($Lines); $i < $c; $i++) {
+			if (substr(trim($Lines[$i]), 0, 2) == '?>') {
+				array_splice($Lines, $i);
+				break;
+			}
 		}
+		$Lines[] = rtrim($Append) . "\r\n";
+
 		$Handle = @fopen($File, 'wb');
 		if ($Handle) {
-			$Lines[] = $Append;
-			$Lines[] = '?>';
-			if (!@fwrite($Handle, implode('', $Lines))) $Success = 0;
+			$Success = @fwrite($Handle, implode('', $Lines));
 			@fclose($Handle);
-		} else {
-			$Success = 0;
 		}
-	} else {
-		$Success = 0;
 	}
 	return $Success;
 }
@@ -123,7 +131,7 @@ function CalculateNumberOfPages($ItemCount, $ItemsPerPage) {
 }
 
 function CleanupString($InString) {
-	$Code = explode(',', '&lt;,&gt;,&#039;,&amp;,&quot;,À,Á,Â,Ã,Ä,&Auml;,Å,Ā,Ą,Ă,Æ,Ç,Ć,Č,Ĉ,Ċ,Ď,Đ,Ð,È,É,Ê,Ë,Ē,Ę,Ě,Ĕ,Ė,Ĝ,Ğ,Ġ,Ģ,Ĥ,Ħ,Ì,Í,Î,Ï,Ī,Ĩ,Ĭ,Į,İ,Ĳ,Ĵ,Ķ,Ł,Ľ,Ĺ,Ļ,Ŀ,Ñ,Ń,Ň,Ņ,Ŋ,Ò,Ó,Ô,Õ,Ö,&Ouml;,Ø,Ō,Ő,Ŏ,Œ,Ŕ,Ř,Ŗ,Ś,Š,Ş,Ŝ,Ș,Ť,Ţ,Ŧ,Ț,Ù,Ú,Û,Ü,Ū,&Uuml;,Ů,Ű,Ŭ,Ũ,Ų,Ŵ,Ý,Ŷ,Ÿ,Ź,Ž,Ż,Þ,Þ,à,á,â,ã,ä,&auml;,å,ā,ą,ă,æ,ç,ć,č,ĉ,ċ,ď,đ,ð,è,é,ê,ë,ē,ę,ě,ĕ,ė,ƒ,ĝ,ğ,ġ,ģ,ĥ,ħ,ì,í,î,ï,ī,ĩ,ĭ,į,ı,ĳ,ĵ,ķ,ĸ,ł,ľ,ĺ,ļ,ŀ,ñ,ń,ň,ņ,ŉ,ŋ,ò,ó,ô,õ,ö,&ouml;,ø,ō,ő,ŏ,œ,ŕ,ř,ŗ,š,ù,ú,û,ü,ū,&uuml;,ů,ű,ŭ,ũ,ų,ŵ,ý,ÿ,ŷ,ž,ż,ź,þ,ß,ſ,А,Б,В,Г,Д,Е,Ё,Ж,З,И,Й,К,Л,М,Н,О,П,Р,С,Т,У,Ф,Х,Ц,Ч,Ш,Щ,Ъ,Ы,Э,Ю,Я,а,б,в,г,д,е,ё,ж,з,и,й,к,л,м,н,о,п,р,с,т,у,ф,х,ц,ч,ш,щ,ъ,ы,э,ю,я');
+	$Code = explode(',', '&lt;,&gt;,&#039;,&amp;,&quot;,À,�?,Â,Ã,Ä,&Auml;,Å,Ā,Ą,Ă,Æ,Ç,Ć,Č,Ĉ,Ċ,Ď,�?,�?,È,É,Ê,Ë,Ē,Ę,Ě,Ĕ,Ė,Ĝ,Ğ,Ġ,Ģ,Ĥ,Ħ,Ì,�?,Î,�?,Ī,Ĩ,Ĭ,Į,İ,Ĳ,Ĵ,Ķ,�?,Ľ,Ĺ,Ļ,Ŀ,Ñ,Ń,Ň,Ņ,Ŋ,Ò,Ó,Ô,Õ,Ö,&Ouml;,Ø,Ō,�?,Ŏ,Œ,Ŕ,Ř,Ŗ,Ś,Š,Ş,Ŝ,Ș,Ť,Ţ,Ŧ,Ț,Ù,Ú,Û,Ü,Ū,&Uuml;,Ů,Ű,Ŭ,Ũ,Ų,Ŵ,�?,Ŷ,Ÿ,Ź,Ž,Ż,Þ,Þ,à,á,â,ã,ä,&auml;,å,�?,ą,ă,æ,ç,ć,�?,ĉ,ċ,�?,đ,ð,è,é,ê,ë,ē,ę,ě,ĕ,ė,ƒ,�?,ğ,ġ,ģ,ĥ,ħ,ì,í,î,ï,ī,ĩ,ĭ,į,ı,ĳ,ĵ,ķ,ĸ,ł,ľ,ĺ,ļ,ŀ,ñ,ń,ň,ņ,ŉ,ŋ,ò,ó,ô,õ,ö,&ouml;,ø,�?,ő,�?,œ,ŕ,ř,ŗ,š,ù,ú,û,ü,ū,&uuml;,ů,ű,ŭ,ũ,ų,ŵ,ý,ÿ,ŷ,ž,ż,ź,þ,ß,ſ,�?,Б,В,Г,Д,Е,�?,Ж,З,И,Й,К,Л,М,�?,О,П,Р,С,Т,У,Ф,Х,Ц,Ч,Ш,Щ,Ъ,Ы,Э,Ю,Я,а,б,в,г,д,е,ё,ж,з,и,й,к,л,м,н,о,п,р,�?,т,у,ф,х,ц,ч,ш,щ,ъ,ы,�?,ю,�?');
 	$Translation = explode(',', ',,,,,A,A,A,A,Ae,A,A,A,A,A,Ae,C,C,C,C,C,D,D,D,E,E,E,E,E,E,E,E,E,G,G,G,G,H,H,I,I,I,I,I,I,I,I,I,IJ,J,K,K,K,K,K,K,N,N,N,N,N,O,O,O,O,Oe,Oe,O,O,O,O,OE,R,R,R,S,S,S,S,S,T,T,T,T,U,U,U,Ue,U,Ue,U,U,U,U,U,W,Y,Y,Y,Z,Z,Z,T,T,a,a,a,a,ae,ae,a,a,a,a,ae,c,c,c,c,c,d,d,d,e,e,e,e,e,e,e,e,e,f,g,g,g,g,h,h,i,i,i,i,i,i,i,i,i,ij,j,k,k,l,l,l,l,l,n,n,n,n,n,n,o,o,o,o,oe,oe,o,o,o,o,oe,r,r,r,s,u,u,u,ue,u,ue,u,u,u,u,u,w,y,y,y,z,z,z,t,ss,ss,A,B,V,G,D,E,YO,ZH,Z,I,Y,K,L,M,N,O,P,R,S,T,U,F,H,C,CH,SH,SCH,Y,Y,E,YU,YA,a,b,v,g,d,e,yo,zh,z,i,y,k,l,m,n,o,p,r,s,t,u,f,h,c,ch,sh,sch,y,y,e,yu,ya');
 	$sReturn = $InString;
 	$sReturn = str_replace($Code, $Translation, $sReturn);
@@ -155,7 +163,7 @@ function DecodeHtmlEntities($String) {
 }
 
 // Functions
-function DefineExtensions(&$Context) {
+function DefineExtensions(&$Context, $update=false) {
 	$Extensions = array();
 	$CurrExtensions = array();
 	$CurrentExtensions = @file($Context->Configuration["APPLICATION_PATH"].'conf/extensions.php');
@@ -180,7 +188,7 @@ function DefineExtensions(&$Context) {
 		while (false !== ($Item = readdir($FolderHandle))) {
 			$Extension = $Context->ObjectFactory->NewObject($Context, 'Extension');
 			$RecordItem = true;
-			// skip directories and hidden files
+			// Skip directories and hidden files
 			if (
 				strlen($Item) < 1
 				|| !is_dir($Context->Configuration["EXTENSIONS_PATH"].$Item)
@@ -217,16 +225,39 @@ function DefineExtensions(&$Context) {
 							$Extension->AuthorUrl = FormatStringForDisplay($val);
 							break;
 						default:
-							// nothing
+							// Nothing
 					}
 				}
 				if ($Extension->IsValid()) {
-					$Extension->Enabled = in_array($Item, $CurrExtensions);
-					$Extensions[FormatExtensionKey($Extension->Name)] = $Extension;
+					$isOfficial = false;
+
+					// Loop through the list of official extensions so we know to exclude them from update checking
+					$OfficialExtensionsArray = explode (';', $Context->Configuration['OFFICIAL_EXTENSIONS']);
+					foreach ($OfficialExtensionsArray as $OfficialExtension) {
+						if ($Extension->Name == $OfficialExtension) {
+							$isOfficial = true;
+						}
+					}
+
+					// If the user is on the "Updates & Reminders" page
+					if ($update == true) {
+						// If this isn't an official extension, add it to the list of extensions to be checked for updates
+						if ($isOfficial == false) {
+							$Extension->Enabled = in_array($Item, $CurrExtensions);
+							$Extensions[FormatExtensionKey($Extension->Name)] = $Extension;
+						}
+					// If the user is on the Extensions page
+					} else {
+						$Extension->Enabled = in_array($Item, $CurrExtensions);
+						$Extensions[FormatExtensionKey($Extension->Name)] = $Extension;
+						if ($isOfficial == true) {
+							$Extension->Official = 1;
+						}
+					}
 				}
 			}
 		}
-		ksort($Extensions);
+		uksort($Extensions, "strnatcasecmp");
 		return $Extensions;
 	}
 }
@@ -246,6 +277,32 @@ function DefineVerificationKey() {
 			mt_rand(0, 65535)
 		)
 	);
+}
+
+if (!function_exists('file_get_contents')) {
+
+	/**
+	 * file_get_contents function for php 4.1.x and 4.2.x
+	 *
+	 * It is not the equivalent of the built-in php one
+	 * since it will always read the file in binary mode.
+	 *
+	 * @param string $FileName
+	 * @return unknown
+	 */
+	function file_get_contents($FileName) {
+		$Fp = fopen($FileName, 'rb');
+
+		if ($Fp) {
+			$Content = '';
+			while (!feof($Fp)) {
+				$Content .= fread($Fp, 4096);
+			}
+			return $Content;
+		}
+
+		return false;
+	}
 }
 
 // return the opposite of the given boolean value
@@ -352,11 +409,11 @@ function ForceIncomingInt($VariableName, $DefaultValue) {
 }
 
 // Check both the get and post incoming data for a variable
-function ForceIncomingString($VariableName, $DefaultValue) {
+function ForceIncomingString($VariableName, $DefaultValue, $Trim=true) {
 	if (isset($_GET[$VariableName])) {
-		return Strip_Slashes(ForceString($_GET[$VariableName], $DefaultValue));
+		return Strip_Slashes(ForceString($_GET[$VariableName], $DefaultValue, $Trim));
 	} elseif (isset($_POST[$VariableName])) {
-		return Strip_Slashes(ForceString($_POST[$VariableName], $DefaultValue));
+		return Strip_Slashes(ForceString($_POST[$VariableName], $DefaultValue, $Trim));
 	} else {
 		return $DefaultValue;
 	}
@@ -375,9 +432,9 @@ function ForceSet($InValue, $DefaultValue) {
 }
 
 // Take a value and force it to be a string.
-function ForceString($InValue, $DefaultValue) {
+function ForceString($InValue, $DefaultValue, $Trim=true) {
 	if (is_string($InValue)) {
-		$sReturn = trim($InValue);
+		$sReturn = $Trim ? trim($InValue) : $InValue;
 		if (empty($sReturn) && strlen($sReturn) == 0) $sReturn = $DefaultValue;
 	} else {
 		$sReturn = $DefaultValue;
@@ -558,7 +615,9 @@ function GetRequestUri($FormatUrlForDisplay='1') {
 }
 
 function GetTableName($Key, $TableCollection, $Prefix) {
-	if ($Key == "User") {
+	global $DatabasePrefixLessTables;
+	$DatabasePrefixLessTables = ForceArray($DatabasePrefixLessTables, array('User'));
+	if (in_array($Key, $DatabasePrefixLessTables)) {
 		return $TableCollection[$Key];
 	} else {
 		return $Prefix.$TableCollection[$Key];
@@ -566,7 +625,7 @@ function GetTableName($Key, $TableCollection, $Prefix) {
 }
 
 function GetUrl($Configuration, $PageName, $Divider = '', $Key = '', $Value = '', $PageNumber='', $Querystring='', $Suffix = '') {
-	if ($Configuration['URL_BUILDING_METHOD'] == 'mod_rewrite') {
+	if (!empty($Configuration['URL_BUILDING_METHOD']) && $Configuration['URL_BUILDING_METHOD'] == 'mod_rewrite') {
 		if ($PageName == './') $PageName = 'index.php';
 		return $Configuration['BASE_URL']
 			.($PageName == 'index.php' && $Value != '' ? '' : $Configuration['REWRITE_'.$PageName])
@@ -616,18 +675,33 @@ function ThemeFile(&$Context, $FileName) {
 	}
 }
 
-// Checks for a custom version of the specified file
-// Returns the path to the custom file (if it exists) or the default otherwise
-function ThemeFilePath($Configuration, $FileName) {
+/**
+ * Checks for a custom version of a theme file.
+ *
+ * Returns the path to the custom file (if it exists) or the default otherwise.
+ * 
+ * @param array $Configuration Should have the APPLICATION_PATH and THEME_PATH
+ *				entries.
+ * @param string $FileName
+ * @param string $DefaultThemeDir Path to the directory containing the default
+ *				 theme file. Set to $Configuration["APPLICATION_PATH"]."themes/"
+ *				 by default.
+ * @return string
+ */
+function ThemeFilePath($Configuration, $FileName, $DefaultThemeDir=Null) {
+	if ($DefaultThemeDir === Null) {
+		$DefaultThemeDir = $Configuration["APPLICATION_PATH"]."themes/";
+	}
+
 	if (file_exists($Configuration['THEME_PATH'].$FileName)) {
 		return $Configuration['THEME_PATH'].$FileName;
 	} else {
-		return $Configuration["APPLICATION_PATH"]."themes/".$FileName;
+		return $DefaultThemeDir.$FileName;
 	}
 }
 
 function MysqlDateTime($Timestamp = '') {
-	if ($Timestamp == '') $Timestamp = time();
+	if ($Timestamp == '') $Timestamp = mktime();
 	return date('Y-m-d H:i:s', $Timestamp);
 }
 
@@ -936,5 +1010,7 @@ function Validate($InputName, $IsRequired, $Value, $MaxLength, $ValidationExpres
 function WriteEmail($Email, $LinkText = '') {
 	echo(GetEmail($Email, $LinkText));
 }
+
+
 
 ?>

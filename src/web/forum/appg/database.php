@@ -17,6 +17,9 @@ $DatabaseTables['UserBookmark'] = 'UserBookmark';
 $DatabaseTables['UserDiscussionWatch'] = 'UserDiscussionWatch';
 $DatabaseTables['UserRoleHistory'] = 'UserRoleHistory';
 
+// Tables which do not need concatenation with the Database prefix
+$DatabasePrefixLessTables = array('User');
+
 // Column References:
 
 // Category Table
@@ -147,4 +150,31 @@ $DatabaseColumns['UserRoleHistory']['Date'] = 'Date';
 $DatabaseColumns['UserRoleHistory']['AdminUserID'] = 'AdminUserID';
 $DatabaseColumns['UserRoleHistory']['Notes'] = 'Notes';
 $DatabaseColumns['UserRoleHistory']['RemoteIp'] = 'RemoteIp';
-?>
+
+// Event Table Structure
+$DatabaseTables['Event'] = 'Event';
+$DatabaseColumns['Event']['DiscussionID'] = 'DiscussionID';
+$DatabaseColumns['Event']['Date'] = 'Date';
+$DatabaseColumns['Event']['City'] = 'City';
+$DatabaseColumns['Event']['Country'] = 'Country';
+// Releases Table Structure
+$DatabaseTables['Releases'] = 'Releases';
+$DatabaseColumns['Releases']['DiscussionID'] = 'DiscussionID';
+$DatabaseColumns['Releases']['LabelName'] = 'LabelName';
+$DatabaseColumns['Releases']['DownloadLink'] = 'DownloadLink';
+$DatabaseColumns['Releases']['IsMix'] = 'IsMix';
+// Shop Table Structure
+$DatabaseTables['CatalogItems'] = 'CatalogItems';
+$DatabaseColumns['CatalogItems']['DiscussionID'] = 'DiscussionID';
+$DatabaseColumns['CatalogItems']['ImageUrl'] = 'ImageUrl';
+$DatabaseColumns['CatalogItems']['Price'] = 'Price';
+
+// Project Table Structure (@see MiProjects extension)
+$DatabaseTables['Project'] = 'Project';
+$DatabaseColumns['Project']['CategoryID'] = 'CategoryID';
+$DatabaseColumns['Project']['CategoryParentID'] = 'CategoryParentID';
+$DatabaseColumns['Project']['ProjectType'] = 'ProjectType';
+$DatabaseColumns['Project']['WebsiteUrl'] = 'WebsiteUrl';
+$DatabaseColumns['Project']['ImageUrl'] = 'ImageUrl';
+$DatabaseColumns['Project']['CategoryUri'] = 'CategoryUri';
+$DatabaseColumns['Project']['SidebarHtml'] = 'SidebarHtml';

@@ -35,6 +35,7 @@ $Configuration['EXTENSIONS_PATH'] = '';
 $Configuration['LANGUAGES_PATH'] = '';
 $Configuration['THEME_PATH'] = '';
 $Configuration['BASE_URL'] = '';
+$Configuration['HTTP_METHOD'] = '';
 $Configuration['DEFAULT_STYLE'] = '';
 $Configuration['WEB_ROOT'] = '';
 $Configuration['COOKIE_DOMAIN'] = '-';
@@ -93,11 +94,11 @@ $PostBackAction = ForceIncomingString('PostBackAction', '');
 $DBHost = ForceIncomingString('DBHost', '');
 $DBName = ForceIncomingString('DBName', '');
 $DBUser = ForceIncomingString('DBUser', '');
-$DBPass = ForceIncomingString('DBPass', '');
+$DBPass = ForceIncomingString('DBPass', '', false);
 $DBTablePrefix = ForceIncomingString('DBTablePrefix', $Configuration['DATABASE_TABLE_PREFIX']);
 $Username = ForceIncomingString('Username', '');
-$Password = ForceIncomingString('Password', '');
-$ConfirmPassword = ForceIncomingString('ConfirmPassword', '');
+$Password = ForceIncomingString('Password', '', false);
+$ConfirmPassword = ForceIncomingString('ConfirmPassword', '', false);
 $SupportEmail = ForceIncomingString('SupportEmail', '');
 $SupportName = ForceIncomingString('SupportName', '');
 $ApplicationTitle = ForceIncomingString('ApplicationTitle', 'Vanilla');
@@ -110,7 +111,9 @@ $WorkingDirectory = str_replace('\\', '/', getcwd()).'/';
 $RootDirectory = str_replace('setup/', '', $WorkingDirectory);
 $WebRoot = dirname(ForceString(@$_SERVER['PHP_SELF'], ''));
 $WebRoot = substr($WebRoot, 0, strlen($WebRoot) - 5); // strips the "setup" off the end of the path.
-$BaseUrl = 'http://'.ForceString(@$_SERVER['HTTP_HOST'], '').$WebRoot;
+$IsSecure = @$_SERVER["HTTPS"] || @$_SERVER['SERVER_PORT'] == 443;
+$HttpMethod = $IsSecure ? 'https' : 'http';
+$BaseUrl = $HttpMethod . '://' . ForceString(@$_SERVER['HTTP_HOST'], '').$WebRoot;
 $ThemeDirectory = $WebRoot . 'themes/';
 $AllowNext = 0;
 
@@ -173,7 +176,27 @@ if ($PostBackAction == 'Permissions') {
 // Make sure this file was not accessed directly and prevent register_globals configuration array attack
 if (!defined(\'IN_VANILLA\')) exit();
 // Enabled Extensions
-?>';
+';
+
+		// The following extensions will be enabled by default:
+		if (file_exists($RootDirectory.'extensions/DiscussionPages/default.php')) {
+			$Contents .= 'include($Configuration[\'EXTENSIONS_PATH\']."DiscussionPages/default.php");
+';
+		}
+		if (file_exists($RootDirectory.'extensions/NewApplicants/default.php')) {
+			$Contents .= 'include($Configuration[\'EXTENSIONS_PATH\']."NewApplicants/default.php");
+';
+		}
+		if (file_exists($RootDirectory.'extensions/PreviewPost/default.php')) {
+			$Contents .= 'include($Configuration[\'EXTENSIONS_PATH\']."PreviewPost/default.php");
+';
+		}
+		if (file_exists($RootDirectory.'extensions/Whisperfi/default.php')) {
+			$Contents .= 'include($Configuration[\'EXTENSIONS_PATH\']."Whisperfi/default.php");
+';
+		}
+
+		$Contents .= '?>';
 		CreateFile($RootDirectory.'conf/extensions.php', $Contents, $Context);
 		$Contents = '<?php
 // Custom Language Definitions
@@ -317,10 +340,11 @@ if (!defined(\'IN_VANILLA\')) exit();
 			$SettingsManager->DefineSetting('LIBRARY_PATH', $RootDirectory . 'library/', 1);
 			$SettingsManager->DefineSetting('EXTENSIONS_PATH', $RootDirectory . 'extensions/', 1);
 			$SettingsManager->DefineSetting('LANGUAGES_PATH', $RootDirectory . 'languages/', 1);
-			$SettingsManager->DefineSetting('THEME_PATH', $RootDirectory . 'themes/vanilla/', 1);
-			$SettingsManager->DefineSetting('DEFAULT_STYLE', $ThemeDirectory.'vanilla/styles/default/', 1);
+			$SettingsManager->DefineSetting('THEME_PATH', $RootDirectory . 'themes/vanilla modern/', 1);
+			$SettingsManager->DefineSetting('DEFAULT_STYLE', $ThemeDirectory.'vanilla modern/styles/default/', 1);
 			$SettingsManager->DefineSetting('WEB_ROOT', $WebRoot, 1);
 			$SettingsManager->DefineSetting('BASE_URL', $BaseUrl, 1);
+			$SettingsManager->DefineSetting('HTTP_METHOD', $HttpMethod, 1);
 			$SettingsManager->DefineSetting('FORWARD_VALIDATED_USER_URL', $BaseUrl, 1);
 			if (!$SettingsManager->SaveSettingsToFile($SettingsFile)) {
 				// $Context->WarningCollector->Clear();
@@ -355,7 +379,7 @@ if (!defined(\'IN_VANILLA\')) exit();
 		if ($Username == '') $Context->WarningCollector->Add('You must provide a username.');
 		if ($Password == '') $Context->WarningCollector->Add('You must provide a password.');
 		if ($SupportName == '') $Context->WarningCollector->Add('You must provide a support contact name.');
-		if (!eregi('(.+)@(.+)\.(.+)', $SupportEmail)) $Context->WarningCollector->Add('The email address you entered doesn&#8217;t appear to be valid.');
+		if (!preg_match('/(.+)@(.+)\.(.+)/i', $SupportEmail)) $Context->WarningCollector->Add('The email address you entered doesn&#8217;t appear to be valid.');
 		if ($ApplicationTitle == '') $Context->WarningCollector->Add('You must provide an application title.');
 
 		// Include the db settings defined in the previous step
@@ -422,7 +446,7 @@ if (!defined(\'IN_VANILLA\')) exit();
 			$s->Clear();
 			$s->SetMainTable('Style', 's');
 			$s->AddFieldNameValue('Name', 'Vanilla');
-			$s->AddFieldNameValue('Url', $ThemeDirectory.'vanilla/styles/default/');
+			$s->AddFieldNameValue('Url', $ThemeDirectory.'vanilla modern/styles/default/');
 			@mysql_query($s->GetInsert(), $Connection);
 		}
 
@@ -458,7 +482,7 @@ if (!defined(\'IN_VANILLA\')) exit();
 	</head>
 	<body>
 		<h1>
-			<span><strong><?php echo APPLICATION . ' ' . APPLICATION_VERSION; ?></strong> Installer</span>
+			<img src="../themes/vanilla modern/styles/default/logo.png" alt="logo" />
 		</h1>
 		<div class="Container">
 			<div class="Content">
@@ -493,15 +517,19 @@ if (!defined(\'IN_VANILLA\')) exit();
 						';
 					}
 				} else {
-					echo '<p>This wizard will first check can been installed.</p>';
+					echo '<p>This wizard will first check if Vanilla can be installed.</p>';
 				}
 
 
 				echo '<form id="frmPermissions" method="post" action="installer.php">
 				<input type="hidden" name="PostBackAction" value="Permissions" />
-				<div class="Button"><input type="submit" value="Click here to check your installation and proceed to the next step" /></div>
+				<div class="ButtonContainer"><input type="submit" value="Click here to check your file permissions" class="Button" /></div>
 				</form>';
 			} elseif ($CurrentStep == 2) {
+					$DBHostDisplay = FormatStringForDisplay($DBHost, 1);
+					if (empty($DBHostDisplay)) {
+						$DBHostDisplay = "localhost";
+					}
 					echo '<h2>Vanilla Installation Wizard (Step 2 of 3)</h2>';
 					if ($Context->WarningCollector->Count() > 0) {
 						echo '<div class="Warnings">
@@ -509,14 +537,14 @@ if (!defined(\'IN_VANILLA\')) exit();
 							'.$Context->WarningCollector->GetMessages().'
 						</div>';
 					}
-					echo '<p>Create your new Vanilla database, and specify the MySQL connection parameters below:</p>
+					echo '<p>Specify the MySQL connection parameters for your database below:</p>
 					<fieldset>
 						<form id="frmDatabase" method="post" action="installer.php">
 						<input type="hidden" name="PostBackAction" value="Database" />
 							<ul>
 								<li>
 									<label for="tDBHost">MySQL Server</label>
-									<input type="text" id="tDBHost" name="DBHost" value="'.FormatStringForDisplay($DBHost, 1).'" />
+									<input type="text" id="tDBHost" name="DBHost" value="'.$DBHostDisplay.'" />
 								</li>
 								<li>
 									<label for="tDBName">MySQL Database Name</label>
@@ -535,7 +563,7 @@ if (!defined(\'IN_VANILLA\')) exit();
 									<input type="text" id="tDBTablePrefix" name="DBTablePrefix" value="'.FormatStringForDisplay($DBTablePrefix, 1).'" />
 								</li>
 							</ul>
-							<div class="Button"><input type="submit" value="Click here to create Vanilla&#8217;s database and proceed to the next step" /></div>
+							<div class="ButtonContainer"><input type="submit" value="Click here to create Vanilla&#8217;s database" class="Button" /></div>
 						</form>
 					</fieldset>';
 				} elseif ($CurrentStep == 3) {
@@ -586,18 +614,9 @@ if (!defined(\'IN_VANILLA\')) exit();
 								<input id="tApplicationTitle" type="text" name="ApplicationTitle" value="'.FormatStringForDisplay($ApplicationTitle, 1).'" />
 							</li>
 						</ul>
-						<p>The cookie domain is where you want cookies assigned to for Vanilla. Typically the cookie domain will be something like www.yourdomain.com. Cookies can be further defined to a particular path on your website using the "Cookie Path" setting. (TIP: If you want your Vanilla cookies to apply to all subdomains of your domain, use ".yourdomain.com" as the cookie domain).</p>
-						<ul>
-							<li>
-								<label for="tCookieDomain">Cookie Domain</label>
-								<input id="tCookieDomain" type="text" name="CookieDomain" value="'.FormatStringForDisplay($CookieDomain, 1).'" />
-							</li>
-							<li>
-								<label for="tCookiePath">Cookie Path</label>
-								<input id="tCookiePath" type="text" name="CookiePath" value="'.FormatStringForDisplay($CookiePath, 1).'" />
-							</li>
-						</ul>
-						<div class="Button"><input type="submit" value="Click here to complete the setup process!" /></div>
+						<input id="tCookieDomain" type="hidden" name="CookieDomain" value="'.FormatStringForDisplay($CookieDomain, 1).'" />
+						<input id="tCookiePath" type="hidden" name="CookiePath" value="'.FormatStringForDisplay($CookiePath, 1).'" />
+						<div class="ButtonContainer"><input type="submit" value="Click here to complete the setup process!" class="Button" /></div>
 						</form>
 					</fieldset>';
 				} else {
@@ -610,7 +629,7 @@ if (!defined(\'IN_VANILLA\')) exit();
 						<li>Add Atom and RSS feeds to your forum</li>
 						<li>Allow users to quote other users in discussions</li>
 					</ul>
-					<p>All of these extensions (and a lot more) are available in <a href="http://lussumo.com/addons/" target="Lussumo">the Vanilla Add-on directory</a>.</p>
+					<p>All of these extensions (and a lot more) are available in <a href="http://www.vanilla1forums.com/extensions/" target="Vanilla 1 Forums">the Vanilla Add-on directory</a>.</p>
 					<p>You&#8217;ll also want to fine-tune your application settings, like:</p>
 					<ul>
 						<li>Change the number of discussions or comments per page</li>
@@ -620,8 +639,8 @@ if (!defined(\'IN_VANILLA\')) exit();
 					</ul>
 					<p>All of these configuration options (and many more) are available in the settings tab of your Vanilla forum.</p>
 
-					<p>If you need some help getting started with administering your new Vanilla forum, you can <a href="http://lussumo.com/docs" target="Lussumo">read the complete documentation</a> or ask for help on the <a href="http://lussumo.com/community/" target="Lussumo">Lussumo Community Forum</a>. Enough talking...</p>
-					<div class="Button"><a href="../people.php">Go sign in and have some fun!</a></div>';
+					<p>If you need some help getting started with administering your new Vanilla forum, you can <a href="http://lussumo.com/docs" target="Lussumo">read the complete documentation</a> or ask for help on the <a href="http://www.vanilla1forums.com/community/" target="Community Forum">Community Forum</a>. Enough talking...</p>
+					<div class="ButtonContainer"><a class="Button" href="../people.php">Go sign in and have some fun!</a></div>';
 				}
 				?>
 			</div>

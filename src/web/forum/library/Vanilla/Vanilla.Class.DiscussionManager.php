@@ -7,14 +7,13 @@
  * Lussumo's Software Library is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
  * Lussumo's Software Library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- * The latest source code is available at www.lussumo.com
+ * The latest source code is available at www.vanilla1forums.com
  * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
  *
  * @author Mark O'Sullivan
  * @copyright 2003 Mark O'Sullivan
- * @license http://lussumo.com/community/gpl.txt GPL 2
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPL 2
  * @package Vanilla
- * @version 1.1.5a
  */
 
 
@@ -276,8 +275,9 @@ class DiscussionManager extends Delegation {
 			$s->EndWhereGroup();
 		}
 		$this->GetDiscussionWhisperFilter($s);
-		// HACK: related to vanilla-alaune
-		//$s->AddOrderBy('Sticky', 't');
+
+		// HACK : related to vanilla-alaune
+		// $s->AddOrderBy('Sticky', 't');
 		if ($this->Context->Configuration['ENABLE_WHISPERS']) {
 			// If the user viewing doesn't have permission to view all whispers, make sure to sort by dates that the user viewing is allowed to see
 			if ($this->Context->Session->User && $this->Context->Session->User->Permission('PERMISSION_VIEW_ALL_WHISPERS')) {
@@ -413,6 +413,34 @@ class DiscussionManager extends Delegation {
 		return $this->Context->Database->Select($s, $this->Name, 'GetViewedDiscussionsByUserID', 'An error occurred while retrieving discussions.');
 	}
 
+	/**
+	 * Change the discussion's category.
+	 *
+	 * @param int $DiscussionID
+	 * @param int $CategoryID
+	 * @return boolean
+	 */
+	function MoveDiscussion($DiscussionID, $CategoryID) {
+		$DiscussionID = ForceInt($DiscussionID, 0);
+		$CategoryID = ForceInt($CategoryID, 0);
+		if (!$DiscussionID || !$CategoryID) {
+			return False;
+		}
+
+		$cm = $this->Context->ObjectFactory->NewContextObject($this->Context, 'CategoryManager');
+		if (!$cm->CategoryExist($CategoryID, $this->Context->Session->User->RoleID)) {
+			return False;
+		}
+
+		$s = $this->Context->ObjectFactory->NewContextObject($this->Context, 'SqlBuilder');
+		$s->SetMainTable('Discussion', 'd');
+		$s->AddFieldNameValue('CategoryID', $CategoryID, 0);
+		$s->AddWhere('d', 'DiscussionID', '', $DiscussionID, '=');
+		$Update = $this->Context->Database->Update($s, $this->Name, 'MoveDiscussion',
+			'An error occurred while moving the discussion to a new category.', 0);
+		return $Update == 1;
+	}
+
 	function SaveDiscussion($Discussion) {
 		if (!$this->Context->Session->User->Permission('PERMISSION_START_DISCUSSION')) {
 			$this->Context->WarningCollector->Add($this->Context->GetDefinition('ErrPermissionStartDiscussions'));
@@ -512,6 +540,9 @@ class DiscussionManager extends Delegation {
 							$s->AddFieldNameValue('DateLastActive', MysqlDateTime());
 							$s->AddFieldNameValue('CountComments', 0);
 							$s->AddFieldNameValue('WhisperUserID', $Discussion->WhisperUserID);
+							if ($Discussion->WhisperUserID != '0') {
+								$s->AddFieldNameValue('DateLastWhisper', MysqlDateTime());
+							}
 							$Discussion->DiscussionID = $this->Context->Database->Insert($s, $this->Name, 'NewDiscussion', 'An error occurred while creating a new discussion.');
 							$Discussion->Comment->DiscussionID = $Discussion->DiscussionID;
 						} else {

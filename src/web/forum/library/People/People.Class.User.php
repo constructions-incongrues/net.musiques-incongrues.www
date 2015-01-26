@@ -7,14 +7,13 @@
  * Lussumo's Software Library is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
  * Lussumo's Software Library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- * The latest source code is available at www.lussumo.com
+ * The latest source code is available at www.vanilla1forums.com
  * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
  *
  * @author Mark O'Sullivan
  * @copyright 2003 Mark O'Sullivan
- * @license http://lussumo.com/community/gpl.txt GPL 2
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPL 2
  * @package People
- * @version 1.1.5
  */
 
 
@@ -255,21 +254,22 @@ class User {
 		$this->StyleID = ForceIncomingInt('StyleID', 0);
 		$this->CustomStyle = ForceIncomingString('CustomStyle', '');
 		$this->Name = ForceIncomingString('Name', '');
+		$this->Username = ForceIncomingString('Username', '');
 		$this->FirstName = ForceIncomingString('FirstName', '');
 		$this->LastName = ForceIncomingString('LastName', '');
 		$this->ShowName = ForceIncomingBool('ShowName', 0);
 		$this->Email = ForceIncomingString('Email', '');
 		$this->UtilizeEmail = ForceIncomingBool('UtilizeEmail',0);
-		$this->Password = ForceIncomingString('Password', '');
+		$this->Password = ForceIncomingString('Password', '', false);
 		$this->Icon = PrependString(array('http://', 'https://'), ForceIncomingString('Icon',''));
 		$this->Picture = PrependString(array('http://', 'https://'), ForceIncomingString('Picture',''));
 		$this->AgreeToTerms = ForceIncomingBool('AgreeToTerms', 0);
 		$this->ReadTerms = ForceIncomingBool('ReadTerms', 0);
 		$this->Discovery = ForceIncomingString('Discovery', '');
 
-		$this->OldPassword = ForceIncomingString('OldPassword', '');
-		$this->NewPassword = ForceIncomingString('NewPassword', '');
-		$this->ConfirmPassword = ForceIncomingString('ConfirmPassword', '');
+		$this->OldPassword = ForceIncomingString('OldPassword', '', false);
+		$this->NewPassword = ForceIncomingString('NewPassword', '', false);
+		$this->ConfirmPassword = ForceIncomingString('ConfirmPassword', '', false);
 
 		// Retrieve attributes from the form
 		$AttributeCount = ForceIncomingInt('LabelValuePairCount', 0);

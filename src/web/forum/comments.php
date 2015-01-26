@@ -5,7 +5,7 @@
 * Vanilla is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 * Vanilla is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-* The latest source code for Vanilla is available at www.lussumo.com
+* The latest source code is available at www.vanilla1forums.com
 * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
 *
 * Description: Display, add, and manipulate discussion comments
@@ -52,7 +52,7 @@ if ($CommentGrid->Discussion) {
 		&& $Context->Session->UserID > 0
 	) {
 		$Options = $Context->GetDefinition("Options");
-		$Panel->AddList($Options, 5);
+		$Panel->AddList($Options, 6);
 		$BookmarkText = $Context->GetDefinition($CommentGrid->Discussion->Bookmarked ? "UnbookmarkThisDiscussion" : "BookmarkThisDiscussion");
 		$Panel->AddListItem($Options,
 			$BookmarkText,
@@ -77,6 +77,7 @@ if ($CommentGrid->Discussion) {
 				"id=\"CloseDiscussion\" onclick=\"if (confirm('".$Context->GetDefinition($CommentGrid->Discussion->Closed?"ConfirmReopenDiscussion":"ConfirmCloseDiscussion")."')) DiscussionSwitch('".$CommentGrid->Context->Configuration['WEB_ROOT']."ajax/switch.php', 'Closed', '".$CommentGrid->Discussion->DiscussionID."', '".FlipBool($CommentGrid->Discussion->Closed)."', 'CloseDiscussion', '".$SessionPostBackKey."'); return false;\"");
 		}
 		if ($Context->Session->User->Permission("PERMISSION_STICK_DISCUSSIONS")) {
+			header('CanSink: true');
 			$StickyText = $Context->GetDefinition("MakeThisDiscussion".($CommentGrid->Discussion->Sticky?"Unsticky":"Sticky"));
 			$Panel->AddListItem($Options,
 				$StickyText,
@@ -92,6 +93,21 @@ if ($CommentGrid->Discussion) {
 				"",
 				"id=\"SinkDiscussion\" onclick=\"if (confirm('".$Context->GetDefinition($CommentGrid->Discussion->Sink?"ConfirmUnSink":"ConfirmSink")."')) DiscussionSwitch('".$CommentGrid->Context->Configuration['WEB_ROOT']."ajax/switch.php', 'Sink', '".$CommentGrid->Discussion->DiscussionID."', '".FlipBool($CommentGrid->Discussion->Sink)."', 'SinkDiscussion', '".$SessionPostBackKey."'); return false;\"");
 		}
+		if ($Configuration['USE_CATEGORIES']
+			&& ($Context->Session->User->Permission("PERMISSION_MOVE_ANY_DISCUSSIONS")
+				|| $Context->Session->UserID == $CommentGrid->Discussion->AuthUserID)
+		) {
+			$MoveDiscussionForm = MoveDiscussionForm($Context, $SessionPostBackKey, $DiscussionID);
+			if ($MoveDiscussionForm) {
+				$MoveText = $Context->GetDefinition("MoveText");
+				$Panel->AddListItem($Options,
+					$MoveText,
+					"javascript:void(0);",
+					"",
+					"id=\"MoveDiscussion\" onclick=\"showById('MoveDiscussionDropdown');\"");
+				$Panel->AddListItem($Options,$MoveDiscussionForm, '');
+			}
+		}
 	}
 
 	// Create the comment footer
@@ -106,8 +122,8 @@ if ($CommentGrid->Discussion) {
 	$Page->AddRenderControl($CommentGrid, $Configuration["CONTROL_POSITION_BODY_ITEM"]);
 	if ($CommentGrid->ShowForm) {
 		$Page->AddRenderControl($CommentForm, $Configuration["CONTROL_POSITION_BODY_ITEM"] + 10);
-		$Page->AddRenderControl($CommentFoot, $Configuration["CONTROL_POSITION_BODY_ITEM"] + 11);
 	}
+	$Page->AddRenderControl($CommentFoot, $Configuration["CONTROL_POSITION_BODY_ITEM"] + 11);
 	$Page->AddRenderControl($Foot, $Configuration["CONTROL_POSITION_FOOT"]);
 	$Page->AddRenderControl($PageEnd, $Configuration["CONTROL_POSITION_PAGE_END"]);
 

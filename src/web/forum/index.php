@@ -5,7 +5,7 @@
 * Vanilla is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 * Vanilla is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-* The latest source code for Vanilla is available at www.lussumo.com
+* The latest source code is available at www.vanilla1forums.com
 * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
 *
 * Description: Display and manipulate discussions
@@ -19,12 +19,12 @@ include("appg/init_vanilla.php");
 
 	// Ensure the user is allowed to view this page
 	$Context->Session->Check($Context);
-	
+
 	// Define properties of the page controls that are specific to this page
-   $Head->BodyId = 'DiscussionsPage';
+	$Head->BodyId = 'DiscussionsPage';
 	$Menu->CurrentTab = 'discussions';
 	$Panel->CssClass = 'DiscussionPanel';
-   $Panel->BodyCssClass = 'Discussions';
+	$Panel->BodyCssClass = 'Discussions';
 
 // 2. BUILD PAGE CONTROLS
 	$DiscussionGrid = $Context->ObjectFactory->CreateControl($Context, 'DiscussionGrid');
@@ -45,7 +45,7 @@ include("appg/init_vanilla.php");
 			} elseif ($Configuration['UPDATE_REMINDER'] == 'Quarterly') {
 				if ($Days > 90) $ShowUpdateMessage = 1;
 			}
-			
+
 			if ($ShowUpdateMessage) {
 				$Message = '';
 				if ($Days == 0) {
@@ -57,9 +57,9 @@ include("appg/init_vanilla.php");
 			}
 		}
 	}
-   
+
 	// Remind them to get addons if this is a new install
-   if ($Configuration['ADDON_NOTICE']) {
+	if ($Configuration['ADDON_NOTICE']) {
 		if ($Context->Session->User && $Context->Session->User->Permission('PERMISSION_MANAGE_EXTENSIONS')) {
 			$HideNotice = ForceIncomingBool('TurnOffAddonNotice', 0);
 			if ($HideNotice) {

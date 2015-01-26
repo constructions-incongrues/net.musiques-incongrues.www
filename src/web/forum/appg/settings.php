@@ -5,7 +5,7 @@
 * Vanilla is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 * Vanilla is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-* The latest source code for Vanilla is available at www.lussumo.com
+* The latest source code is available at www.vanilla1forums.com
 * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
 *
 * Description: Global application constants
@@ -58,17 +58,21 @@ $Configuration['BASE_URL'] = 'http://your.base.url/to/vanilla/';
 $Configuration['DEFAULT_STYLE'] = '/vanilla/themes/vanilla/styles/default/';
 $Configuration['WEB_ROOT'] = '/vanilla/';
 $Configuration['SIGNIN_URL'] = 'people.php';
+$Configuration['REGISTRATION_URL'] = 'people.php?PostBackAction=ApplyForm';
 $Configuration['SIGNOUT_URL'] = 'people.php?PostBackAction=SignOutNow';
 
 // People Settings
 $Configuration['AUTHENTICATION_MODULE'] = 'People/People.Class.Authenticator.php';
 $Configuration['AUTHENTICATION_CLASS'] = 'Authenticator';
 $Configuration['SESSION_NAME'] = '';
+$Configuration['SESSION_SAVE_PATH'] = '';
 $Configuration['COOKIE_USER_KEY'] = 'lussumocookieone';
 $Configuration['COOKIE_VERIFICATION_KEY'] = 'lussumocookietwo';
+$Configuration['ENCRYPT_COOKIE_USER_KEY'] = '1';
 $Configuration['SESSION_USER_IDENTIFIER'] = 'LussumoUserID';
 $Configuration['COOKIE_DOMAIN'] = '.domain.com';
 $Configuration['COOKIE_PATH'] = '/';
+$Configuration['HTTP_ONLY_COOKIE'] = '1';
 $Configuration['SUPPORT_EMAIL'] = 'support@domain.com';
 $Configuration['SUPPORT_NAME'] = 'Support';
 $Configuration['LOG_ALL_IPS'] = '0';
@@ -101,9 +105,10 @@ $Configuration['BANNER_TITLE'] = 'Vanilla';
 $Configuration['UPDATE_REMINDER'] = 'Monthly';
 $Configuration['LAST_UPDATE'] = '';
 $Configuration['HTTP_METHOD'] = 'http'; // Could alternately be https
+$Configuration['HEAD_TAG_ASSET'] = '1';
 
 // Vanilla Settings
-$Configuration['ENABLE_WHISPERS'] = '0';
+$Configuration['ENABLE_WHISPERS'] = '1';
 $Configuration['DISCUSSIONS_PER_PAGE'] = '30';
 $Configuration['COMMENTS_PER_PAGE'] = '50';
 $Configuration['SEARCH_RESULTS_PER_PAGE'] = '30';
@@ -121,7 +126,10 @@ $Configuration['DISCUSSION_THRESHOLD_PUNISHMENT'] = '120';
 $Configuration['COMMENT_POST_THRESHOLD'] = '5';
 $Configuration['COMMENT_TIME_THRESHOLD'] = '60';
 $Configuration['COMMENT_THRESHOLD_PUNISHMENT'] = '120';
-$Configuration['UPDATE_URL'] = 'http://lussumo.com/updatecheck/default.php';
+$Configuration['UPDATE_URL'] = 'http://www.vanilla1forums.com/updater/';
+
+// Semicolon-delimited list of official extensions
+$Configuration['OFFICIAL_EXTENSIONS'] = 'AjaxQuote;Attachments;Discussion Filters;Discussion Pages;Expire;Extended Application Form;Friendly Urls;Guest Welcome Message;Hide Success;Html Formatter;IP History;Inline Images;Legends;MembersList;Minify;Multi File Upload;New Applicants;Notifi;Panel Lists;Preview Post;Private Accounts;Role History;Set List;Text Mode Switch;Whisperfi;Yellow Fade;reCAPTCHA';
 
 // Vanilla Control Positions
 $Configuration['CONTROL_POSITION_HEAD'] = '100';
@@ -164,6 +172,7 @@ $Configuration['PERMISSION_HIDE_DISCUSSIONS'] = '0';
 $Configuration['PERMISSION_CLOSE_DISCUSSIONS'] = '0';
 $Configuration['PERMISSION_EDIT_DISCUSSIONS'] = '0';
 $Configuration['PERMISSION_VIEW_HIDDEN_DISCUSSIONS'] = '0';
+$Configuration['PERMISSION_MOVE_ANY_DISCUSSIONS'] = '0';
 $Configuration['PERMISSION_EDIT_COMMENTS'] = '0';
 $Configuration['PERMISSION_HIDE_COMMENTS'] = '0';
 $Configuration['PERMISSION_VIEW_HIDDEN_COMMENTS'] = '0';
@@ -211,6 +220,7 @@ $Configuration['ADDON_NOTICE'] = '1';
 
 // Application versions
 include(dirname(__FILE__) . '/version.php');
+$Configuration['HEAD_DEFAULT_ETAG'] = APPLICATION_VERSION;
 
 // Application Mode Constants
 define('MODE_DEBUG', 'DEBUG');
@@ -235,7 +245,6 @@ if ($Configuration['SETUP_COMPLETE'] == '0') {
 // Define a constant to prevent a register_globals attack on the configuration paths
 define('IN_VANILLA', '1');
 
-
 //upgrade database
 if ($Configuration['DATABASE_VERSION'] < 2) {
 	include_once($Configuration['APPLICATION_PATH'].'appg/database.php');
@@ -258,7 +267,7 @@ if ($Configuration['DATABASE_VERSION'] < 2) {
 
 	$Context = new Context($Configuration);
 	$Context->DatabaseTables = &$DatabaseTables;
-	$Context->DatabaseColumns = &$DatabaseColumns;	
+	$Context->DatabaseColumns = &$DatabaseColumns;
 
 	$Query = 'ALTER TABLE '
 		. GetTableName('User', $DatabaseTables, $Configuration["DATABASE_TABLE_PREFIX"])

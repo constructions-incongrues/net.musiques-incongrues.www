@@ -588,7 +588,7 @@ VALUES ('Unauthenticated','1','1','1','1','a:32:{s:23:\"PERMISSION_ADD_COMMENTS\
 	// Validate user inputs
 	if (strip_tags($ApplicationTitle) != $ApplicationTitle) $Context->WarningCollector->Add("You can't have any html in your forum name.");
 	if ($SupportName == "") $Context->WarningCollector->Add("You must provide a support contact name.");
-	if (!eregi('(.+)@(.+)\.(.+)', $SupportEmail)) $Context->WarningCollector->Add("The email address you entered doesn't appear to be valid.");
+	if (!preg_match('/(.+)@(.+)\.(.+)/i', $SupportEmail)) $Context->WarningCollector->Add("The email address you entered doesn't appear to be valid.");
 	if ($ApplicationTitle == "") $Context->WarningCollector->Add("You must provide an application title.");
 
 	$SettingsFile = $RootDirectory . 'conf/settings.php';
@@ -700,7 +700,7 @@ VALUES ('Unauthenticated','1','1','1','1','a:32:{s:23:\"PERMISSION_ADD_COMMENTS\
 	</head>
 	<body>
 		<h1>
-			<span><strong><?php echo APPLICATION . ' ' . APPLICATION_VERSION; ?></strong> Upgrader</span>
+			<img src="../themes/vanilla modern/styles/default/logo.png" alt="logo" />
 		</h1>
 		<div class="Container">
 			<div class="Content">
@@ -733,7 +733,7 @@ VALUES ('Unauthenticated','1','1','1','1','a:32:{s:23:\"PERMISSION_ADD_COMMENTS\
 
 				<form id=\"frmPermissions\" method=\"post\" action=\"upgrader.php\">
 				<input type=\"hidden\" name=\"PostBackAction\" value=\"Permissions\" />
-				<div class=\"Button\"><input type=\"submit\" value=\"Click here to check your permissions and proceed to the next step\" /></div>
+				<div class=\"ButtonContainer\"><input type=\"submit\" class=\"Button\" value=\"Click here to check your file permissions\" /></div>
 				</form>";
 			} elseif ($CurrentStep == 2) {
 					echo "<h2>Vanilla Upgrade Wizard (Step 2 of 3)</h2>";
@@ -743,7 +743,7 @@ VALUES ('Unauthenticated','1','1','1','1','a:32:{s:23:\"PERMISSION_ADD_COMMENTS\
 							".$Context->WarningCollector->GetMessages()."
 						</div>";
 					}
-					echo "<p>Below you can provide the connection parameters for the mysql server where your existing Vanilla database is set up so it can be upgraded. If you haven't done it yet, <strong>back up your existing Vanilla database before continuing</strong>.</p>
+					echo "<p>Specify the MySQL connection parameters for your database below:</strong></p>
 					<fieldset>
 						<form id=\"frmDatabase\" method=\"post\" action=\"upgrader.php\">
 						<input type=\"hidden\" name=\"PostBackAction\" value=\"Database\" />
@@ -765,7 +765,7 @@ VALUES ('Unauthenticated','1','1','1','1','a:32:{s:23:\"PERMISSION_ADD_COMMENTS\
 									<input type=\"password\" id=\"tDBPass\" name=\"DBPass\" value=\"".FormatStringForDisplay($DBPass, 1)."\" />
 								</li>
 							</ul>
-							<div class=\"Button\"><input type=\"submit\" value=\"Click here to create Vanilla's database and proceed to the next step\" /></div>
+							<div class=\"ButtonContainer\"><input type=\"submit\" class=\"Button\" value=\"Click here to upgrade Vanilla's database\" /></div>
 						</form>
 					</fieldset>";
 				} elseif ($CurrentStep == 3) {
@@ -813,21 +813,21 @@ VALUES ('Unauthenticated','1','1','1','1','a:32:{s:23:\"PERMISSION_ADD_COMMENTS\
 								<input id="tCookiePath" type="text" name="CookiePath" value="'.FormatStringForDisplay($CookiePath, 1).'" />
 							</li>
 						</ul>
-						<div class="Button"><input type="submit" value="Click here to complete the setup process!" /></div>
+						<div class="ButtonContainer"><input type="submit" class="Button" value="Click here to complete the setup process!" /></div>
 						</form>
 					</fieldset>';
 				} else {
 					echo "<h2>Vanilla Upgrade Wizard (Complete)</h2>
 					<p><strong>That's it! Vanilla has been upgraded.</strong></p>
-					<p>Things in Vanilla 1 are quite different to what you're used to. The best new feature is, without a doubt, the new extension engine. You should definitely head over to the <a href=\"http://lussumo.com/addons/\" target=\"Lussumo\">Vanilla Add-on directory</a> right away to find all of your favourite old extensions, plus a bunch of new ones.</p>
+					<p>Things in Vanilla 1 are quite different to what you're used to. The best new feature is, without a doubt, the new extension engine. You should definitely head over to the <a href=\"http://www.vanilla1forums.com/extensions/\" title=\"Vanilla 1 Forums extensions\">Vanilla Add-on directory</a> right away to find all of your favourite old extensions, plus a bunch of new ones.</p>
 					<p>Of course you will also want to go make sure your application was upgraded properly. Here are a few things you should take a look at:</p>
 					<ul>
 						<li>Public &amp; Private browsing on the Registration Management Form</li>
 						<li>On public forums, make sure that the unauthenticated role has access to all public discussion categories</li>
 					</ul>
 
-					<p>If you find that there was some unforseen problem with the upgrade procedure, visit <a href=\"http://lussumo.com/community/\" target=\"Lussumo\">Lussumo Community Forum</a> for help.</p>
-					<div class=\"Button\"><a href=\"../people.php\">Go sign in and have some fun!</a></div>";
+					<p>If you find that there was some unforseen problem with the upgrade procedure, visit <a href=\"http://www.vanilla1forums.com/community/\" target=\"Lussumo\">Lussumo Community Forum</a> for help.</p>
+					<div class=\"ButtonContainer\"><a href=\"../people.php\" class=\"Button\">Go sign in and have some fun!</a></div>";
 				}
 				?>
 			</div>

@@ -5,7 +5,7 @@
 * Vanilla is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 * Vanilla is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-* The latest source code for Vanilla is available at www.lussumo.com
+* The latest source code is available at www.vanilla1forums.com
 * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
 *
 * Description: English language dictionary
@@ -210,7 +210,7 @@ $Context->Dictionary['RoleAbilitiesNotes'] = 'Check any abilities you wish users
 $Context->Dictionary['RoleRemoved'] = 'The role has been removed.';
 $Context->Dictionary['RoleSaved'] = 'Your changes were saved successfully.';
 $Context->Dictionary['NewRoleSaved'] = 'The role was created successfully.';
-$Context->Dictionary['StartANewDiscussion'] = 'Lancer une discussion';
+$Context->Dictionary['StartANewDiscussion'] = 'Start a new discussion';
 $Context->Dictionary['SelectRoleToRemove'] = '1. Select the role you would like to remove';
 $Context->Dictionary['SelectReplacementRole'] = '2. Select a replacement role';
 $Context->Dictionary['ReplacementRole'] = 'Replacement role';
@@ -221,10 +221,11 @@ $Context->Dictionary['YouAreSignedIn'] = 'You are signed in';
 $Context->Dictionary['BottomOfPage'] = 'Bottom of Page';
 $Context->Dictionary['NotSignedIn'] = 'Not signed in';
 $Context->Dictionary['SignIn'] = 'Sign In';
+$Context->Dictionary['Register'] = 'Register';
 $Context->Dictionary['Discussions'] = 'Discussions';
 $Context->Dictionary['Settings'] = 'Settings';
 $Context->Dictionary['Account'] = 'Account';
-$Context->Dictionary['AllDiscussions'] = 'Ici on cause :';
+$Context->Dictionary['AllDiscussions'] = 'All Discussions';
 $Context->Dictionary['Category'] = 'Category';
 $Context->Dictionary['StartedBy'] = 'Started by';
 $Context->Dictionary['LastCommentBy'] = 'Last comment by';
@@ -238,7 +239,7 @@ $Context->Dictionary['WrittenBy'] = 'Written by';
 $Context->Dictionary['Added'] = 'Added';
 $Context->Dictionary['MyAccount'] = 'My Account';
 $Context->Dictionary['ApplyForMembership'] = 'Apply for membership';
-$Context->Dictionary['SignOut'] = 'se déconnecter';
+$Context->Dictionary['SignOut'] = 'Sign Out';
 $Context->Dictionary['ResetYourPassword'] = 'Reset your password';
 $Context->Dictionary['AdministrativeSettings'] = 'Administrative Settings';
 $Context->Dictionary['TermsOfServiceBody'] = "<h1>Terms of Service</h1>
@@ -266,7 +267,7 @@ We log all internet protocol addresses accessing this web site.</p>
 <p><strong>We reserve the right to terminate any membership for any reason or no reason at all.</strong></p>";
 $Context->Dictionary['EmailAddress'] = 'Email address';
 $Context->Dictionary['PasswordAgain'] = 'Password again';
-$Context->Dictionary['SignedInAsX'] = 'Salut //1 !';
+$Context->Dictionary['SignedInAsX'] = 'Signed in as //1';
 $Context->Dictionary['AccountOptions'] = 'Account Options';
 $Context->Dictionary['ChangeYourPersonalInformation'] = 'Personal Information';
 $Context->Dictionary['ChangeYourPassword'] = 'Change Password';
@@ -296,12 +297,15 @@ $Context->Dictionary['UnbookmarkThisDiscussion'] = 'Unbookmark this discussion';
 $Context->Dictionary['HideConfirm'] = 'Are you sure you wish to delete this comment?';
 $Context->Dictionary['ShowConfirm'] = 'Are you sure you wish to undelete this comment?';
 $Context->Dictionary['BookmarkText'] = 'Bookmark this discussion';
+$Context->Dictionary['MoveText'] = 'Move this discussion';
+$Context->Dictionary['SelectCategoryToMoveTo'] = 'Select category...';
+$Context->Dictionary['ConfirmMoveDiscussion'] = 'Are you sure you want to move this discussion?';
 $Context->Dictionary['ConfirmHideDiscussion'] = 'Are you sure you want to delete this discussion?';
 $Context->Dictionary['ConfirmUnhideDiscussion'] = 'Are you sure you want to undelete this discussion?';
 $Context->Dictionary['ConfirmCloseDiscussion'] = 'Are you sure you want to close this discussion?';
-$Context->Dictionary['ConfirmReopenDiscussion'] = 'Are you sure you want to re-open this discussion?';
+$Context->Dictionary['ConfirmReopenDiscussion'] = 'Are you sure you want to reopen this discussion?';
 $Context->Dictionary['ConfirmSticky'] = 'Are you sure you want to make this discussion sticky?';
-$Context->Dictionary['ConfirmUnsticky'] = 'Are you sure you want to make this discussion unsticky?';
+$Context->Dictionary['ConfirmUnsticky'] = 'Are you sure you want to unstick this discussion?';
 $Context->Dictionary['ChangePersonalInformation'] = 'Change personal information';
 $Context->Dictionary['ApplicantOptions'] = 'Applicant Options';
 $Context->Dictionary['ChangeRole'] = 'Change Role';
@@ -336,13 +340,15 @@ $Context->Dictionary['PasswordResetRequest'] = 'Password Reset Request';
 $Context->Dictionary['LanguageManagement'] = 'Languages';
 $Context->Dictionary['LanguageChangesSaved'] = 'The language has been changed successfully.';
 $Context->Dictionary['ChangeLanguage'] = 'Choose a language';
-$Context->Dictionary['ChangeLanguageNotes'] = 'If your language does not appear here, you can <a href="http://lussumo.com/addons/">download the latest languages from Lussumo</a>.';
+$Context->Dictionary['ChangeLanguageNotes'] = 'If your language does not appear here, you can <a href="http://www.vanilla1forums.com/extensions/">download the latest languages from Lussumo</a>.';
 $Context->Dictionary['CloseThisDiscussion'] = 'Close this discussion';
-$Context->Dictionary['ReOpenThisDiscussion'] = 'Re-Open this discussion';
-$Context->Dictionary['MakeThisDiscussionUnsticky'] = 'Make this discussion UnSticky';
+$Context->Dictionary['ReOpenThisDiscussion'] = 'Reopen this discussion';
+$Context->Dictionary['MakeThisDiscussionUnsticky'] = 'Unstick this discussion';
 $Context->Dictionary['MakeThisDiscussionSticky'] = 'Make this discussion sticky';
 $Context->Dictionary['HideThisDiscussion'] = 'Delete this discussion';
 $Context->Dictionary['UnhideThisDiscussion'] = 'Undelete this discussion';
+$Context->Dictionary['HideDiscussionLC'] = 'delete discussion';
+$Context->Dictionary['UnhideDiscussionLC'] = 'undelete discussion';
 
 // Warnings
 $Context->Dictionary['ErrOpenDirectoryExtensions'] = 'Failed to open the extensions directory. Please ensure that PHP has read access to the //1 directory.';
@@ -377,6 +383,7 @@ $Context->Dictionary['ErrNewPasswordMatchBad'] = 'Your new password confirmation
 $Context->Dictionary['ErrPasswordsMatchBad'] = 'The passwords you entered did not match.';
 $Context->Dictionary['ErrAgreeTOS'] = 'You must agree to the terms of service.';
 $Context->Dictionary['ErrUsernameTaken'] = 'The username you entered is already taken by another user.';
+$Context->Dictionary['ErrHoneypotTriggered'] = 'Forum registration is closed.';
 $Context->Dictionary['ErrUserNotFound'] = 'The requested user could not be found.';
 $Context->Dictionary['ErrRemoveUserStyle'] = 'The user could not be removed because he/she is the author of a style.';
 $Context->Dictionary['ErrRemoveUserComments'] = 'The user could not be removed because s/he has authored discussion comments.';
@@ -465,7 +472,7 @@ $Context->Dictionary['XSecondAgo'] = '//1 second ago';
 $Context->Dictionary['XSecondsAgo'] = '//1 seconds ago';
 $Context->Dictionary['nothing'] = 'nothing';
 $Context->Dictionary['EnableWhispers'] = 'Enable Whispers';
-$Context->Dictionary['ExtensionFormNotes'] = 'Extensions are used to add new functionality into Vanilla. Listed below are all of the extensions you currently have installed. To enable an extension, check the box next to the extension name. <a href="http://lussumo.com/addons/">Click here for more extensions from Lussumo</a>.';
+$Context->Dictionary['ExtensionFormNotes'] = 'Extensions are used to add new functionality into Vanilla. Listed below are all of the extensions you currently have installed. To enable an extension, check the box next to the extension name.<br /><br />Official extensions are <strong class="ExtensionNameColor">this color</strong> while unofficial ones are <strong>this color</strong>.<br /><br /><a href="http://www.vanilla1forums.com/extensions/">Click here to find extensions to download</a>.';
 $Context->Dictionary['EnabledExtensions'] = 'Enabled Extensions';
 $Context->Dictionary['DisabledExtensions'] = 'Disabled Extensions';
 $Context->Dictionary['ErrExtensionNotFound'] = 'The specified extension could not be found.';
@@ -474,7 +481,7 @@ $Context->Dictionary['UpdateCheck'] = 'Check for Updates';
 $Context->Dictionary['UpdateCheckNotes'] = 'Vanilla is constantly being updated and upgraded as issues are discovered and features are added (or removed) by the community. In order to make sure that your installation is up to date and secure, it is important that you check for updates to the codebase regularly.';
 $Context->Dictionary['CheckForUpdates'] = 'Check for updates now';
 $Context->Dictionary['ErrUpdateCheckFailure'] = 'Failed to retrieve information from Lussumo about the latest version of Vanilla. Please try again later.';
-$Context->Dictionary['PleaseUpdateYourInstallation'] = '<strong>WARNING:</strong> Your installation of Vanilla is //1, but <span class="Highlight">the most recent version of Vanilla available is //2</span>. Please upgrade your installation immediately by downloading the latest version of Vanilla from <a href="http://getvanilla.com">http://getvanilla.com</a>.';
+$Context->Dictionary['PleaseUpdateYourInstallation'] = '<strong>WARNING:</strong> Your installation of Vanilla is //1, but <span class="Highlight">the most recent version of Vanilla available is //2</span>. Please upgrade your installation immediately by downloading the latest version of Vanilla from <a href="http://www.vanilla1forums.com/">http://www.vanilla1forums.com/</a>.';
 $Context->Dictionary['YourInstallationIsUpToDate'] = 'Your installation of Vanilla is up to date. Please check again soon!';
 $Context->Dictionary['ErrPermissionHideDiscussions'] = 'You do not have permission to delete discussions.';
 $Context->Dictionary['ErrPermissionCloseDiscussions'] = 'You do not have permission to close discussions.';
@@ -500,6 +507,7 @@ $Context->Dictionary['PERMISSION_STICK_DISCUSSIONS'] = 'Make discussions sticky'
 $Context->Dictionary['PERMISSION_HIDE_DISCUSSIONS'] = 'Delete discussions';
 $Context->Dictionary['PERMISSION_CLOSE_DISCUSSIONS'] = 'Close discussions';
 $Context->Dictionary['PERMISSION_EDIT_DISCUSSIONS'] = 'Edit any discussions';
+$Context->Dictionary['PERMISSION_MOVE_ANY_DISCUSSIONS'] = 'Move any discussions';
 $Context->Dictionary['PERMISSION_HIDE_COMMENTS'] = 'Delete comments';
 $Context->Dictionary['PERMISSION_EDIT_COMMENTS'] = 'Edit any comments';
 $Context->Dictionary['PERMISSION_ADD_CATEGORIES'] = 'Add categories';
@@ -529,6 +537,7 @@ $Context->Dictionary['MakeThisDiscussionUnSink'] = 'Unsink this discussion';
 $Context->Dictionary['ConfirmUnSink'] = 'Are you sure you want to unsink this discussion?';
 $Context->Dictionary['ConfirmSink'] = 'Are you sure you want to sink this discussion?';
 $Context->Dictionary['ErrPermissionSinkDiscussions'] = 'You do not have permission to sink discussions';
+$Context->Dictionary['ErrPermissionMoveDiscussions'] = 'You do not have permission to move discussions';
 $Context->Dictionary['YourCommentsWillBeWhisperedToX'] = 'Your comments will be whispered to //1';
 $Context->Dictionary['SMTPHost'] = 'SMTP host';
 $Context->Dictionary['SMTPUser'] = 'SMTP user';
@@ -550,7 +559,7 @@ $Context->Dictionary['XDaysSinceUpdateCheck'] = 'It has been //1 days since you 
 $Context->Dictionary['CheckForUpdatesNow'] = 'Click here to check for updates now';
 $Context->Dictionary['ManageThemeAndStyle'] = 'Themes &amp; Styles';
 $Context->Dictionary['ThemeChangesSaved'] = 'Your changes have been saved successfully';
-$Context->Dictionary['ThemeAndStyleNotes'] =  "Themes and Styles are used to change Vanilla's structure and appearance respectively. For more themes and styles from Lussumo, or to find out how to create your own, <a href=\"http://lussumo.com/addons/\">check out the Vanilla Add-on Directory</a>.";
+$Context->Dictionary['ThemeAndStyleNotes'] =  "Themes and Styles are used to change Vanilla's structure and appearance respectively. For more themes and styles from Lussumo, or to find out how to create your own, <a href=\"http://www.vanilla1forums.com/extensions/\">check out the Vanilla Add-on Directory</a>.";
 $Context->Dictionary['ThemeLabel'] = 'Themes currently available in your installation of Vanilla';
 $Context->Dictionary['StyleLabel'] = 'Styles available for the selected theme';
 $Context->Dictionary['ApplyStyleToAllUsers'] = 'Apply this style to all users';
@@ -563,7 +572,7 @@ $Context->Dictionary['ErrorFopen'] = "An error occurred while attempting to retr
 $Context->Dictionary['ErrorFromPHP'] = " Here is the message reported by PHP: \\1";
 $Context->Dictionary['InvalidHostName'] = 'The supplied host name was invalid: \\1';
 $Context->Dictionary['WelcomeToVanillaGetSomeAddons'] = '<strong>Welcome to Vanilla!</strong>
-<br />You will quickly notice that it is very ... vanilla. You should definitely spice things up with some <a href="http://lussumo.com/addons/">add-ons</a>.';
+<br />You will quickly notice that it is very ... vanilla. You should definitely spice things up with some <a href="http://www.vanilla1forums.com/extensions/">add-ons</a>.';
 $Context->Dictionary['RemoveThisNotice'] = 'Remove this message';
 $Context->Dictionary['OtherSettings'] = 'Other settings';
 $Context->Dictionary['ChangesSaved'] = 'Your changes were saved successfully';
@@ -571,10 +580,10 @@ $Context->Dictionary['DiscussionType'] = 'Discussion Type';
 // Added for Vanilla 1.1 on 2007-02-20
 $Context->Dictionary['ErrPostBackKeyInvalid'] = 'There was a problem authenticating your post information.';
 $Context->Dictionary['ErrPostBackActionInvalid'] = 'Your post information was not be defined properly.';
-$Context->Dictionary['ErrPostBackKeySignOutInvalid'] = 'Can you please confirm your would like to sign out?';
+$Context->Dictionary['ErrPostBackKeySignOutInvalid'] = 'Can you please confirm you would like to sign out?';
 // Moved from settings.php
 $Context->Dictionary['TextWhispered'] = 'Private';
-$Context->Dictionary['TextSticky'] = 'Et surtout';
+$Context->Dictionary['TextSticky'] = 'Sticky';
 $Context->Dictionary['TextClosed'] = 'Closed';
 $Context->Dictionary['TextHidden'] = 'Deleted';
 $Context->Dictionary['TextSink'] = 'Sink';
@@ -598,7 +607,6 @@ $Context->Dictionary['ErrPermissionSortCategories'] = 'You do not have the permi
 //Added for Vanilla 1.1.5 on 2008-05-25
 $Context->Dictionary['EditYourDiscussion'] = 'Edit your discussion';
 /* Please do not remove or alter this definition */
-$Context->Dictionary['PanelFooter'] = '<p id="AboutVanilla">Musiques Incongrues '.$Context->Configuration['RELEASE_TAG'].' est développé par <a href="http://www.constructions-incongrues.net" />Constructions Incongrues</a> et est hébergé par <a href="http://www.pastis-hosting.net/">Pastis Hosting</a>.<br />
-Le code source du projet est <a href="https://github.com/contructions-incongrues/musiques-incongrues.net/">diffusé</a> sous licence <a href="http://www.gnu.org/licenses/agpl.html">GNU Affero GPLv3</a>.</p>';
+$Context->Dictionary['PanelFooter'] = '<p id="AboutVanilla"><a href="http://www.vanilla1forums.com">Vanilla '.APPLICATION_VERSION.'</a> is a product of Lussumo. More Information: <a href="http://lussumo.com/docs">Documentation</a>, <a href="http://www.vanilla1forums.com/community/">Community Support</a>.</p>';
 
 ?>

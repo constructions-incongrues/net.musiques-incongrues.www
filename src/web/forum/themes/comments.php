@@ -11,22 +11,6 @@ if ($this->Context->WarningCollector->Count() > 0) {
 	$PageDetails = $this->pl->GetPageDetails($this->Context);
 	$PageList = $this->pl->GetNumericList();
 	$SessionPostBackKey = $this->Context->Session->GetCsrfValidationKey();
-	$Configuration = $this->Context->Configuration;
-	$Context = $this->Context;
-	$DiscussionID = ForceIncomingInt('DiscussionID', 0);
-	$DiscussionManager = $this->Context->ObjectFactory->NewContextObject($this->Context, 'DiscussionManager');
-	$CommentGrid = $Context->ObjectFactory->CreateControl($Context, "CommentGrid", $DiscussionManager, $DiscussionID);
-	$bookmarkText = (bool)$CommentGrid->Discussion->Bookmarked ? 'NE PLUS SUIVRE CETTE DISCUSSION' : 'SUIVRE CETTE DISCUSSION';
-	$discussionActions = sprintf('
-			<br />
-    		<span id="bookmark-topic"><a href="#" "id="SetBookmarkAnanas" onclick=\'SetBookmark("%sajax/switch.php", "%s", "%s", "%s", "%s", "%s"); %s return false;\'>%s</a> </span>
-    		<span id="bookmark-faq"><a href="http://www.musiques-incongrues.net/forum/page/faq#26" title="En savoir plus :) ">?</a></span>
-    		<!--
-    		|
-    		<a href=""></a><span id="bookmark-topic"><a href="">PERMALIEN</a> </span>
-    		<span id="bookmark-faq"><a href="" title="En savoir plus :) ">?</a></span>
-    		-->',
-	$Configuration['WEB_ROOT'], $CommentGrid->Discussion->Bookmarked, $CommentGrid->Discussion->DiscussionID, 'SUIVRE CETTE DISCUSSION', 'NE PLUS SUIVRE CETTE DISCUSSION', $SessionPostBackKey, $Context->PassThruVars['SetBookmarkOnClick'], $bookmarkText);
 
 	$CommentList .= '<div class="ContentInfo Top">
 		<h1>';
@@ -36,9 +20,7 @@ if ($this->Context->WarningCollector->Count() > 0) {
 				$CommentList .= $this->Discussion->WhisperUsername.': ';
 			}
 			$CommentList .= $this->Discussion->Name
-		.'
-		'.$discussionActions.'
-		</h1>
+		.'</h1>
 		<a href="#pgbottom">'.$this->Context->GetDefinition('BottomOfPage').'</a>
 		<div class="PageInfo">
 			<p>'.$PageDetails.'</p>
@@ -52,11 +34,16 @@ if ($this->Context->WarningCollector->Count() > 0) {
 	$RowNumber = 0;
 	$CommentID = 0;
 	$Alternate = 0;
+	$FirstComment = 1;
+	if ($this->CurrentPage > 1) {
+		$FirstComment = 0;
+	}
 
 	// Define the current user's permissions and preferences
 	// (small optimization so they don't have to be checked every loop):
 	$PERMISSION_EDIT_COMMENTS = $this->Context->Session->User->Permission('PERMISSION_EDIT_COMMENTS');
 	$PERMISSION_HIDE_COMMENTS = $this->Context->Session->User->Permission('PERMISSION_HIDE_COMMENTS');
+	$PERMISSION_HIDE_DISCUSSIONS = $this->Context->Session->User->Permission('PERMISSION_HIDE_DISCUSSIONS');
 	$PERMISSION_EDIT_DISCUSSIONS = $this->Context->Session->User->Permission('PERMISSION_EDIT_DISCUSSIONS');
 
 	while ($Row = $this->Context->Database->GetRow($this->CommentData)) {
@@ -133,10 +120,16 @@ if ($this->Context->WarningCollector->Count() > 0) {
 							if ((!$this->Discussion->Closed && $this->Discussion->Active) || $PERMISSION_EDIT_COMMENTS || $PERMISSION_EDIT_DISCUSSIONS) $CommentList .= '<a href="'.GetUrl($this->Context->Configuration, 'post.php', '', 'CommentID', $Comment->CommentID).'">'.$this->Context->GetDefinition('edit').'</a>
 							';
 						}
-						if ($PERMISSION_HIDE_COMMENTS) $CommentList .= '<a id="HideComment'.$Comment->CommentID.'" href="./" onclick="'
-						."HideComment('".$this->Context->Configuration['WEB_ROOT']."ajax/switch.php', '".($Comment->Deleted?"0":"1")."', '".$this->Discussion->DiscussionID."', '".$Comment->CommentID."', '".$this->Context->GetDefinition("ShowConfirm")."', '".$this->Context->GetDefinition("HideConfirm")."', 'HideComment".$Comment->CommentID."', '".$SessionPostBackKey."');"
-						.' return false;">'.$this->Context->GetDefinition($Comment->Deleted?'Show':'Hide').'</a>
-						';
+						if ($PERMISSION_HIDE_COMMENTS && !$FirstComment) {
+							$CommentList .= '<a id="HideComment'.$Comment->CommentID.'" href="./" onclick="'
+							."HideComment('".$this->Context->Configuration['WEB_ROOT']."ajax/switch.php', '".($Comment->Deleted?"0":"1")."', '".$this->Discussion->DiscussionID."', '".$Comment->CommentID."', '".$this->Context->GetDefinition("ShowConfirm")."', '".$this->Context->GetDefinition("HideConfirm")."', 'HideComment".$Comment->CommentID."', '".$SessionPostBackKey."');"
+							.' return false;">'.$this->Context->GetDefinition($Comment->Deleted?'Show':'Hide').'</a>
+							';
+						}
+						if ($PERMISSION_HIDE_DISCUSSIONS && $FirstComment) {
+							$CommentList .= "<a id=\"HideDiscussion".$this->Discussion->DiscussionID."\" href=\"./\" onclick=\"if (confirm('".$this->Context->GetDefinition($this->Discussion->Active?"ConfirmHideDiscussion":"ConfirmUnhideDiscussion")."')) DiscussionSwitch('".$this->Context->Configuration['WEB_ROOT']."ajax/switch.php', 'Active', '".$this->Discussion->DiscussionID."', '".FlipBool($this->Discussion->Active)."', 'HideDiscussion', '".$SessionPostBackKey."'); return false;\">".$this->Context->GetDefinition(($this->Discussion->Active?"Hide":"Unhide")."DiscussionLC")."</a>";
+							$FirstComment = 0;
+						}
 					}
 					$this->DelegateParameters['CommentList'] = &$CommentList;
 					$this->CallDelegate('PostCommentOptionsRender');

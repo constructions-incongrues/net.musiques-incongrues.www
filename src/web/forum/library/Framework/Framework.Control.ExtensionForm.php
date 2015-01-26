@@ -7,14 +7,13 @@
  * Lussumo's Software Library is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
  * Lussumo's Software Library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- * The latest source code is available at www.lussumo.com
+ * The latest source code is available at www.vanilla1forums.com
  * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
  *
  * @author Mark O'Sullivan
  * @copyright 2003 Mark O'Sullivan
- * @license http://lussumo.com/community/gpl.txt GPL 2
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPL 2
  * @package Framework
- * @version 1.1.5
  */
 
 
@@ -33,7 +32,6 @@ class ExtensionForm extends PostBackControl {
 		} else {
 			$this->Extensions = DefineExtensions($this->Context);
 			$Extension = false;
-			$ExtensionInUse = false;
 
 			// Grab that extension from the extension array
 			if (array_key_exists($ExtensionKey, $this->Extensions)) {
@@ -54,22 +52,27 @@ class ExtensionForm extends PostBackControl {
 				if (!$CurrentExtensions) {
 					$this->Context->WarningCollector->Add($this->Context->GetDefinition("ErrReadFileExtensions")." ".$this->Context->Configuration["APPLICATION_PATH"]."conf/extensions.php");
 				} else {
-					// Loop through the lines
-					$ExtensionCount = count($CurrentExtensions);
-					for ($j = 0; $j < $ExtensionCount; $j++) {
-						if ($Extension->Enabled) {
-							if (trim($CurrentExtensions[$j]) == 'include($Configuration[\'EXTENSIONS_PATH\']."'.$Extension->FileName.'");') {
+					// Loop trough the lines to remove the extension include statement,
+					// or add it att the end.
+					$IncludeString = 'include($Configuration[\'EXTENSIONS_PATH\']."'.$Extension->FileName.'");';
+					if ($Extension->Enabled) {
+						for($i=0, $c=count($CurrentExtensions); $i < $c; $i++) {
+							if (trim($CurrentExtensions[$i]) == $IncludeString) {
 								// If the extension is currently in use, remove it
-								array_splice($CurrentExtensions, $j, 1);
-								$j = count($CurrentExtensions);
+								array_splice($CurrentExtensions, $i, 1);
+								break;
 							}
-						} elseif (trim($CurrentExtensions[$j]) == "?>") {
-							// If the extension is NOT currently in use, add it
-							$CurrentExtensions[$j] = 'include($Configuration[\'EXTENSIONS_PATH\']."'.$Extension->FileName.'");'."\r\n";
-							$CurrentExtensions[] = "?>";
-							$j = count($CurrentExtensions);
 						}
+					} else {
+						for($i=0, $c=count($CurrentExtensions); $i < $c; $i++) {
+							if (trim($CurrentExtensions[$i]) == "?>") {
+								array_splice($CurrentExtensions, $i);
+								break;
+							}
+						}
+						$CurrentExtensions[] = $IncludeString . "\r\n";
 					}
+
 					// Save the extensions file
 					// Open for writing only.
 					// Place the file pointer at the beginning of the file and truncate the file to zero length.

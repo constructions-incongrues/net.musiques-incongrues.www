@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5c45bc9f2b37bb9ad55265402a26285f",
+    "hash": "114243aa70569e6b89bc1e8738152e72",
     "packages": [
         {
             "name": "constructions-incongrues/ananas-build-toolkit",

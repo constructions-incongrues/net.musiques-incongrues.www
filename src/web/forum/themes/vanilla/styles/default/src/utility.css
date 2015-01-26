@@ -1,3 +1,7 @@
+* {
+	-moz-outline: none;
+}
+
 body {
 	background: #fff;
 	text-align: center;

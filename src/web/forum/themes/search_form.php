@@ -5,9 +5,9 @@ $this->PostBackParams->Add("PostBackAction", "Search");
 
 echo '<div id="Form" class="Account Search">
 	<fieldset id="SearchSimpleFields">
-      <legend>'.$this->Context->GetDefinition('Search').'</legend>
+		<legend>'.$this->Context->GetDefinition('Search').'</legend>
 		<a href="./" onclick="ShowAdvancedSearch(); return false;" class="SearchSwitch">'.$this->Context->GetDefinition('Advanced').'</a>';
-      $this->Render_PostBackForm('SearchSimple', 'get');
+		$this->Render_PostBackForm('SearchSimple', 'get');
 		$this->TypeRadio->CssClass = 'SearchRadio';
 			echo '<ul>
 				<li id="MainSearchInput">
@@ -24,9 +24,9 @@ echo '<div id="Form" class="Account Search">
 			</ul>
 		</form>
 	</fieldset>';
-   
-   // Begin Advanced Topic Search Form
-   echo '<fieldset id="SearchDiscussionFields">
+
+	// Begin Advanced Topic Search Form
+	echo '<fieldset id="SearchDiscussionFields">
 		<legend>'.$this->Context->GetDefinition('DiscussionTopicSearch').'</legend>
 		<a href="./" onclick="ShowSimpleSearch(); return false;" class="SearchSwitch">'.$this->Context->GetDefinition('Simple').'</a>';
 		$this->PostBackParams->Add('Type', 'Discussions');
@@ -61,9 +61,9 @@ echo '<div id="Form" class="Account Search">
 			</ul>
 		</form>
 	</fieldset>';
-   
-   // Begin Advanced Comment Search Form
-   echo '<fieldset id="SearchCommentFields">
+
+	// Begin Advanced Comment Search Form
+	echo '<fieldset id="SearchCommentFields">
 		<legend>'.$this->Context->GetDefinition('DiscussionCommentSearch').'</legend>';
 		$this->PostBackParams->Set('Type', 'Comments');
 		$this->Render_PostBackForm('SearchComments', 'get');
@@ -96,9 +96,9 @@ echo '<div id="Form" class="Account Search">
 			</ul>
 		</form>
 	</fieldset>';
-   
-   // Begin Advanced User Search Form
-   
+
+	// Begin Advanced User Search Form
+
 	echo '<fieldset id="SearchUserFields">
 		<legend>'.$this->Context->GetDefinition('UserAccountSearch').'</legend>';
 		$this->RoleSelect->Attributes = ' id="ddRoles"';

@@ -5,7 +5,7 @@
 * Vanilla is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 * Vanilla is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-* The latest source code for Vanilla is available at www.lussumo.com
+* The latest source code is available at www.vanilla1forums.com
 * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
 *
 * Description: File used by the Extension management form to handle turning extensions on and off
@@ -18,18 +18,13 @@ include('../appg/init_ajax.php');
 $PostBackKey = ForceIncomingString('PostBackKey', '');
 $ExtensionKey = ForceIncomingString('ExtensionKey', '');
 $RequestName = ForceIncomingString('RequestName', '');
-if ($PostBackKey != '' 
-	&& $PostBackKey != $Context->Session->GetCsrfValidationKey()
-) {
-	echo $RequestName.'|[ERROR]'.$Context->GetDefinition('ErrPostBackKeyInvalid');
+$SafeRequestName = htmlentities($RequestName);
+
+if ($PostBackKey != '' && $PostBackKey != $Context->Session->GetCsrfValidationKey()) {
+	echo $SafeRequestName.'|[ERROR]'.$Context->GetDefinition('ErrPostBackKeyInvalid');
 } else if ($RequestName == 'Core') {
 	// Ping the Lussumo server with core version information
-	$VersionStatus = OpenUrl($Context->Configuration['UPDATE_URL']
-		.'?Application=VanillaCore'
-		.'&Version='.APPLICATION_VERSION
-		.'&Language='.$Context->Configuration['LANGUAGE']
-		.'&RequestUrl='.$Context->Configuration['BASE_URL'],
-		$Context);
+	$CurrentVersion = OpenUrl($Context->Configuration['UPDATE_URL'].'?name=Vanilla', $Context);
 
 	// Also record that the check occurred
 	$SettingsFile = $Context->Configuration['APPLICATION_PATH'].'conf/settings.php';
@@ -38,22 +33,16 @@ if ($PostBackKey != ''
 	$ConfigurationManager->SaveSettingsToFile($SettingsFile);
 
 	// Spit out the core message
-	if ($VersionStatus == "GOOD") {
+	if ($CurrentVersion <= APPLICATION_VERSION) {
 		echo 'First|'.$Context->GetDefinition('ApplicationStatusGood');
-	} else {
-		$aVersionStatus = explode("|", $VersionStatus);
-		if (count($aVersionStatus) == 2) {
-			echo 'First|[OLD]'.str_replace(array('\\1','\\2'), array($aVersionStatus[0], $aVersionStatus[1]), $Context->GetDefinition('NewVersionAvailable'));
-		} else {
-			// There was some kind of error
-			echo 'First|[ERROR]'.$VersionStatus;
-		}
+	} else if ($CurrentVersion > APPLICATION_VERSION) {
+		echo 'First|[OLD]'.str_replace(array('\\1','\\2'), array($CurrentVersion, $Context->Configuration['UPDATE_URL'].'../'), $Context->GetDefinition('NewVersionAvailable'));
 	}
 } else {
 	// Load all extensions for version information
-	$Extensions = DefineExtensions($Context);
+	$Extensions = DefineExtensions($Context, true);
 	if (!is_array($Extensions)) {
-		echo $RequestName.'|[ERROR]'.$Context->WarningCollector->GetPlainMessages();
+		echo $SafeRequestName.'|[ERROR]'.$Context->WarningCollector->GetPlainMessages();
 	} elseif (count($Extensions) > 0) {
 		// All of the extensions were loaded successfully.
 		// Ping the Lussumo server with the next extension
@@ -75,26 +64,18 @@ if ($PostBackKey != ''
 		// Ping the CheckExtension value if it isn't empty
 		if ($CheckExtension != '') {
 			$Extension = $Extensions[$CheckExtension];
+
 			// Ping the Lussumo server with extension version information
-			$VersionStatus = OpenUrl($Context->Configuration['UPDATE_URL']
-				.'?Extension='.unhtmlspecialchars($Extension->Name)
-				.'&Version='.unhtmlspecialchars($Extension->Version),
-				$Context);
-			if ($VersionStatus == "GOOD") {
-				echo $CheckExtension.'|[GOOD]'.$Context->GetDefinition('ExtensionStatusGood');
-			} elseif ($VersionStatus == "UNKNOWN") {
+			$CurrentVersion = OpenUrl($Context->Configuration['UPDATE_URL'].'?name='.unhtmlspecialchars($Extension->Name), $Context);
+			if ($CurrentVersion == "UNKNOWN") {
 				echo $CheckExtension.'|[UNKNOWN]'.$Context->GetDefinition('ExtensionStatusUnknown');
-			} else {
-				// If an item is out of date, it contains two bits of information
-				// separated by pipes
-				// eg. Version|URL
-				$aVersionStatus = explode("|", $VersionStatus);
-				if (count($aVersionStatus) == 2) {
-					echo $CheckExtension.'|[OLD]'.str_replace(array('\\1','\\2'), array($aVersionStatus[0], $aVersionStatus[1]), $Context->GetDefinition('NewVersionAvailable'));
-				} else {
-					// There was some kind of error
-					echo $CheckExtension.'|[ERROR]'.$VersionStatus;
-				}
+			} else if ($CurrentVersion <= $Extension->Version) {
+				echo $CheckExtension.'|[GOOD]'.$Context->GetDefinition('ExtensionStatusGood');
+			} elseif ($CurrentVersion >= $Extension->Version) {
+				$ExtensionName = $Extension->Name;
+				$ExtensionURL = str_replace(' ', '', $ExtensionName);
+				$ExtensionURL = $Context->Configuration['UPDATE_URL'].'../extensions/'.$ExtensionURL.'/';
+				echo $CheckExtension.'|[OLD]'.str_replace(array('\\1','\\2'), array($CurrentVersion, $ExtensionURL), $Context->GetDefinition('NewVersionAvailable'));
 			}
 		} else {
 			if ($RequestName == '[NEXT]') {

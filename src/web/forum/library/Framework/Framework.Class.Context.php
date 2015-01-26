@@ -8,14 +8,13 @@
  * Lussumo's Software Library is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
  * Lussumo's Software Library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- * The latest source code is available at www.lussumo.com
+ * The latest source code is available at www.vanilla1forums.com
  * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
  *
  * @author Mark O'Sullivan
  * @copyright 2003 Mark O'Sullivan
- * @license http://lussumo.com/community/gpl.txt GPL 2
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPL 2
  * @package Framework
- * @version 1.1.5
  */
 
 /**
@@ -97,6 +96,11 @@ class Context {
 	/**
 	 * @var array
 	 */
+	var $JSDictionary;
+
+	/**
+	 * @var array
+	 */
 	var $Configuration;
 
 	/**
@@ -144,6 +148,7 @@ class Context {
 		$this->StyleUrl = '';
 		$this->PageTitle = '';
 		$this->Dictionary = array();
+		$this->JSDictionary = array();
 		$this->DelegateCollection = array();
 		$this->PassThruVars = array();
 
@@ -177,6 +182,9 @@ class Context {
 		// Add the plain text manipulator
 		$TextFormatter = new TextFormatter();
 		$this->StringManipulator->AddManipulator($Configuration['DEFAULT_FORMAT_TYPE'], $TextFormatter);
+
+		// Set web root definition. Will be available on the client side
+		$this->SetDefinition('WebRoot', $Configuration['WEB_ROOT'], True);
 	}
 
 	/**
@@ -215,11 +223,16 @@ class Context {
 	 * the definition in the extension will not override it.
 	 * @param string $Code Code-word
 	 * @param string $Definition dfeault definition
+	 * @param string $AvailableInJS The definition will be avaible in JavaScript
 	 * @return void
 	 */
-	function SetDefinition($Code, $Definition) {
+	function SetDefinition($Code, $Definition, $AvailableInJS = False) {
 		if (!array_key_exists($Code, $this->Dictionary)) {
 			$this->Dictionary[$Code] = $Definition;
+		}
+
+		if ($AvailableInJS && !array_key_exists($Code, $this->JSDictionary)) {
+			$this->JSDictionary[$Code] = $Definition;
 		}
 	}
 

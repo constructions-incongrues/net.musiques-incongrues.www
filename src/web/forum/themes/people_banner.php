@@ -3,5 +3,5 @@
 // class for "People" pages.
 
 echo '<div class="SiteContainer '.$this->Properties['CssClass'].'">
-   <h1>'.$this->Context->Configuration['BANNER_TITLE'].'</h1>';
+	<h1>'.$this->Context->Configuration['BANNER_TITLE'].'</h1>';
 ?>

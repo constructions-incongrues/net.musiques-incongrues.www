@@ -5,7 +5,7 @@
 * People is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 * People is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 * You should have received a copy of the GNU General Public License along with People; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-* The latest source code for People is available at www.lussumo.com
+* The latest source code is available at www.vanilla1forums.com
 * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
 *
 * Description: Constants and objects specific to external to the forum (ie. sign in, apply, password retrieval).
@@ -67,8 +67,15 @@ $PageEnd = $Context->ObjectFactory->CreateControl($Context, 'PageEnd');
 
 // BUILD THE PAGE HEAD
 // Every page will require some basic definitions for the header.
-$Head->AddScript('js/global.js');
-$Head->AddStyleSheet($Context->StyleUrl.'people.css', 'screen', 100, '');
+$Head->AddScript('js/global.js', '~', 250);
+
+// Add the People CSS stylesheet.
+// This should always be very small, containing only CSS that is essential to
+// Vanilla functioning since we don't want to interfere with theme styles.
+$Head->AddStyleSheet('css/people.css', 'screen', 100, '');
+
+// Add the theme stylesheet
+$Head->AddStyleSheet($Context->StyleUrl.'people.css', 'screen', 101, '');
 
 // INCLUDE EXTENSIONS
 if ($Configuration['PEOPLE_USE_EXTENSIONS']) {

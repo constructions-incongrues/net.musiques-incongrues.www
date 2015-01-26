@@ -7,14 +7,13 @@
  * Lussumo's Software Library is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
  * Lussumo's Software Library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- * The latest source code is available at www.lussumo.com
+ * The latest source code is available at www.vanilla1forums.com
  * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
  *
  * @author Mark O'Sullivan
  * @copyright 2003 Mark O'Sullivan
- * @license http://lussumo.com/community/gpl.txt GPL 2
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPL 2
  * @package Vanilla
- * @version 1.1.5a
  */
 
 
@@ -25,6 +24,43 @@
 class CategoryManager extends Delegation {
 	var $Name;				// The name of this class
 	var $Context;			// The context object that contains all global objects (database, error manager, warning collector, session, etc)
+
+
+	/**
+	 * Check that a category exist.
+	 *
+	 * If a role id is supplied,
+	 * it will chack that the category is available to that role.
+	 *
+	 * @param int $CategoryID
+	 * @param int $RoleID
+	 * @return boolean
+	 */
+	function CategoryExist($CategoryID, $RoleID=null) {
+		$CategoryID = ForceInt($CategoryID, 0);
+		$RoleID = ForceInt($RoleID, 0);
+		if (!$CategoryID) {
+			return False;
+		}
+		$s = $this->Context->ObjectFactory->NewContextObject($this->Context, 'SqlBuilder');
+		$s->SetMainTable('Category', 'c');
+		$s->AddSelect('Name', 'c');
+		if ($RoleID !== null) {
+			$s->AddJoin('CategoryRoleBlock', 'crb', 'CategoryID', 'c', 'CategoryID', 'left join',
+				' and crb.'.$this->Context->DatabaseColumns['CategoryRoleBlock']['RoleID'].' = '.$RoleID);
+			$s->AddWhere('crb', 'Blocked', '', '0', '=', 'and', '', 1, 1);
+			$s->AddWhere('crb', 'Blocked', '', '0', '=', 'or', '', 0, 0);
+			$s->AddWhere('crb', 'Blocked', '', 'null', 'is', 'or', '', 0, 0);
+			$s->AddWhere('c', 'CategoryID', '', $CategoryID, '=', 'and');
+			$s->EndWhereGroup();
+		} else {
+			$s->AddWhere('c', 'CategoryID', '', $CategoryID, '=');
+		}
+		$ResultSet = $this->Context->Database->Select($s, $this->Name,
+			'HasCategory', 'An error occurred while attempting to find a category.');
+		$Count = $this->Context->Database->RowCount($ResultSet);
+		return $Count == 1;
+	}
 
 	function CategoryManager(&$Context) {
 		$this->Name = 'CategoryManager';
@@ -68,7 +104,7 @@ class CategoryManager extends Delegation {
 		if ($this->Context->Session->UserID > 0) {
 			$s->AddJoin('CategoryRoleBlock', 'crb', 'CategoryID', 'c', 'CategoryID', 'left join', ' and crb.'.$this->Context->DatabaseColumns['CategoryRoleBlock']['RoleID'].' = '.$this->Context->Session->User->RoleID);
 			$s->AddJoin('CategoryBlock', 'b', 'CategoryID', 'c', 'CategoryID', 'left join', ' and b.'.$this->Context->DatabaseColumns['CategoryBlock']['UserID'].' = '.$this->Context->Session->UserID);
-			$s->AddSelect('Blocked', 'b', 'Blocked', 'coalesce', '0');
+			$s->AddSelect('Blocked', 'b', 'Blocked', 'coalesce', '0', 1);
 		} else {
 			$s->AddJoin('CategoryRoleBlock', 'crb', 'CategoryID', 'c', 'CategoryID', 'left join', ' and crb.'.$this->Context->DatabaseColumns['CategoryRoleBlock']['RoleID'].' = 1');
 		}
@@ -82,7 +118,7 @@ class CategoryManager extends Delegation {
 		} else {
 			// Identify which of these categories is blocked by role
 			// (so administrators can easily see what they do and don't have access to)
-			$s->AddSelect('Blocked', 'crb', 'RoleBlocked', 'coalesce', '0');
+			$s->AddSelect('Blocked', 'crb', 'RoleBlocked', 'coalesce', '0', 1);
 		}
 
 		$this->DelegateParameters['IncludeCount'] = $IncludeCount;

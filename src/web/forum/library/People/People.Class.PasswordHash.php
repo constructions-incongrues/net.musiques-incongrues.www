@@ -27,7 +27,6 @@
  * @author  Solar Designer <solar at openwall.com
  * @license none - Public domain
  * @package People
- * @version 1.1.5
  */
 
 

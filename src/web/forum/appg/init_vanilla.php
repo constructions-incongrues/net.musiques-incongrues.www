@@ -5,7 +5,7 @@
 * Vanilla is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 * Vanilla is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 * You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-* The latest source code for Vanilla is available at www.lussumo.com
+* The latest source code is available at www.vanilla1forums.com
 * Contact Mark O'Sullivan at mark [at] lussumo [dot] com
 *
 * Description: Constants and objects specific to forum pages.
@@ -76,19 +76,22 @@ $PageEnd = $Context->ObjectFactory->CreateControl($Context, 'PageEnd');
 
 // BUILD THE PAGE HEAD
 // Every page will require some basic definitions for the header.
-$Head->AddScript('js/global.js');
-$Head->AddScript('js/vanilla.js');
-$Head->AddScript('js/ajax.js');
-$Head->AddScript('js/ac.js');
-$Head->AddStyleSheet($Context->StyleUrl.'vanilla.css?v='.$Configuration['RELEASE_TAG'], 'screen', 100, '');
+$Head->AddScript('js/jquery.js', '~', 250);
+$Head->AddScript('js/global.js', '~', 251);
+$Head->AddScript('js/vanilla.js', '~', 252);
+$Head->AddScript('js/ajax.js', '~', 253);
+$Head->AddScript('js/ac.js', '~', 254);
+$Head->AddStyleSheet($Context->StyleUrl.'vanilla.css', 'screen', 100, '');
+$Head->AddStyleSheet($Context->StyleUrl.'vanilla.print.css', 'print', 101, '');
 
 // BUILD THE MAIN MENU
 $Menu->AddTab($Context->GetDefinition('Discussions'), 'discussions', GetUrl($Configuration, './'), '', $Configuration['TAB_POSITION_DISCUSSIONS']);
 if ($Configuration['USE_CATEGORIES']) $Menu->AddTab($Context->GetDefinition('Categories'), 'categories', GetUrl($Configuration, 'categories.php'), '', $Configuration['TAB_POSITION_CATEGORIES']);
 $Menu->AddTab($Context->GetDefinition('Search'), 'search', GetUrl($Configuration, 'search.php'), '', $Configuration['TAB_POSITION_SEARCH']);
 if ($Context->Session->UserID > 0) {
-	// Make sure they should be seeing the settings tab
-	$RequiredPermissions = array('PERMISSION_CHECK_FOR_UPDATES',
+	// The user will not have access to the Settings page unless they have one of the following permissions.
+	$RequiredPermissions = array(
+		'PERMISSION_CHECK_FOR_UPDATES',
 		'PERMISSION_APPROVE_APPLICANTS',
 		'PERMISSION_MANAGE_REGISTRATION',
 		'PERMISSION_ADD_ROLES',
@@ -102,15 +105,18 @@ if ($Context->Session->UserID > 0) {
 		'PERMISSION_MANAGE_EXTENSIONS',
 		'PERMISSION_MANAGE_LANGUAGE',
 		'PERMISSION_MANAGE_STYLES',
-		'PERMISSION_MANAGE_THEMES');
+		'PERMISSION_MANAGE_THEMES'
+	);
 
-	$RequiredPermissionsCount = count($RequiredPermissions);
 	$i = 0;
-	for ($i = 0; $i < $RequiredPermissionsCount; $i++) {
-		if ($Context->Session->User->Permission($RequiredPermissions[$i])) {
+	$SettingsPageAccess = false;
+	foreach ($RequiredPermissions as $RequiredPermission) {
+		if ($Context->Session->User->Permission($RequiredPermission)) {
 			$Menu->AddTab($Context->GetDefinition('Settings'), 'settings', GetUrl($Configuration, 'settings.php'), '', $Configuration['TAB_POSITION_SETTINGS']);
+			$SettingsPageAccess = true;
 			break;
 		}
+		$i++;
 	}
 
 	// Add the account tab
