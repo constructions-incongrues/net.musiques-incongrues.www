@@ -17,7 +17,7 @@ $Configuration['THEME_PATH'] = $Configuration['APPLICATION_PATH'].'/themes/vanil
 $Configuration['DATABASE_PATH'] = __DIR__.'/database.php';
 $Configuration['WEB_ROOT'] = '@vanilla.webroot@'.'/';
 $Configuration['BASE_URL'] = '@paths.baseurl@'.$Configuration['WEB_ROOT'];
-$Configuration['DEFAULT_STYLE'] = $Configuration['WEB_ROOT'].'themes/vanilla/styles/default/';
+$Configuration['DEFAULT_STYLE'] = $Configuration['WEB_ROOT'].'themes/vanilla/styles/scene/';
 
 // People Settings
 $Configuration['SESSION_NAME'] = 'musiques-incongrues';
@@ -34,7 +34,7 @@ $Configuration['DEFAULT_EMAIL_MIME_TYPE'] = 'text/plain';
 $Configuration['LANGUAGE'] = "English";
 $Configuration['URL_BUILDING_METHOD'] = 'mod_rewrite';  // Standard or mod_rewrite
 $Configuration['CHARSET'] = 'utf-8';
-$Configuration['APPLICATION_TITLE'] = 'Le Forum des Musiques Incongrues';
+$Configuration['APPLICATION_TITLE'] = 'Musiques Incongrues';
 $Configuration['BANNER_TITLE'] = 'Musiques Incongrues';
 $Configuration['UPDATE_REMINDER'] = '';
 $Configuration['LAST_UPDATE'] = '';

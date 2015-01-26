@@ -26,7 +26,6 @@ include($Configuration['EXTENSIONS_PATH']."MiProjects/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiSidebar/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiRandomDiscussion/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiBase/default.php");
-include($Configuration['EXTENSIONS_PATH']."MiBetaTesting/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiOpengraph/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiExpandContents/default.php");
 include($Configuration['EXTENSIONS_PATH']."MiPagePlayer/default.php");

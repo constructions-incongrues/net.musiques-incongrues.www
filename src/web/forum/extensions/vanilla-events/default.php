@@ -68,44 +68,6 @@ if ($Context->SelfUrl == 'post.php')
   $Head->AddStyleSheet('extensions/vanilla-events/css/datePicker.css');
 }
 
-// Database setup
-if (!array_key_exists('VANILLAEVENTS', $Configuration))
-{
-  $query = "SHOW COLUMNS FROM ".$Configuration['DATABASE_TABLE_PREFIX']."Event";
-  $table_exists = mysql_query($query);
-  if (!$table_exists)
-  {
-    $success = mysql_query(sprintf("
-CREATE TABLE `%sEvent` (
-  `DiscussionID` int(8) NOT NULL,
-  `Date` date NOT NULL,
-  `City` varchar(255) default NULL,
-  `Country` varchar(255) default NULL,
-  PRIMARY KEY  (`DiscussionID`)
-)
-", $Configuration['DATABASE_TABLE_PREFIX']));
-
-    if ($success)
-    {
-      $Structure = "// Event Table Structure
-\$DatabaseTables['Event'] = 'Event';
-\$DatabaseColumns['Event']['DiscussionID'] = 'DiscussionID';
-\$DatabaseColumns['Event']['Date'] = 'Date';
-\$DatabaseColumns['Event']['City'] = 'City';
-\$DatabaseColumns['Event']['Country'] = 'Country';
-";
-
-      AppendToConfigurationFile($Configuration['APPLICATION_PATH'].'conf/database.php', $Structure);
-      AddConfigurationSetting($Context, 'VANILLAEVENTS', '1');
-    }
-    else
-    {
-      die(mysql_error());
-    }
-  }
-}
-
-
 // Add "events" tab
 $Menu->addTab($Context->getDefinition('Events'),
               $Context->getDefinition('Events'),
@@ -151,10 +113,10 @@ class EventsPeer
     $sql->addSelect('Name', 'd');
     if ($city)
     {
-      $sql->addWhere('e', 'City', '', mysql_real_escape_string($city), '=');
+      $sql->addWhere('e', 'City', '', mysql_escape_string($city), '=');
     }
-    $sql->addWhere('e', 'Date', '', mysql_real_escape_string($start_date), '>=', 'and', '', 1, 1);
-    $sql->addWhere('e', 'Date', '', mysql_real_escape_string($end_date), '<=');
+    $sql->addWhere('e', 'Date', '', mysql_escape_string($start_date), '>=', 'and', '', 1, 1);
+    $sql->addWhere('e', 'Date', '', mysql_escape_string($end_date), '<=');
     $sql->addWhere('d', 'Active', '', '1', '=');
     $sql->EndWhereGroup();
     $sql->AddOrderBy('Date', 'e', 'asc');
