@@ -32,3 +32,6 @@
 # vanilla
 /src/web/forum/extensions/Statistics/options.inc
 /src/web/vanilla-1.3.0/conf/settings.php
+/src/web/forum/themes/vanilla/menu.php
+/src/web/forum/extensions/SidepanelRotator/rotator.php
+/src/web/vanilla-0.6.2/extensions/MiJQuery/js/configuration.js

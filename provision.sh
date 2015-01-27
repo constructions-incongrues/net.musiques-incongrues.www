@@ -49,8 +49,3 @@ ant configure build -Dprofile=vagrant
 # Mise à disposition du projet dans Apache
 ln -sf /vagrant/src/web/* /var/www/
 rm -f /var/www/index.html
-
-# Informations
-echo 
-echo -e "Le site est disponible à l'adresse : http://musiques-incongrues.vagrant.dev"
-echo -e "PhpMyAdmin est disponible à l'adresse : http://musiques-incongrues.vagrant.dev/phpmyadmin/ (root / root)"

@@ -19,6 +19,12 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", path: "provision.sh"
 
+  # Informations
+  config.vm.provision "shell", run: "always", inline: <<-HEREDOC
+    echo -e "Le site est disponible à l'adresse : http://musiques-incongrues.vagrant.dev"
+    echo -e "PhpMyAdmin est disponible à l'adresse : http://musiques-incongrues.vagrant.dev/phpmyadmin/ (root / root)"
+  HEREDOC
+
   # @see https://github.com/phinze/landrush
   config.landrush.enabled = true
   config.vm.hostname = "musiques-incongrues.vagrant.dev"
