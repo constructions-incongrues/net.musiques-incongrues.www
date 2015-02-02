@@ -35,3 +35,4 @@
 /src/web/forum/themes/vanilla/menu.php
 /src/web/forum/extensions/SidepanelRotator/rotator.php
 /src/web/vanilla-0.6.2/extensions/MiJQuery/js/configuration.js
+/src/symfony/config/ProjectConfiguration.class.php

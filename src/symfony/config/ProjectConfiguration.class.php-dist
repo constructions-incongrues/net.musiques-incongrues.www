@@ -8,5 +8,8 @@ class ProjectConfiguration extends sfProjectConfiguration
   public function setup()
   {
     $this->enablePlugins('sfDoctrinePlugin');
+
+    $this->setCacheDir(@symfony1.cache.path@);
+    $this->setLogDir(@symfony1.log.path@);
   }
 }

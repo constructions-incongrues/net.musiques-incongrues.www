@@ -44,6 +44,7 @@ apt-get install -y ant
 cd /vagrant
 ./composer.phar install --prefer-dist --no-progress
 ant configure build -Dprofile=vagrant
+chmod -R 777 /tmp/symfony/musiques-incongrues
 /vagrant/src/symfony/symfony cache:clear
 
 # Mise à disposition du projet dans Apache
