@@ -58,3 +58,7 @@ $Configuration['RELEASE_TAG'] = '@release.tag@';
 // Vanilla Miner configuration
 $Configuration['VANILLA_MINER_URL'] = '@paths.minerurl@';
 $Configuration['VANILLA_MINER_CACHEDIR'] = '@paths.minercachedir@';
+
+// Registration settings
+$Configuration['ALLOW_IMMEDIATE_ACCESS'] = true;
+$Configuration['DEFAULT_ROLE'] = '3';

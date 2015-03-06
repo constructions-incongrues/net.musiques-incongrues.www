@@ -11,8 +11,8 @@
 */
 
 
-/* Global Definitions */  
-body { 
+/* Global Definitions */
+body {
 	background: #fff;
 	text-align: center;
 }
@@ -62,7 +62,7 @@ a:hover {
 .Error {
 	color: #c00;
 	font-size: 12px;
-}	
+}
 .SiteContainer {
 	margin-top: 100px;
 	background: #fff;
@@ -75,7 +75,7 @@ a:hover {
 }
 
 /* Various page widths */
-  
+
 .SignIn { width: 400px; }
 .PasswordRequest { width: 500px; }
 .PasswordRequest .PageTitle{ width: 492px; }
@@ -84,7 +84,7 @@ a:hover {
 .PasswordReset { width: 550px; }
 
 /* Banner */
-  
+
 h1 {
 	text-align: center;
 	padding: 4px 0px 4px 0px;
@@ -101,7 +101,7 @@ h1 strong {
 	font-weight: bold;
 	color: #ccc;
 }
-	
+
 /* About Paragraphs */
 
 .About {
@@ -130,7 +130,7 @@ h1 strong {
 	}
 
 /* Forms */
-  
+
 fieldset {
 	border: 0px;
 	margin: 0px;
@@ -193,7 +193,7 @@ fieldset p {
 	color:#222;
 	background-color: #ffe0ff;
 	}
-	
+
 /* Sign-In Page */
 
 #Form.SignInForm fieldset {
@@ -246,7 +246,7 @@ fieldset p {
 .ApplyForMembershipLink {
 	padding-left: 136px !important;
 	}
-	
+
 /* Password Request Form */
 
 .PasswordRequestForm .ErrorContainer {
@@ -258,7 +258,7 @@ fieldset p {
 .PasswordRequestForm {
 	padding: 0px 0px 0px 247px;
 	}
-	
+
 /* Apply Form */
 #Form.ApplyForm {
 	padding: 0px 0px 0px 282px;
@@ -295,7 +295,7 @@ html>body div.Apply #Form { /* ugly hack, but fixes display error in IE. */
 #TermsOfServiceCheckBox a {
 	text-decoration: underline;
 	}
-	
+
 /* Password Reset Form */
 
 #Form.PasswordResetForm .ErrorContainer {
@@ -303,16 +303,16 @@ html>body div.Apply #Form { /* ugly hack, but fixes display error in IE. */
 	}
 #Form.PasswordResetForm .Submit {
 	padding-left:100px;
-	}  
+	}
 .PasswordReset .About {
 	width: 254px;
 	}
 #Form.PasswordResetForm {
 	padding: 0px 0px 0px 267px;
 	}
-  
+
 /* Form Complete */
-  
+
 .FormComplete {
 	padding: 8px 16px 16px 16px;
 	}
@@ -339,7 +339,7 @@ html>body div.Apply #Form { /* ugly hack, but fixes display error in IE. */
 	}
 
 /* Foot */
-	
+
 .Foot {
 	color: #ccc;
 	text-align: center;
@@ -353,4 +353,7 @@ html>body div.Apply #Form { /* ugly hack, but fixes display error in IE. */
 	color: #aaa;
 	background: none;
 	}
-	
+
+#NameListItem {
+	display: none;
+}
