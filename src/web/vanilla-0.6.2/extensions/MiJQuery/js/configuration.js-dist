@@ -1,4 +1,0 @@
-var configuration = {
-	BASEURL: '@paths.baseurl@/forum',
-	BASEURI: '@paths.baseuri@/forum',
-};

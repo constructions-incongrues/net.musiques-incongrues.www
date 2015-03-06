@@ -1,3 +1,0 @@
-Bonjour {user_name},
-
-Ce message vient vous informer que votre compte utilisateur sur {forum_name} a été assigné au rôle de {role_name}. Ce rôle n'a pas la permission de participer aux discussions.

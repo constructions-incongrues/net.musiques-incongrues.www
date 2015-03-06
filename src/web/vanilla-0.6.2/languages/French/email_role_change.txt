@@ -1,7 +1,0 @@
-Bonjour {user_name},
-
-Ce message vient vous informer que votre compte utilisateur sur {forum_name} a été changé.
-Vous avez été assigné au statut de {role_name}.
-
-Vous pouvez revoir votre changement de rôle à l'URL suivante:
-{forum_url}
