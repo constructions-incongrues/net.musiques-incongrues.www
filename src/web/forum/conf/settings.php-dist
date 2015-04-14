@@ -43,6 +43,8 @@ $Configuration['HTTP_METHOD'] = 'http'; // Could alternately be https
 // Vanilla Settings
 $Configuration['ENABLE_WHISPERS'] = '1';
 $Configuration['USE_CATEGORIES'] = '0';
+$Configuration['MAX_COMMENT_LENGTH'] = '50000';
+$Configuration['MAX_TOPIC_WORD_LENGTH'] = '450';
 
 // Newbie settings
 // Has Vanilla been installed (this will be set to true in conf/settings.php when setup completes)
