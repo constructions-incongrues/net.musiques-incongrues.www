@@ -186,7 +186,7 @@ class UserManager extends Delegation {
 				$this->CallDelegate('PreRoleChangeNotification');
 
 				$e->Body = $EmailBody;
-				$e->Send();ho
+				$e->Send();
 			}
 		}
 		return $this->Context->WarningCollector->Iif();
