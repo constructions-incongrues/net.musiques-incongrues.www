@@ -32,22 +32,31 @@ $ogMetaTags['locale'] = 'fr_FR';
 if ($Context->SelfUrl == 'comments.php') {
 	// Fetch current discussion
   	$discussion = mysql_fetch_assoc($Context->Database->Execute('SELECT d.Name, d.DiscussionID, c.Body FROM LUM_Discussion d INNER JOIN LUM_Comment c on c.DiscussionID = d.DiscussionID WHERE d.DiscussionID = '.ForceIncomingInt("DiscussionID", 0).';', '', '', '', ''));
-	
+
 	// Update metadata according to current discussion
 	$ogMetaTags['title'] = $discussion['Name'];
 	$ogMetaTags['description'] = substr($discussion['Body'], 0, 300) . '...';
-	
-	// Look for an image
-	$ogMetaTags['image'] = $Context->ObjectFactory->NewContextObject($Context, 'DiscussionManager')->getDiscussionByID($discussion['DiscussionID'])->getFirstImage();
-	
+
 	// If it is a release, check if discussion holds any link to an MP3 file
 	$release = mysql_fetch_assoc($Context->Database->Execute('Select LabelName, DownloadLink from LUM_Releases where DiscussionID = ' . $discussion['DiscussionID'], '', '', '', ''));
+
+	// Event ?
+	$event = mysql_fetch_assoc($Context->Database->Execute('Select DiscussionID from LUM_Event where DiscussionID = ' . $discussion['DiscussionID'], '', '', '', ''));
+
+	// Si la discussion est une release ou un event, la première image sert de poster, sinon la dernière
+	if ($release || $event) {
+		$ogMetaTags['image'] = $Context->ObjectFactory->NewContextObject($Context, 'DiscussionManager')->getDiscussionByID($discussion['DiscussionID'])->getFirstImage();
+	} else {
+		$dataDiscussion = ogCallService('images', 'discussion_id', ForceIncomingInt('DiscussionID', 0), 'contributed_at', 'desc');
+		$ogMetaTags['image'] = $dataDiscussion[0]['url'];
+	}
+
 	if ($release && $release['DownloadLink'] && substr($release['DownloadLink'], -3) == 'mp3') {
 		$ogMetaTags['type'] = 'song';
 		$ogMetaTags['audio'] = $release['DownloadLink'];
 		$ogMetaTags['audio:title'] = $discussion['Name'];
 		$ogMetaTags['audio:type'] = 'application/mp3';
-		$ogMetaTags['audio:album'] = 'Unknown Album';			
+		$ogMetaTags['audio:album'] = 'Unknown Album';
 		if ($release['LabelName']) {
 			$ogMetaTags['audio:artist'] = $release['LabelName'];
 		} else {
@@ -64,19 +73,19 @@ if ($Context->SelfUrl == 'comments.php') {
 			$ogMetaTags['audio:artist'] = 'Unknown Artist';
 		}
 	}
-		
+
 	// If discussion relates to an event, add location metadata
 	$event = mysql_fetch_assoc($Context->Database->Execute('SELECT * FROM LUM_Event WHERE LUM_Event.DiscussionID = '.ForceIncomingInt("DiscussionID", 0).';', '', '', '', ''));
 	if ($event) {
 		$ogMetaTags['locality'] = $event['City'];
 		$ogMetaTags['country-name'] = $event['Country'];
-	}	
+	}
 } else if ($Context->SelfUrl == 'extension.php' && ForceIncomingString('PostBackAction', null) == 'Events') {
 	$ogMetaTags['title'] = 'Musiques Incongrues - Agenda';
 	if (ForceIncomingString('city', null)) {
 		$ogMetaTags['title'] .= ' - ' . trim(ucfirst(ForceIncomingString('city', null)), '/');
 	}
-	
+
 	$ogMetaTags['description'] = "Ce soir on sort : l'agenda du forum des Musiques Incongrues";
 } else if ($Context->SelfUrl == 'extension.php' && ForceIncomingString('PostBackAction', null) == 'Zeitgeist') {
 	// Zeitgeist
