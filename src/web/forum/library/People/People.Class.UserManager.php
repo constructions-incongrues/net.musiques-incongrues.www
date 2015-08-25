@@ -271,7 +271,7 @@ class UserManager extends Delegation {
 
 		// This is the honeypot field.
 		if (!empty($SafeUser->Username)) {
-			//$this->Context->WarningCollector->Add($this->Context->GetDefinition('ErrHoneypotTriggered'));
+			$this->Context->WarningCollector->Add($this->Context->GetDefinition('ErrHoneypotTriggered'));
 		}
 
 		// Ensure the username isn't taken already
