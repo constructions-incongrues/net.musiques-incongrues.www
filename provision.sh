@@ -7,7 +7,7 @@ apt-get -qq update
 apt-get -y install rpl
 
 # Configuration de la timezone
-echo "Europe/Paris" > /etc/timezone 
+echo "Europe/Paris" > /etc/timezone
 apt-get install -y tzdata
 dpkg-reconfigure -f noninteractive tzdata
 
@@ -40,7 +40,7 @@ mysql --defaults-file=/etc/mysql/debian.cnf -e "drop database if exists net_musi
 mysql --defaults-file=/etc/mysql/debian.cnf -e "create database net_musiquesincongrues_www_asaph default charset utf8 collate utf8_general_ci"
 
 # Configuration du projet
-apt-get install -y ant 
+apt-get install -y ant
 cd /vagrant
 ./composer.phar install --prefer-dist --no-progress
 ant configure build -Dprofile=vagrant
@@ -48,5 +48,5 @@ chmod -R 777 /tmp/symfony/musiques-incongrues
 /vagrant/src/symfony/symfony cache:clear
 
 # Mise à disposition du projet dans Apache
-ln -sf /vagrant/src/web/* /var/www/
-rm -f /var/www/index.html
+ln -sf /vagrant/src/web/* /var/www/html/
+rm -f /var/www/html/index.html
