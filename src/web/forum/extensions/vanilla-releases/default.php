@@ -256,7 +256,7 @@ class ReleasesPage
 	    $discussionsRemaining = sprintf('%s', $this->renderReleases($releasesRemaining));
 
 	    // Top
-        $title = sprintf('%d releases', count($releasesRemaining));
+        $title = sprintf('%d releases', count($releasesThisWeek) + count($releasesRemaining));
         if ($label_name)
         {
             $title = sprintf('%d releases chez %s', count($releasesRemaining), filter_var($label_name, FILTER_SANITIZE_STRING));
