@@ -7,4 +7,4 @@
  Author: Tristan Rivoallan <tristan@rivoallan.net>
  Author Url: http://github.com/trivoallan
  */
-$Context->Database->execute('SET sql_mode = ""');
+//$Context->Database->execute('SET sql_mode = ""');

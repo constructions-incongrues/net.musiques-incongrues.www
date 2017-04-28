@@ -17,8 +17,8 @@ sudo service dnsmasq restart
 
 ```bash
 # Test
-ant deploy -Dprofile=jeroboam
+ant deploy -Dprofile=pastishosting
 
 # Déploiement effectif
-ant deploy -Dprofile=jeroboam -Drsync.options=--delete-after
+ant deploy -Dprofile=pastishosting -Drsync.options=--delete-after
 ```
