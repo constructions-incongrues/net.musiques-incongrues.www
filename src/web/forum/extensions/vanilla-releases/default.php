@@ -80,9 +80,9 @@ class ReleasesPage
         }
         $subscriptionLinks =
 '<ul class="label-links">
-	<li><a href="http://feeds.feedburner.com/musiques-incongrues-podcast" title="Le podcast auto-mécanique du forum des Musiques Incongrues">Podcast</a></li>
-	<li><a href="http://feedburner.google.com/fb/a/mailverify?uri=musiques-incongrues-releases&loc=fr_FR" title="Recevoir les nouvelles sorties par email" target="_blank">Newsletter</a></li>
-	<li><a href="http://feeds.feedburner.com/musiques-incongrues-releases" title="S\'abonner au flux RSS des nouveautés">RSS</a></li>
+    <li><a href="http://feeds.feedburner.com/musiques-incongrues-podcast" title="Le podcast auto-mécanique du forum des Musiques Incongrues">Podcast</a></li>
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=musiques-incongrues-releases&loc=fr_FR" title="Recevoir les nouvelles sorties par email" target="_blank">Newsletter</a></li>
+    <li><a href="http://feeds.feedburner.com/musiques-incongrues-releases" title="S\'abonner au flux RSS des nouveautés">RSS</a></li>
 </ul>
 ';
         if (ForceIncomingString('only_mixes', '0') === '0')
@@ -169,18 +169,16 @@ class ReleasesPage
         $sql->addSelect('Name', 'd');
         $sql->addWhere('d', 'Active', '', '1', '=');
         if ($start_date) {
-            $sql->addWhere('d', 'DateCreated', '', mysql_real_escape_string($start_date), '<=');
+            $sql->addWhere('d', 'DateCreated', '', mysql_real_escape_string($start_date), '>=');
         }
         if ($end_date) {
-            $sql->addWhere('d', 'DateCreated', '', mysql_real_escape_string($end_date), '>=');
+            $sql->addWhere('d', 'DateCreated', '', mysql_real_escape_string($end_date), '<=');
         }
 
-        if ($label)
-        {
+        if ($label) {
             $sql->addWhere('r', 'LabelName', '', mysql_real_escape_string($label), '=');
         }
-        if ($only_mixes)
-        {
+        if ($only_mixes) {
             $sql->addWhere('r', 'IsMix', '', 1, '=');
         }
         $sql->AddOrderBy('DateCreated', 'd', 'desc');
@@ -222,40 +220,39 @@ class ReleasesPage
             $db_release = false;
         }
 
-
         return $db_release;
     }
 
     function render()
     {
-	    $discussions = '';
-	    $now = new DateTime();
+        $discussions = '';
+        $now = new DateTime();
 
-	    // Label
-	    $label_name = ForceIncomingString('label', null);
+        // Label
+        $label_name = ForceIncomingString('label', null);
 
-	    // Releases published this week
+        // Releases published this week
         $releasesThisWeek = $this->getReleases(
             $label_name,
             ForceIncomingString('only_mixes', false),
-            $now->format('Y-m-d'),
             $now->sub(new DateInterval('P7D'))->format('Y-m-d')
         );
         if (count($releasesThisWeek)) {
-	        $discussionsThisWeek = sprintf( '<h2 class="events">Cette semaine</h2>%s<h2 class="events">Avant ça</h2>', $this->renderReleases( $releasesThisWeek ) );
+            $discussionsThisWeek = sprintf( '<h2 class="events">Cette semaine</h2>%s<h2 class="events">Avant ça</h2>', $this->renderReleases( $releasesThisWeek ) );
         } else {
-        	$discussionsThisWeek = '';
+            $discussionsThisWeek = '';
         }
 
-	    // Remaining releases
+        // Remaining releases
         $releasesRemaining = $this->getReleases(
-        	$label_name,
-	        ForceIncomingString('only_mixes', false),
+            $label_name,
+            ForceIncomingString('only_mixes', false),
+            null,
             $now->sub(new DateInterval('P7D'))->format('Y-m-d')
         );
-	    $discussionsRemaining = sprintf('%s', $this->renderReleases($releasesRemaining));
+        $discussionsRemaining = sprintf('%s', $this->renderReleases($releasesRemaining));
 
-	    // Top
+        // Top
         $title = sprintf('%d releases', count($releasesThisWeek) + count($releasesRemaining));
         if ($label_name)
         {
@@ -270,54 +267,54 @@ class ReleasesPage
         $body = '%s<div id="ContentBody" class="releases"><ol id="Discussions">%s %s</ol></div>';
 
         // Page player
-		ob_implicit_flush(false);
-		@ob_end_clean();
-		ob_start();
-		$Context = $this->Context;
-		include(dirname(__FILE__).'/../MiPagePlayer/templates/page-player.php');
-		$body .= ob_get_clean();
+        ob_implicit_flush(false);
+        @ob_end_clean();
+        ob_start();
+        $Context = $this->Context;
+        include(dirname(__FILE__).'/../MiPagePlayer/templates/page-player.php');
+        $body .= ob_get_clean();
 
         echo sprintf($body, $top, $discussionsThisWeek, $discussionsRemaining);
     }
 
-	/**
-	 * Render releases discussions.
-	 *
-	 * @param $releases
-	 *
-	 * @return string
-	 */
-	protected function renderReleases( $releases ) {
-		$discussions = '';
-		$i = 0;
-		foreach ( $releases as $release ) {
-			$href            = GetUrl( $this->Context->Configuration, 'comments.php', '', 'DiscussionID', $release['DiscussionID'], '', '#Item_1', CleanupString( $release['Name'] ) . '/' );
-			$link            = sprintf( '<a href="%s" title="Discuter de %s" >%s</a>', $href, addcslashes( $release['Name'], '"' ), $release['Name'] );
-			$alternate       = $i % 2 == 0 ? '' : 'modulo';
-			$download_string = '';
-			$label_string    = '';
-			$listen_string   = '';
-			if ( isset( $release['DownloadLink'] ) && $release['DownloadLink'] ) {
-				$download_text       = 'Download';
-				$download_link_title = sprintf( 'Télécharger %s', $release['Name'] );
-				$download_string     = sprintf( '<span class="release-download">(<a class="inline-exclude mi-player-skip" href="%s" title="%s">%s</a>)</span>', $release['DownloadLink'], $download_link_title, $download_text );
+    /**
+     * Render releases discussions.
+     *
+     * @param $releases
+     *
+     * @return string
+     */
+    protected function renderReleases( $releases ) {
+        $discussions = '';
+        $i = 0;
+        foreach ( $releases as $release ) {
+            $href            = GetUrl( $this->Context->Configuration, 'comments.php', '', 'DiscussionID', $release['DiscussionID'], '', '#Item_1', CleanupString( $release['Name'] ) . '/' );
+            $link            = sprintf( '<a href="%s" title="Discuter de %s" >%s</a>', $href, addcslashes( $release['Name'], '"' ), $release['Name'] );
+            $alternate       = $i % 2 == 0 ? '' : 'modulo';
+            $download_string = '';
+            $label_string    = '';
+            $listen_string   = '';
+            if ( isset( $release['DownloadLink'] ) && $release['DownloadLink'] ) {
+                $download_text       = 'Download';
+                $download_link_title = sprintf( 'Télécharger %s', $release['Name'] );
+                $download_string     = sprintf( '<span class="release-download">(<a class="inline-exclude mi-player-skip" href="%s" title="%s">%s</a>)</span>', $release['DownloadLink'], $download_link_title, $download_text );
 
-				if ( pathinfo( $release['DownloadLink'], PATHINFO_EXTENSION ) == 'mp3' ) {
-					$listen_text       = 'Play';
-					$link_class        = 'sm2_link';
-					$listen_link_title = sprintf( 'Écouter %s', $release['Name'] );
-					$listen_string     = sprintf( '<span class="release-download">(<a href="%s" class="%s" title="%s" x-mi-sourceUrl="%s" x-mi-trackName="%s">%s</a>)</span>', $release['DownloadLink'], $link_class, $listen_link_title, $href, addcslashes( $release['Name'], '"' ), $listen_text );
-				}
-			}
-			if ( isset( $release['LabelName'] ) && $release['LabelName'] ) {
-				$label_string = sprintf( '<span class="release-label">(<a href="?label=%s" title="Voir toutes les releases du label %s">%s</a>)</span>%s', $release['LabelName'], $release['LabelName'], $release['LabelName'], $download_string ? ' ' : '' );
-			}
-			$discussions .= sprintf( '<li class="Discussion Release %s"><ul><li class="DiscussionTopic">%s %s %s %s</li></ul></li>', $alternate, $link, $label_string, $listen_string, $download_string );
-			$i ++;
-		}
+                if ( pathinfo( $release['DownloadLink'], PATHINFO_EXTENSION ) == 'mp3' ) {
+                    $listen_text       = 'Play';
+                    $link_class        = 'sm2_link';
+                    $listen_link_title = sprintf( 'Écouter %s', $release['Name'] );
+                    $listen_string     = sprintf( '<span class="release-download">(<a href="%s" class="%s" title="%s" x-mi-sourceUrl="%s" x-mi-trackName="%s">%s</a>)</span>', $release['DownloadLink'], $link_class, $listen_link_title, $href, addcslashes( $release['Name'], '"' ), $listen_text );
+                }
+            }
+            if ( isset( $release['LabelName'] ) && $release['LabelName'] ) {
+                $label_string = sprintf( '<span class="release-label">(<a href="?label=%s" title="Voir toutes les releases du label %s">%s</a>)</span>%s', $release['LabelName'], $release['LabelName'], $release['LabelName'], $download_string ? ' ' : '' );
+            }
+            $discussions .= sprintf( '<li class="Discussion Release %s"><ul><li class="DiscussionTopic">%s %s %s %s</li></ul></li>', $alternate, $link, $label_string, $listen_string, $download_string );
+            $i ++;
+        }
 
-		return $discussions;
-	}
+        return $discussions;
+    }
 }
 
 
@@ -346,21 +343,21 @@ function VanillaReleases_MetadataControls(&$DiscussionForm)
       <li id="button-releases">
         <label for="VanillaReleases_isrelease" style="display: inline;">%s</label>
         <input type="checkbox" class="check_release" name="VanillaReleases_isrelease"  onclick="jQuery(\'#VanillaReleases_fieldset\').toggle();" %s %s "/>
-	</li>
-	<fieldset id="VanillaReleases_fieldset" style="display:%s;">
+    </li>
+    <fieldset id="VanillaReleases_fieldset" style="display:%s;">
         <li>
-	<label for="VanillaReleases_downloadlink">Lien vers la release (zip, rar, mp3, ogg, etc - un lien direct quoi !)</label>
-	<input type="text" name="VanillaReleases_downloadlink" size="60" value="%s" class="release-input-url"/>
+    <label for="VanillaReleases_downloadlink">Lien vers la release (zip, rar, mp3, ogg, etc - un lien direct quoi !)</label>
+    <input type="text" name="VanillaReleases_downloadlink" size="60" value="%s" class="release-input-url"/>
         </li>
         <li>
-	<label for="VanillaReleases_label">Label (pour les release), ou artiste (pour les mixes)</label>
-	<input type="text" name="VanillaReleases_label" value="%s" class="release-input-label"/>
+    <label for="VanillaReleases_label">Label (pour les release), ou artiste (pour les mixes)</label>
+    <input type="text" name="VanillaReleases_label" value="%s" class="release-input-label"/>
         </li>
         <li>
           <label for="VanillaReleases_ismix" style="display: inline;">C\'est un mix</label>
           <input type="checkbox" name="VanillaReleases_ismix_checkbox" %s />
-	</li>
-	</fieldset>
+    </li>
+    </fieldset>
       %s
       %s
   ';
