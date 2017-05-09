@@ -238,7 +238,7 @@ class ReleasesPage
             $now->sub(new DateInterval('P7D'))->format('Y-m-d')
         );
         if (count($releasesThisWeek)) {
-            $discussionsThisWeek = sprintf( '<h2 class="events">Cette semaine</h2>%s<h2 class="events">Avant ça</h2>', $this->renderReleases( $releasesThisWeek ) );
+            $discussionsThisWeek = sprintf( '<h2 class="events">Au cours des 7 derniers jours</h2>%s<h2 class="events">Avant ça</h2>', $this->renderReleases( $releasesThisWeek ) );
         } else {
             $discussionsThisWeek = '';
         }
