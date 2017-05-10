@@ -7,5 +7,5 @@ all:
     param:
       dsn:      mysql:host=@database.vanilla.host@;dbname=@database.vanilla.name@
       username: @database.vanilla.user@
-      password: @database.vanilla.password@ 
+      password: @database.vanilla.password@
       encoding: latin1

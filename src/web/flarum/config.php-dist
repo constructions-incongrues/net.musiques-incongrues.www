@@ -1,0 +1,21 @@
+<?php return array (
+  'debug' => true,
+  'database' =>
+  array (
+    'driver' => 'mysql',
+    'host' => '@database.flarum.host@',
+    'database' => '@database.flarum.name@',
+    'username' => '@database.flarum.user@',
+    'password' => '@database.flarum.password@',
+    'charset' => 'utf8mb4',
+    'collation' => 'utf8mb4_unicode_ci',
+    'prefix' => '',
+    'strict' => false,
+  ),
+  'url' => '//'.$_SERVER['HTTP_HOST'].'/flarum',
+  'paths' =>
+  array (
+    'api' => 'api',
+    'admin' => 'admin',
+  ),
+);

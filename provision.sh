@@ -15,6 +15,7 @@ dpkg-reconfigure -f noninteractive tzdata
 apt-get -y install libapache2-mod-php5 php5-cli php5-curl
 rpl "AllowOverride None" "AllowOverride All" /etc/apache2/sites-available/default
 a2enmod rewrite
+a2enmod headers
 service apache2 restart
 
 # Installation de MySQL
@@ -38,6 +39,10 @@ gunzip -c /vagrant/src/data/net_musiquesincongrues_www_forum.dump.sql.gz | mysql
 # -- asaph
 mysql --defaults-file=/etc/mysql/debian.cnf -e "drop database if exists net_musiquesincongrues_www_asaph"
 mysql --defaults-file=/etc/mysql/debian.cnf -e "create database net_musiquesincongrues_www_asaph default charset utf8 collate utf8_general_ci"
+# -- flarum
+mysql --defaults-file=/etc/mysql/debian.cnf -e "drop database if exists net_musiquesincongrues_www_flarum"
+mysql --defaults-file=/etc/mysql/debian.cnf -e "create database net_musiquesincongrues_www_flarum default charset utf8 collate utf8_general_ci"
+mysql --defaults-file=/etc/mysql/debian.cnf net_musiquesincongrues_www_flarum < /vagrant/src/data/net_musiquesincongrues_www_flarum.sql
 
 # Configuration du projet
 apt-get install -y ant
