@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b115fb0f2ee99e7fcc842cbe583f38c2",
+    "content-hash": "4d9b647d0dfed9401dbd56fb4d886bd9",
     "packages": [
         {
             "name": "components/font-awesome",
@@ -3231,6 +3231,59 @@
             "time": "2017-01-26T08:54:49+00:00"
         },
         {
+            "name": "milescellar/flarum-ext-french",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/milescellar/flarum-ext-french.git",
+                "reference": "d3f90bd24b1fffaf1fb3ebb44721b0e3f91b8187"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/milescellar/flarum-ext-french/zipball/d3f90bd24b1fffaf1fb3ebb44721b0e3f91b8187",
+                "reference": "d3f90bd24b1fffaf1fb3ebb44721b0e3f91b8187",
+                "shasum": ""
+            },
+            "require": {
+                "flarum/core": "^0.1.0-beta.6"
+            },
+            "type": "flarum-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                },
+                "flarum-extension": {
+                    "title": "French",
+                    "icon": {
+                        "image": "icon.svg",
+                        "backgroundColor": "#fff",
+                        "backgroundSize": "cover",
+                        "backgroundPosition": "center"
+                    }
+                },
+                "flarum-locale": {
+                    "code": "fr",
+                    "title": "Français"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Miles Cellar",
+                    "email": "milescellar@outlook.com"
+                }
+            ],
+            "description": "French language pack for Flarum.",
+            "homepage": "https://github.com/milescellar/flarum-ext-french",
+            "keywords": [
+                "locale"
+            ],
+            "time": "2016-11-17T17:47:56+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.22.1",
             "source": {
@@ -3307,6 +3360,26 @@
                 "psr-3"
             ],
             "time": "2017-03-13T07:08:03+00:00"
+        },
+        {
+            "name": "musiquesincongrues/flarum-ext-agenda",
+            "version": "dev-flarum",
+            "dist": {
+                "type": "path",
+                "url": "extensions/flarum-ext-agenda",
+                "reference": "893ed0a926578a12db3934a13e2e42285f6ad339",
+                "shasum": null
+            },
+            "require": {
+                "flarum/core": "^0.1.0-beta.6"
+            },
+            "type": "flarum-extension",
+            "extra": {
+                "flarum-extension": {
+                    "title": "Musiques Incongrues : Agenda"
+                }
+            },
+            "description": "An agenda based on flagged discussions"
         },
         {
             "name": "nesbot/carbon",
@@ -4558,7 +4631,9 @@
     ],
     "aliases": [],
     "minimum-stability": "beta",
-    "stability-flags": [],
+    "stability-flags": {
+        "musiquesincongrues/flarum-ext-agenda": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

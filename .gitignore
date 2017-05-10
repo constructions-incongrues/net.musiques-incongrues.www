@@ -41,3 +41,4 @@
 /src/web/flarum/config.php
 /src/web/flarum/storage/
 /src/web/flarum/vendor/
+/src/web/flarum/extensions/*/js/forum/node_modules/*
