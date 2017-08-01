@@ -1,0 +1,14 @@
+.Reply {
+    text-align: right;
+    margin-left: 8px;
+}
+
+.Reply  .icon {
+    margin-left: 6px;
+}
+
+/*
+.Mine .Reply {
+    display: none;
+}
+*/

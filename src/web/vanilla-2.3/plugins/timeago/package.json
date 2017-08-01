@@ -1,0 +1,9 @@
+{
+  "name": "vanilla-timeago",
+  "private": true,
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-uglify": "*",
+    "gulp-concat": "*"
+  }
+}

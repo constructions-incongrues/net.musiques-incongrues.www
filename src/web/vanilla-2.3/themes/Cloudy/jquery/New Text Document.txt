@@ -1,0 +1,30 @@
+$(".blackit span").text(function(i, text) {
+    return text.replace("Back to Home", "Back to Home");
+});
+
+$(document).ready(function(){
+    $('.SignInPopup').removeClass('SignInPopup').addClass('steamjq');
+});
+
+$(document).ready(function(){
+    $('.Popup').removeClass('Popup').addClass('steamjq');
+});
+
+var viewportWidth = $(window).width();
+var viewportHeight = $(window).height();
+$(window).resize(function() {
+
+});
+
+
+$('.resmobifulix').on('click', function(){
+    $('.thecover').addClass('theblock');
+	$('ul[class="reiva"]').addClass('blockdit');
+	$('ul[class="ramnova"]').addClass('coloritd');
+
+});
+$('.thecover').on('click', function(){
+    $('.thecover').removeClass('theblock');
+	$('.reiva').removeClass('blockdit');
+	$('.ramnova').removeClass('coloritd');
+});

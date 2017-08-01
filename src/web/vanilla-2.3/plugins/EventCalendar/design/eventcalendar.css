@@ -1,0 +1,102 @@
+.CalendarDate a {
+    padding:1px;
+    margin:3px;
+}
+.CalendarTabs {
+    margin-bottom: 1em;
+}
+#MonthlyCalendar {
+    list-style: none outside none
+}
+#MonthlyCalendar > li {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    float: left;
+    display: block; 
+    width: 13.1%;
+    height: 7em;
+    max-height: 7em;
+    padding: 3px;
+    margin: 0.4%;
+    background-color: #E3F4FF;
+    text-align: left;
+    border: 1px solid #ABDAFB
+}
+#MonthlyCalendar > li.Tuesday:first-child {
+    margin-left: 14.3%; /* 1 x 13,1% + 1 x 2x 0.4% + 0.4 */
+}
+#MonthlyCalendar > li.Wednesday:first-child {
+    margin-left: 28.2%; /* 2 x 13,1% + 2" x 2x 0.4% + 0.4 */
+}
+#MonthlyCalendar > li.Thursday:first-child {
+    margin-left: 42.1%; /* 3 x 13,1% + 3 x 2x 0.4% + 0.4 */
+}
+#MonthlyCalendar > li.Friday:first-child {
+    margin-left: 56%; /* 4 x 13,1% + 4 x 2x 0.4% + 0.4 */
+}
+#MonthlyCalendar > li.Saturday:first-child {
+    margin-left: 69.9%; /* 5 x 13,1% + 5 x 2x 0.4% + 0.4 */
+}
+#MonthlyCalendar > li.Sunday:first-child {
+    margin-left: 83.8%; /* 6 x 13,1% + 6 x 2x 0.4% + 0.4 */
+}
+.DayLink {
+    font-size: 1em;
+    text-align: right;
+    width: 100%;
+    display:block;
+} 
+
+li.Sunday {
+    background-color: #CFECFF;
+    color: red;
+}
+li.Sunday > a {
+    /* background-color: #CFECFF; */
+    color: red;
+}
+dl {
+    margin-right: 10px;
+    max-height: 6em;
+    display: block;
+    width: 100%;
+}
+
+dt {
+    margin: 0;
+    width: 100%;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    background-color: #fff;
+    border: 1px solid #ABDAFB;
+    font-size: smaller;
+}
+
+dd {
+    display: none;
+}
+
+.EventBody {
+     border-top: 1px solid rgba(0, 0, 0, 0.1);
+     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+     margin: 5px 0;
+     max-height: 300px;
+     overflow-y: scroll;
+}
+
+/*
+dt:hover + dd {
+    float: left;
+
+    position: fixed;
+    width: 40em;
+    width: 80%;
+    top: 10em;
+    left: 10%;
+    display: inline;
+    max-height: 30px;
+}
+*/

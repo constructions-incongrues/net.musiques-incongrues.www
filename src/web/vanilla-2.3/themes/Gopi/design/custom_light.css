@@ -1,0 +1,193 @@
+/* Light */ 
+
+#Head {
+    background: #fff;
+    color: #333;
+	box-shadow:  0 0 0 1px rgba(10,10,10,.1);
+}
+#Head a {
+    color: #507299;
+}
+
+body {
+    color: #333;
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #395371;
+}
+
+.MenuItems a,.MenuItems a:link,.MenuItems a:visited,.MenuItems a:active {
+	color: #507299!important;
+}
+
+a:hover,a:hover .TextColor, #Head a:hover {
+    color: #666;
+}
+
+.MeButton:hover {
+	color: #757575!important;
+}
+
+.DataList .Title a {color: #4a4a4a;}
+
+.ItemDiscussion .Meta a,.DataList .Meta a,.DataList .Meta, .DateUpdated{color: #969696; font-size: 12px;}
+
+.Button:hover, .NavButton:hover, .PageControls a:hover, .Previous:hover, .Next:hover, .MorePager a:hover,button:hover, .ProfileButtons:hover, .SignInOrRegister a:hover,input[type="submit"]:hover,input[type="reset"]:hover,input[type="button"]:hover,.Button:focus,button:focus,input[type="submit"]:focus,input[type="reset"]:focus,input[type="button"]:focus {
+  color: #333;
+  border-color: #a9a9a9;
+  outline: 0; 
+}
+
+.Button.Primary,button.Primary, .SignInOrRegister a.Popup,input[type="submit"].button-primary,input[type="reset"].button-primary,input[type="button"].button-primary {
+  color: #FFF;
+  background-color: #69db7c;
+  border-color: #69db7c; 
+}
+
+.Button.Primary:hover,button.button-primary:hover, .SignInOrRegister a.Popup:hover,input[type="submit"].button-primary:hover,input[type="reset"].button-primary:hover,input[type="button"].button-primary:hover,.Button.Primary:focus,button.Primary:focus,input[type="submit"].button-primary:focus,input[type="reset"].button-primary:focus,input[type="button"].button-primary:focus {
+  color: #FFF;
+  background-color: #51cf66;
+  border-color: #51cf66; 
+}
+
+.Count {
+    background: #507299;
+}
+
+.MenuItems a:hover {
+    color: #456386!important;
+    text-decoration: none;
+}
+
+.FlyoutMenu a {
+    color: #00419b;
+}
+
+.HasNew {
+    background: #ffa94d;
+    color: #fff;
+}
+
+.Item .Inset {
+    border-top: 1px solid #bec8cc;
+}
+
+.Item .Author a {
+    color: #363636;
+}
+
+.PopList .Meta {
+    color: #777;
+    font-size: 80%;
+}
+
+.PopList .Item a:hover {
+    color:#456386!important;
+}
+
+.Activities .DataList .Photo img {
+    height: 32px;
+    width: 32px;
+}
+
+body.Post .Popup a.Close {
+    color: #1e79a7;
+}
+
+code,pre {
+    background: #ff9;
+    border: 1px solid #eec;
+}
+
+.Preview {
+    background: #fff;
+    color: #333;
+}
+
+footer {
+background-color: #333;
+color:#eee;
+}
+
+footer a {color:#eee;}
+footer a:hover {color:#999;}
+
+.Tag {
+    background: #777;
+    color: #fff;
+}
+.Tag a {
+    color: #fff;
+}
+
+.Tag.Closed {
+    background: #555;
+}
+
+.Tag.Category {
+    background: #f0f0f0;
+    font-weight: normal;
+}
+
+.Tag.Category a {
+    color: #000;
+}
+
+.Tag.Tag-Banned {
+    background-color: #f44336;
+}
+
+#mobile-menu ul a {
+    color: #fff;
+}
+
+.Loading,.Progress,.TinyProgress,.UploadProgress,ody#dashboard_entry_leave p.Leaving {
+    border-top-color:#507299;
+    border-left-color:#507299;
+}
+
+#nprogress .bar {
+    background:#507299;
+}
+
+.CommentCount:before {color: #507299;}
+.ViewCount:before,.Bookmarked:before,.DiscussionCount:before,.Hijack.Bookmark:before{ color: #507299;}
+
+.BigButton:after {
+    background: #507299;
+    color: #ffffff;
+}
+
+.BigButton:hover.BigButton:after {background: #456386;}
+
+.Highlight {
+    background-color: #507299!important;
+    color: #fff!important;
+    border-color: #507299!important;
+}
+
+.Alert {
+	background: #51cf66;
+    color: #fff;
+}
+
+ .DataList.Notifications, .GuestBox, .BoxFilter, .CategoryFilter, .BoxCategories, dl.About, .Section-Profile .PhotoWrapLarge, .DataList.Conversations, .DataList.SearchResults, .Profile.EditMode #Content form, .SideMenu, .UserBox, .DataList-Connections, .DataList.Activities, #Status, .Box {
+    background-color: #f9f9f9;
+}
+
+.DataList.CategoryList, .DataList.Discussions, .MessageList {
+    background-color: #fff;
+    display: block;
+    padding: 20px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.Breadcrumbs a, .Breadcrumbs {color:#777;}
+.Item.Activity a {color:#1e79a7;}
+.NavButton.Handle {background: #fff;}
+
+.token-input-token {background: #43b8ff;color: #fff;}

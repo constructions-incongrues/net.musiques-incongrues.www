@@ -1,0 +1,7 @@
+ul.Discussions li img.IndexImage {
+   height: 40px;
+   width:40px;
+   float:right;
+border-radius:4px;
+padding:0px;
+}

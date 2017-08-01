@@ -38,6 +38,11 @@ gunzip -c /vagrant/src/data/net_musiquesincongrues_www_forum.dump.sql.gz | mysql
 # -- asaph
 mysql --defaults-file=/etc/mysql/debian.cnf -e "drop database if exists net_musiquesincongrues_www_asaph"
 mysql --defaults-file=/etc/mysql/debian.cnf -e "create database net_musiquesincongrues_www_asaph default charset utf8 collate utf8_general_ci"
+# -- vanilla2
+mysql --defaults-file=/etc/mysql/debian.cnf -e "drop database if exists net_musiquesincongrues_www_vanilla2"
+mysql --defaults-file=/etc/mysql/debian.cnf -e "create database net_musiquesincongrues_www_vanilla2 default charset utf8 collate utf8_general_ci"
+
+
 
 # Configuration du projet
 apt-get install -y ant

@@ -1,0 +1,210 @@
+/* Deeply dark */ 
+
+#Head {
+    background: #22313E;
+    color: #a8deff;
+	box-shadow:  0 0 0 1px rgba(10,10,10,.1);
+}
+#Head a {
+    color: #a8deff;
+}
+
+body {
+    color: #a8deff;
+    background-color: #242D36;
+}
+
+a {
+    text-decoration: none;
+    color: #a8deff;
+}
+.MenuItems a,.MenuItems a:link,.MenuItems a:visited,.MenuItems a:active,.BigButton:hover {
+	color: #a8deff!important;
+}
+a:hover,a:hover .TextColor {
+    color: #648ea9;
+}
+
+.MeButton:hover {
+	color: #648ea9!important;
+}
+
+.DataList .Title a,.Options .SpFlyoutHandle:before {color: #a8deff;}
+
+.ItemDiscussion .Meta a,.DataList .Meta a,.DataList .Meta, .DateUpdated,.Section-Discussion .ItemDiscussion .Meta, .CommentMeta{color: #62798e; font-size: 12px;}
+.MItem a:hover{text-decoration:underline;}
+
+.DataList .Item:not(:last-of-type),.NarrowList .Item:not(:last-of-type) {
+	border-bottom: 1px solid #2d3e4c;
+}
+.Message {
+    color: #dedede;
+}
+
+.Button:hover, .NavButton:hover, .PageControls a:hover, .Previous:hover, .Next:hover, .MorePager a:hover,button:hover, .ProfileButtons:hover, .SignInOrRegister a:hover,input[type="submit"]:hover,input[type="reset"]:hover,input[type="button"]:hover,.Button:focus,button:focus,input[type="submit"]:focus,input[type="reset"]:focus,input[type="button"]:focus {
+  color: #333;
+  border-color: #a9a9a9;
+  outline: 0; 
+}
+
+.Button.Primary,button.Primary, .SignInOrRegister a.Popup,input[type="submit"].button-primary,input[type="reset"].button-primary,input[type="button"].button-primary {
+  color: #FFF;
+  background-color: #1bbc9c;
+  border-color: #1bbc9c; 
+}
+
+.Button.Primary:hover,button.button-primary:hover, .SignInOrRegister a.Popup:hover,input[type="submit"].button-primary:hover,input[type="reset"].button-primary:hover,input[type="button"].button-primary:hover,.Button.Primary:focus,button.Primary:focus,input[type="submit"].button-primary:focus,input[type="reset"].button-primary:focus,input[type="button"].button-primary:focus {
+  color: #FFF;
+  background-color: #11967c;
+  border-color: #11967c; 
+}
+
+.Count {
+    background: #3498DC;
+}
+
+.MenuItems a:hover {
+    color: #43b8ff!important;
+    text-decoration: none;
+}
+
+.FlyoutMenu a {
+    color: #00419b;
+}
+
+.HasNew {
+    background: #ffa94d;
+    color: #fff;
+}
+
+.Item .Inset {
+    border-top: 1px solid #bec8cc;
+}
+
+.Item .Author a, label, .Methods b, .MenuItems, .Popup .Border, .DiscussionForm label {
+    color: #62798e;
+}
+div.Popup .Body, .MenuItems, .Popup .Border {
+	background: #22313E;
+}
+.MenuItems, .Popup .Border {
+	box-shadow: 0 2px 3px rgba(10,10,10,.1) , 0 0 0 1px rgba(10,10,10,.1);
+	border: 1px solid #242d36;
+}
+
+
+.PopList .Meta {
+    color: #777;
+    font-size: 80%;
+}
+
+.PopList .Item a:hover {
+    color:#4dadf7!important;
+	text-decoration:underline;
+}
+
+.Activities .DataList .Photo img {
+    height: 32px;
+    width: 32px;
+}
+
+body.Post .Popup a.Close {
+    color: #1e79a7;
+}
+
+code,pre {
+    background: #ff9;
+    border: 1px solid #eec;
+}
+
+.Preview {
+    background: #242d36;
+}
+
+footer {
+background-color: #22313E;
+color:#62798e;
+box-shadow:  0 0 0 1px rgba(10,10,10,.1);
+}
+
+footer a {color:#62798e;}
+footer a:hover {color:#999;}
+
+.Tag {
+    background: #777;
+    color: #fff;
+}
+.Tag a {
+    color: #fff;
+}
+
+.Tag.Closed {
+    background: #555;
+}
+
+.Tag.Category {
+    background: #f0f0f0;
+    font-weight: normal;
+}
+
+.Tag.Category a {
+    color: #000;
+}
+
+.Tag.Tag-Banned {
+    background-color: #f44336;
+}
+
+#mobile-menu ul a {
+    color: #fff;
+}
+
+.Loading,.Progress,.TinyProgress,.UploadProgress,ody#dashboard_entry_leave p.Leaving {
+    border-top-color:#a8deff;
+    border-left-color:#a8deff;
+}
+
+#nprogress .bar {
+    background:#a8deff;
+}
+
+.CommentCount:before {color: #9C59B7;}
+.ViewCount:before,.Bookmarked:before,.DiscussionCount:before,.Hijack.Bookmark:before{ color: #1BBC9C;}
+
+.BigButton:after {
+    background: #1da1f2;
+    color: #fff;
+}
+
+.BigButton:hover.BigButton:after {background: #158dd6;}
+
+.Highlight {
+    background-color: #1BBC9C!important;
+    color: #242D36!important;
+    border-color: #1BBC9C!important;
+}
+
+.Alert {
+	background: #1bad92;
+    color: #fff;
+}
+
+.DataList.Discussions, .DataList.CategoryList, .DataList.Notifications, .GuestBox, .BoxFilter, .CategoryFilter, .BoxCategories, .MessageList, dl.About, .Section-Profile .PhotoWrapLarge, .DataList.Conversations, .DataList.SearchResults, .Profile.EditMode #Content form, .SideMenu, .UserBox, .DataList-Connections, .DataList.Activities, #Status, #LatestPostList, .Box {
+    background-color: #22313E;
+}
+.Breadcrumbs a, .Breadcrumbs {color:#62798e;}
+.Item.Activity a {color:#1e79a7;}
+.NavButton.Handle {background: #22313e;}
+.ButtonGroup.Open .NavButton.Handle {background: #242d36;}
+.token-input-token {background: #43b8ff;color: #fff;}
+.NavButton.Handle .Sprite, .Button.Handle .Sprite {border-color: #1BBC9C transparent transparent transparent;}
+
+.Button, .NavButton, .PageControls a, .Previous, .Next, .MorePager a, .ProfileButtons, .SignInOrRegister a, button, input[type="submit"], input[type="reset"], input[type="button"] {color:#1bbc9c;border-color: #1bbc9c;}
+.Button:hover, .NavButton:hover, .PageControls a:hover, .Previous:hover, .Next:hover, .MorePager a:hover, button:hover, .ProfileButtons:hover, .SignInOrRegister a:hover, input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, .Button:focus, button:focus, input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focus{color:#11967c;border-color: #11967c;}
+blockquote.Quote, blockQuote.UserQuote {background:#62798e;}
+
+input[type="email"], input[type="number"], input[type="search"], input[type="text"], input[type="tel"], input[type="url"], input[type="password"], textarea, select {background-color: #cbdbe4;}
+
+@media only screen and (max-width: 768px){ 
+
+}

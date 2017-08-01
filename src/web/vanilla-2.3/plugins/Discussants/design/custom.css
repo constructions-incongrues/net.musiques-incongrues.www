@@ -1,0 +1,38 @@
+@keyframes discussants {
+  from {margin-right:-15px;}
+  to {margin-right:1px;}
+}
+
+.DiscussantsContainer, .HiddenDiscussantsContainer {
+  margin:0;
+  padding:0;
+}
+
+.DiscussantsContainer img {
+  width:25px;
+  height:25px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+}
+
+.HiddenDiscussantsContainer {
+  display:inline;
+}
+
+.DiscussantsContainer li {
+  display:inline;
+  margin-right:-15px;
+}
+
+.HiddenDiscussantsContainer li {
+  margin-right:-23px;
+}
+
+.DiscussantsContainer:hover li {
+  animation-name:discussants;
+  animation-delay:0.2s;
+  animation-duration:0.2s;
+  animation-fill-mode:forwards;
+  animation-timing-function:ease-out;
+}

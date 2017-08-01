@@ -1,0 +1,214 @@
+/* Light */ 
+
+#Head {
+    background: #54abbd;
+    box-shadow:  none;
+    border-bottom: 1px solid #e7edf3;
+}
+#Head a {
+    color: #fff;
+}
+
+body {
+    color: #333;
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #2c7988;
+}
+
+.MenuItems a,.MenuItems a:link,.MenuItems a:visited,.MenuItems a:active {
+    color: #54abbd!important;
+}
+
+.DataList .Title a {color: #2c7988;}
+
+a:hover,a:hover .TextColor {
+    color: #8aa0bb!important;
+}
+#Head a:hover {
+    color: #eee!important;
+}
+
+.MeButton:hover {
+    color: #eee!important;
+}
+
+.ItemDiscussion .Meta a,.DataList .Meta a,.DataList .Meta, .DateUpdated{color: #969696; font-size: 12px;}
+
+.Button:hover, .NavButton:hover, .PageControls a:hover, .Previous:hover, .Next:hover, .MorePager a:hover,button:hover, .ProfileButtons:hover, .SignInOrRegister a:hover,input[type="submit"]:hover,input[type="reset"]:hover,input[type="button"]:hover,.Button:focus,button:focus,input[type="submit"]:focus,input[type="reset"]:focus,input[type="button"]:focus {
+  color: #333;
+  border-color: #a9a9a9;
+  outline: 0; 
+}
+
+.Button.Primary,button.Primary, .SignInOrRegister a.Popup,input[type="submit"].button-primary,input[type="reset"].button-primary,input[type="button"].button-primary {
+  color: #FFF;
+  background-color: #4CAF50;
+  border-color: #4CAF50; 
+}
+
+.Button.Primary:hover,button.button-primary:hover, .SignInOrRegister a.Popup:hover,input[type="submit"].button-primary:hover,input[type="reset"].button-primary:hover,input[type="button"].button-primary:hover,.Button.Primary:focus,button.Primary:focus,input[type="submit"].button-primary:focus,input[type="reset"].button-primary:focus,input[type="button"].button-primary:focus {
+  color: #4CAF50;
+  background-color: #fff;
+  border-color: #40b153; 
+}
+
+.Count {
+    background: #54abbd;
+}
+
+.MenuItems a:hover {
+    color: #54abbd!important;
+    text-decoration: none;
+}
+
+.FlyoutMenu a {
+    color: #54abbd;
+}
+
+.HasNew {
+    background: #ffa94d;
+    color: #fff;
+}
+
+.Item .Inset {
+    border-top: 1px solid #bec8cc;
+}
+
+.Item .Author a {
+    color: #2a5885;
+}
+
+.PopList .Meta {
+    color: #777;
+    font-size: 80%;
+}
+
+.PopList .Item a:hover {
+    color:#456386!important;
+}
+
+.Activities .DataList .Photo img {
+    height: 32px;
+    width: 32px;
+}
+
+body.Post .Popup a.Close {
+    color: #1e79a7;
+}
+
+code,pre {
+    background: #ff9;
+    border: 1px solid #eec;
+}
+
+.Preview {
+    background: #fff;
+    color: #333;
+}
+
+footer {
+background-color: #333;
+color:#eee;
+}
+
+footer a {color:#eee;}
+footer a:hover {color:#999;}
+
+.Tag {
+    background: #777;
+    color: #fff;
+}
+.Tag a {
+    color: #fff;
+}
+
+.Tag.Closed {
+    background: #555;
+}
+
+.Tag.Category {
+    background: #f0f0f0;
+    font-weight: normal;
+}
+
+.Tag.Category a {
+    color: #000;
+}
+
+.Tag.Tag-Banned {
+    background-color: #f44336;
+}
+
+#mobile-menu ul a {
+    color: #fff;
+}
+
+.Loading,.Progress,.TinyProgress,.UploadProgress,ody#dashboard_entry_leave p.Leaving {
+    border-top-color:#54abbd;
+    border-left-color:#54abbd;
+}
+
+#nprogress .bar {
+    background:#fff;
+}
+
+.CommentCount:before {color: #54abbd;}
+
+.BigButton:after {
+    background: #54abbd;
+    color: #ffffff;
+}
+
+.BigButton:hover.BigButton:after {background: #4396a7;}
+
+.Highlight {
+    background-color: #54abbd!important;
+    color: #fff!important;
+    border-color: #54abbd!important;
+}
+
+.Alert {
+    background: #51cf66;
+    color: #fff;
+}
+
+ .DataList.Notifications, .GuestBox, .BoxFilter, .CategoryFilter, .BoxCategories, dl.About, .Section-Profile .PhotoWrapLarge, .SideMenu, .UserBox, .DataList-Connections, .DataList.Activities, #Status, .Box {
+    background-color: #f3f6f9;
+    border-radius: 0px;
+    box-shadow: none;
+    border: 0;
+}
+
+.DataList.Conversations, .DataList.CategoryList, .DataList.Discussions, .MessageList, .DataList.SearchResults, .Profile.EditMode #Content form {
+    background-color: #fff;
+    display: block;
+    padding: 10px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.Breadcrumbs a, .Breadcrumbs {color:#777;}
+.Item.Activity a {color:#54abbd;}
+.NavButton.Handle {background: #fff;}
+
+.token-input-token {background: #43b8ff;color: #fff;}
+
+.Item.Read {
+    opacity: initial;
+}
+
+.ViewCount:before,.Hijack.Bookmark:before, .Sprite16:before, .Sprite:before, .PopList .Title a:before, .MCount:before, .Bookmark:before, .Bookmarked:before, .Bookmarking:before, .DiscussionCount:before, .CommentCount:before, .RSS:before, .ReactSprite:before, .InlineTags:before, .Options .SpFlyoutHandle:before {color:#54abbd;}
+
+.MeButton .Sprite:before {color:#fff;}
+
+.CommentCount, .ViewCount, .DiscussionCount {width: 50px;}
+
+@media only screen and (min-width: 769px) {
+.Profile .PanelColumn, .Activity .PanelColumn, .EditMode .PanelColumn, .Conversations .PanelColumn {
+    margin-top: 40px;
+    }
+}

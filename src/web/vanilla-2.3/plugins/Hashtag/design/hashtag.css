@@ -1,0 +1,83 @@
+.InlineHashTags {
+   
+}
+.HashTagsUL {
+    display: inline;
+}
+.HashTagsLI {
+    display: inline;
+}
+.HashTagsLink {
+    color: #428bca !Important;
+    text-decoration: none;
+}
+.HashTagsMore {
+    display: block;
+    text-align: right !Important;
+}
+.Error  {
+	color:black;
+}
+.SettingNote {
+    background: #003671;
+    color: #dbf3fc;
+    max-width: 500px;
+    margin-bottom: 4px;
+	display: inline-block;
+}
+.SettingError:before {
+    content: "Error:";
+    margin-right: 4px;
+    background: #D50A0A;
+    color: white;
+}
+.SettingError {
+	margin-left: 2px;
+}
+.SettingWarning:before {
+    content: "Warning:";
+    background: #F9B900;
+    margin-right: 4px;
+    color: black;
+    font-weight: bold;
+}
+.SettingWarning {
+	margin-left: 2px;
+	color: inherit;
+}
+.SettingGardenWarning {
+	margin-left: 2px;
+    color: inherit;
+    background: #FFE1A9;
+    display: inline;
+}
+.SettingHead {
+	color: black;
+    font-size: 12pt;
+    text-shadow: 1px 1px #e0e0e0;
+    border-top: 1px solid gray;
+	max-width: 500px;
+	line-height: 13pt;
+}
+.SettingSubh {
+	color: #777;
+    font-size: 11pt;
+    font-weight: bold;
+	line-height: 12pt;
+}
+.SettingSep {
+    color: black;
+    height: 0.001px;
+    border-top: 1px solid gray;
+    max-width: 500px;
+	margin-top:10px;
+}
+.SettingText {
+	color: black;
+    font-size: 10pt;
+	/*line-height: 11pt;*/
+}
+.Settingsqueeze {
+    font-size: 1pt;
+	line-height: 2pt;
+}

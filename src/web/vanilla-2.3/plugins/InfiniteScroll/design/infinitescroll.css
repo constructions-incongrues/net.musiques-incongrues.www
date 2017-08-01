@@ -1,0 +1,279 @@
+@font-face {
+	font-family: 'updown';
+	src: url('fonts/updown.eot');
+}
+
+@font-face {
+	font-family: 'updown';
+	src: url('data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMigiLHIAAAC8AAAAYGNtYXAl9yY0AAABHAAAAFRnYXNwAAAAEAAAAXAAAAAIZ2x5ZpIRlVUAAAF4AAAA8GhlYWQBOwTpAAACaAAAADZoaGVhA8gB5wAAAqAAAAAkaG10eAUAADQAAALEAAAAGGxvY2EAoABeAAAC3AAAAA5tYXhwAAgAHQAAAuwAAAAgbmFtZfz7j4QAAAMMAAABPHBvc3QAAwAAAAAESAAAACAAAwIAAZAABQAAAUwBZgAAAEcBTAFmAAAA9QAZAIQAAAAAAAAAAAAAAAAAAAABAAAgAAAAAAAAAAAAAAAAAABAAAAlvAHg/+D/4AHgACAAAAABAAAAAAAAAAAAAAAgAAAAAAACAAAAAwAAABQAAwABAAAAFAAEAEAAAAAMAAgAAgAEAAEAICWyJbz//f//AAAAAAAgJbIlvP/9//8AAf/j2lLaSQADAAEAAAAAAAAAAAAAAAAAAQAB//8ADwABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAABABoAKwHmAVIAGgAANzQ/ATYzMh8BFhUUDwEGIyIvAQcGIyIvASY1GgXUBgcHBtQFBTAFBwgFmJgFCAcFMAVsCAXUBQXUBQgHBi8FBZiYBQUvBgcAAAAAAQAaABsB5gFDABoAABM0PwE2NxYfATc2NxYfARYVFA8BBicGLwEmNRoFMAUHCAWYmAUIBwUwBQXUBgcHBtQFAQIIBTAEAQEEmZkEAQEEMAUIBwbTBwEBB9MGBwABAAAAAQAAbo0eP18PPPUACwIAAAAAANAbYk0AAAAA0BtiTQAAAAAB5gFSAAAACAACAAAAAAAAAAEAAAHg/+AAAAIAAAAAAAHmAAEAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAAAQAAAAIAABoCAAAaAAAAAAAKABQAHgBKAHgAAAABAAAABgAbAAEAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEADAAAAAEAAAAAAAIADgBAAAEAAAAAAAMADAAiAAEAAAAAAAQADABOAAEAAAAAAAUAFgAMAAEAAAAAAAYABgAuAAEAAAAAAAoANABaAAMAAQQJAAEADAAAAAMAAQQJAAIADgBAAAMAAQQJAAMADAAiAAMAAQQJAAQADABOAAMAAQQJAAUAFgAMAAMAAQQJAAYADAA0AAMAAQQJAAoANABaAHUAcABkAG8AdwBuAFYAZQByAHMAaQBvAG4AIAAxAC4AMAB1AHAAZABvAHcAbnVwZG93bgB1AHAAZABvAHcAbgBSAGUAZwB1AGwAYQByAHUAcABkAG8AdwBuAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') format('truetype'),
+	     url('data:application/font-woff;charset=utf-8;base64,d09GRk9UVE8AAAToAAoAAAAABKAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAAA9AAAAV0AAAFdCqRELE9TLzIAAAJUAAAAYAAAAGAoIixyY21hcAAAArQAAABUAAAAVCX3JjRnYXNwAAADCAAAAAgAAAAIAAAAEGhlYWQAAAMQAAAANgAAADYBOwTpaGhlYQAAA0gAAAAkAAAAJAPIAedobXR4AAADbAAAABgAAAAYBQAANG1heHAAAAOEAAAABgAAAAYABlAAbmFtZQAAA4wAAAE8AAABPPz7j4Rwb3N0AAAEyAAAACAAAAAgAAMAAAEABAQAAQEBB3VwZG93bgABAgABADr4HAL4GwP4GAQeCgAZU/+Lix4KABlT/4uLDAeLa/iU+HQFHQAAAHkPHQAAAH4RHQAAAAkdAAABVBIABwEBBw0PERQZHnVwZG93bnVwZG93bnUwdTF1MjB1MjVCMnUyNUJDAAACAYkABAAGAQEEBwoNbc38lA78lA78lA77lA6l9wAVi5CNkI6OCPdo92gFj46PjZCLkIuPiY+ICPdo+2gFjoiNhouGi4aJh4iHCFtcBYiHh4qGi4aLhoyIjwj7LPcs+yz7LAWIh4aKhouGi4eMiI8IW7oFiI+Jj4uQCA6l95YVi5CNj46PCLu6BY6Oj42Qi5CLkImOiAj3LPss9yz3LAWOjpCNkIuQi4+JjogIu1wFjoeNh4uGi4aJhoiICPto+2gFh4eHiYaLhouHjYePCPto92gFiI6JkIuQCA74lBT4lBWLDAoAAAAAAwIAAZAABQAAAUwBZgAAAEcBTAFmAAAA9QAZAIQAAAAAAAAAAAAAAAAAAAABAAAgAAAAAAAAAAAAAAAAAABAAAAlvAHg/+D/4AHgACAAAAABAAAAAAAAAAAAAAAgAAAAAAACAAAAAwAAABQAAwABAAAAFAAEAEAAAAAMAAgAAgAEAAEAICWyJbz//f//AAAAAAAgJbIlvP/9//8AAf/j2lLaSQADAAEAAAAAAAAAAAAAAAAAAQAB//8ADwABAAAAAQAAv+5hgl8PPPUACwIAAAAAANAbYk0AAAAA0BtiTQAAAAAB5gFSAAAACAACAAAAAAAAAAEAAAHg/+AAAAIAAAAAAAHmAAEAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAAAQAAAAIAABoCAAAaAABQAAAGAAAAAAAOAK4AAQAAAAAAAQAMAAAAAQAAAAAAAgAOAEAAAQAAAAAAAwAMACIAAQAAAAAABAAMAE4AAQAAAAAABQAWAAwAAQAAAAAABgAGAC4AAQAAAAAACgA0AFoAAwABBAkAAQAMAAAAAwABBAkAAgAOAEAAAwABBAkAAwAMACIAAwABBAkABAAMAE4AAwABBAkABQAWAAwAAwABBAkABgAMADQAAwABBAkACgA0AFoAdQBwAGQAbwB3AG4AVgBlAHIAcwBpAG8AbgAgADEALgAwAHUAcABkAG8AdwBudXBkb3duAHUAcABkAG8AdwBuAFIAZQBnAHUAbABhAHIAdQBwAGQAbwB3AG4ARgBvAG4AdAAgAGcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAuAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#InfScrollNav .JTT, #InfScrollNav .JTB {
+	font-family: 'updown';
+}
+
+html {
+	overflow-y: scroll;
+}
+
+#InfScrollNav {
+	color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	padding: 5px;
+	min-width: 185px;
+	min-height: 45px;
+	text-align: center;
+	font-size: 2.3em;
+	z-index: 10;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#InfScrollNav.TopRight {
+	top: 0;
+	right: 0;
+}
+
+#InfScrollNav.BottomRight {
+	bottom: 0;
+	right: 0;
+}
+
+#InfScrollNav.TopLeft {
+	top: 0;
+	left: 0;
+}
+
+#InfScrollNav.BottomLeft {
+	bottom: 0;
+	left: 0;
+}
+
+#InfScrollNav a {
+	color: inherit;
+	text-decoration: none;
+	opacity: .4;
+	line-height: 45px;
+	outline: 0;
+}
+
+#InfScrollNav a:hover {
+	opacity: 1;
+	color: inherit;
+}
+
+#InfScrollNav .small, #InfScrollNav .slash {
+	font-size: .5em;
+}
+
+#InfScrollNav .PageCount {
+	cursor: pointer;
+	min-width: 100px;
+	display: inline-block;
+}
+
+#InfScrollNav.active .PageCount {
+	display: none;
+}
+
+#InfScrollNav .JumpTo {
+	display: none;
+}
+
+#InfScrollNav.active .JumpTo {
+	min-width: 100px;
+	display: inline-block;
+}
+
+#InfScrollNav .JumpTo .InputBox {
+	padding: 0;
+	width: 42px;
+	text-align: center;
+	display: inline-block;
+}
+
+.ScrollProgress {
+	position: relative;
+	padding: 0 50%;
+	height: 0;
+}
+
+#PageProgress {
+	position: fixed;
+	bottom: 50%;
+	right: 49%;
+	display: none;
+}
+
+.CommentsWrap .BeforeCommentHeading,
+.CommentsWrap .Pager,
+.Discussions .BeforeCommentHeading,
+.Discussions .Pager {
+	float: none;
+}
+
+@-webkit-keyframes InfScrollHighlight { 5%{ background-color:#ffb; } }
+@-moz-keyframes InfScrollHighlight { 5%{ background-color:#ffb; } }
+@keyframes InfScrollHighlight { 5%{ background-color:#ffb; } }
+
+.Section-DiscussionList .InfScrollHighlight {
+	-webkit-animation: InfScrollHighlight 3s;
+	-moz-animation: InfScrollHighlight 3s;
+	animation: InfScrollHighlight 3s;
+}
+
+.NumberedPager > div.spinner {
+	background: none;
+	border: none;
+}
+
+/*
+	Discourse-inspired style
+*/
+
+.StyleDisc #ProgressBar {
+	height: 34px !important;
+	margin-bottom: -34px;
+}
+
+#InfScrollNav.StyleDisc {
+	background: #E9E9E9;
+	width: 145px;
+	height: 34px;
+	min-width: 0;
+	min-height: 0;
+	color: #919191;
+	padding: 0;
+}
+
+#InfScrollNav.StyleDisc .PageCount {
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 34px;
+	font-family: Helvetica,Arial,sans-serif;
+	display: block;
+	position: absolute;
+	letter-spacing: 1px;
+	left: 0;
+	right: 0;
+	top: 0;
+}
+
+#InfScrollNav.StyleDisc.BottomRight .PageCount,
+#InfScrollNav.StyleDisc.BottomLeft .PageCount {
+	top: auto;
+	bottom: 0;
+}
+
+#InfScrollNav.StyleDisc .NavIndex,
+#InfScrollNav.StyleDisc .PageCount > span {
+	position: relative;
+	z-index: 10000;
+}
+
+#InfScrollNav.StyleDisc .PageCount:before,
+#InfScrollNav.StyleDisc .PageCount:after {
+	content: '';
+	position: absolute;
+	z-index: 10000;
+	right: 8px;
+	border: solid transparent;
+	border-width: 5px 4px;
+}
+
+#InfScrollNav.StyleDisc.active .PageCount:before,
+#InfScrollNav.StyleDisc.active .PageCount:after {
+	border-color: transparent;
+}
+
+#InfScrollNav.StyleDisc .PageCount:before {
+	top: 12px;
+	border-top-width: 0;
+	border-bottom-color: #919191;
+}
+
+#InfScrollNav.StyleDisc .PageCount:after {
+	top: 19px;
+	border-bottom-width: 0;
+	border-top-color: #919191;
+}
+
+#InfScrollNav.StyleDisc .small{
+	font-size: 1em;
+}
+
+#InfScrollNav.StyleDisc .slash {
+	font-size: .75em;
+	line-height: 1em;
+	padding: 0 3px;
+	font-weight: normal;
+}
+
+#InfScrollNav.StyleDisc .JTT, #InfScrollNav.StyleDisc .JTB {
+	border: solid white;
+	border-width: 5px 5px 0 5px;
+	line-height: 35px;
+	padding-bottom: 3px;
+	display: none;
+	transition: background-color .25s, color .25s;
+}
+
+#InfScrollNav.StyleDisc .JTB {
+	border-width: 0 5px 5px 5px;
+}
+
+#InfScrollNav.StyleDisc.active .JTT,#InfScrollNav.StyleDisc.active .JTB{
+	display: block;
+	opacity: 1;
+	color: #919191;
+}
+
+#InfScrollNav.StyleDisc a.JTT:hover, #InfScrollNav.StyleDisc a.JTB:hover {
+	opacity: 1;
+	background: #B2B2B2;
+	color: white;
+}
+
+#InfScrollNav.StyleDisc.active {
+	height: auto;
+	padding-top: 34px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+#InfScrollNav.StyleDisc.BottomRight.active,
+#InfScrollNav.StyleDisc.BottomLeft.active {
+	padding-top: 0;
+	padding-bottom: 34px;
+}
+
+#InfScrollNav.StyleDisc .JumpTo.small {
+	font-size: 14px;
+	line-height: 35px;
+	background: white;
+	max-height: 35px;
+	overflow: hidden;
+	text-indent: -185px;
+	color: #919191;
+}
+
+#InfScrollNav.StyleDisc.active .JumpTo.small {
+	display: block;
+}
+
+
+#InfScrollNav.StyleDisc br {
+	display: none;
+}
+
+#InfScrollNav.StyleDisc .InputBox {
+	margin-left: 100px;
+}
+
+#InfScrollNav.StyleDisc.active .PageCount {
+	display: block;
+}

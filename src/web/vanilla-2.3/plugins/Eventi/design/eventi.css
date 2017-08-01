@@ -1,0 +1,311 @@
+.eventi *, 
+.eventi *:before, 
+.eventi *:after {
+   box-sizing: border-box;
+}
+
+/**
+ * By defining the rule this way, you are introducing a JavaScript dependency, 
+ * as it will be required to add the .eventi-show class to the body element. 
+ * The reason for this is because of the eventi control panel (the tiny fixed 
+ * checkbox at the bottom right of the screen), which enables the dev to hide 
+ * the eventi flags on the fly. By hiding them initially, then showing 
+ * on JS, the flicker of the flags appearing then hiding is removed (if dev has 
+ * checked the box to have the Eventi flags hidden). 
+ * 
+ * The opposite can be defined, where the Eventi flags are shown by default, 
+ * and hidden on JS when the option to have them hidden is checked, but this 
+ * means that on every page load, the flags will flicker momentarily then 
+ * disappear, which gets annoying when developing. The point of rewriting the 
+ * Eventi plugin was to make it easier to use (not having to go back and forth 
+ * in the Dashboard to enable/disable the plugin every time) and less obtrusive. 
+ * Simply have the plugin enabled, then hide or show the flags on the fly. 
+ */
+.eventi {
+   display: none !important;
+}
+
+.eventi-show .eventi {
+   display: inline-block !important;
+   position: relative;
+   cursor: help;
+}
+
+.eventi ::selection {
+   color: yellow;
+   background-color: #FF0084;
+} 
+
+.eventi ::-moz-selection {  
+   color: yellow;
+   background-color: #FF0084;
+}
+
+/**
+ * Flag icon button 
+ */
+.eventi .eventi-flag-hook:before {
+   content: '\2690';
+   display: block;
+   font-size: 20px;
+   color: #000;
+   text-shadow: 0 -1px 0 #fff, 1px 0 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff, 0 0 1px #fff;
+   line-height: 10px;
+   padding: 4px 4px 6px 4px;
+   border-radius: 2px;
+   box-shadow: 0 0 1px 0 #9F6000;
+   margin: 5px;
+   background: linear-gradient(to bottom, yellow, #fff); 
+}
+
+/**
+ * Because Chrome defines their shadows less generously
+ */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+   .eventi .eventi-flag-hook:before {
+      box-shadow: 0 0 2px 0 #9F6000;
+   }
+}
+
+/**
+ * The tooltip that appears on hover, not displayed by default. 
+ */
+.eventi .eventi-tooltip {
+   display: none;
+   position: absolute;
+   z-index: 9000;
+   top: 0;
+   left: 0;
+   width: 350px;
+   margin: 30px 0 0 5px;
+   background-color: #000;
+   font-size: 12px !important;
+   font-weight: normal !important;
+   border-radius: 2px;
+   font-size: 12px !important;
+   line-height: normal;
+   text-align: left;
+   box-shadow: 0 1px 4px 0 rgba(0,0,0,0.50);
+   word-break: break-all;
+   cursor: auto;
+}
+
+/* Display tooltip on hover */
+.eventi:hover .eventi-tooltip,
+.eventi:focus .eventi-tooltip,
+.eventi:target .eventi-tooltip {
+   display: block;
+}
+
+/* Change flag */
+.eventi:hover .eventi-flag-hook:before, 
+.eventi:focus .eventi-flag-hook:before,
+.eventi:target .eventi-flag-hook:before {
+   content: '\2691'; /* 2691 2693 */
+}
+
+.eventi .eventi-tooltip:after {
+   top: -10px; 
+   border: 5px solid transparent; 
+   content: ""; 
+   position: absolute; 
+   border-bottom-color: #000; 
+   left: 5px; 
+}
+
+/* When eventi tooltip is off the right edge of the screen */
+.eventi .eventi-tooltip-left.eventi-tooltip {
+   left: -330px;
+}
+
+.eventi .eventi-tooltip-left.eventi-tooltip:after {
+   left: auto;
+   right: 5px;  
+}
+
+/* When Eventi tooltop is off the bottom edge of the screen */
+.eventi .eventi-tooltip-top.eventi-tooltip:after {
+   top: auto;
+   bottom: -10px;
+   border: 5px solid transparent; 
+   border-top-color: #000; 
+}
+
+/*
+ * Actual content of the tooltip
+ */
+
+.eventi .eventi-event-name {
+   font-size: 13px !important;
+   font-weight: bold !important;
+   padding: 0;
+   margin: 0 !important;
+   border: 0;
+   color: yellow;
+   background: transparent;
+   border-bottom: 1px solid #FF0084;
+   padding: 10px;
+   display: block;
+   width: 100%;
+   box-shadow: 0 4px 5px -4px #222222;
+   z-index: 1;
+   position: relative;
+   text-overflow: ellipsis;
+   cursor: text;
+}
+
+.eventi .eventi-tooltip-body {
+   background-color: #333333;
+   padding: 10px;
+   color: #777777;
+   text-shadow: 0 0 1px #000;
+}
+
+.eventi .eventi-subhead {
+   color: #FF0084;
+   overflow: hidden;
+}
+
+.eventi .eventi-subhead .eventi-file-line {
+   margin: 10px 0 0 35px;
+   color: #555555;
+   float: left;
+}
+
+.eventi .eventi-subhead .eventi-file-line:before {
+   content: '\21B3';
+   color: #FF0084;
+   font-size: 14px;
+   display: block;
+   padding: 0 5px 5px 0;
+   margin: 0 0 0 10px;
+   position: absolute;
+   left: 10px;
+}
+
+/**
+ * Eventi arguments 
+ */
+.eventi strong {
+   display: block;
+   background-color: #222222;
+   padding: 5px 10px;
+   margin: 10px -10px;
+   color: #888888;
+   font-style: italic;
+   box-shadow: inset 0 0 1px #000;
+   text-shadow: 1px 1px 1px #000;
+}
+
+.eventi ol {
+   margin: 0 0 0 25px;
+   list-style: decimal outside none;
+   color: #555555;
+}
+
+.eventi li {
+   margin: 0 !important;
+   padding: 2px 0 !important;
+   border: 0 !important;
+   font-size: 12px !important;
+}
+
+.eventi li em {
+   color: #777777;
+   font-style: normal;
+}
+
+.eventi li pre {
+   border: 0;
+   background: transparent;
+}
+
+.eventi li span {
+   display: inline !important;
+}
+
+.eventi-share-link {
+   display: block;
+   width: 100%;
+   background-color: transparent;
+   color: #666666;
+   border: 0;
+   border-top: 1px solid #222222;
+   padding: 5px 10px;
+   border-bottom-left-radius: 2px;
+   border-bottom-right-radius: 2px;
+}
+
+/**
+ * Eventi control panel, to hide or show Eventi flags 
+ */
+.eventi-cp {
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   display: block;
+   background-color: #333333;
+   color: #777777;
+   border-radius: 2px;
+   padding: 5px;
+   overflow: hidden;
+   line-height: normal;
+   cursor: pointer;
+   box-shadow: 0 0 1px 0 #000;
+   transition: all 0.2s ease;
+   opacity: 0.20;
+}
+
+.eventi-cp:hover {
+   opacity: 1;
+}
+
+.eventi-cp input {
+   display: inline-block;
+   padding: 0;
+   margin: 0;
+   float: left;
+   cursor: pointer;
+}
+
+.eventi-cp span {
+   display: inline-block;
+   float: left;
+   text-shadow: 0 0 1px #000;
+   font-size: 10px;
+   margin: 0 5px 0 0;
+}
+
+
+/**
+ * Animate the tooltip
+ */
+
+@-webkit-keyframes slidein {
+  from {
+     opacity: 0;
+     -webkit-transform: scale(.90);
+  }
+
+  to {
+     opacity: 1;
+     -webkit-transform: scale(1);
+  }
+}
+
+@keyframes slidein {
+  from {
+     opacity: 0;
+     transform: scale(.90);
+  }
+
+  to {
+     opacity: 1;
+     transform: scale(1);
+  }
+}
+
+.eventi:hover .eventi-tooltip {
+   -webkit-animation: slidein 0.2s ease 0.1s 1 normal both;
+   animation: slidein 0.2s ease 0.1s 1 normal both;
+}

@@ -3,12 +3,17 @@
         {
             "type": "git",
             "url": "git@github.com:constructions-incongrues/ananas-build-toolkit.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/vanilla/vanilla.git"
         }
     ],
     "require": {
         "constructions-incongrues/ananas-build-toolkit": "^0.35",
         "swiftmailer/swiftmailer": "4.1.*",
         "symfony/symfony1": "1.4.*",
-        "zendframework/zendframework1": "~1.12"
+        "zendframework/zendframework1": "~1.12",
+        "vanilla/vanilla": "dev-release/2.3"
     }
 }
