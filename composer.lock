@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "08cf6b6674c9d356d38616000c046899",
+    "content-hash": "5f651719ae5439d3d1873a44845cc109",
     "packages": [
         {
             "name": "constructions-incongrues/ananas-build-toolkit",
-            "version": "0.35.0",
+            "version": "0.36.4",
             "source": {
                 "type": "git",
                 "url": "git@github.com:constructions-incongrues/ananas-build-toolkit.git",
-                "reference": "d702e4eb240380edb1d5a278a3dcdc55a875fbfe"
+                "reference": "9ee4e9e8cb9289a5d4c152bb0d3b8331a2847750"
             },
             "require": {
                 "php": ">=5.5.0"
@@ -30,20 +30,20 @@
                 "issues": "https://github.com/constructions-incongrues/ananas-build-toolkit/issues",
                 "source": "https://github.com/constructions-incongrues/ananas-build-toolkit"
             },
-            "time": "2017-04-07T13:17:06+00:00"
+            "time": "2017-07-05T15:01:18+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v4.1.8",
+            "version": "v4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "28ac862c8d5ccbe5c7ee8cecc07e1ca9d5195b56"
+                "reference": "ae540bed1079c07aa12e9e62d9d8d4fc49bbdff2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/28ac862c8d5ccbe5c7ee8cecc07e1ca9d5195b56",
-                "reference": "28ac862c8d5ccbe5c7ee8cecc07e1ca9d5195b56",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/ae540bed1079c07aa12e9e62d9d8d4fc49bbdff2",
+                "reference": "ae540bed1079c07aa12e9e62d9d8d4fc49bbdff2",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.1-dev"
+                    "dev-master": "4.3-dev"
                 }
             },
             "autoload": {
@@ -81,7 +81,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2012-06-17T20:55:34+00:00"
+            "time": "2013-04-11T10:22:09+00:00"
         },
         {
             "name": "symfony/symfony1",

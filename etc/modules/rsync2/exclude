@@ -1,0 +1,26 @@
+# Project related
+*.pyc
+/src/web/forum/oeil/data/thumbs
+/src/web/forum/oeil/data/images
+*-dist
+/src/web/data
+
+# symfony related
+/src/symfony/log/*
+/src/symfony/cache/*
+
+# SCM
+.git
+
+# vendors
+/vendor/composer
+/vendor/constructions-incongrues/ananas-build-toolkit
+
+# ides
+*.bak
+*.swo
+*~
+/.idea
+
+# vagrant
+/.vagrant

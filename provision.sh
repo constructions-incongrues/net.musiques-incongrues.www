@@ -13,7 +13,7 @@ dpkg-reconfigure -f noninteractive tzdata
 
 # Installation de Apache et PHP
 apt-get -y install libapache2-mod-php5 php5-cli php5-curl
-rpl "AllowOverride None" "AllowOverride All" /etc/apache2/sites-available/default
+mv /tmp/000-default.conf /etc/apache2/sites-available/000-default.conf
 a2enmod rewrite
 service apache2 restart
 
@@ -40,7 +40,7 @@ mysql --defaults-file=/etc/mysql/debian.cnf -e "drop database if exists net_musi
 mysql --defaults-file=/etc/mysql/debian.cnf -e "create database net_musiquesincongrues_www_asaph default charset utf8 collate utf8_general_ci"
 
 # Configuration du projet
-apt-get install -y ant
+apt-get install -y ant git
 cd /vagrant
 ./composer.phar install --prefer-dist --no-progress
 ant configure build -Dprofile=vagrant

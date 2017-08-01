@@ -16,6 +16,9 @@ Vagrant.configure(2) do |config|
 
   config.vm.network "private_network", type: "dhcp", nictype: "virtio"
 
+  # Apache configuration
+  config.vm.provision "file", source: "./etc/provision/000-default.conf", destination: "/tmp/000-default.conf"
+
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.

@@ -6,9 +6,9 @@
         }
     ],
     "require": {
-        "constructions-incongrues/ananas-build-toolkit": "^0.35",
-        "swiftmailer/swiftmailer": "4.1.*",
-        "symfony/symfony1": "1.4.*",
-        "zendframework/zendframework1": "~1.12"
+        "constructions-incongrues/ananas-build-toolkit": "^0.36",
+        "swiftmailer/swiftmailer": "^4.1",
+        "symfony/symfony1": "^1.4",
+        "zendframework/zendframework1": "^1.12"
     }
 }
