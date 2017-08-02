@@ -75,7 +75,7 @@ class feedsActions extends sfActions
         return sfView::SUCCESS;
     }
 
-	/**
+    /**
      * Generates a podcast feed out of all mixes listed on forum.
      *
      * @param sfWebRequest $request A request object
@@ -127,11 +127,11 @@ class feedsActions extends sfActions
             }
             try
             {
-            	$entry->setEnclosure(array('uri' => $mix['downloadlink'], 'type' => 'audio/mpeg', 'length' => 666));
+                $entry->setEnclosure(array('uri' => $mix['downloadlink'], 'type' => 'audio/mpeg', 'length' => 666));
             }
             catch (Zend_Feed_Exception $e)
             {
-            	// Discard exception
+                // Discard exception
             }
             $feed->addEntry($entry);
         }
@@ -194,10 +194,7 @@ class feedsActions extends sfActions
         $q->free();
 
         // Build
-        set_include_path(get_include_path().PATH_SEPARATOR.sprintf(
-            '%s/../../vendor/zendframework/zendframework1/library',
-            sfConfig::get('sf_root_dir')
-        ));
+        set_include_path(sprintf('%s/../../vendor/zendframework/zendframework1/library', sfConfig::get('sf_root_dir')));
         require_once('Zend/Loader.php');
         Zend_Loader::loadClass('Zend_Feed_Writer_Feed');
         $feed = new Zend_Feed_Writer_Feed();
