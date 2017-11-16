@@ -461,9 +461,9 @@ function VanillaEvents_MetadataControls(&$DiscussionForm)
   // Default form values
   $form_isevent = ForceIncomingString('VanillaEvents_isevent', true) === 'on' ? 'checked' : '';
   $form_disable = '';
-  $form_date = $fmt_today;
-  $form_city = 'Paris';
-  $form_country = 'France';
+  $form_date = ForceIncomingString('VanillaEvents_date', $fmt_today);
+  $form_city = ForceIncomingString('VanillaEvents_city', 'Paris');
+  $form_country = ForceIncomingString('VanillaEvents_country', 'France');
   $form_hidden_isevent = '';
   $fieldset_visibility = 'none';
   if (isset($_GET['is_event']) && $_GET['is_event'] == 'true')
