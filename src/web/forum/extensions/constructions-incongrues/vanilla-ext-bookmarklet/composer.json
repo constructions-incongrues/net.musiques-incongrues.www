@@ -1,0 +1,16 @@
+{
+    "name": "constructions-incongrues/vanilla-ext-bookmarklet",
+    "description": "Adds a bookmarklet that makes it possible to create post from saving website pages metadata",
+    "type": "library",
+    "license": "AGPLv3",
+    "authors": [
+        {
+            "name": "Constructions Incongrues",
+            "email": "contact@constructions-incongrues.net"
+        }
+    ],
+    "require": {
+        "symfony/dependency-injection": "^3.3",
+        "phpro/grumphp": "^0.12.0"
+    }
+}

@@ -1,0 +1,56 @@
+services:
+    constructions-incongrues.vanilla.ext.bookmarklet.matcher.request:
+        class: ConstructionsIncongrues\Vanilla\Ext\Bookmarklet\Matcher\RequestMatcher
+
+    constructions-incongrues.vanilla.ext.bookmarklet.mapper.query_selector:
+        class: ConstructionsIncongrues\Vanilla\Ext\Bookmarklet\Mapper\QuerySelectorMapper
+
+    constructions-incongrues.vanilla.ext.bookmarklet.mapper.url_regex:
+        class: ConstructionsIncongrues\Vanilla\Ext\Bookmarklet\Mapper\UrlRegexMapper
+
+    constructions-incongrues.vanilla.ext.bookmarklet.mapper.facebook_graphapi:
+        class: ConstructionsIncongrues\Vanilla\Ext\Bookmarklet\Mapper\FacebookGraphApiMapper
+        arguments: ['%facebook.graphapi.token%']
+
+    constructions-incongrues.vanilla.ext.bookmarklet.web_extractor:
+        class: ConstructionsIncongrues\Vanilla\Ext\Bookmarklet\WebExtractor
+        calls:
+            # archive.org
+            - [addMatcher, [
+                    archive.org,
+                    @constructions-incongrues.vanilla.ext.bookmarklet.matcher.request,
+                    ['|^/details/\w+/.?/*$|']
+                ]
+            ]
+            - [addAttributeMapper, [
+                    archive.org,
+                    download_link,
+                    @constructions-incongrues.vanilla.ext.bookmarklet.mapper.queryselector,
+                    ['a.format-summary[0][href]]']
+                ]
+            ]
+            - [addAttributeMapper, [
+                    archive.org,
+                    label,
+                    @constructions-incongrues.vanilla.ext.bookmarklet.mapper.url_regex,
+                    [PHP_URI_PATH, '|^/details/(\w+)/?.*$|']
+                ]
+            ]
+
+            # facebook.com
+            - [addMatcher, [
+                    facebook.com,
+                    @constructions-incongrues.vanilla.ext.bookmarklet.matcher.request,
+                    [|^/events/.+$|]
+                ]
+            ]
+            - [addAttributesMapper, [
+                    facebook.com
+                    @constructions-incongrues.vanilla.ext.bookmarklet.mapper.facebook_graphapi, [
+                        [city, getCity],
+                        [country, getCountry],
+                        [description, getDescription],
+                        [image, getCoverUrl]
+                    ]
+                ]
+            ]

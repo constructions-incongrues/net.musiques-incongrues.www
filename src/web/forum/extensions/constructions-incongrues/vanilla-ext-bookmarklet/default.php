@@ -1,11 +1,11 @@
 <?php
 /*
-Extension Name: MiBookmarklet
+Extension Name: constructions-incongrues.net/vanilla-ext-bookmarklet
 Extension Url:
 Description:
 Version:
 Author: Constructions Incongrues
-Author Url:
+Author Url: http://www.constructions-incongrues.net
 */
 
 $Context->AddToDelegate('DiscussionForm', 'PostLoadData', 'MiBookmarklet_PopulateDiscussionFromQueryString');
@@ -17,13 +17,45 @@ $Context->AddToDelegate("Panel", "PostStartButtonRender", 'MiBookmarklet_Display
 
 $Context->Configuration['MiBookmarklet'] = [
     'DomainMap' => [
-        'archive.org'          => 'release',
-        'bandcamp.com'         => 'release',
-        'facebook.com'         => 'event',
-        'freemusicarchive.org' => 'release',
-        'mixcloud.com'         => 'release',
-        'soundcloud.com'       => 'release',
-        'youtube.com'          => 'release',
+        'archive.org'               => 'release',
+        'bandcamp.com'              => 'release',
+        'daheardit-records.net'     => 'release',
+        'facebook.com'              => 'event',
+        'freemusicarchive.org'      => 'release',
+        'mixcloud.com'              => 'release',
+        'moncul.org'                => 'release',
+        'openagenda.com'            => 'event',
+        'ouiedire.net'              => 'release',
+        'secretthirteen.org'        => 'release',
+        'soundcloud.com'            => 'release',
+        'thebrainrecords.com'       => 'release',
+        'thirdtypetapes.com'        => 'release',
+        'thisisradioclash.org'      => 'release',
+        'youtube.com'               => 'release',
+    ],
+    'platforms' => [
+        'archive.org'               => [
+            'type'      => 'release',
+            'prefixes'  => ['/details'],
+            'selectors' => [
+                'label'        => ['pattern'       => '/^\/details/(\w+)\/?.*$/'],
+                'downloadLink' => ['queryselector' => 'a.format-summary[0][href]']
+            ]
+        ],
+        'bandcamp.com'              => 'release',
+        'daheardit-records.net'     => 'release',
+        'facebook.com'              => 'event',
+        'freemusicarchive.org'      => 'release',
+        'mixcloud.com'              => 'release',
+        'moncul.org'                => 'release',
+        'openagenda.com'            => 'event',
+        'ouiedire.net'              => 'release',
+        'secretthirteen.org'        => 'release',
+        'soundcloud.com'            => 'release',
+        'thebrainrecords.com'       => 'release',
+        'thirdtypetapes.com'        => 'release',
+        'thisisradioclash.org'      => 'release',
+        'youtube.com'               => 'release',
     ],
     // 'FacebookToken' => 'EAACEdEose0cBAHNthvHhl0BddwL6aYrMxZCONTZB2ZCTVUPd8wYMtxa0uTsaerEQ7j9Pu2S9mI8sCvFf0ZAdVqKy8WmVrUpoM7i6ZCT5YxgOGBUVDknSJXPou4ndVDatBg5wiKZBXtZCdEfxK8sLQpnACJ11rKytcpbeWwMZBDGWVAJd8iC54jVRIUAOV6tuv2jCzzN9wJ8ZAqwZDZD'
     'FacebookToken' => 'EAAQCkCAZAeAABAL2785dZAOt3RVdxEiLKrf1z83arxgGwZA2037QvdgEmPRqpGUXl8japuVMtqrvXhjXn2rMXAvLYYRm62UcWahKJfBgwcb6F3rcEOWyPuZCtFFNuYTBehsDcZCK4bewOMLKN0ptoXEZBini8JUjpMAtTYut2DswZDZD'
@@ -131,6 +163,7 @@ function MiBookmarklet_PopulateRequestFromQueryString(&$DiscussionForm)
     if (array_key_exists($domain, $DiscussionForm->Context->Configuration['MiBookmarklet']['DomainMap'])
         && $DiscussionForm->Context->Configuration['MiBookmarklet']['DomainMap'][$domain] == 'release') {
         $_GET['is_release'] = true;
+        $_GET['VanillaReleases_label'] = $domain;
     }
 
 }
@@ -197,7 +230,7 @@ function MiBookmarklet_DisplayBookmarkletLink()
         $tpl_button,
         trim(file_get_contents(__DIR__.'/bookmarklet.js')),
         "Ce bookmarklet permet de capturer des liens partout sur Internet et de les rapatrier sur le forum.\n\nIl suffit de le glisser dans la barre de favoris de votre navigateur.\n\nCliquez sur le lien ci-dessous pour une explication plus détaillée.",
-        '⤤ Ananas It !',
+        '🍍 Ananas It !',
         '#TODO',
         'Tout savoir sur le Bookmarklet Incongru'
     );
