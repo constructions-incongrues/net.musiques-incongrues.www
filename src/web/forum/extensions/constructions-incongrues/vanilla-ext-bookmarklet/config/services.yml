@@ -93,6 +93,13 @@ services:
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/(\w+)/sets/?.*$|' }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
 
+    constructions-incongrues.vanilla.extension.bookmarklet.page.soundcloud:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?soundcloud\.com/\w+/.+$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/(\w+)/.+$|' }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_ismix: on, format: release } }]]
+
     constructions-incongrues.vanilla.extension.bookmarklet.page.thebrain:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
         arguments: [['|^https?://(www.)?thebrainradio\.com/listen.php.*|']]
@@ -125,6 +132,7 @@ services:
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.openagenda']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.ouiedire']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.soundcloud.set']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.soundcloud']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.thebrain']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.thebrain.amix']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.radioclash']]

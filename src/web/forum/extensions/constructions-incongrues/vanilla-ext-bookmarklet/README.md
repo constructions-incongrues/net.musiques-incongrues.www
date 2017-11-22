@@ -25,7 +25,6 @@ include($Configuration['EXTENSIONS_PATH']."constructions-incongrues/vanilla-ext-
 - [] Inject configuration in bookmarklet
 - [] Widen comment body text area if needed
 - [] Focus on comment text area after post
-- [] Extension scoped composer.json
 - [] Fix oembed problems (mixcloud https, bandcamp player not showing up)
 - [] openagenda => prévenir le mec
 - [] rules engine for label extraction from url
@@ -35,6 +34,7 @@ include($Configuration['EXTENSIONS_PATH']."constructions-incongrues/vanilla-ext-
 - [] inject Request via services.yml (could RequestStack help ?)
 - [] use symfony/expression language
 - [] rename to constructions-incongrues/vanilla-extension-bookmarks ?
+- [x] Extension scoped composer.json
 - [x] Unicode character on bookmarklet title
 - [x] Tool for local bookmarklet generation
 - [x] Other platforms metadata extraction
