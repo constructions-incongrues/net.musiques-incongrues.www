@@ -1,3 +1,5 @@
+/* Bookmarklet compiler : https://mrcoles.com/bookmarklet */
+
 var title = document.title;
 var txt = '';
 if (window.getSelection) {
@@ -38,5 +40,8 @@ if (canonicalUrl) {
         url = ogUrl.getAttribute('content');
     }
 }
-console.log(txt);
-void (btw = window.open('http://vanilla.musiques-incongrues.vagrant.test/forum/post/?Title=' + encodeURIComponent(title) + '&Via=' + encodeURIComponent(url.replace('%2520', '+')) + '&Image=' + encodeURIComponent(logo.replace('%2520', '+')) + '&Description=' + encodeURIComponent(txt.trim())))
+void (btw = window.open('http://www.musiques-incongrues.net/forum/post/?title=' +
+    encodeURIComponent(title) + '&url=' +
+    encodeURIComponent(url.replace('%2520', '+')) + '&image=' +
+    encodeURIComponent(logo.replace('%2520', '+')) + '&description=' +
+    encodeURIComponent(txt.trim())))

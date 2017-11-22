@@ -366,13 +366,13 @@ function VanillaReleases_MetadataControls(&$DiscussionForm)
 
     // Default form values
     $form_isrelease = ForceIncomingString('VanillaReleases_isrelease', true) === 'on' ? 'checked' : '';
-    $form_ismix = '';
+    $form_ismix = ForceIncomingString('VanillaReleases_ismix', true) === 'on' ? 'checked' : '';
     $form_disable = '';
     $form_hidden_isrelease = '';
     $form_hidden_ismix = '';
     $fieldset_visibility = ForceIncomingString('VanillaReleases_isrelease', true) === 'on' ? 'block' : 'none';
     $download_link = '';
-    $label_name = '';
+    $label_name = ForceIncomingString('VanillaReleases_label', null);
 
     if (isset($_GET['is_release']) && $_GET['is_release'] == 'true')
     {
