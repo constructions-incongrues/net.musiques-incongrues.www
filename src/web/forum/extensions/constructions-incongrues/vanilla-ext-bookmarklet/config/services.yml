@@ -28,9 +28,9 @@ services:
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.archive_org:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
-        arguments: [['|^https?://(www.)?archive\.org/details/\w+/?.*$|']]
+        arguments: [['|^https?://(www.)?archive\.org/details/.+/?.*$|']]
         calls:
-            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/details/(\w+)/?.*$|' }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/details/(.+)/?.*$|' }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.bandcamp:
@@ -42,7 +42,7 @@ services:
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.daheardit:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
-        arguments: [['|^https?://(www.)?daheardit-records\.net/\w+/discography/.*$|']]
+        arguments: [['|^https?://(www.)?daheardit-records\.net/.+/discography/.*$|']]
         calls:
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release, VanillaReleases_label: 'Da ! Heard It Records' } }]]
 
@@ -63,7 +63,7 @@ services:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
         arguments: [['|^https?://(www.)?freemusicarchive\.org/music/.+$|']]
         calls:
-            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/music/(\w+)/?.*$|' }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/music/(.+)/?.*$|' }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.lesetoilesflottantes:
@@ -82,7 +82,7 @@ services:
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.mixcloud:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
-        arguments: [['|^https?://(www.)?mixcloud\.com/\w+/.*$|']]
+        arguments: [['|^https?://(www.)?mixcloud\.com/.+/.*$|']]
         calls:
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.css_selector', { attributes: { VanillaReleases_label: '.hovercard-anchor a' } }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_ismix: on, format: release } }]]
@@ -107,16 +107,16 @@ services:
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.soundcloud.set:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
-        arguments: [['|^https?://(www.)?soundcloud\.com/\w+/sets/\w+/?.*$|']]
+        arguments: [['|^https?://(www.)?soundcloud\.com/.+/sets/.+/?.*$|']]
         calls:
-            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/(\w+)/sets/?.*$|' }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/(.+)/sets/?.*$|' }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.soundcloud:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
-        arguments: [['|^https?://(www.)?soundcloud\.com/\w+/.+$|']]
+        arguments: [['|^https?://(www.)?soundcloud\.com/.+/.+$|']]
         calls:
-            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/(\w+)/.+$|' }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/(.+)/.+$|' }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_ismix: on, format: release } }]]
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.thebrain:
