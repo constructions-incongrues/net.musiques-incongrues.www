@@ -23,9 +23,12 @@ if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Co
 }
 
 // Add "events" tab
-$Menu->addTab($Context->getDefinition('Releases'),
-$Context->getDefinition('Releases'),
-$Configuration['BASE_URL'] . 'releases/', 'class="Eyes"');
+$Menu->addTab(
+    $Context->getDefinition('Releases'),
+    $Context->getDefinition('Releases'),
+    $Configuration['BASE_URL'] . 'releases/',
+    'class="Eyes"'
+);
 
 // Add link to podcast in website's head
 $Head->AddString('<link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/musiques-incongrues-podcast" title="Le podcast auto-mécanique du forum des Musiques Incongrues" />');
