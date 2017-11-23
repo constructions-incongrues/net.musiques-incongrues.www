@@ -66,6 +66,13 @@ services:
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/music/(\w+)/?.*$|' }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
 
+    constructions-incongrues.vanilla.extension.bookmarklet.page.lesetoilesflottantes:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://lesetoilesflottantes\.incongru\.org/\d+/\d+/\d+/.+$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.css_selector', { attributes: { VanillaReleases_downloadlink: 'audio a' } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_ismix: on, VanillaReleases_label: 'Les Étoiles Flottantes', format: release } }]]
+
     constructions-incongrues.vanilla.extension.bookmarklet.page.lylradio:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
         arguments: [['|^https?://lyl\.live/show/.+.*$|']]
@@ -139,6 +146,7 @@ services:
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.empilements']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.facebook.event']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.freemusicarchive']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.lesetoilesflottantes']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.lylradio']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.mixcloud']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.moncul']]

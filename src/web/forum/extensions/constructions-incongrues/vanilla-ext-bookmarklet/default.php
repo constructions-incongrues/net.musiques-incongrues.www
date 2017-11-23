@@ -128,6 +128,10 @@ function MiBookmarklet_formatRelease(array $metadata)
         $body .= sprintf("%s\n\n", filter_var(ForceIncomingString('url', ''), FILTER_SANITIZE_URL));
     }
 
+    if (isset($metadata['VanillaReleases_downloadlink'])) {
+        $body .= sprintf("%s\n\n", $metadata['VanillaReleases_downloadlink']);
+    }
+
     if ($metadata['description'] !== '') {
         $body .= sprintf("[quote]\n%s\n[/quote]\n\n", $metadata['description']);
     }

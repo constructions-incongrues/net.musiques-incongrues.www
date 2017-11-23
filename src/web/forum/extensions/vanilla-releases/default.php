@@ -374,7 +374,7 @@ function VanillaReleases_MetadataControls(&$DiscussionForm)
     $form_hidden_isrelease = '';
     $form_hidden_ismix = '';
     $fieldset_visibility = ForceIncomingString('VanillaReleases_isrelease', true) === 'on' ? 'block' : 'none';
-    $download_link = '';
+    $download_link = ForceIncomingString('VanillaReleases_downloadlink', null);
     $label_name = ForceIncomingString('VanillaReleases_label', null);
 
     if (isset($_GET['is_release']) && $_GET['is_release'] == 'true')
