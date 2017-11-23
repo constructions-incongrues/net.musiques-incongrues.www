@@ -33,6 +33,7 @@ services:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
         arguments: [['|^https?://.+\.bandcamp\.com/album/.+.*$|']]
         calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: host, pattern: '|^(.+)\.bandcamp\.com$|' }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.daheardit:
