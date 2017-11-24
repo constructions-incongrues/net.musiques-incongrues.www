@@ -13,8 +13,8 @@ services:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Mapper\ForceValuesMapper
         shared: false
 
-    constructions-incongrues.vanilla.extension.bookmarklet.mapper.url:
-        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Mapper\UrlMapper
+    constructions-incongrues.vanilla.extension.bookmarklet.mapper.url_component:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Mapper\UrlComponentMapper
         shared: false
 
     constructions-incongrues.vanilla.extension.bookmarklet.mapper.facebook_graphapi:
@@ -30,7 +30,7 @@ services:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
         arguments: [['|^https?://(www.)?archive\.org/details/.+/?.*$|']]
         calls:
-            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/details/(.+)/?.*$|' }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url_component', { attributes: { VanillaReleases_label: { component: path, pattern: '|^/details/(.+)/?.*$|' } } }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.bandcamp:
@@ -63,7 +63,7 @@ services:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
         arguments: [['|^https?://(www.)?freemusicarchive\.org/music/.+$|']]
         calls:
-            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/music/(.+)/?.*$|' }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url_component', { attributes: { VanillaReleases_label: { component: path, pattern: '|^/music/(.+)/?.*$|' } } }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.lesetoilesflottantes:
@@ -109,15 +109,15 @@ services:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
         arguments: [['|^https?://(www.)?soundcloud\.com/.+/sets/.+/?.*$|']]
         calls:
-            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/(.+)/sets/?.*$|' }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url_component', { attributes: { VanillaReleases_label: { component: path, pattern: '|^/(.+)/sets/?.*$|' } } }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.soundcloud:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
         arguments: [['|^https?://(www.)?soundcloud\.com/.+/.+$|']]
         calls:
-            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url', { attributes: [VanillaReleases_label], component: path, pattern: '|^/(.+)/.+$|' }]]
-            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_ismix: on, format: release } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url_component', { attributes: { VanillaReleases_label: { component: path, pattern: '|^/(.+)/.+$|' } } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_ismix: on, format: release } } } }]]
 
     constructions-incongrues.vanilla.extension.bookmarklet.page.thebrain:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
