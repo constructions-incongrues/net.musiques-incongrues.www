@@ -1,0 +1,159 @@
+parameters:
+    facebook.app.id: 1128717943928832
+    facebook.app.secret: d4f9c5edaa68f451154ff0778e6c32bf
+    openagenda.key: 5f936bc43d2469e4317b08ab2269462e
+
+services:
+    # request:
+    #     class: Symfony\Component\HttpFoundation\Request
+        # factory_class:  Symfony\Component\HttpFoundation\Request
+        # factory_method: createFromGlobals
+
+    constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Mapper\ForceValuesMapper
+        shared: false
+
+    constructions-incongrues.vanilla.extension.bookmarklet.mapper.url_component:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Mapper\UrlComponentMapper
+        shared: false
+
+    constructions-incongrues.vanilla.extension.bookmarklet.mapper.facebook_graphapi:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Mapper\FacebookGraphApiMapper
+        arguments: ['%facebook.app.id%', '%facebook.app.secret%']
+        shared: false
+
+    constructions-incongrues.vanilla.extension.bookmarklet.mapper.css_selector:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Mapper\CssSelectorMapper
+        shared: false
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.archive_org:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?archive\.org/details/.+/?.*$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url_component', { attributes: { VanillaReleases_label: { component: path, pattern: '|^/details/(.+)/?.*$|' } } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.bandcamp:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://.+\.bandcamp\.com/album/.+.*$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.css_selector', { attributes: { VanillaReleases_label: '#band-name-location span.title' } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.daheardit:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?daheardit-records\.net/.+/discography/.*$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release, VanillaReleases_label: 'Da ! Heard It Records' } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.empilements:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://empilements\.incongru\.org/.*$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release, VanillaReleases_label: 'Empilements' } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.facebook.event:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?facebook\.com/events/.*$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.facebook_graphapi', { type: event, pattern: '|^https://www.facebook.com/events/(\d+)/.*$|', fields: [description, start_time, place, cover], remap: { place.location.city: VanillaEvents_city, place.location.country: VanillaEvents_country, start_time: VanillaEvents_date, description: Description, cover.source: image } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_event: true, VanillaEvents_isevent: on, CategoryID: 5, format: event } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.freemusicarchive:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?freemusicarchive\.org/music/.+$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url_component', { attributes: { VanillaReleases_label: { component: path, pattern: '|^/music/(.+)/?.*$|' } } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.lesetoilesflottantes:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://lesetoilesflottantes\.incongru\.org/\d+/\d+/\d+/.+$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.css_selector', { attributes: { VanillaReleases_downloadlink: 'audio a' } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_ismix: on, VanillaReleases_label: 'Les Étoiles Flottantes', format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.lylradio:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://lyl\.live/show/.+.*$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.css_selector', { attributes: { VanillaReleases_label: 'div.showTitle h1' } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_ismix: on, format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.mixcloud:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?mixcloud\.com/.+/.*$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.css_selector', { attributes: { VanillaReleases_label: '.hovercard-anchor a' } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_ismix: on, format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.moncul:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?moncul\.org/.*$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_label: "Et Mon Cul c'est du Tofu ?", format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.openagenda:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?openagenda\.com/.*$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_event: true, VanillaEvents_isevent: on, CategoryID: 5, format: event } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.ouiedire:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?ouiedire\.net/emission/.*$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_label: "Ouïedire", VanillaReleases_ismix: on, format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.soundcloud.set:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?soundcloud\.com/.+/sets/.+/?.*$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url_component', { attributes: { VanillaReleases_label: { component: path, pattern: '|^/(.+)/sets/?.*$|' } } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.soundcloud:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?soundcloud\.com/.+/.+$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url_component', { attributes: { VanillaReleases_label: { component: path, pattern: '|^/(.+)/.+$|' } } }]]
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_ismix: on, format: release } } } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.thebrain:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?thebrainradio\.com/listen.php.*|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_label: "The Brain", VanillaReleases_ismix: on, format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.thebrain.amix:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?thebrainradio\.com/amix/listen.php.*|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_label: "The Brain", VanillaReleases_ismix: on, format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.page.radioclash:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?thisisradioclash\.org/playlist.php.*|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, VanillaReleases_label: "Radioclash", VanillaReleases_ismix: on, format: release } }]]
+
+    constructions-incongrues.vanilla.extension.bookmarklet.extractor:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Extractor
+        calls:
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.archive_org']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.bandcamp']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.daheardit']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.empilements']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.facebook.event']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.freemusicarchive']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.lesetoilesflottantes']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.lylradio']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.mixcloud']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.moncul']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.openagenda']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.ouiedire']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.soundcloud.set']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.soundcloud']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.thebrain']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.thebrain.amix']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.radioclash']]

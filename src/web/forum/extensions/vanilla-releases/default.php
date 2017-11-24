@@ -23,9 +23,12 @@ if (!($Context->SelfUrl == 'post.php' || $Context->SelfUrl == 'index.php' || $Co
 }
 
 // Add "events" tab
-$Menu->addTab($Context->getDefinition('Releases'),
-$Context->getDefinition('Releases'),
-$Configuration['BASE_URL'] . 'releases/', 'class="Eyes"');
+$Menu->addTab(
+    $Context->getDefinition('Releases'),
+    $Context->getDefinition('Releases'),
+    $Configuration['BASE_URL'] . 'releases/',
+    'class="Eyes"'
+);
 
 // Add link to podcast in website's head
 $Head->AddString('<link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/musiques-incongrues-podcast" title="Le podcast auto-mécanique du forum des Musiques Incongrues" />');
@@ -366,13 +369,13 @@ function VanillaReleases_MetadataControls(&$DiscussionForm)
 
     // Default form values
     $form_isrelease = ForceIncomingString('VanillaReleases_isrelease', true) === 'on' ? 'checked' : '';
-    $form_ismix = '';
+    $form_ismix = ForceIncomingString('VanillaReleases_ismix', true) === 'on' ? 'checked' : '';
     $form_disable = '';
     $form_hidden_isrelease = '';
     $form_hidden_ismix = '';
     $fieldset_visibility = ForceIncomingString('VanillaReleases_isrelease', true) === 'on' ? 'block' : 'none';
-    $download_link = '';
-    $label_name = '';
+    $download_link = ForceIncomingString('VanillaReleases_downloadlink', null);
+    $label_name = ForceIncomingString('VanillaReleases_label', null);
 
     if (isset($_GET['is_release']) && $_GET['is_release'] == 'true')
     {

@@ -173,6 +173,7 @@ $image_url = 'http://img96.imageshack.us/img96/46/faviconxa.png';
 
 // Write HTML (it is to be included in default.php)
 ?>
+<?php if (isset($image_data)): ?>
 <h2>Introspection</h2>
 <ul id=\"Banner\">
   <li class=\"BannerImage\">
@@ -182,4 +183,4 @@ $image_url = 'http://img96.imageshack.us/img96/46/faviconxa.png';
   </li>
   <p style="background-color:yellow;border:1px solid #CCC;text-align:center;font-weight:bold;"><a href='/forum/oeil/' title="Une poussière dans l'œil">Toutes les images incongrues</a></p>
 </ul>
-
+<?php endif ?>

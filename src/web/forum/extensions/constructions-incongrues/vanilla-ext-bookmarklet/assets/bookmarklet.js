@@ -1,0 +1,47 @@
+/* Bookmarklet compiler : https://mrcoles.com/bookmarklet */
+
+var title = document.title;
+var txt = '';
+if (window.getSelection) {
+    txt = window.getSelection();
+} else if (document.getSelection) {
+    txt = document.getSelection();
+} else if (document.selection) {
+    txt = document.selection.createRange().text;
+}
+txt = txt.toString();
+var ogDescription = document.querySelector('meta[property=\'og:description\']');
+if (ogDescription) {
+    if (ogDescription.getAttribute('content').length > txt.length) {
+        txt = ogDescription.getAttribute('content');
+    }
+}
+var metaDescription = document.querySelector('meta[name=\'Description\']');
+if (metaDescription) {
+    if (metaDescription.getAttribute('content').length > txt.length) {
+        txt = metaDescription.getAttribute('content');
+    }
+}
+if (txt.length > 4096) {
+    txt = txt.substring(0, 4093) + '...';
+}
+var logo = '';
+var ogImage = document.querySelector('meta[property=\'og:image\']');
+if (ogImage) {
+    logo = ogImage.getAttribute('content');
+}
+var url = document.location + '';
+var canonicalUrl = document.querySelector('link[rel=\'canonical\']');
+if (canonicalUrl) {
+    url = canonicalUrl.href;
+} else {
+    var ogUrl = document.querySelector('meta[property=\'og:url\']');
+    if (ogUrl) {
+        url = ogUrl.getAttribute('content');
+    }
+}
+void (btw = window.open('http://www.musiques-incongrues.net/forum/post/?title=' +
+    encodeURIComponent(title) + '&url=' +
+    encodeURIComponent(url.replace('%2520', '+')) + '&image=' +
+    encodeURIComponent(logo.replace('%2520', '+')) + '&description=' +
+    encodeURIComponent(txt.trim())))

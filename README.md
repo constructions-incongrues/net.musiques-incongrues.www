@@ -16,6 +16,11 @@ sudo service dnsmasq restart
 # Déploiement des sources
 
 ```bash
+# Compilation du bookmarklet
+# si nécessaire : npm -g install bookmarklet
+ant configure -Dprofile=pastishosting
+bookmarklet ./src/web/forum/extensions/constructions-incongrues/vanilla-ext-bookmarklet/assets/bookmarklet.js > ./src/web/forum/extensions/constructions-incongrues/vanilla-ext-bookmarklet/assets/bookmarklet.compiled.js
+
 # Test
 ant deploy -Dprofile=pastishosting
 
