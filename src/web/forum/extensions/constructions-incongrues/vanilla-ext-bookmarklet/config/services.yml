@@ -66,6 +66,12 @@ services:
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.url_component', { attributes: { VanillaReleases_label: { component: path, pattern: '|^/music/(.+)/?.*$|' } } }]]
             - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { is_release: true, format: release } }]]
 
+    constructions-incongrues.vanilla.extension.bookmarklet.page.gestrococlub:
+        class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
+        arguments: [['|^https?://(www.)?gestrococlub\.org/.+$|']]
+        calls:
+            - [addMapper, ['@constructions-incongrues.vanilla.extension.bookmarklet.mapper.force_values', { values: { VanillaReleases_label: Vaatican Records, is_release: true, format: release } }]]
+
     constructions-incongrues.vanilla.extension.bookmarklet.page.lesetoilesflottantes:
         class: ConstructionsIncongrues\Vanilla\Extension\Bookmarklet\Page
         arguments: [['|^https?://lesetoilesflottantes\.incongru\.org/\d+/\d+/\d+/.+$|']]
@@ -146,6 +152,7 @@ services:
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.empilements']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.facebook.event']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.freemusicarchive']]
+            - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.gestrococlub']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.lesetoilesflottantes']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.lylradio']]
             - [addPage, ['@constructions-incongrues.vanilla.extension.bookmarklet.page.mixcloud']]
