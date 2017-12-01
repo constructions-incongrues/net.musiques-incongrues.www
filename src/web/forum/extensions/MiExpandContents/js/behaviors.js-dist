@@ -1,0 +1,41 @@
+jQuery(document).ready(function($) {
+
+	var regexes = {
+		images: /\.(jpg|jpeg|gif|png|tif?|pict|bmp)($|\\?)/i
+	};
+
+	$('.CommentBody a').each(function() {
+		if ($(this).attr('href').match(regexes.standard) || $(this).attr('href').match(regexes.images)) {
+			$(this).attr('title', 'Expansion du lien en cours. Patience !');
+			$(this).addClass('expansible');
+		}
+	});
+
+	expandLink = function(event, direction) {
+		var el = $(event.target);
+
+
+		if (el.attr('href').match(regexes.images)) {
+			var image = $('<img src="'+ $(el).attr('href') +'" />');
+			$(image).load(function() {
+				if ($(this).width() > 800) {
+					$(image).css('width', '800px');
+				}
+			});
+			$(el).after(image).remove();
+		} else {
+			$.getJSON('@service.urlinfo.url@/info?url=' + $(el).attr('href'), null, function (data) {
+				if (data.code) {
+					$(el).parent().html('<p>' + data.code + '</p>');
+				}
+			}).always(function () {
+				$(el).removeClass('expansible');
+			});
+		}
+	};
+
+	$('.CommentBody a.expansible').waypoint(expandLink, {triggerOnce: true});
+	$('.CommentBody a.expansible:in-viewport').each(function() {
+		expandLink({target:$(this)});
+	});
+});

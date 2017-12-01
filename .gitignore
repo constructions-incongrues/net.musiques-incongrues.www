@@ -40,3 +40,4 @@
 # abt
 /etc/trivoallan/build.properties
 src/web/forum/extensions/constructions-incongrues/vanilla-ext-bookmarklet/assets/bookmarklet.js
+/src/web/forum/extensions/MiExpandContents/js/behaviors.js
