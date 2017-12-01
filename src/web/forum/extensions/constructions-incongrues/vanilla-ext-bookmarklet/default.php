@@ -153,9 +153,8 @@ function MiBookmarklet_DisplayBookmarkletLink()
         trim(file_get_contents(__DIR__.'/assets/bookmarklet.compiled.js')),
         "Ce bookmarklet permet de capturer des liens partout sur Internet et de les rapatrier sur le forum.\n\nIl suffit de le glisser dans la barre de favoris de votre navigateur.\n\nCliquez sur le lien ci-dessous pour une explication plus détaillée.",
         '🍍 Ananas It !',
-        '#',
-        // 'Tout savoir sur le Bookmarklet Incongru'
-        'Bientôt !'
+        'http://www.musiques-incongrues.net/forum/discussion/11127/ananas-it-/#Item_1',
+        ''
     );
 }
 
