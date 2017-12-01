@@ -218,7 +218,7 @@ margin-top:10px;
 .read-more {font-weight:bold;background-color:yellow;color:#FFF;text-transform:uppercase;text-align:center!important;margin:0 auto;margin-top:10px;}
 
 
-*/
+
 /*
  *
  * bOOKMARK TOPIC
@@ -1252,13 +1252,14 @@ html>body .ContentInfo h1 { width:80% !important; }
 	margin-right:5px !important;
 	color:#ff00ff;
 	line-height:20px;
-	}
+	text-transform: uppercase;
+}
+.DiscussionType a {
+	color:#ff00ff !important;
+}
 .DiscussionType span,
 .DiscussionType.Normal {
 	display:none;
-	}
-.DiscussionType * {
-	float: left;
 	}
 .DiscussionTopic, .User.Name {
 	font-size:18px;
@@ -2220,4 +2221,8 @@ a.sm3_playing, a.sm3_link, a.sm3_paused
 
 a.sm3_paused {
   background: url(http://www.musiques-incongrues.net/forum/themes/vanilla/styles/scene/play.png) no-repeat  2spx 2px !important ;
+}
+
+li.DiscussionTopic {
+	margin-bottom: 0.2em !important;
 }

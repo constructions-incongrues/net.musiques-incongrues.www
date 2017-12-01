@@ -16,16 +16,21 @@ $Context->AddToDelegate('Discussion', 'PostDiscussionPrefix', 'VanillaExtFields_
 
 function VanillaExtFields_PostDiscussionPrefix(&$Discussion)
 {
-    $types = ['agenda', 'musique'];
-    $prefix = '';
-    foreach ($types as $type) {
-        if (call_user_func(sprintf('_is%s', ucfirst($type)), $Discussion)) {
+    $types = [
+        'agenda' => '<a href="/forum/events" title="Consulter l\'agenda du forum">agenda</a>',
+        'musique' => '<a href="/forum/releases" title="Parcourir la discothèque du forum">musique</a>',
+        'misc'    => 'misc'
+    ];
+    $prefix = 'misc';
+    foreach (array_keys($types) as $type) {
+        $function = sprintf('_is%s', ucfirst($type));
+        if (is_callable($function) && call_user_func($function, $Discussion)) {
             $prefix = $type;
             break;
         }
     }
     if (!empty($prefix)) {
-        $Discussion->DelegateParameters['Prefix'] = ' ⋅ ' . strtoupper($prefix) . ' ⋅ ';
+        $Discussion->DelegateParameters['Prefix'] = $types[$prefix] . ' ⋅ ';
     }
 }
 
