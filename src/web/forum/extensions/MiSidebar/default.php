@@ -12,7 +12,7 @@
 // Current discussionID
 $discussionID = null;
 if (isset($_GET['DiscussionID'])) {
-	$discussionID = filter_var($_GET['DiscussionID'], FILTER_VALIDATE_INT);
+    $discussionID = filter_var($_GET['DiscussionID'], FILTER_VALIDATE_INT);
 }
 
 // TODO : move code to this extension
@@ -26,18 +26,18 @@ $blocks = array('sample' => array('html' => '', 'css' => array(''), 'js' => arra
 $blocks['ailleurs'] = array('html' => '
 <h2>Ailleurs</h2>
 <ul class="ailleurs-links">
-	<li><a href="http://www.daheardit-records.net" title="Da ! Heard It Records">Da ! Heard It Records</a></li>
-	<li><a href="http://www.egotwister.com" title="Ego Twister">Ego Twister</a></li>
-	<li><a href="http://www.serendip-arts.org" title="Festival Serendip">Festival Serendip</a></li>
-	<li><a href="http://istotassaca.blogspot.com/" title="Istota Ssaca">Istota Ssaca</a></li>
-	<li><a href="http://lelaboratoire.be/" title="Le Laboratoire">Le Laboratoire</a></li>
-	<li><a href="http://www.mazemod.org" title="Mazemod">Mazemod</a></li>
-	<li><a href="http://www.musiqueapproximative.net" title="Musique Approximative">Musique Approximative</a></li>
-	<li><a href="http://www.ouiedire.net" title="Ouïedire">Ouïedire</a></li>
-	<li><a href="http://www.pardon-my-french.fr" title="Pardon My French">Pardon My French</a></li>
-	<li><a href="http://www.thisisradioclash.org" title="Radioclash">Radioclash</a></li>
-	<li><a href="http://thebrain.lautre.net" title="The Brain">The Brain</a></li>
-	<li><a href="http://want.benetbene.net" title="WANT">WANT</a></li>
+    <li><a href="http://www.daheardit-records.net" title="Da ! Heard It Records">Da ! Heard It Records</a></li>
+    <li><a href="http://www.egotwister.com" title="Ego Twister">Ego Twister</a></li>
+    <li><a href="http://www.serendip-arts.org" title="Festival Serendip">Festival Serendip</a></li>
+    <li><a href="http://istotassaca.blogspot.com/" title="Istota Ssaca">Istota Ssaca</a></li>
+    <li><a href="http://lelaboratoire.be/" title="Le Laboratoire">Le Laboratoire</a></li>
+    <li><a href="http://www.mazemod.org" title="Mazemod">Mazemod</a></li>
+    <li><a href="http://www.musiqueapproximative.net" title="Musique Approximative">Musique Approximative</a></li>
+    <li><a href="http://www.ouiedire.net" title="Ouïedire">Ouïedire</a></li>
+    <li><a href="http://www.pardon-my-french.fr" title="Pardon My French">Pardon My French</a></li>
+    <li><a href="http://www.thisisradioclash.org" title="Radioclash">Radioclash</a></li>
+    <li><a href="http://thebrain.lautre.net" title="The Brain">The Brain</a></li>
+    <li><a href="http://want.benetbene.net" title="WANT">WANT</a></li>
 </ul>
 ');
 
@@ -46,23 +46,23 @@ $blocks['ailleurs'] = array('html' => '
 $minerResponse = CI_Miner_Client::getInstance()->query('links', 'mp3', array('discussion_id' => $discussionID));
 $linksActions = array();
 if (is_array($minerResponse) && $minerResponse['num_found'] > 0) {
-	$linksActions[] = array(
-		'href'  => sprintf('%sradio/?discussion_id=%d', $Configuration['WEB_ROOT'], $discussionID),
-		'title' => 'Écouter tous les morceaux postés dans ce topic',
-		'text'  => sprintf('Écouter ce topic ♫%d', $minerResponse['num_found'])
-	);
+    $linksActions[] = array(
+        'href'  => sprintf('%sradio/?discussion_id=%d', $Configuration['WEB_ROOT'], $discussionID),
+        'title' => 'Écouter tous les morceaux postés dans ce topic',
+        'text'  => sprintf('Écouter ce topic ♫%d', $minerResponse['num_found'])
+    );
 }
 
 $blocks['topicActions'] = array('html' => '');
 $htmlLinks = '';
 if (count($linksActions)) {
-	foreach ($linksActions as $link) {
-		$htmlLinks .= sprintf('<li><a href="%s" title="%s">%s</a></li>', $link['href'], $link['title'], $link['text']);
-	}
-	$blocks['topicActions']['html'] = sprintf('
+    foreach ($linksActions as $link) {
+        $htmlLinks .= sprintf('<li><a href="%s" title="%s">%s</a></li>', $link['href'], $link['title'], $link['text']);
+    }
+    $blocks['topicActions']['html'] = sprintf('
 <h2>Facettes</h2>
 <ul class="ailleurs-links">
-	%s
+    %s
 </ul>
 ', $htmlLinks);
 }
@@ -70,6 +70,26 @@ if (count($linksActions)) {
 // Une discussion au hasard
 $htmlRandom = '<h1><a style="background-color: #ccc;" href="'.$Configuration['WEB_ROOT'].'discussions/random">Une discussion au hasard !</a></h1>';
 $blocks['randomDiscussion'] = array('html' => $htmlRandom);
+
+// Une vidéo au hasard
+$query = 'http://data.musiques-incongrues.net/collections/links/segments/youtube/get?sort_field=random&limit=1&sort_direction=desc&format=json';
+$curl = curl_init($query);
+curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$json = curl_exec($curl);
+curl_close($curl);
+$url = json_decode($json, JSON_OBJECT_AS_ARRAY)[0]['url'];
+parse_str(parse_url($url, PHP_URL_QUERY), $matches);
+$blocks['video'] = [
+    'html' => sprintf(
+        '<h2><a style="color:#000;" href="http://www.tele-incongrue.net/" title="Regarder la Télévision Incongrue" target="_blank">TV Incongrue</a></h2>'.
+        '<iframe width="200px" src="https://www.youtube.com/embed/%s?feature=oembed&autoplay=%s" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>'.
+        '<h3 style="text-align: center;"><a href="?autoplay=1">Zap!</a> | <a href="http://www.tele-incongrue.net/" title="Regarder la Télévision Incongrue" target="_blank">Plein écran</a></h3>',
+        $matches['v'],
+        ForceIncomingString('autoplay', 0)
+    )
+];
 
 // Introspection
 // TODO : this should come from "Œil" extension
@@ -108,15 +128,15 @@ $blocks['data-gallery-user'] = array('html' => ob_get_clean());
 
 // Setup controller <=> blocks mappings
 $mappings = array(
-	'default'     => array('randomDiscussion', 'introspection'),
-	'discussions' => array('randomDiscussion', 'introspection'),
-	'comments'    => array('randomDiscussion', 'introspection', 'topicActions', 'instrospection', 'metadata-events', 'metadata-releases', 'data-gallery'),
-	'events'      => array(),
-	'label'       => array(),
-	'show'        => array(),
-	'labels'      => array(),
-	'shows'       => array(),
-	'account'     => array('data-gallery-user')
+    'default'     => array('randomDiscussion', 'video', 'introspection'),
+    'discussions' => array('randomDiscussion', 'video', 'introspection'),
+    'comments'    => array('randomDiscussion', 'video', 'introspection', 'topicActions', 'instrospection', 'metadata-events', 'metadata-releases', 'data-gallery'),
+    'events'      => array(),
+    'label'       => array(),
+    'show'        => array(),
+    'labels'      => array(),
+    'shows'       => array(),
+    'account'     => array('data-gallery-user')
 );
 
 // Compute controller name
@@ -124,40 +144,40 @@ $controllerName = 'default';
 
 $categoryID = ForceIncomingInt('CategoryID', null);
 if (in_array($categoryID, MiProjectsDatabasePeer::getCategoryIdsForType('labels', $Context))) {
-	$controllerName = 'label';
+    $controllerName = 'label';
 } else if (in_array($categoryID, MiProjectsDatabasePeer::getCategoryIdsForType('shows', $Context))) {
-	$controllerName = 'show';
+    $controllerName = 'show';
 } else if (ForceIncomingString('PostBackAction', '') == 'Labels') {
-	$controllerName = 'labels';
+    $controllerName = 'labels';
 } else if (ForceIncomingString('PostBackAction', '') == 'Shows') {
-	$controllerName = 'shows';
+    $controllerName = 'shows';
 } else if (ForceIncomingString('PostBackAction', '') == 'Events') {
-	$controllerName = 'events';
+    $controllerName = 'events';
 }else if ($Context->SelfUrl == 'index.php') {
-	$controllerName = 'discussions';
+    $controllerName = 'discussions';
 } else if ($Context->SelfUrl == 'comments.php') {
-	$controllerName = 'comments';
+    $controllerName = 'comments';
 } else if ($Context->SelfUrl == 'account.php') {
-	$controllerName = 'account';
+    $controllerName = 'account';
 }
 
 // Select appropriate mapping
 if (isset($mappings[$controllerName])) {
-	$mapping = $mappings[$controllerName];
+    $mapping = $mappings[$controllerName];
 }
 
 // Inject blocks into Panel
 foreach ($mapping as $block) {
-	if (isset($blocks[$block])) {
-		if (isset($Panel)) {
-			// "premium" features
-			if (isset($blocks[$block]['userIds'])) {
-				if (in_array($Context->Session->UserID, $blocks[$block]['userIds'])) {
-					$Panel->addString($blocks[$block]['html']);
-				}
-			} else {
-				$Panel->addString($blocks[$block]['html']);
-			}
-		}
-	}
+    if (isset($blocks[$block])) {
+        if (isset($Panel)) {
+            // "premium" features
+            if (isset($blocks[$block]['userIds'])) {
+                if (in_array($Context->Session->UserID, $blocks[$block]['userIds'])) {
+                    $Panel->addString($blocks[$block]['html']);
+                }
+            } else {
+                $Panel->addString($blocks[$block]['html']);
+            }
+        }
+    }
 }
