@@ -223,7 +223,7 @@ class HTML_BBCodeParser
 
     function _preparse()
     {
-		
+
         $o  = $this->_options['open'];
         $c  = $this->_options['close'];
         $oe = $this->_options['open_esc'];
@@ -238,7 +238,6 @@ class HTML_BBCodeParser
                             $o."url=\\2\\1\\2".$o."/url".$c);
 
         $this->_preparsed = preg_replace($pattern, $replace, $this->_preparsed);
-
 
         //Image
         $this->_preparsed = preg_replace("!".$oe."img(".$ce."|\s.*".$ce.")(.*)".$oe."/img".$ce."!Ui", $o."img=\\2\\1".$o."/img".$c, $this->_preparsed);
@@ -535,11 +534,15 @@ class HTML_BBCodeParser
                 $this->_parsed .= '<'.$this->_definedTags[$tag['tag']]['htmlopen'];
                 if ($this->_options['quotestyle'] == 'single') $q = "'";
                 if ($this->_options['quotestyle'] == 'double') $q = '"';
+                if (isset($tag['attributes']['url']) && strpos($tag['attributes']['url'], '://') === false) {
+                    $tag['attributes']['url'] = sprintf('http://%s', $tag['attributes']['url']);
+                }
                 foreach ($tag['attributes'] as $a => $v) {
                     if (    ($this->_options['quotewhat'] == 'nothing') ||
                             ($this->_options['quotewhat'] == 'strings') && (is_numeric($v)) ) {
                         $this->_parsed .= ' '.sprintf($this->_definedTags[$tag['tag']]['attributes'][$a], $v, '');
                     } else {
+
                         $this->_parsed .= ' '.sprintf($this->_definedTags[$tag['tag']]['attributes'][$a], $v, $q);
                     }
                 }
