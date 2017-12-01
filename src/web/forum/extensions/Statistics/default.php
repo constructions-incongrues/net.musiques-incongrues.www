@@ -298,11 +298,11 @@ if ($Context->SelfUrl == "index.php") {
       $Statistics->ExcecuteSQL();
       $Statistics->SaveStatistics();
     }
-    $Head->AddStyleSheet("extensions/Statistics/style.css");
-    if (!ForceIncomingInt('CategoryID', null)) {
-    	$Statistics->MakePanel();
-    	$Panel->AddString($Statistics->StatisticDisplay, 100);
-    }
+    // $Head->AddStyleSheet("extensions/Statistics/style.css");
+    // if (!ForceIncomingInt('CategoryID', null)) {
+    // 	$Statistics->MakePanel();
+    // 	$Panel->AddString($Statistics->StatisticDisplay, 100);
+    // }
   }
 } else if($Context->SelfUrl == "settings.php") {
   $Head->AddStyleSheet("extensions/Statistics/style.css");

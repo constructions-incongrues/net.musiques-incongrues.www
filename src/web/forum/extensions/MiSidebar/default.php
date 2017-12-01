@@ -22,19 +22,6 @@ $Head->AddStyleSheet('extensions/SidepanelRotator/style.css');
 // Sample structure
 $blocks = array('sample' => array('html' => '', 'css' => array(''), 'js' => array(), 'userIds' => array()));
 
-// Discussions essentielles
-$blocks['understand'] = array('html' => '
-<h2>Comprendre</h2>
-<ul class="ailleurs-links">
-	<li><a href="http://www.musiques-incongrues.net/forum/discussion/3055/ananas-ex-machina" title="Chaque semaine, le forum évolue. C\'est là qu\'on présente les progrès réalisés">Ananas Ex Machina</a></li>
-	<li><a href="http://www.musiques-incongrues.net/forum/discussion/3278/lignes-topiques" title="Obsessions collaboratives">Lignes Topiques</a></li>
-	<li><a href="http://www.musiques-incongrues.net/forum/discussion/816/musique-approximative" title="Pour discuter du site Musique Approximative et de ce qu\'on peut y entendre">Musique Approximative</a></li>
-	<li><a href="http://www.musiques-incongrues.net/forum/discussion/1869/pardon-my-french" title="Proposez vos créations">Pardon My French</a></li>
-	<li><a href="http://www.musiques-incongrues.net/forum/discussion/4148/-radio-substantifique-moelle-incongrue-episode-2-" title="Comprendre comment fonctionne notre radio automatique et étonnante">Radio Substantifique Moëlle</a></li>
-	<li><a href="http://www.musiques-incongrues.net/forum/discussion/3787/this-is-radioclash" title="Don\'t hate the Radioclash, be the Radioclash !">This is Radioclash</a></li>
-</ul>
-');
-
 // Ailleurs
 $blocks['ailleurs'] = array('html' => '
 <h2>Ailleurs</h2>
@@ -53,26 +40,6 @@ $blocks['ailleurs'] = array('html' => '
 	<li><a href="http://want.benetbene.net" title="WANT">WANT</a></li>
 </ul>
 ');
-
-// Affiner
-$filters = '
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Bookmarks">Discussions suivies</a></li>
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=YourDiscussions">Discussions auxquelles vous avez participé</a></li>
-	<li><a href="'.$Configuration['WEB_ROOT'].'discussions/?View=Private">Discussions privées</a></li>
-	<li><a href="'.$Configuration['WEB_ROOT'].'search/?PostBackAction=Search&amp;Keywords=whisper;&amp;Type=Comments" >Commentaires chuchotés</a></li>
-';
-$filters .= '
-<li style="color: black;">
-	Discussions initiées par :
-	<div id="search-affiner">
-		<form method="get" action="'.$Configuration['WEB_ROOT'].'discussion">
-			<input type="hidden" name="View" value="ByUser" />
-			<input type="text" class="champs" name="username" value="'.filter_input(INPUT_GET, 'username', FILTER_SANITIZE_STRING).'" />
-			<input type="submit" class="valid" value="Go" />
-		</form>
-	</div>
-</li>';
-$blocks['affiner'] = array('html' => '<h2>Affiner</h2><ul class="label-links">'.$filters.'</ul>');
 
 // Topic actions
 // Find out if topic hosts links to mp3s
@@ -126,28 +93,6 @@ ob_start();
 include(dirname(__FILE__).'/../vanilla-releases/sidebar.php');
 $blocks['metadata-releases'] = array('html' => ob_get_clean());
 
-// Zeitgeist
-// -- current
-ob_implicit_flush(false);
-@ob_end_clean();
-ob_start();
-include(dirname(__FILE__).'/../MiZeitgeist/blocks/current.php');
-$blocks['zeitgeistCurrent'] = array('html' => ob_get_clean());
-
-// -- about
-ob_implicit_flush(false);
-@ob_end_clean();
-ob_start();
-include(dirname(__FILE__).'/../MiZeitgeist/blocks/about.php');
-$blocks['zeitgeistAbout'] = array('html' => ob_get_clean());
-
-// -- navigation
-ob_implicit_flush(false);
-@ob_end_clean();
-ob_start();
-include(dirname(__FILE__).'/../MiZeitgeist/blocks/navigation.php');
-$blocks['zeitgeistNavigation'] = array('html' => ob_get_clean());
-
 // -- alternatives
 ob_implicit_flush(false);
 @ob_end_clean();
@@ -161,20 +106,16 @@ ob_start();
 include(dirname(__FILE__).'/../MiVanillaMiner/blocks/gallery-user.php');
 $blocks['data-gallery-user'] = array('html' => ob_get_clean());
 
-// Statistiques
-// TODO : this is still provided by the "Statistics" extension
-
 // Setup controller <=> blocks mappings
 $mappings = array(
-	'default'     => array('randomDiscussion', 'zeitgeistCurrent', 'understand', 'introspection'),
-	'discussions' => array('randomDiscussion', 'zeitgeistCurrent', 'understand', 'introspection', 'affiner'),
-	'comments'    => array('randomDiscussion', 'zeitgeistCurrent', 'topicActions', 'instrospection', 'metadata-events', 'metadata-releases', 'data-gallery'),
+	'default'     => array('randomDiscussion', 'introspection'),
+	'discussions' => array('randomDiscussion', 'introspection'),
+	'comments'    => array('randomDiscussion', 'introspection', 'topicActions', 'instrospection', 'metadata-events', 'metadata-releases', 'data-gallery'),
 	'events'      => array(),
 	'label'       => array(),
 	'show'        => array(),
 	'labels'      => array(),
 	'shows'       => array(),
-	'zeitgeist'   => array('zeitgeistAbout', 'zeitgeistNavigation',),
 	'account'     => array('data-gallery-user')
 );
 
@@ -192,8 +133,6 @@ if (in_array($categoryID, MiProjectsDatabasePeer::getCategoryIdsForType('labels'
 	$controllerName = 'shows';
 } else if (ForceIncomingString('PostBackAction', '') == 'Events') {
 	$controllerName = 'events';
-} else if (ForceIncomingString('PostBackAction', '') == 'Zeitgeist') {
-	$controllerName = 'zeitgeist';
 }else if ($Context->SelfUrl == 'index.php') {
 	$controllerName = 'discussions';
 } else if ($Context->SelfUrl == 'comments.php') {
