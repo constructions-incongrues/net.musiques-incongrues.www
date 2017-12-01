@@ -25,5 +25,5 @@ bookmarklet ./src/web/forum/extensions/constructions-incongrues/vanilla-ext-book
 ant deploy -Dprofile=pastishosting
 
 # Déploiement effectif
-ant deploy -Dprofile=pastishosting -Drsync.options=--delete-after
+ant deploy -Dprofile=pastishosting -Drsync.options=--delete-after -Drelease.tag=$(date +"%s")
 ```
