@@ -583,7 +583,7 @@ $Context->Dictionary['ErrPostBackActionInvalid'] = 'Your post information was no
 $Context->Dictionary['ErrPostBackKeySignOutInvalid'] = 'Can you please confirm you would like to sign out?';
 // Moved from settings.php
 $Context->Dictionary['TextWhispered'] = 'Private';
-$Context->Dictionary['TextSticky'] = 'Sticky';
+$Context->Dictionary['TextSticky'] = '';
 $Context->Dictionary['TextClosed'] = 'Closed';
 $Context->Dictionary['TextHidden'] = 'Deleted';
 $Context->Dictionary['TextSink'] = 'Sink';
