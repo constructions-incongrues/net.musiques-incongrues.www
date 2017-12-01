@@ -588,8 +588,8 @@ $Context->Dictionary['TextClosed'] = 'Closed';
 $Context->Dictionary['TextHidden'] = 'Deleted';
 $Context->Dictionary['TextSink'] = 'Sink';
 $Context->Dictionary['TextBookmarked'] = 'Bookmarked';
-$Context->Dictionary['TextPrefix'] = '[';
-$Context->Dictionary['TextSuffix'] = ']';
+$Context->Dictionary['TextPrefix'] = '';
+$Context->Dictionary['TextSuffix'] = '';
 // Added for new update checker
 $Context->Dictionary['CheckingForUpdates'] = 'Checking for updates...';
 $Context->Dictionary['ApplicationStatusGood'] = 'Vanilla is up to date.';

@@ -1,0 +1,15 @@
+{
+    "name": "constructions-incongrues/vanilla-ext-fields",
+    "type": "project",
+    "homepage": "https://github.com/constructions-incongrues/net.musiques-incongrues.www/tree/master/src/web/forum/extensions/constructions-incongrues/vanilla-ext-fields",
+    "license": "AGPL-3.0",
+    "authors": [
+        {
+            "name": "Constructions Incongrues",
+            "email": "contact@constructions-incongrues.net"
+        }
+    ],
+    "require": {
+        "symfony/form": "^3.4"
+    }
+}

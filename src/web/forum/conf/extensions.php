@@ -16,6 +16,7 @@ include($Configuration['EXTENSIONS_PATH']."Vanillacons/default.php");
 include($Configuration['EXTENSIONS_PATH']."Quotations/default.php");
 include($Configuration['EXTENSIONS_PATH']."Statistics/default.php");
 include($Configuration['EXTENSIONS_PATH']."constructions-incongrues/vanilla-ext-bookmarklet/default.php");
+include($Configuration['EXTENSIONS_PATH']."constructions-incongrues/vanilla-ext-fields/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-events/default.php");
 include($Configuration['EXTENSIONS_PATH']."vanilla-releases/default.php");
 include($Configuration['EXTENSIONS_PATH']."MetaTags/default.php");
