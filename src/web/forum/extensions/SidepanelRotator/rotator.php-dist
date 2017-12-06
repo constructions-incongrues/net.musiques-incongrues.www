@@ -174,13 +174,12 @@ $image_url = 'http://img96.imageshack.us/img96/46/faviconxa.png';
 // Write HTML (it is to be included in default.php)
 ?>
 <?php if (isset($image_data)): ?>
-<h2>Introspection</h2>
+<h2>Pinacothèque</h2>
 <ul id=\"Banner\">
   <li class=\"BannerImage\">
     <a href="<?php echo $image_data['source'] ?>">
       <img src="<?php echo $image_url ?>" title="Cette image vient du topic : <?php echo $image_data['title'] ?>" width="200px" height="135px" />
     </a>
   </li>
-  <p style="background-color:yellow;border:1px solid #CCC;text-align:center;font-weight:bold;"><a href='/forum/oeil/' title="Une poussière dans l'œil">Toutes les images incongrues</a></p>
 </ul>
 <?php endif ?>
